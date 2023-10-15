@@ -11,15 +11,20 @@
   }
 
   .app-btn {
-    @apply text bg-transparent text-app-dark center p-2 outline-none rounded-md
-    border border-app-dark hover:opacity-100 opacity-50;
+    @apply text bg-transparent text-app-dark center px-2 py-1 outline-none rounded-md
+    border-2 border-app-dark hover:opacity-100 opacity-50 duration-300 capitalize;
+  }
+
+  .app-input {
+    @apply bg-transparent w-full h-full text-1 text-app-dark p-2 rounded-md
+    outline outline-2 outline-app-dark focus:outline-2 focus:outline-app-primary duration-300;
   }
 
   .text {
     @apply text-sm font-normal;
   }
   .text-1 {
-    @apply text-base font-normal;
+    @apply text-base font-medium;
   }
   .text-2 {
     @apply text-lg font-bold;
