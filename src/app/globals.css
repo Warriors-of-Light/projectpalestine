@@ -3,12 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-
-
 }
 
 @layer components {
-
   .center {
     @apply flex justify-center items-center gap-2;
   }
@@ -30,5 +27,4 @@
   .text-3 {
     @apply text-xl font-black;
   }
-
 }

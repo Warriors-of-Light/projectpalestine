@@ -6,8 +6,10 @@ export type Reference = {
 
 export type Claim = {
   claimId: string;
-  claimContent: string;
-  claimRefrences: Array<Reference>;
+  title: string;
+  description: string;
+  rating: string;
+  refrences: Array<Reference>;
 };
 
 export interface CompanyProfile {
