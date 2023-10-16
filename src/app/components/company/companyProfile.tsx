@@ -82,7 +82,6 @@ const CompanyProfile = ({ props, closeProfile }: { props: propsType, closeProfil
                     <button className="app-btn-dark" onClick={selfClose}>go back</button>
                 </div>
 
-
             </div>
 
         </div>

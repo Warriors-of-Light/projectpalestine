@@ -19,7 +19,7 @@ const Company = ({ props }: { props: propsType }) => {
     return (
 
         <div
-            className="bg-app-primary border border-app--primary w-full grid grid-cols-12 items-center p-2 gap-4 rounded-lg cursor-pointer"
+            className="bg-app-primary w-full grid grid-cols-12 items-center p-2 gap-4 rounded-lg cursor-pointer"
             onClick={() => setProfile(true)}
         >
 
