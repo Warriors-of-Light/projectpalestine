@@ -3,28 +3,73 @@
 @tailwind utilities;
 
 @layer base {
+
+  * {
+    @apply text-1 text-app-dark;
+  }
+
 }
 
 @layer components {
+
+  .app-container {
+    max-width: 1000px;
+    height: 100%;
+    margin: auto;
+  }
+
   .center {
     @apply flex justify-center items-center gap-2;
   }
 
   .app-btn {
-    @apply text bg-transparent text-app-dark center p-2 outline-none rounded-md
-    border border-app-dark hover:opacity-100 opacity-50;
+    @apply bg-app-primary text-app--primary center rounded-lg p-2 duration-200 capitalize cursor-pointer
+    outline-none border border-transparent border-b-app--primary hover:border-b-4  active:border-b;
   }
 
-  .text {
+  .app-btn-dark {
+    @apply bg-app-primary text-app--primary center rounded-lg p-2 duration-200 capitalize cursor-pointer text-3
+    outline-none border-none hover:outline-app--primary opacity-75 active:scale-95;
+  }
+
+  .app-btn-disabled {
+    @apply bg-app-primary text-app--primary center rounded-lg p-2 capitalize outline-none border-2 border-transparent;
+  }
+
+  .app-input {
+    @apply bg-transparent w-full h-full rounded-lg p-3 z-0 duration-200 placeholder:opacity-50 placeholder:text-app-dark
+    border-none outline outline-app-dark outline-2 focus:outline-4 focus:outline-app-primary;
+  }
+
+  .text-1 {
     @apply text-sm font-normal;
   }
-  .text-1 {
-    @apply text-base font-normal;
-  }
   .text-2 {
-    @apply text-lg font-bold;
+    @apply text-base font-medium;
   }
   .text-3 {
+    @apply text-lg font-bold;
+  }
+  .text-4 {
     @apply text-xl font-black;
+  }
+
+  .title {
+    @apply font-black;
+  }
+
+}
+
+@layer utilities {
+  .animate-topdown {
+    animation: k-topdown 1s;
+  }
+  @keyframes k-topdown {
+    0%{
+      transform: translate(-100%);
+    }
+    100%{
+      transform: translate(0%);
+    }
   }
 }

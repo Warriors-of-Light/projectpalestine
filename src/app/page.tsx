@@ -1,33 +1,21 @@
-import Header from "@/components/header";
-import Image from "next/image";
-import Link from "next/link";
+// Home Page
 
-export default function Home() {
+import { Header, Hero } from "@/app/components/modules"
+
+const Home = () => {
+
   return (
-    <main className="bg-app-light flex flex-col items-center justify-start h-screen w-screen gap-4">
+
+    <main className="bg-app-light flex flex-col items-center justify-start min-h-screen w-screen gap-4 relative">
+
       <Header />
       <Hero />
+
     </main>
-  );
+
+  )
+
 }
 
-const Hero = () => {
-  return (
-    <div className="bg-app-primary grid grid-cols-12 items-center justify-center w-full h-full gap-4 mt-32">
-      <div className="col-span-12 md:col-span-6 flex flex-col items-center">
-        <div className="w-full text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula,
-          ante eu cursus tincidunt, justo libero consequat tortor, at
-          pellentesque erat velit nec libero. Vivamus vel nulla eu justo auctor
-          laoreet.
-        </div>
-        <div className="w-full text-3">Search a product or company</div>
-        <div className="w-full text-3">
-          <input className="w-full" type="text" />
-        </div>
-      </div>
 
-      <div className="col-span-12 md:col-span-6 flex items-center justify-center"></div>
-    </div>
-  );
-};
+export default Home

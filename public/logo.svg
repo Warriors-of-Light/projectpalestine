@@ -1,0 +1,9 @@
+<svg width="40" height="49" viewBox="0 0 40 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="20" cy="3" r="3" fill="#FACC15"/>
+<circle cx="20" cy="24" r="20" fill="#FACC15"/>
+<path d="M40 24C31 6.5 10 19.5 20 7C8.9543 7 7 11.5 0 24C0 12.9543 8.9543 4 20 4C31.0457 4 40 12.9543 40 24Z" fill="#D9AD00"/>
+<path d="M0 24H40V40.5L0 48.5V24Z" fill="#FACC15"/>
+<path d="M0 24H40V40.5L0 48.5V24Z" fill="#FACC15"/>
+<path d="M5.96046e-07 24H40L5.5 30L5.96046e-07 48.5V24Z" fill="#786416"/>
+<path d="M5.96046e-07 24H40L5.5 30L5.96046e-07 48.5V24Z" fill="#786416"/>
+</svg>
