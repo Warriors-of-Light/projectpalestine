@@ -17,7 +17,7 @@ const Header = () => {
 
   return (
 
-    <header className="bg-app--light fixed flex justify-between items-center w-screen p-4">
+    <header className="fixed flex justify-between items-center w-screen p-4">
 
       {/* Title - Logo */}
       <div className="center p-2">
@@ -55,7 +55,7 @@ const Header = () => {
       {/* Menu */}
       {
         menu &&
-        <div className='bg-app-light border border-red-400 absolute top-0 left-0 w-screen h-screen flex flex-col gap-2 p-2 z-50 animate-topdown'>
+        <div className='bg-app-light absolute top-0 left-0 w-screen h-screen flex flex-col gap-2 p-2 z-50 animate-leftright'>
 
           <button className="app-btn w-fit md:hidden" onClick={toggleMenu}>
             <Icon type="close" />

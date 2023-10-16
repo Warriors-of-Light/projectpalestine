@@ -13,7 +13,7 @@
 @layer components {
 
   .app-container {
-    max-width: 1000px;
+    max-width: 800px;
     height: 100%;
     margin: auto;
   }
@@ -61,10 +61,11 @@
 }
 
 @layer utilities {
-  .animate-topdown {
-    animation: k-topdown 1s;
+
+  .animate-leftright {
+    animation: k-leftright .5s;
   }
-  @keyframes k-topdown {
+  @keyframes k-leftright {
     0%{
       transform: translate(-100%);
     }
@@ -72,4 +73,17 @@
       transform: translate(0%);
     }
   }
+
+  .animate-topdown {
+    animation: k-topdown .5s;
+  }
+  @keyframes k-topdown {
+    0%{
+      transform: translateY(-100%);
+    }
+    100%{
+      transform: translateY(0%);
+    }
+  }
+
 }

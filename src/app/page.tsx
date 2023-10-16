@@ -6,7 +6,7 @@ const Home = () => {
 
   return (
 
-    <main className="bg-app-light flex flex-col items-center justify-start min-h-screen w-screen gap-4 relative">
+    <main className="bg-app--light flex flex-col items-center justify-start min-h-screen w-screen gap-4 relative overflow-x-hidden md:overflow-hidden">
 
       <Header />
       <Hero />
@@ -16,6 +16,5 @@ const Home = () => {
   )
 
 }
-
 
 export default Home

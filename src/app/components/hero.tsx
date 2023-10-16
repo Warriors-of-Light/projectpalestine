@@ -4,9 +4,37 @@ import Link from 'next/link'
 
 const Hero = () => {
 
+    // Testing Data
+    type dataType = {
+        logo: string,
+        name: string,
+        description: string,
+        status: 1 | 2 | 3
+    }
+    const data: dataType[] = [
+        {
+            logo: "https://img.icons8.com/color/100/mcdonalds-app.png",
+            name: "mcdonalds",
+            description: "company",
+            status: 3,
+        },
+        {
+            logo: "https://img.icons8.com/ios-filled/100/mac-os.png",
+            name: "apple",
+            description: "company",
+            status: 2,
+        },
+        {
+            logo: "https://img.icons8.com/color/100/coca-cola.png",
+            name: "coca cola",
+            description: "company",
+            status: 3,
+        },
+    ]
+
     return (
 
-        <div className="min-h-screen w-screen overflow-hidden flex flex-col-reverse md:flex-row items-center justify-center gap-6 p-4 pt-28">
+        <div className="min-h-screen w-screen flex flex-col-reverse md:flex-row items-center justify-center gap-6 p-4 pt-28">
 
             <div className="w-full md:w-1/2 flex flex-col justify-end gap-4">
 
@@ -22,18 +50,11 @@ const Hero = () => {
                     <Icon type="search" style='absolute right-0 mr-2' />
                 </div>
 
-                <Company props={{
-                    logo: "https://plchldr.co/i/200x200?&bg=000000&fc=FFFFFF&text=TEST",
-                    name: "OTPSA",
-                    description: "description",
-                    status: 1
-                }} />
-                <Company props={{
-                    logo: "https://plchldr.co/i/200x200?&bg=000000&fc=FFFFFF&text=TEST",
-                    name: "AfAa",
-                    description: "description",
-                    status: 2
-                }} />
+                {
+                    data.map(company => {
+                        return <Company props={company} />
+                    })
+                }
 
             </div>
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import Image from "next/image"
 import CompanyProfile from "./companyProfile"
 
@@ -14,23 +14,24 @@ type propsType = {
 const Company = ({ props }: { props: propsType }) => {
 
     const [profile, setProfile] = useState(false)
+    const closeProfile = useCallback(() => setProfile(false), [])
 
     return (
 
         <div
-        className="bg-app--light border-y-2 border-app-primary w-full grid grid-cols-12 items-center p-2 gap-2 rounded-lg cursor-pointer"
-        onClick={() => setProfile(true)}
+            className="bg-app-primary border border-app--primary w-full grid grid-cols-12 items-center p-2 gap-4 rounded-lg cursor-pointer"
+            onClick={() => setProfile(true)}
         >
 
             {/* Logo */}
-            <div className="col-span-3 rounded-full">
+            <div className="col-span-2 rounded-full">
                 <Image className="rounded-full" src={props.logo} alt="Logo" width={100} height={100} />
             </div>
 
             {/* Name */}
-            <div className="col-span-7 flex flex-col items-start">
-                <span className="text-3 title">{props.name}</span>
-                <span className="text">{props.description}</span>
+            <div className="col-span-8 flex flex-col items-start">
+                <span className="text-3 title capitalize">{props.name}</span>
+                <span className="text capitalize">{props.description}</span>
             </div>
 
             {/* Info */}
@@ -57,7 +58,7 @@ const Company = ({ props }: { props: propsType }) => {
                 </span>
             </div>
 
-            {profile && <CompanyProfile props={props} closeFunc={() => setProfile(false)} />}
+            {profile && <CompanyProfile props={props} closeProfile={closeProfile} />}
 
         </div>
 
