@@ -1,7 +1,9 @@
+import { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {Icon} from "@/components/modules";
+import Icon from "../common/icon";
 import Status from "./status";
+import { useRouter } from "next/navigation";
 
 type propsType = {
   logo: string;
@@ -11,31 +13,11 @@ type propsType = {
 };
 
 const CompanyProfile = ({ props }: { props: propsType }) => {
-
-  // Testing Data
-  const data = [
-    {
-      date: 'March 16 2020',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula, ante eu cursus tincidunt, justo libero consequat tortor'
-    },
-    {
-      date: 'September 15 2022',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula, ante eu cursus tincidunt, justo libero consequat tortor'
-    },
-    {
-      date: 'October 16 2023',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula, ante eu cursus tincidunt, justo libero consequat tortor'
-    }
-  ]
-
-
   return (
     <div className="layer animate-topdown">
-
-      <div className="app-container flex flex-col items-center justify-center gap-4 p-4">
-
+      <div className="app-container flex flex-col gap-4 p-4">
         {/* Logo & Name & description */}
-        <div className="w-full flex justify-between items-center">
+        <div className="flex justify-between items-center">
           <div className="center">
             <Image
               className="rounded-full"
@@ -55,7 +37,35 @@ const CompanyProfile = ({ props }: { props: propsType }) => {
         </div>
 
         {/* History */}
-        {data.map(props => <History props={props} />)}
+        <div className="bg-app-primary flex justify-between items-center p-2 rounded-lg">
+          <div className="text-3 title p-2 w-1/2">October 16 2023</div>
+          <div className="text-1 title w-1/2">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+            vehicula, ante eu cursus tincidunt, justo libero consequat tortor,
+            at pellentesque erat velit nec libero. Vivamus vel nulla eu justo
+            auctor laoreet.
+          </div>
+        </div>
+
+        <div className="bg-app-primary flex justify-between items-center p-2 rounded-lg">
+          <div className="text-3 title p-2 w-1/2">October 16 2023</div>
+          <div className="text-1 title w-1/2">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+            vehicula, ante eu cursus tincidunt, justo libero consequat tortor,
+            at pellentesque erat velit nec libero. Vivamus vel nulla eu justo
+            auctor laoreet.
+          </div>
+        </div>
+
+        <div className="bg-app-primary flex justify-between items-center p-2 rounded-lg">
+          <div className="text-3 title p-2 w-1/2">October 16 2023</div>
+          <div className="text-1 title w-1/2">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+            vehicula, ante eu cursus tincidunt, justo libero consequat tortor,
+            at pellentesque erat velit nec libero. Vivamus vel nulla eu justo
+            auctor laoreet.
+          </div>
+        </div>
 
         {/* Submit a claim */}
         <div className="flex items-center justify-between gap-4">
@@ -63,34 +73,14 @@ const CompanyProfile = ({ props }: { props: propsType }) => {
             <Icon type="submit" />
             <span>submit a claim</span>
           </Link>
-          <button className="app-btn-dark" onClick={() => { }}>
+          <button className="app-btn-dark" onClick={() => {}}>
             <Icon type="return" />
             <span>go back</span>
           </button>
         </div>
-
       </div>
-
     </div>
   );
 };
-
-const History = ({
-  props
-}: {
-  props: {
-    date: string,
-    text: string
-  }
-}) => {
-
-  return (
-    <div className="bg-app-primary flex justify-between items-center border-l border-app--primary p-2 rounded-lg">
-      <div className="text-3 w-1/2">{props.date}</div>
-      <div className="text-1 w-1/2">{props.text}</div>
-    </div>
-  )
-
-}
 
 export default CompanyProfile;

@@ -1,10 +1,10 @@
-import {Icon} from "@/components/modules";
+import Icon from "../common/icon";
 
 const Status = ({ status }: { status: 1 | 2 | 3 }) => {
   return (
     <div className="col-span-2 flex flex-col justify-start items-center gap-2">
       <div
-        className={`p-2 rounded-full ${
+        className={`p-4 rounded-full ${
           status == 1
             ? "bg-app-red"
             : status == 2
@@ -13,9 +13,9 @@ const Status = ({ status }: { status: 1 | 2 | 3 }) => {
         }
         `}
       >
-        {status == 1 && <Icon type="" style="stroke-app--red" />}
-        {status == 2 && <Icon type="alert" style="stroke-app--yellow" />}
-        {status == 3 && <Icon type="check" style="stroke-app--green" />}
+        {status == 1 && <Icon type="" />}
+        {status == 2 && <Icon type="alert" />}
+        {status == 3 && <Icon type="check" />}
       </div>
       <span className="text">
         {status == 1 && "Poor"}

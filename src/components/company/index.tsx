@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useCallback, useState, useEffect, createContext } from "react";
 import Image from "next/image";
 import React from "react";
+import { Icon } from "../modules";
 import Status from "./status";
 import CompanyProfile from "./companyProfile";
 
@@ -20,7 +21,7 @@ const Company = ({ props }: { props: propsType }) => {
 
   return (
     <div
-      className="bg-app--light w-full grid grid-cols-12 items-center p-2 gap-4 rounded-lg cursor-pointer"
+      className="bg-app-primary w-full grid grid-cols-12 items-center p-2 gap-4 rounded-lg cursor-pointer"
       onClick={() => setProfile(true)}
     >
       {/* Logo */}
