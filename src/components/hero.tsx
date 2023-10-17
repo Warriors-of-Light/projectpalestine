@@ -18,13 +18,14 @@ import {
 import firebase_app from "./firebase/config";
 
 const Hero = () => {
+
   // Testing Data
-  type dataType = {
-    logo: string;
-    name: string;
-    description: string;
-    status: 1 | 2 | 3;
-  };
+  // type dataType = {
+  //   logo: string;
+  //   name: string;
+  //   description: string;
+  //   status: 1 | 2 | 3;
+  // };
   // const data: dataType[] = [
   //   {
   //     logo: "https://img.icons8.com/color/100/mcdonalds-app.png",
@@ -81,18 +82,19 @@ const Hero = () => {
 
   return (
     <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6">
-      <div className="bg-app-light h-full w-full md:w-1/2 flex flex-col justify-center content-end gap-4 p-8">
+
+      <div className="bg-app-light app-container w-full md:w-1/2 flex flex-col justify-center content-end gap-4 p-8">
         <div className="w-full text-4xl font-black mb-10">
           A way for us to boycott the occupation and it’s supporters
         </div>
         <div className="w-full relative center">
-          <div className="bg-app-light absolute left-0 top-0 -translate-y-1/2 w-fit text-4 z-50 px-2">
+          <div className="bg-app-light absolute left-0 top-0 -translate-y-1/2 w-fit text-3 z-50 px-2">
             Search a product or company
           </div>
           <input
             className="app-input"
             type="text"
-            placeholder="Product or company name..."
+            placeholder=".."
             onChange={() => searching}
           />
           <Icon type="search" style="absolute right-0 mr-2" />
@@ -128,6 +130,7 @@ const Hero = () => {
           />
         </div>
       </div>
+
     </div>
   );
 };

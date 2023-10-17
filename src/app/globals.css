@@ -15,7 +15,7 @@
 
 @layer components {
   .app-container {
-    max-width: 800px;
+    max-width: 700px;
     height: 100%;
     margin: auto;
   }
@@ -37,9 +37,9 @@
     outline-none border border-transparent border-b-app--primary hover:border-b-4  active:border-b;
   }
 
-  .app-btn-unique {
+  .app-btn-yellow {
     @apply bg-app-yellow text-app--yellow center rounded-lg p-2 duration-200 capitalize cursor-pointer
-    outline-none border border-transparent border-b-app--primary hover:border-b-4  active:border-b;
+    outline-none border border-transparent border-b-app--yellow hover:border-b-4  active:border-b;
   }
 
   .app-btn-dark {
@@ -57,7 +57,7 @@
   }
 
   .text-1 {
-    @apply text-sm font-normal;
+    @apply text-sm font-medium;
   }
   .text-2 {
     @apply text-base font-medium;
