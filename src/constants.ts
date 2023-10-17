@@ -18,3 +18,10 @@ export interface CompanyProfile {
   score: number;
   claims: Array<Claim>;
 }
+
+export type User = {
+  username: string;
+  userId: string;
+  userRating: string;
+  userSubmissions: Array<string>; //array of claimIDs that we can retrieve from the database
+};
