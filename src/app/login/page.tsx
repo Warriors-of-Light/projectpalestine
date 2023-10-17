@@ -7,15 +7,39 @@ import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import React from "react";
 import signIn from "@/components/firebase/auth/signIn";
-import Palestine from "../../assets/palestineFlag.png";
+import Palestine from "@/assets/palestineFlag.png";
+import signUp from "@/components/firebase/auth/signUp";
+import { useUserStore } from "@/store/useUserStore";
 
 export default function Login() {
+  const router = useRouter();
+
+  /** UseState **/
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter();
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isRegisteration, setIsRegisteration] = useState(false);
+  const { user, setUser } = useUserStore();
 
   const handleForm: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
+
+    if (isRegisteration) {
+      if (password !== confirmPassword) {
+        alert("password mismatch");
+      } else {
+        const { result, error } = await signUp(email, password);
+        if (error) {
+          alert("Sign up failed");
+          return console.log(error);
+        }
+        alert("Sign up successful!");
+        setUser(result);
+        return router.push("/");
+      }
+      return;
+    }
+
     const { result, error } = await signIn(email, password);
 
     if (error) {
@@ -23,14 +47,15 @@ export default function Login() {
       return console.log(error);
     }
     alert("Sign in successful");
-    return router.push("/home");
+    setUser(result);
+    return router.push("/");
   };
 
   return (
     <>
-      <div className="bg-app--light h-full w-full flex flex-col justify-center items-center gap-4">
+      <div className="bg-slate-100 h-full w-full flex flex-col justify-center items-center gap-4">
         <div className="w-full max-w-[550px]">
-          <div className="flex justify-start border-l-4 border-app-primary pb-8 -rotate-3">
+          <div className="flex justify-start border-l-4 border-black pb-8 -rotate-6 mr-12 mb-10 ml-56">
             <Image
               className="object-cover"
               src={Palestine}
@@ -41,32 +66,58 @@ export default function Login() {
           </div>
 
           <div className="bg-app--light shadow-lg md:rounded-xl flex flex-col gap-6 p-6 border-2 border-app-primary">
-            <h2 className="text-4 text-app--primary">
-              Become a member of Palestine
+            <h2 className="text-4 text-app--primary text-center">
+              Project Palestine
             </h2>
 
             <form className="space-y-6" action="#" onSubmit={handleForm}>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                placeholder="Email Address"
-                required
-                className="app-input p-3"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="email"
-                placeholder="Password"
-                required
-                className="app-input p-3"
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <div>
+                <label className="flex text-green-800 text-lg font-semibold mb-2">
+                  Email Address
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="free@palestine.com"
+                  required
+                  className="app-input p-3 bg-slate-50"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="flex text-green-800 text-lg font-semibold mb-2">
+                  Password
+                </label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="password"
+                  placeholder="Password"
+                  required
+                  className="app-input p-3 bg-slate-50"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              {isRegisteration && (
+                <div>
+                  <label className="flex text-green-800 text-lg font-semibold mb-2">
+                    Confirm Password
+                  </label>
+                  <input
+                    id="confirm-password"
+                    name="confirm-password"
+                    type="password"
+                    autoComplete="password"
+                    placeholder="Password"
+                    required
+                    className="app-input p-3 bg-slate-50"
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                </div>
+              )}
 
               <div className="flex flex-col items-center gap-4">
                 <button type="submit" className="app-btn-dark w-1/2">
@@ -84,9 +135,14 @@ export default function Login() {
                   <hr className="w-full border-t border-app--primary" />
                 </div>
                 <div className="text-center">
-                  Not a member?{" "}
-                  <Link href="#" className="app-link">
-                    {"Sign up here"}
+                  {isRegisteration ? "Already a member?" : "Not a member?"}{" "}
+                  {"  "}
+                  <Link
+                    href="#"
+                    className="app-link"
+                    onClick={() => setIsRegisteration(true)}
+                  >
+                    {isRegisteration ? "Sign in" : "Sign up"}
                   </Link>
                 </div>
               </div>

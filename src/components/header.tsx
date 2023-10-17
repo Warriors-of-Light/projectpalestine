@@ -5,9 +5,25 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Icon } from "./modules";
+import { useRouter } from "next/navigation";
+import { useUserStore } from "@/store/useUserStore";
+import logOut from "./firebase/auth/logout";
+import Alert from "./common/alert";
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
+  const router = useRouter();
+  const [displayAlert, setDisplayAlert] = useState(false);
+
+  const navigateToPage = (location: string) => {
+    router.push(`/${location}`);
+  };
+
+  const { user, setUser } = useUserStore();
+
+  const dissmissAlert = () => {
+    setDisplayAlert(false);
+  };
 
   useEffect(() => {
     setMenu(false);
@@ -15,6 +31,14 @@ const Header = () => {
   const toggleMenu = () => setMenu((state) => !state);
   return (
     <header className="fixed flex justify-between items-center w-screen p-4">
+      <div className="flex absolute left-800 top-2">
+        {displayAlert &&
+          Alert({
+            color: "green",
+            message: "Signed out Successfully!",
+            dissmissAlert: dissmissAlert,
+          })}
+      </div>
       {/* Title - Logo */}
       <div className="center p-2">
         <Image src="/logo.svg" width="20" height="20" alt="Logo" />
@@ -44,11 +68,28 @@ const Header = () => {
           <Icon type="donate" />
           Donate
         </Link>
-
-        <Link className="app-btn w-36" href="/">
-          <Icon type="login" />
-          Log in
-        </Link>
+        {user?.user.email && user.user.email.length > 0 ? (
+          <button
+            className="app-btn w-36"
+            onClick={() => {
+              setUser(null);
+              setDisplayAlert(true);
+              logOut();
+              navigateToPage("");
+            }}
+          >
+            <Icon type="login" />
+            Log Out
+          </button>
+        ) : (
+          <button
+            className="app-btn w-36"
+            onClick={() => navigateToPage("login")}
+          >
+            <Icon type="login" />
+            Log in
+          </button>
+        )}
       </div>
 
       {/* Menu btn */}
@@ -79,10 +120,12 @@ const Header = () => {
             <Icon type="donate" />
             Donate
           </Link>
-          <Link className="app-btn" href="/">
+          <button className="app-btn" onClick={() => navigateToPage("login")}>
             <Icon type="login" />
-            Log in
-          </Link>
+            {user?.user.email && user.user.email.length > 0
+              ? "Log out"
+              : " Log in"}
+          </button>
         </div>
       )}
     </header>

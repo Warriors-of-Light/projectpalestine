@@ -2,9 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import app from "../assets/app.svg";
 import { Company, Icon } from "./modules";
+import appStore from "../assets/appstore.svg";
+import playStore from "../assets/playstore.svg";
+import {
+  collection,
+  getFirestore,
+  doc,
+  setDoc,
+  getDocs,
+  DocumentData,
+} from "firebase/firestore";
+import firebase_app from "./firebase/config";
 
 const Hero = () => {
   // Testing Data
@@ -14,26 +25,55 @@ const Hero = () => {
     description: string;
     status: 1 | 2 | 3;
   };
-  const data: dataType[] = [
-    {
-      logo: "https://img.icons8.com/color/100/mcdonalds-app.png",
-      name: "mcdonalds",
-      description: "company",
-      status: 3,
-    },
-    {
-      logo: "https://img.icons8.com/ios-filled/100/mac-os.png",
-      name: "apple",
-      description: "company",
-      status: 2,
-    },
-    {
-      logo: "https://img.icons8.com/color/100/coca-cola.png",
-      name: "coca cola",
-      description: "company",
-      status: 1,
-    },
-  ];
+  // const data: dataType[] = [
+  //   {
+  //     logo: "https://img.icons8.com/color/100/mcdonalds-app.png",
+  //     name: "mcdonalds",
+  //     description: "company",
+  //     status: 3,
+  //   },
+  //   {
+  //     logo: "https://img.icons8.com/ios-filled/100/mac-os.png",
+  //     name: "apple",
+  //     description: "company",
+  //     status: 2,
+  //   },
+  //   {
+  //     logo: "https://img.icons8.com/color/100/coca-cola.png",
+  //     name: "coca cola",
+  //     description: "company",
+  //     status: 1,
+  //   },
+  // ];
+
+  const retrieveOnce = useRef(0);
+
+  const companies: Array<dataType> = useMemo(() => {
+    return [];
+  }, []);
+
+  const retrieveData = useCallback(async () => {
+    const db = getFirestore(firebase_app);
+    // const CompaniesRef = collection(db, 'Companies');
+
+    const querySnapshot = await getDocs(collection(db, "Companies"));
+    querySnapshot.forEach((doc) => {
+      alert(JSON.stringify(doc.data()));
+      companies.push({
+        description: doc.data().description,
+        name: doc.data().name,
+        logo: doc.data().logo,
+        status: doc.data().score,
+      });
+    });
+  }, [companies]);
+
+  useEffect(() => {
+    if (retrieveOnce.current < 3) {
+      retrieveData();
+      retrieveOnce.current++;
+    }
+  }, [companies, retrieveData]);
 
   const searching = (e: HTMLInputElement) => {
     const searchingText = e.value;
@@ -58,27 +98,34 @@ const Hero = () => {
           <Icon type="search" style="absolute right-0 mr-2" />
         </div>
 
-        {data.map((company, index) => {
-          return <Company key={index} props={company} />;
+        {companies.map((company, index) => {
+          return (
+            <Company
+              key={index}
+              props={{
+                name: company.name,
+                description: company.description,
+                logo: company.logo,
+                status: company.status,
+              }}
+            />
+          );
         })}
       </div>
 
       <div className="h-full w-full md:w-1/2 center flex-col">
-        <Image
-          src={app} //just a placeholder
-          alt="Logo"
-          width={300}
-          height={300}
-        />
+        <Image src={app} alt="Logo" width={300} height={300} />
         <div className="center">
-          <Link href="/" className="app-btn-dark">
-            <Icon type="appstore" />
-            <span>app store</span>
-          </Link>
-          <Link href="/" className="app-btn-dark">
-            <Icon type="googleplay" />
-            <span>google play</span>
-          </Link>
+          <Image
+            alt={"Google Play button"}
+            src={playStore}
+            className=" cursor-pointer"
+          />
+          <Image
+            alt={"App Store button"}
+            src={appStore}
+            className=" cursor-pointer"
+          />
         </div>
       </div>
     </div>
