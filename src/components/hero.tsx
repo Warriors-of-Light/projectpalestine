@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import app from "../assets/app.svg";
-import { Company, Icon } from "./modules";
+import { CompanyCard, Icon } from "./modules";
 import appStore from "../assets/appstore.svg";
 import playStore from "../assets/playstore.svg";
 import {
@@ -16,16 +15,10 @@ import {
   DocumentData,
 } from "firebase/firestore";
 import firebase_app from "./firebase/config";
+import { Company } from "@/constants";
 
-type dataType = {
-  logo: string;
-  name: string;
-  description: string;
-  status: 1 | 2 | 3;
-};
 
 const Hero = () => {
-
   // Testing Data
   // const data: dataType[] = [
   //   {
@@ -50,7 +43,7 @@ const Hero = () => {
 
   const retrieveOnce = useRef(0);
 
-  const companies: Array<dataType> = useMemo(() => {
+  const companies: Array<Company> = useMemo(() => {
     return [];
   }, []);
 
@@ -62,20 +55,22 @@ const Hero = () => {
     querySnapshot.forEach((doc) => {
       alert(JSON.stringify(doc.data()));
       companies.push({
+        companyId: doc.id,
         description: doc.data().description,
         name: doc.data().name,
         logo: doc.data().logo,
-        status: doc.data().score,
+        rating: doc.data().rating,
+        claims: [],
       });
     });
   }, [companies]);
 
-  useEffect(() => {
-    if (retrieveOnce.current < 3) {
-      retrieveData();
-      retrieveOnce.current++;
-    }
-  }, [companies, retrieveData]);
+  // useEffect(() => {
+  //   if (retrieveOnce.current < 3) {
+  //     retrieveData();
+  //     retrieveOnce.current++;
+  //   }
+  // }, [companies, retrieveData]);
 
   const searching = (e: HTMLInputElement) => {
     const searchingText = e.value;
@@ -83,7 +78,6 @@ const Hero = () => {
 
   return (
     <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6">
-
       <div className="bg-app-light app-container w-full md:w-1/2 flex flex-col justify-center content-end gap-4 p-8">
         <div className="w-full text-4xl font-black mb-10">
           A way for us to boycott the occupation and it’s supporters
@@ -103,7 +97,7 @@ const Hero = () => {
 
         {companies.map((company, index) => {
           return (
-            <Company
+            <CompanyCard
               key={index}
               props={{
                 name: company.name,

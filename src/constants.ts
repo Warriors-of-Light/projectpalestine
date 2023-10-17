@@ -12,12 +12,14 @@ export type Claim = {
   refrences: Array<Reference>;
 };
 
-export interface CompanyProfile {
+export type Company = {
   logo: string;
+  name: string;
+  description: string;
   companyId: string;
-  score: number;
+  rating: 1 | 2 | 3;
   claims: Array<Claim>;
-}
+};
 
 export type User = {
   username: string;

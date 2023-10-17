@@ -5,15 +5,16 @@ import Image from "next/image";
 import React from "react";
 import Status from "./status";
 import CompanyProfile from "./companyProfile";
+import { Company } from "@/constants";
 
-type propsType = {
-  logo: string;
-  name: string;
-  description: string;
-  status: 1 | 2 | 3;
-};
-
-const Company = ({ props }: { props: propsType }) => {
+const CompanyCard = ({
+  logo,
+  name,
+  description,
+  companyId,
+  rating,
+  claims,
+}: Company) => {
   const [profile, setProfile] = useState(false);
 
   useEffect(() => console.log(profile), [profile]);
@@ -27,7 +28,7 @@ const Company = ({ props }: { props: propsType }) => {
       <div className="col-span-2 rounded-full">
         <Image
           className="rounded-full"
-          src={props.logo}
+          src={logo}
           alt="Logo"
           width={100}
           height={100}
@@ -36,16 +37,16 @@ const Company = ({ props }: { props: propsType }) => {
 
       {/* Name */}
       <div className="col-span-8 flex flex-col items-start">
-        <span className="text-3 title capitalize">{props.name}</span>
-        <span className="text capitalize">{props.description}</span>
+        <span className="text-3 title capitalize">{name}</span>
+        <span className="text capitalize">{description}</span>
       </div>
 
-      {/* Status */}
-      <Status status={props.status} />
+      {/* Rating */}
+      <Status status={rating} />
 
-      {profile && <CompanyProfile props={props} />}
+      {profile && <CompanyProfile companyId={companyId} />}
     </div>
   );
 };
 
-export default Company;
+export default CompanyCard;
