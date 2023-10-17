@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Icon } from "./modules";
+import {Icon} from "@/components/modules";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/useUserStore";
 import logOut from "./firebase/auth/logout";
@@ -47,7 +47,7 @@ const Header = () => {
 
       {/* Links - Routes */}
       <div className="hidden md:flex items-center gap-2">
-        <Link className="app-btn-unique" href="/">
+        <Link className="app-btn-yellow" href="/">
           upcoming features
         </Link>
 
