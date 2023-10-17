@@ -14,6 +14,7 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
     <main className="bg-app-light flex flex-col items-center justify-start h-screen w-screen gap-4">
       <Header />
       <div className="flex w-full absolute">
+        <div></div>
         <div className="flex lg:w-1200 p-10 mx-auto justify-start absolute left-0">
           <CompanyHistory
             claims={[
