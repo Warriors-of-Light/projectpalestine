@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -5,7 +7,6 @@ import app from "../assets/app.svg";
 import { Company, Icon } from "./modules";
 
 const Hero = () => {
-
   // Testing Data
   type dataType = {
     logo: string;
@@ -34,25 +35,25 @@ const Hero = () => {
     },
   ];
 
-  const searching = (e: InputEvent) => {
-
-    const searchingText = e.target.value
-
-  }
+  const searching = (e: HTMLInputElement) => {
+    const searchingText = e.value;
+  };
 
   return (
-    <div className="min-h-screen w-screen flex flex-col-reverse md:flex-row items-center justify-center gap-6 p-4 pt-28">
-      <div className="w-full md:w-1/2 flex flex-col justify-end gap-4">
-        <div className="w-full text-6xl font-black mb-10">
+    <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6">
+      <div className="bg-app-light h-full w-full md:w-1/2 flex flex-col justify-center content-end gap-4 p-8">
+        <div className="w-full text-4xl font-black mb-10">
           A way for us to boycott the occupation and it’s supporters
         </div>
-        <div className="w-full text-3 opacity-50">Search a product or company</div>
         <div className="w-full relative center">
+          <div className="bg-app-light absolute left-0 top-0 -translate-y-1/2 w-fit text-4 z-50 px-2">
+            Search a product or company
+          </div>
           <input
             className="app-input"
             type="text"
             placeholder="Product or company name..."
-            onChange={searching}
+            onChange={() => searching}
           />
           <Icon type="search" style="absolute right-0 mr-2" />
         </div>
@@ -62,7 +63,7 @@ const Hero = () => {
         })}
       </div>
 
-      <div className="w-full md:w-1/2 center flex-col">
+      <div className="h-full w-full md:w-1/2 center flex-col">
         <Image
           src={app} //just a placeholder
           alt="Logo"
@@ -82,7 +83,6 @@ const Hero = () => {
       </div>
     </div>
   );
-
 };
 
 export default Hero;

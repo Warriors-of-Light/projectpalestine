@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect, createContext } from "react";
 import Image from "next/image";
 import React from "react";
-import CompanyProfile from "./companyProfile";
 import { Icon } from "../modules";
+import Status from "./status";
+import CompanyProfile from "./companyProfile";
 
 type propsType = {
   logo: string;
@@ -15,7 +16,8 @@ type propsType = {
 
 const Company = ({ props }: { props: propsType }) => {
   const [profile, setProfile] = useState(false);
-  const closeProfile = useCallback(() => setProfile(false), []);
+
+  useEffect(() => console.log(profile), [profile]);
 
   return (
     <div
@@ -39,28 +41,10 @@ const Company = ({ props }: { props: propsType }) => {
         <span className="text capitalize">{props.description}</span>
       </div>
 
-      {/* Info */}
-      <div className="col-span-2 flex flex-col justify-start items-center gap-2">
-        <div
-          className={`p-4 rounded-full ${
-            props.status == 1
-              ? "bg-app-red"
-              : props.status == 2
-              ? "bg-app-yellow"
-              : "bg-app-green"
-          }
-                `}
-        >
-          {props.status == 1 && <Icon type="" />}
-          {props.status == 2 && <Icon type="alert" />}
-          {props.status == 3 && <Icon type="check" />}
-        </div>
-        <span className="text">
-          {props.status == 1 ? "Poor" : props.status == 2 ? "Meduim" : "Good"}
-        </span>
-      </div>
+      {/* Status */}
+      <Status status={props.status} />
 
-      {profile && <CompanyProfile props={props} setProfile={setProfile} />}
+      {profile && <CompanyProfile props={props} />}
     </div>
   );
 };

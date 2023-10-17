@@ -16,6 +16,9 @@ import {
 import { BiDonateHeart, BiDownload, BiSolidContact } from "react-icons/bi";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { AiOutlineCheckCircle } from "react-icons/ai";
+import { GrReturn } from "react-icons/gr";
+import { BiLogIn } from "react-icons/bi";
+
 import React from "react";
 
 const Icon = (props: {
@@ -28,6 +31,8 @@ const Icon = (props: {
   const size: number = props.size ? props.size : 20;
 
   switch (type) {
+    case "return":
+      return <GrReturn className={style} size={size} />;
     case "submit":
       return <RiSendPlaneFill className={style} size={size} />;
     case "alert":
@@ -52,6 +57,8 @@ const Icon = (props: {
       return <BiSolidContact className={style} size={size} />;
     case "donate":
       return <BiDonateHeart className={style} size={size} />;
+    case "login":
+      return <BiLogIn className={style} size={size} />;
     case "appstore":
       return (
         <svg

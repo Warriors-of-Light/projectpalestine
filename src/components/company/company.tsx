@@ -8,7 +8,9 @@ type propsType = {
   status: 1 | 2 | 3;
 };
 
+
 const Company = ({ props }: { props: propsType }) => {
+
   return (
     <div className="bg-app--light w-full grid grid-cols-6 items-center p-2 rounded-md">
       {/* Logo */}

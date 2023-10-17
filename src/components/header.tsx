@@ -12,9 +12,7 @@ const Header = () => {
   useEffect(() => {
     setMenu(false);
   }, []);
-
   const toggleMenu = () => setMenu((state) => !state);
-
   return (
     <header className="fixed flex justify-between items-center w-screen p-4">
       {/* Title - Logo */}
@@ -25,6 +23,10 @@ const Header = () => {
 
       {/* Links - Routes */}
       <div className="hidden md:flex items-center gap-2">
+        <Link className="app-btn-unique" href="/">
+          upcoming features
+        </Link>
+
         <Link className="app-btn" href="/">
           <Icon type="download" />
           Download
@@ -37,13 +39,14 @@ const Header = () => {
           <Icon type="contact" />
           Contact
         </Link>
+
         <Link className="app-btn" href="/">
           <Icon type="donate" />
           Donate
         </Link>
 
-        <Link className="app-btn" href="/">
-          <Icon type="donate" />
+        <Link className="app-btn w-36" href="/">
+          <Icon type="login" />
           Log in
         </Link>
       </div>
@@ -75,6 +78,10 @@ const Header = () => {
           <Link className="app-btn" href="/">
             <Icon type="donate" />
             Donate
+          </Link>
+          <Link className="app-btn" href="/">
+            <Icon type="login" />
+            Log in
           </Link>
         </div>
       )}

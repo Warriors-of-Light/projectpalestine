@@ -1,5 +1,5 @@
 import React from "react";
-import { Claim } from "../../constants";
+import { Claim } from "../../app/constants";
 
 interface IComapnyHistory {
   claims: Array<Claim>;

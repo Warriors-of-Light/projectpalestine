@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import Icon from "../common/icon";
+import Status from "./status";
+import { useRouter } from "next/navigation";
+
 type propsType = {
   logo: string;
   name: string;
@@ -9,23 +12,12 @@ type propsType = {
   status: 1 | 2 | 3;
 };
 
-const CompanyProfile = ({
-  props,
-  setProfile,
-}: {
-  props: propsType;
-  setProfile: any;
-}) => {
-  const selfClose = () => {
-    console.log("call func");
-    setProfile(false);
-  };
-
+const CompanyProfile = ({ props }: { props: propsType }) => {
   return (
     <div className="layer animate-topdown">
       <div className="app-container flex flex-col gap-4 p-4">
+        {/* Logo & Name & description */}
         <div className="flex justify-between items-center">
-          {/* Logo & Name & description */}
           <div className="center">
             <Image
               className="rounded-full"
@@ -40,28 +32,8 @@ const CompanyProfile = ({
             </div>
           </div>
 
-          {/* Info */}
-          <div className="center">
-            {/* Info */}
-            <div className="col-span-2 flex flex-col justify-start items-center gap-2">
-              <div
-                className={`${
-                  props.status == 1
-                    ? "bg-app-red"
-                    : props.status == 2
-                    ? "bg-app-yellow"
-                    : "bg-app-green"
-                } rounded-full p-4`}
-              ></div>
-              <span className="text">
-                {props.status == 1
-                  ? "Poor"
-                  : props.status == 2
-                  ? "Meduim"
-                  : "Good"}
-              </span>
-            </div>
-          </div>
+          {/* Status */}
+          <Status status={props.status} />
         </div>
 
         {/* History */}
@@ -96,13 +68,14 @@ const CompanyProfile = ({
         </div>
 
         {/* Submit a claim */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center justify-between gap-4">
           <Link href="/" className="app-btn-dark">
             <Icon type="submit" />
             <span>submit a claim</span>
           </Link>
-          <button className="app-btn-dark" onClick={() => selfClose()}>
-            go back
+          <button className="app-btn-dark" onClick={() => {}}>
+            <Icon type="return" />
+            <span>go back</span>
           </button>
         </div>
       </div>

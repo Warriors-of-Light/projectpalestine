@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   icons: ["/logo.svg"],
   title: "Project Palestine",
-  description: "We stand with our Palestinian people",
+  description: "A way for us to boycott the occupation and it’s supporters",
 };
 
 export default function RootLayout({

@@ -3,15 +3,17 @@
 @tailwind utilities;
 
 @layer base {
-
   * {
     @apply text-1 text-app-dark;
   }
 
+  body {
+    width: 100vw;
+    height: 100vh;
+  }
 }
 
 @layer components {
-
   .app-container {
     max-width: 800px;
     height: 100%;
@@ -23,11 +25,20 @@
   }
 
   .layer {
-    @apply bg-app--light absolute top-0 left-0 w-screen h-screen z-50;
+    @apply bg-app--light fixed top-0 left-0 w-screen h-screen z-50;
+  }
+
+  .app-link {
+    @apply text-app--primary duration-200 capitalize cursor-pointer text-center hover:text-app-green;
   }
 
   .app-btn {
     @apply bg-app-primary text-app--primary center rounded-lg p-2 duration-200 capitalize cursor-pointer
+    outline-none border border-transparent border-b-app--primary hover:border-b-4  active:border-b;
+  }
+
+  .app-btn-unique {
+    @apply bg-app-yellow text-app--yellow center rounded-lg p-2 duration-200 capitalize cursor-pointer
     outline-none border border-transparent border-b-app--primary hover:border-b-4  active:border-b;
   }
 
@@ -41,7 +52,7 @@
   }
 
   .app-input {
-    @apply bg-transparent w-full h-full rounded-lg p-3 z-0 duration-200 placeholder:opacity-50 placeholder:text-app-dark
+    @apply bg-transparent w-full h-full rounded-lg p-4 pt-6 z-0 duration-200 placeholder:opacity-50 placeholder:text-app-dark
     border-none outline outline-app-dark outline-2 focus:outline-4 focus:outline-app-primary;
   }
 
@@ -64,7 +75,6 @@
 }
 
 @layer utilities {
-
   /* Custom Animtions */
   .animate-leftright {
     animation: k-leftright 0.5s;
@@ -113,5 +123,4 @@
       transform: translateY(0%);
     }
   }
-
 }

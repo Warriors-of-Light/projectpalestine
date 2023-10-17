@@ -15,8 +15,11 @@ module.exports = {
         "app-primary": "theme(colors.green.200)",
         "app--primary": "theme(colors.green.800)",
         "app-red": "theme(colors.red.400)",
+        "app--red": "theme(colors.red.600)",
         "app-yellow": "theme(colors.yellow.400)",
+        "app--yellow": "theme(colors.yellow.600)",
         "app-green": "theme(colors.green.400)",
+        "app--green": "theme(colors.green.600)",
         "app-shadow": "#00000020",
       },
       spacing: {
