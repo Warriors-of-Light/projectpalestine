@@ -5,8 +5,9 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  icons: ["/logo.svg"],
   title: "Project Palestine",
-  description: "A place where technology meets humanity",
+  description: "We stand with our Palestinian people",
 };
 
 export default function RootLayout({
