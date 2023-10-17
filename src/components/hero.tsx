@@ -17,15 +17,16 @@ import {
 } from "firebase/firestore";
 import firebase_app from "./firebase/config";
 
+type dataType = {
+  logo: string;
+  name: string;
+  description: string;
+  status: 1 | 2 | 3;
+};
+
 const Hero = () => {
 
   // Testing Data
-  // type dataType = {
-  //   logo: string;
-  //   name: string;
-  //   description: string;
-  //   status: 1 | 2 | 3;
-  // };
   // const data: dataType[] = [
   //   {
   //     logo: "https://img.icons8.com/color/100/mcdonalds-app.png",
