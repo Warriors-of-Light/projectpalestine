@@ -1,8 +1,9 @@
 "use client";
 
-import CompanyHistory from "@/components/companyHistory";
-import Header from "@/components/header";
 import { useRouter } from "next/navigation";
+import React from "react";
+import Header from "../../components/header";
+import CompanyHistory from "../../components/company/companyHistory";
 
 interface ICompanyProfileProps {
   params: { companyId: string };

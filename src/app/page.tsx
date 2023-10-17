@@ -1,7 +1,7 @@
 // Home Page
 
-import { Header, Hero } from "@/app/components/modules";
 import React from "react";
+import { Header, Hero } from "./components/modules";
 
 const Home = () => {
   return (

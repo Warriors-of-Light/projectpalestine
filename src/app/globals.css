@@ -3,12 +3,15 @@
 @tailwind utilities;
 
 @layer base {
+
   * {
     @apply text-1 text-app-dark;
   }
+
 }
 
 @layer components {
+
   .app-container {
     max-width: 800px;
     height: 100%;
@@ -17,6 +20,10 @@
 
   .center {
     @apply flex justify-center items-center gap-2;
+  }
+
+  .layer {
+    @apply bg-app--light absolute top-0 left-0 w-screen h-screen z-50;
   }
 
   .app-btn {
@@ -57,12 +64,26 @@
 }
 
 @layer utilities {
+
+  /* Custom Animtions */
   .animate-leftright {
     animation: k-leftright 0.5s;
   }
   @keyframes k-leftright {
     0% {
       transform: translate(-100%);
+    }
+    100% {
+      transform: translate(0%);
+    }
+  }
+
+  .animate-rightleft {
+    animation: k-rightleft 0.5s;
+  }
+  @keyframes k-rightleft {
+    0% {
+      transform: translate(100%);
     }
     100% {
       transform: translate(0%);
@@ -80,4 +101,17 @@
       transform: translateY(0%);
     }
   }
+
+  .animate-downtop {
+    animation: k-downtop 0.5s;
+  }
+  @keyframes k-downtop {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
+
 }
