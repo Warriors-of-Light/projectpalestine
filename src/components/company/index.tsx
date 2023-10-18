@@ -6,6 +6,7 @@ import React from "react";
 import Status from "./status";
 import CompanyProfile from "./companyProfile";
 import { Company } from "@/constants";
+import { useRouter } from "next/navigation";
 
 interface ICompanyCardProps {
   company: Company;
@@ -13,6 +14,7 @@ interface ICompanyCardProps {
 
 const CompanyCard = ({ company }: ICompanyCardProps) => {
   const [profile, setProfile] = useState(false);
+  const router = useRouter();
   const { logo, name, description, companyId, rating, claims } = company;
 
   useEffect(() => console.log(profile), [profile]);
@@ -20,7 +22,7 @@ const CompanyCard = ({ company }: ICompanyCardProps) => {
   return (
     <div
       className="bg-app--light w-full grid grid-cols-12 items-center p-2 gap-4 rounded-lg cursor-pointer"
-      onClick={() => setProfile(true)}
+      onClick={() => router.push(`/companyprofile/${companyId}`)}
     >
       {/* Logo */}
       <div className="col-span-2 rounded-full">
@@ -42,7 +44,7 @@ const CompanyCard = ({ company }: ICompanyCardProps) => {
       {/* Rating */}
       <Status status={rating} />
 
-      {profile && <CompanyProfile companyId={companyId} />}
+      {/* {profile && <CompanyProfile companyId={companyId} />} */}
     </div>
   );
 };
