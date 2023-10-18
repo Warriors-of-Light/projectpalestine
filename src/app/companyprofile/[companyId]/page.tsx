@@ -47,7 +47,7 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
       .catch((error) => {
         console.error("Error getting document:", error);
       });
-  }, []);
+  }, [params.companyId]);
 
   useEffect(() => {
     if (companyData?.name.length === 0) {
