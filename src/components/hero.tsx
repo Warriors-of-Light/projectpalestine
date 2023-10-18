@@ -1,7 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import app from "../assets/app.svg";
 import { CompanyCard, Icon } from "./modules";
 import appStore from "../assets/appstore.svg";
@@ -16,61 +22,38 @@ import {
 } from "firebase/firestore";
 import firebase_app from "./firebase/config";
 import { Company } from "@/constants";
-
+import { Spinner } from "@chakra-ui/react";
 
 const Hero = () => {
-  // Testing Data
-  // const data: dataType[] = [
-  //   {
-  //     logo: "https://img.icons8.com/color/100/mcdonalds-app.png",
-  //     name: "mcdonalds",
-  //     description: "company",
-  //     status: 3,
-  //   },
-  //   {
-  //     logo: "https://img.icons8.com/ios-filled/100/mac-os.png",
-  //     name: "apple",
-  //     description: "company",
-  //     status: 2,
-  //   },
-  //   {
-  //     logo: "https://img.icons8.com/color/100/coca-cola.png",
-  //     name: "coca cola",
-  //     description: "company",
-  //     status: 1,
-  //   },
-  // ];
-
   const retrieveOnce = useRef(0);
-
-  const companies: Array<Company> = useMemo(() => {
-    return [];
-  }, []);
+  const [companies, setCompanies] = useState<Array<Company>>([]);
 
   const retrieveData = useCallback(async () => {
     const db = getFirestore(firebase_app);
     // const CompaniesRef = collection(db, 'Companies');
 
-    const querySnapshot = await getDocs(collection(db, "Companies"));
-    querySnapshot.forEach((doc) => {
-      alert(JSON.stringify(doc.data()));
-      companies.push({
-        companyId: doc.id,
-        description: doc.data().description,
-        name: doc.data().name,
-        logo: doc.data().logo,
-        rating: doc.data().rating,
-        claims: [],
+    await getDocs(collection(db, "Companies")).then((querySnapshot) => {
+      const array: Array<Company> = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        array.push({
+          companyId: data.id,
+          description: data.description,
+          name: data.name,
+          logo: data.logo,
+          rating: data.rating,
+          claims: [],
+        });
       });
+      setCompanies(array);
     });
-  }, [companies]);
+  }, []);
 
-  // useEffect(() => {
-  //   if (retrieveOnce.current < 3) {
-  //     retrieveData();
-  //     retrieveOnce.current++;
-  //   }
-  // }, [companies, retrieveData]);
+  useEffect(() => {
+    if (companies.length === 0) {
+      retrieveData();
+    }
+  }, [companies, retrieveData]);
 
   const searching = (e: HTMLInputElement) => {
     const searchingText = e.value;
@@ -95,19 +78,13 @@ const Hero = () => {
           <Icon type="search" style="absolute right-0 mr-2" />
         </div>
 
-        {companies.map((company, index) => {
-          return (
-            <CompanyCard
-              key={index}
-              props={{
-                name: company.name,
-                description: company.description,
-                logo: company.logo,
-                status: company.status,
-              }}
-            />
-          );
-        })}
+        {companies.length === 0 ? (
+          <Spinner />
+        ) : (
+          companies.map((company, index) => {
+            return <CompanyCard key={index} company={company} />;
+          })
+        )}
       </div>
 
       <div className="h-full w-full md:w-1/2 center flex-col">

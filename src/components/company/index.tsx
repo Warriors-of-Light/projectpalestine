@@ -7,15 +7,13 @@ import Status from "./status";
 import CompanyProfile from "./companyProfile";
 import { Company } from "@/constants";
 
-const CompanyCard = ({
-  logo,
-  name,
-  description,
-  companyId,
-  rating,
-  claims,
-}: Company) => {
+interface ICompanyCardProps {
+  company: Company;
+}
+
+const CompanyCard = ({ company }: ICompanyCardProps) => {
   const [profile, setProfile] = useState(false);
+  const { logo, name, description, companyId, rating, claims } = company;
 
   useEffect(() => console.log(profile), [profile]);
 
