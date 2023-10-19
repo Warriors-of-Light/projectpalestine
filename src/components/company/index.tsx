@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import React from "react";
 import Status from "./status";
-import CompanyProfile from "./companyProfile";
 import { Company } from "@/constants";
 import { useRouter } from "next/navigation";
 
@@ -43,8 +42,6 @@ const CompanyCard = ({ company }: ICompanyCardProps) => {
 
       {/* Rating */}
       <Status status={rating} />
-
-      {/* {profile && <CompanyProfile companyId={companyId} />} */}
     </div>
   );
 };
