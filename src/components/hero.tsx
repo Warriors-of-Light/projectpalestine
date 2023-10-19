@@ -9,7 +9,7 @@ import React, {
   useState,
 } from "react";
 import app from "../assets/app.svg";
-import { CompanyCard, Icon } from "./modules";
+import { CompanyCard } from "./modules";
 import appStore from "../assets/appstore.svg";
 import playStore from "../assets/playstore.svg";
 import { collection, getFirestore, getDocs } from "firebase/firestore";
@@ -19,7 +19,6 @@ import { Spinner } from "@chakra-ui/react";
 import SearchBar from "./common/searchbar";
 
 const Hero = () => {
-  const retrieveOnce = useRef(0);
   const [companies, setCompanies] = useState<Array<Company>>([]);
   const [filteredResults, setFilteredResults] = useState<Array<string>>([]);
 
@@ -33,7 +32,6 @@ const Hero = () => {
 
   const retrieveData = useCallback(async () => {
     const db = getFirestore(firebase_app);
-    // const CompaniesRef = collection(db, 'Companies');
 
     await getDocs(collection(db, "Companies")).then((querySnapshot) => {
       const array: Array<Company> = [];
@@ -70,9 +68,6 @@ const Hero = () => {
     }
   }, [companiesIDs, filteredResults]);
 
-  // const endTheOccupation = [];
-  // const search = "Search a product or company";
-
   return (
     <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6">
       <div className="bg-app-light app-container w-full md:w-1/2 flex flex-col justify-center content-end gap-4 p-8">
@@ -95,7 +90,7 @@ const Hero = () => {
         )}
       </div>
 
-      <div className="h-full w-full md:w-1/2 center flex-col">
+      <div className="h-full w-full md:w-1/2 center flex-col xs:h-900">
         <Image
           src={app}
           alt="Logo"
