@@ -2,7 +2,7 @@
 
 export { default as Header } from "./header";
 export { default as Hero } from "./hero";
-export { default as Company } from "./company";
+export { default as CompanyCard } from "./company";
 
 // Common components
 

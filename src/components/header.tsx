@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import {Icon} from "@/components/modules";
+import { Icon } from "@/components/modules";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/useUserStore";
 import logOut from "./firebase/auth/logout";
@@ -14,6 +14,7 @@ const Header = () => {
   const [menu, setMenu] = useState(false);
   const router = useRouter();
   const [displayAlert, setDisplayAlert] = useState(false);
+  const [comingSoon, setComingSoon] = useState(false);
 
   const navigateToPage = (location: string) => {
     router.push(`/${location}`);
@@ -51,9 +52,14 @@ const Header = () => {
           upcoming features
         </Link>
 
-        <Link className="app-btn" href="/">
-          <Icon type="download" />
-          Download
+        <Link
+          className="app-btn hover:bg-blue-500 hover:text-white hover:border-b-0  "
+          href="/"
+          onMouseEnter={() => setComingSoon(true)}
+          onMouseLeave={() => setComingSoon(false)}
+        >
+          {!comingSoon && <Icon type="download" />}
+          {comingSoon ? "Coming Soon" : "Download"}
         </Link>
         <Link className="app-btn" href="/">
           <Icon type="about" />

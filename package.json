@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@heroicons/react": "^2.0.18",
     "@types/node": "20.8.6",
     "@types/react": "18.2.28",
@@ -17,6 +20,7 @@
     "encoding": "^0.1.13",
     "eslint-config-next": "13.5.4",
     "firebase": "^10.5.0",
+    "framer-motion": "^10.16.4",
     "next": "13.5.4",
     "postcss": "8.4.31",
     "react": "18.2.0",

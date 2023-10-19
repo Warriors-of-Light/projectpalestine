@@ -14,6 +14,7 @@
 }
 
 @layer components {
+
   .app-container {
     max-width: 700px;
     height: 100%;
@@ -28,18 +29,23 @@
     @apply bg-app--light fixed top-0 left-0 w-screen h-screen z-50;
   }
 
+  .company-card {
+    @apply bg-app--light w-full grid grid-cols-12 items-center p-2 gap-4
+    rounded-lg cursor-pointer duration-200 hover:outline hover:outline-4 hover:outline-app--primary;
+  }
+
   .app-link {
     @apply text-app--primary duration-200 capitalize cursor-pointer text-center hover:text-app-green;
   }
 
   .app-btn {
     @apply bg-app-primary text-app--primary center rounded-lg p-2 duration-200 capitalize cursor-pointer
-    outline-none border border-transparent border-b-app--primary hover:border-b-4  active:border-b;
+    outline-none border border-transparent border-b-app--primary hover:border-b-4 active:border-b;
   }
 
   .app-btn-yellow {
     @apply bg-app-yellow text-app--yellow center rounded-lg p-2 duration-200 capitalize cursor-pointer
-    outline-none border border-transparent border-b-app--yellow hover:border-b-4  active:border-b;
+    outline-none border border-transparent border-b-app--yellow hover:border-b-4 active:border-b;
   }
 
   .app-btn-dark {

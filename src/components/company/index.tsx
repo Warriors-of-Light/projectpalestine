@@ -1,33 +1,30 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
-import React from "react";
-import Status from "./status";
-import CompanyProfile from "./companyProfile";
+import { useRouter } from "next/navigation";
+import { Company } from "@/constants";
+import Rating from "./rating";
 
-type propsType = {
-  logo: string;
-  name: string;
-  description: string;
-  status: 1 | 2 | 3;
-};
+interface ICompanyCardProps {
+  company: Company;
+}
 
-const Company = ({ props }: { props: propsType }) => {
-  const [profile, setProfile] = useState(false);
+const CompanyCard = ({ company }: ICompanyCardProps) => {
 
-  useEffect(() => console.log(profile), [profile]);
+  const router = useRouter();
+  const { logo, name, description, companyId, rating } = company;
 
   return (
     <div
-      className="bg-app--light w-full grid grid-cols-12 items-center p-2 gap-4 rounded-lg cursor-pointer"
-      onClick={() => setProfile(true)}
+      // If needed more than 8 class then put it in globals.css - @layer components
+      className="company-card"
+      onClick={() => router.push(`/companyprofile/${companyId}`)}
     >
       {/* Logo */}
-      <div className="col-span-2 rounded-full">
+      <div className="col-span-2 center">
         <Image
           className="rounded-full"
-          src={props.logo}
+          src={logo}
           alt="Logo"
           width={100}
           height={100}
@@ -36,16 +33,15 @@ const Company = ({ props }: { props: propsType }) => {
 
       {/* Name */}
       <div className="col-span-8 flex flex-col items-start">
-        <span className="text-3 title capitalize">{props.name}</span>
-        <span className="text capitalize">{props.description}</span>
+        <span className="text-3 capitalize">{name}</span>
+        <span className="text-1 capitalize">{description}</span>
       </div>
 
-      {/* Status */}
-      <Status status={props.status} />
+      {/* Rating */}
+      <Rating rating={rating} />
 
-      {profile && <CompanyProfile props={props} />}
     </div>
   );
 };
 
-export default Company;
+export default CompanyCard;

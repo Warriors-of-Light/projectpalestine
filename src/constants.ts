@@ -1,5 +1,5 @@
 export type Reference = {
-  refrenceId: string;
+  refrenceId: string; // GpxZero: Reference.id > Reference.refrenceId
   title: string;
   link: string;
 };
@@ -12,12 +12,14 @@ export type Claim = {
   refrences: Array<Reference>;
 };
 
-export interface CompanyProfile {
+export type Company = {
   logo: string;
-  companyId: string;
-  score: number;
+  name: string;
+  description: string;
+  companyId: string; // GpxZero: Company.id > Company.companyId
+  rating: 1 | 2 | 3;
   claims: Array<Claim>;
-}
+};
 
 export type User = {
   username: string;

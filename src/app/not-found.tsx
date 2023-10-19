@@ -1,35 +1,31 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { Icon } from "@/components/modules";
+import Link from "next/link";
 
 export default function Custom404() {
-  const router = useRouter();
   return (
-    <>
-      <main className="relative isolate min-h-full">
-        <img
-          src="https://images.unsplash.com/photo-1573322867455-fc97c490c14c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80"
-          alt=""
-          className="absolute inset-0 -z-10 h-full w-full object-cover object-top"
-        />
-        <div className="mx-auto max-w-7xl px-6 py-32 text-center sm:py-40 lg:px-8">
-          <p className=" font-semibold leading-8 text-white text-2xl">404</p>
-          <h1 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl">
-            Page not found
-          </h1>
-          <p className="mt-4 text-base text-white/70 sm:mt-6">
-            Sorry, we couldn’t find the page you’re looking for.
-          </p>
-          <div className="mt-10 flex justify-center">
-            <a
-              href="#"
-              onClick={() => router.push("/")}
-              className="font-semibold leading-7 text-white text-3xl"
-            >
-              <span aria-hidden="true">&larr;</span> Back to home
-            </a>
-          </div>
+    <main className="relative flex justify-center items-start h-full p-4">
+      <img
+        src="https://images.unsplash.com/photo-1573322867455-fc97c490c14c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80"
+        alt=""
+        className="absolute left-0 top-0 -z-10 h-full w-full object-cover"
+      />
+      <div className="bg-app-shadow backdrop-blur-[1px] flex flex-col justify-start items-start rounded-lg p-4 gap-4">
+        <div className="text-4xl font-black text-app-light">404</div>
+        <div className="text-4xl font-black text-app-light">
+          This page not found
         </div>
-      </main>
-    </>
+        <div className="text-3 text-app-light">
+          Sorry, we couldn’t find the page you’re looking for.
+        </div>
+        <Link
+          href="/"
+          className="app-btn-dark"
+        >
+          <Icon type="return"/>
+          <span>Back to home</span>
+        </Link>
+      </div>
+    </main>
   );
 }
