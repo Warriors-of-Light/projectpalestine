@@ -1,37 +1,54 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { Icon } from "@/components/modules";
-import { useRouter } from "next/navigation";
-import { useUserStore } from "@/store/useUserStore";
-import logOut from "./firebase/auth/logout";
-import Alert from "./common/alert";
+import { useState, useEffect } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import React from "react"
+import { Icon } from "@/components/modules"
+import { useRouter } from "next/navigation"
+import { useUserStore } from "@/store/useUserStore"
+import logOut from "./firebase/auth/logout"
+import Alert from "./common/alert"
 
 const Header = () => {
-  const [menu, setMenu] = useState(false);
-  const router = useRouter();
-  const [displayAlert, setDisplayAlert] = useState(false);
-  const [comingSoon, setComingSoon] = useState(false);
 
-  const navigateToPage = (location: string) => {
-    router.push(`/${location}`);
-  };
-
-  const { user, setUser } = useUserStore();
-
-  const dissmissAlert = () => {
-    setDisplayAlert(false);
-  };
+  // Initialize
+  const [menu, setMenu] = useState(false)
+  const [displayAlert, setDisplayAlert] = useState(false)
+  const [comingSoon, setComingSoon] = useState(false)
+  const [showBackground, setShowBackground] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
-    setMenu(false);
-  }, []);
-  const toggleMenu = () => setMenu((state) => !state);
+
+    window.onscroll = () => {
+      if (
+        document.body.scrollTop > 100 ||
+        document.documentElement.scrollTop > 100
+      ) setShowBackground(true)
+      else setShowBackground(false)
+    }
+
+  }, [])
+
+  // Functions
+  const navigateToPage = (location: string) => {
+    router.push(`/${location}`)
+  }
+
+  const { user, setUser } = useUserStore()
+
+  const dissmissAlert = () => {
+    setDisplayAlert(false)
+  }
+
+  const toggleMenu = () => setMenu((state) => !state)
+
   return (
-    <header className="fixed flex justify-between items-center w-screen p-4">
+
+    <header className={`app-header ${showBackground ? 'bg-app-light shadow-sm shadow-app-shadow' : ''}`}>
+
+      {/* Alert */}
       <div className="flex absolute left-800 top-2">
         {displayAlert &&
           Alert({
@@ -40,48 +57,42 @@ const Header = () => {
             dissmissAlert: dissmissAlert,
           })}
       </div>
+
       {/* Title - Logo */}
       <div className="center p-2">
-        <Image src="/logo.svg" width="20" height="20" alt="Logo" />
+        <Image src="/logo.svg" width="25" height="25" alt="Logo" />
         <span className="text-2 title uppercase">Project Palestine</span>
       </div>
 
       {/* Links - Routes */}
       <div className="hidden md:flex items-center gap-2">
+
         <Link className="app-btn-yellow" href="/">
+          <Icon type="clock" style="stroke-app--yellow" />
           upcoming features
         </Link>
-
         <Link
-          className="app-btn hover:bg-blue-500 hover:text-white hover:border-b-0  "
+          className="app-btn relative overflow-hidden"
           href="/"
           onMouseEnter={() => setComingSoon(true)}
           onMouseLeave={() => setComingSoon(false)}
         >
-          {!comingSoon && <Icon type="download" />}
-          {comingSoon ? "Coming Soon" : "Download"}
+          {comingSoon && <div className="absolute w-full h-full center bg-blue-500 text-app-light">Coming Soon</div>}
+          <Icon type="download" />
+          <span>Download</span>
         </Link>
-        <Link className="app-btn" href="/">
-          <Icon type="about" />
-          About
-        </Link>
-        <Link className="app-btn" href="/">
-          <Icon type="contact" />
-          Contact
-        </Link>
-
         <Link className="app-btn" href="/">
           <Icon type="donate" />
           Donate
         </Link>
         {user?.user.email && user.user.email.length > 0 ? (
           <button
-            className="app-btn w-36"
+            className="app-btn"
             onClick={() => {
-              setUser(null);
-              setDisplayAlert(true);
-              logOut();
-              navigateToPage("");
+              setUser(null)
+              setDisplayAlert(true)
+              logOut()
+              navigateToPage("")
             }}
           >
             <Icon type="login" />
@@ -89,13 +100,14 @@ const Header = () => {
           </button>
         ) : (
           <button
-            className="app-btn w-36"
+            className="app-btn"
             onClick={() => navigateToPage("login")}
           >
             <Icon type="login" />
             Log in
           </button>
         )}
+
       </div>
 
       {/* Menu btn */}
@@ -110,32 +122,54 @@ const Header = () => {
             <Icon type="close" />
           </button>
 
-          <Link className="app-btn" href="/">
+          <Link className="app-btn-yellow" href="/">
+            <Icon type="clock" style="stroke-app--yellow" />
+            upcoming features
+          </Link>
+          <Link
+            className="app-btn relative overflow-hidden"
+            href="/"
+            onMouseEnter={() => setComingSoon(true)}
+            onMouseLeave={() => setComingSoon(false)}
+          >
+            {comingSoon && <div className="absolute w-full h-full center bg-blue-500 text-app-light">Coming Soon</div>}
             <Icon type="download" />
-            Download
-          </Link>
-          <Link className="app-btn" href="/">
-            <Icon type="about" />
-            About
-          </Link>
-          <Link className="app-btn" href="/">
-            <Icon type="contact" />
-            Contact
+            <span>Download</span>
           </Link>
           <Link className="app-btn" href="/">
             <Icon type="donate" />
             Donate
           </Link>
-          <button className="app-btn" onClick={() => navigateToPage("login")}>
-            <Icon type="login" />
-            {user?.user.email && user.user.email.length > 0
-              ? "Log out"
-              : " Log in"}
-          </button>
+          {user?.user.email && user.user.email.length > 0 ? (
+            <button
+              className="app-btn"
+              onClick={() => {
+                setUser(null)
+                setDisplayAlert(true)
+                logOut()
+                navigateToPage("")
+              }}
+            >
+              <Icon type="login" />
+              Log Out
+            </button>
+          ) : (
+            <button
+              className="app-btn"
+              onClick={() => navigateToPage("login")}
+            >
+              <Icon type="login" />
+              Log in
+            </button>
+          )}
+
         </div>
       )}
-    </header>
-  );
-};
 
-export default Header;
+    </header>
+
+  )
+
+}
+
+export default Header

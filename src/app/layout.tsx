@@ -19,6 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lilita+One&display=swap');
+        </style>
+      </head>
       <ChakraProvider>
         <body className={inter.className}>{children}</body>
       </ChakraProvider>

@@ -1,99 +1,128 @@
-"use client";
+"use client"
 
-import Image from "next/image";
+import Image from "next/image"
 import React, {
   useCallback,
   useEffect,
+  useMemo,
   useState,
-} from "react";
-import app from "../assets/app.svg";
-import { CompanyCard, Icon } from "./modules";
-import appStore from "../assets/appstore.svg";
-import playStore from "../assets/playstore.svg";
-import {
-  collection,
-  getFirestore,
-  doc,
-  setDoc,
-  getDocs,
-  DocumentData,
-} from "firebase/firestore";
-import firebase_app from "./firebase/config";
-import { Company } from "@/constants";
-import { Spinner } from "@chakra-ui/react";
+} from "react"
+import app from "../assets/app.svg"
+import { CompanyCard } from "./modules"
+import appStore from "../assets/appstore.svg"
+import playStore from "../assets/playstore.svg"
+import { collection, getFirestore, getDocs } from "firebase/firestore"
+import firebase_app from "./firebase/config"
+import { Company } from "@/constants"
+import { Icon, Spinner } from "@chakra-ui/react"
+import SearchBar from "./common/searchbar"
 
 const Hero = () => {
-  return (
-    <div className="bg-app--light h-full w-full flex flex-col-reverse md:flex-row items-center justify-center">
-      <SearchBarSection />
-      <MobileVersionSection />
-    </div>
-  );
-};
 
-const SearchBarSection = () => {
+  const [companies, setCompanies] = useState<Array<Company>>([])
+  const [filteredResults, setFilteredResults] = useState<Array<string>>([])
 
-  // Initialize
-  const [companies, setCompanies] = useState<Array<Company>>([]);
+  const companiesIDs: Array<string> = useMemo(() => {
+    return []
+  }, [])
+
+  const onSearch = useCallback((filteredResults: string[] | undefined) => {
+    setFilteredResults(filteredResults ?? [...filteredResults!])
+  }, [])
+
   const retrieveData = useCallback(async () => {
-    const db = getFirestore(firebase_app);
-    // const CompaniesRef = collection(db, 'Companies');
+    const db = getFirestore(firebase_app)
 
     await getDocs(collection(db, "Companies")).then((querySnapshot) => {
-      const array: Array<Company> = [];
+      const array: Array<Company> = []
       querySnapshot.forEach((doc) => {
-        const data = doc.data();
+        const data = doc.data()
         array.push({
-          companyId: data.id,
+          companyId: doc.id,
           description: data.description,
           name: data.name,
           logo: data.logo,
           rating: data.rating,
           claims: [],
-        });
-      });
-      setCompanies(array);
-    });
-  }, []);
+        })
+      })
+      const ids = array.map((x) => x.companyId)
+      companiesIDs.push(...ids)
+      setCompanies(array)
+    })
+  }, [companiesIDs])
 
   useEffect(() => {
     if (companies.length === 0) {
-      retrieveData();
+      retrieveData()
     }
-  }, [companies, retrieveData]);
+  }, [companies, retrieveData])
 
-  // Handle searching event
-  const searching = (e: any) => {
-    const searchingText = e.value;
-  };
+  useEffect(() => {
+    if (companiesIDs !== filteredResults) {
+      companiesIDs.length = 0
+      companiesIDs.push(...filteredResults)
+      setCompanies((prev) =>
+        prev.filter((company) => filteredResults.includes(company.companyId))
+      )
+    }
+  }, [companiesIDs, filteredResults])
 
   return (
 
-    <div className="bg-app-light md:w-1/2 w-full h-full flex flex-col justify-center content-end gap-10 p-4 md:p-6">
+    <div className="bg-app--light flex flex-col-reverse md:flex-row h-fit w-full">
+      
+      {/* Search Bar */}
+      <div className="bg-app-light w-full min-h-screen flex flex-col justify-start content-start gap-4 p-4 pt-32">
 
-      <div className="w-full text-4xl font-black">
-        A way for us to boycott the occupation and it’s supporters
-      </div>
-
-      <div className="relative w-full center">
-        <div className="bg-app-light absolute left-0 top-0 -translate-y-1/2 w-fit text-2 z-50 px-2">
-          Search a product or company
+        {/* Primary Title */}
+        <div className="font-visible text-4xl mb-10">
+          A way for us to boycott the occupation
+          <br />
+          and it’s supporters
         </div>
-        <input
-          className="app-input"
-          type="text"
-          placeholder="..."
-          onChange={searching}
-        />
-        <Icon type="search" style="absolute right-0 mr-2" />
-      </div>
 
-      <div className="min-h-[100px] w-full flex flex-col items-center justify-center gap-4">
-        {
-          companies.length
-            ? companies.map((company, index) => <CompanyCard company={company} key={index} />)
-            : <Spinner />
-        }
+        <SearchBar
+          label="Search a product or a company"
+          onSearch={onSearch}
+          placeholder="Search here..."
+          searchableContent={companiesIDs}
+        />
+
+        {/* Company Content */}
+        <div className="center min-h-[80px]">
+          {companies.length === 0 ? (
+            <Spinner />
+          ) : (
+            companies.map((company, index) => {
+              return <CompanyCard key={index} company={company} />
+            })
+          )}
+        </div>
+
+      </div>
+      
+      {/* Mobile Version */}
+      <div className="w-full min-h-screen flex flex-col justify-end items-center pt-32">
+
+        <Image
+          src={app}
+          alt="Logo"
+          width={250}
+        />
+        <div className="center flex-col md:flex-row gap-0">
+          <Image
+            alt={"Google Play button"}
+            src={playStore}
+            className="cursor-pointer"
+          />
+          <Image
+            alt={"App Store button"}
+            src={appStore}
+            className="cursor-pointer"
+          />
+        </div>
+
       </div>
 
     </div>
@@ -102,31 +131,4 @@ const SearchBarSection = () => {
 
 }
 
-const MobileVersionSection = () => {
-
-  return (
-
-    <div className="md:w-1/2 w-full h-full center flex-col">
-
-      <Image src={app} alt="Logo" width={250} height={350} />
-
-      <div className="center">
-        <Image
-          className="cursor-pointer"
-          src={playStore}
-          alt={"Google Play"}
-        />
-        <Image
-          className="cursor-pointer"
-          src={appStore}
-          alt={"App Store"}
-        />
-      </div>
-
-    </div>
-
-  )
-
-}
-
-export default Hero;
+export default Hero

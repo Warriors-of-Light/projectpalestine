@@ -1,5 +1,5 @@
 export type Reference = {
-  refrenceId: string; // GpxZero: Reference.id > Reference.refrenceId
+  refrenceId: string;
   title: string;
   link: string;
 };
@@ -7,6 +7,7 @@ export type Reference = {
 export type Claim = {
   claimId: string;
   title: string;
+  date: string;
   description: string;
   rating: string;
   refrences: Array<Reference>;
@@ -16,7 +17,7 @@ export type Company = {
   logo: string;
   name: string;
   description: string;
-  companyId: string; // GpxZero: Company.id > Company.companyId
+  companyId: string;
   rating: 1 | 2 | 3;
   claims: Array<Claim>;
 };

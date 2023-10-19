@@ -3,17 +3,29 @@
 @tailwind utilities;
 
 @layer base {
+
   * {
-    @apply text-1 text-app-dark;
+    @apply text-1;
   }
 
   body {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
+
 }
 
 @layer components {
+
+  /* Containers */
+  .app-page {
+    @apply bg-app--light relative h-screen w-screen flex flex-col;
+  }
+
+  .app-header {
+    @apply fixed left-0 flex justify-between items-center w-full z-50 p-2 md:p-4 duration-300;
+  }
 
   .app-container {
     max-width: 700px;
@@ -29,48 +41,62 @@
     @apply bg-app--light fixed top-0 left-0 w-screen h-screen z-50;
   }
 
-  .company-card {
-    @apply bg-app--light w-full grid grid-cols-12 items-center p-2 gap-4
-    rounded-lg cursor-pointer duration-200 hover:outline hover:outline-4 hover:outline-app--primary;
-  }
-
+  /* Links */
   .app-link {
-    @apply text-app--primary duration-200 capitalize cursor-pointer text-center hover:text-app-green;
+    @apply text-app-dark duration-200 capitalize cursor-pointer center
+    hover:underline hover:opacity-100 opacity-60;
   }
 
+  /* Buttons */
   .app-btn {
-    @apply bg-app-primary text-app--primary center rounded-lg p-2 duration-200 capitalize cursor-pointer
-    outline-none border border-transparent border-b-app--primary hover:border-b-4 active:border-b;
+    @apply bg-app-primary text-app--primary fill-app--primary stroke-app--primary
+    center rounded-lg p-2 duration-200 capitalize cursor-pointer outline-none
+    border border-transparent border-b-app--primary hover:border-b-4 active:border-b;
+  }
+
+  .app-btn-green {
+    @apply bg-app-primary text-app--primary fill-app--primary stroke-app--primary
+    center rounded-lg p-2 duration-200 capitalize cursor-pointer outline-none
+    border border-transparent border-b-app--primary hover:border-b-4 active:border-b;
   }
 
   .app-btn-yellow {
-    @apply bg-app-yellow text-app--yellow center rounded-lg p-2 duration-200 capitalize cursor-pointer
-    outline-none border border-transparent border-b-app--yellow hover:border-b-4 active:border-b;
+    @apply bg-app-yellow text-app--yellow fill-app--yellow stroke-app--yellow
+    center rounded-lg p-2 duration-200 capitalize cursor-pointer outline-none
+    border border-transparent border-b-app--yellow hover:border-b-4 active:border-b;
   }
 
-  .app-btn-dark {
-    @apply bg-app-primary text-app--primary center rounded-lg p-2 duration-200 capitalize cursor-pointer text-3
-    outline-none border-none hover:outline-app--primary opacity-75 active:scale-95;
+  .app-btn-red {
+    @apply bg-app-red text-app--red fill-app--red stroke-app--red
+    center rounded-lg p-2 duration-200 capitalize cursor-pointer outline-none
+    border border-transparent border-b-app--red hover:border-b-4 active:border-b;
   }
 
   .app-btn-disabled {
-    @apply bg-app-primary text-app--primary center rounded-lg p-2 capitalize outline-none border-2 border-transparent;
+    @apply bg-app-primary text-app--primary center rounded-lg p-2
+    capitalize outline-none border-2 border-transparent;
   }
 
+  /* Inputs */
   .app-input {
-    @apply bg-transparent w-full h-full rounded-lg p-4 pt-6 z-0 duration-200 placeholder:opacity-50 placeholder:text-app-dark
-    border-none outline outline-app-dark outline-2 focus:outline-4 focus:outline-app-primary;
+    @apply bg-transparent w-full h-full rounded-lg p-4 pt-6 z-0 duration-200
+    placeholder:opacity-50 placeholder:text-app-dark border-none
+    outline outline-app-dark outline-2 focus:outline-4 focus:outline-app-primary;
   }
 
+  /* Text sizing */
   .text-1 {
     @apply text-sm font-medium;
   }
+
   .text-2 {
     @apply text-base font-medium;
   }
+
   .text-3 {
     @apply text-lg font-bold;
   }
+
   .text-4 {
     @apply text-xl font-black;
   }
@@ -81,14 +107,17 @@
 }
 
 @layer utilities {
+
   /* Custom Animtions */
   .animate-leftright {
     animation: k-leftright 0.5s;
   }
+
   @keyframes k-leftright {
     0% {
       transform: translate(-100%);
     }
+
     100% {
       transform: translate(0%);
     }
@@ -97,10 +126,12 @@
   .animate-rightleft {
     animation: k-rightleft 0.5s;
   }
+
   @keyframes k-rightleft {
     0% {
       transform: translate(100%);
     }
+
     100% {
       transform: translate(0%);
     }
@@ -109,10 +140,12 @@
   .animate-topdown {
     animation: k-topdown 0.5s;
   }
+
   @keyframes k-topdown {
     0% {
       transform: translateY(-100%);
     }
+
     100% {
       transform: translateY(0%);
     }
@@ -121,10 +154,12 @@
   .animate-downtop {
     animation: k-downtop 0.5s;
   }
+
   @keyframes k-downtop {
     0% {
       transform: translateY(100%);
     }
+
     100% {
       transform: translateY(0%);
     }
