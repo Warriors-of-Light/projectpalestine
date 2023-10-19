@@ -54,21 +54,7 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
     }
   }, [companyData, retrieveData]);
 
-  // const data = [
-  //   {
-  //     date: "March 16 2020",
-  //     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula, ante eu cursus tincidunt, justo libero consequat tortor",
-  //   },
-  //   {
-  //     date: "September 15 2022",
-  //     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula, ante eu cursus tincidunt, justo libero consequat tortor",
-  //   },
-  //   {
-  //     date: "October 16 2023",
-  //     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula, ante eu cursus tincidunt, justo libero consequat tortor",
-  //   },
-  // ];
-
+  //fake data
   const claims: Array<Claim> = [
     {
       claimId: "11111",
@@ -123,16 +109,14 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
             </div>
 
             {/* History */}
-            <div className="absolute left-14 h-full mt-500">
+            <div className="absolute left-14 h-full mt-500 pr-10 ">
               <div>
                 {claims.map((claim, index) => (
                   <ClaimCard key={index} claim={claim} />
                 ))}
               </div>
-              {/* Submit a claim */}
-              <div></div>
             </div>
-            <div className="flex gap-4 w-full justify-start absolute left-14">
+            <div className="flex gap-4 w-full justify-start absolute left-14 bottom-20">
               <Link href="/" className="app-btn-dark">
                 <Icon type="submit" />
                 <span>submit a claim</span>
