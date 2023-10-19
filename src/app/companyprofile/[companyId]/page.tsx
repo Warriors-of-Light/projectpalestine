@@ -9,7 +9,9 @@ import Image from "next/image";
 import Status from "@/components/company/status";
 import firebase_app from "@/components/firebase/config";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
-import { Company } from "@/constants";
+import { Claim, Company } from "@/constants";
+import { Spinner } from "@chakra-ui/spinner";
+import ClaimCard from "@/components/common/IncidentCard";
 
 interface ICompanyProfileProps {
   params: { companyId: string };
@@ -18,12 +20,10 @@ interface ICompanyProfileProps {
 export default function CompanyProfile({ params }: ICompanyProfileProps) {
   const router = useRouter();
   const [companyData, setCompanyData] = useState<Company>();
-  alert(params.companyId);
 
   const retrieveData = useCallback(async () => {
     const db = getFirestore(firebase_app);
     let cd: Company;
-    // const CompaniesRef = collection(db, 'Companies');
     const documentRef = doc(db, "Companies", params.companyId);
 
     getDoc(documentRef)
@@ -39,7 +39,6 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
             name: data.name,
           };
           setCompanyData(cd);
-          alert("Document data exists");
         } else {
           console.log("Document does not exist");
         }
@@ -50,90 +49,102 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
   }, [params.companyId]);
 
   useEffect(() => {
-    if (companyData?.name.length === 0) {
+    if (!companyData) {
       retrieveData();
     }
-  }, []);
+  }, [companyData, retrieveData]);
 
-  const data = [
+  // const data = [
+  //   {
+  //     date: "March 16 2020",
+  //     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula, ante eu cursus tincidunt, justo libero consequat tortor",
+  //   },
+  //   {
+  //     date: "September 15 2022",
+  //     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula, ante eu cursus tincidunt, justo libero consequat tortor",
+  //   },
+  //   {
+  //     date: "October 16 2023",
+  //     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula, ante eu cursus tincidunt, justo libero consequat tortor",
+  //   },
+  // ];
+
+  const claims: Array<Claim> = [
     {
+      claimId: "11111",
       date: "March 16 2020",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula, ante eu cursus tincidunt, justo libero consequat tortor",
-    },
-    {
-      date: "September 15 2022",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula, ante eu cursus tincidunt, justo libero consequat tortor",
-    },
-    {
-      date: "October 16 2023",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula, ante eu cursus tincidunt, justo libero consequat tortor",
+      description:
+        "Provided Israeli Soldiers with 4000 Meals during the the second bombing of Gaza",
+      rating: "2",
+      title:
+        "Funded Israeli Soldiers with Mealsa sadadsadsaihdisajdsiaojdsiaojdsiaojdsaiojdsiaojdsaiodjsiodjs",
+      refrences: [
+        {
+          link: "nolink",
+          refrenceId: "1111",
+          title: "Macdonalds provided Israeli soldiers ",
+        },
+      ],
     },
   ];
 
-  const History = ({
-    props,
-  }: {
-    props: {
-      date: string;
-      text: string;
-    };
-  }) => {
-    return (
-      <div className="bg-app-primary flex justify-between items-center border-l border-app--primary p-2 rounded-lg">
-        <div className="text-3 w-1/2">{props.date}</div>
-        <div className="text-1 w-1/2">{props.text}</div>
-      </div>
-    );
-  };
-
   return (
     <main className="bg-app-light flex flex-col items-center justify-start h-screen w-screen gap-4">
-      <Header />
+      <div className="flex items-center justify-center w-full h-full">
+        {companyData === undefined && <Spinner />}
+      </div>
+      {companyData && (
+        <div className="layer animate-topdown">
+          <div className="app-container flex flex-col items-center justify-center gap-4 p-4">
+            {/* Logo & Name & description */}
+            <div className="w-full flex absolute left-10 top-10 items-center">
+              <div className="center">
+                <Image
+                  className="rounded-full"
+                  src={companyData?.logo!}
+                  alt="Logo"
+                  width={200}
+                  height={200}
+                />
+                <div className="flex flex-col">
+                  <span className="text-3 title capitalize text-4xl">
+                    {companyData?.name}
+                  </span>
+                  <span className="text capitalize">
+                    {companyData?.description}
+                  </span>
+                </div>
+              </div>
 
-      <div className="layer animate-topdown">
-        <div className="app-container flex flex-col items-center justify-center gap-4 p-4">
-          {/* Logo & Name & description */}
-          <div className="w-full flex justify-between items-center">
-            <div className="center">
-              <Image
-                className="rounded-full"
-                src={companyData?.logo!}
-                alt="Logo"
-                width={100}
-                height={100}
-              />
-              <div className="flex flex-col">
-                <span className="text-3 title capitalize">
-                  {companyData?.name}
-                </span>
-                <span className="text capitalize">
-                  {companyData?.description}
-                </span>
+              {/* Status */}
+              <div className="flex w-80 justify-end p-20">
+                <Status status={companyData?.rating!} />
               </div>
             </div>
 
-            {/* Status */}
-            <Status status={companyData?.rating!} />
-          </div>
-
-          {/* History */}
-          {data.map((props, index) => (
-            <History key={index} props={props} />
-          ))}
-
-          {/* Submit a claim */}
-          <div className="flex items-center justify-between gap-4">
-            <Link href="/" className="app-btn-dark">
-              <Icon type="submit" />
-              <span>submit a claim</span>
-            </Link>
-            <button className="app-btn-dark" onClick={() => {}}>
-              <Icon type="return" />
-              <span>go back</span>
-            </button>
+            {/* History */}
+            <div className="absolute left-14 h-full mt-500">
+              <div>
+                {claims.map((claim, index) => (
+                  <ClaimCard key={index} claim={claim} />
+                ))}
+              </div>
+              {/* Submit a claim */}
+              <div></div>
+            </div>
+            <div className="flex gap-4 w-full justify-start absolute left-14">
+              <Link href="/" className="app-btn-dark">
+                <Icon type="submit" />
+                <span>submit a claim</span>
+              </Link>
+              <button className="app-btn-dark" onClick={() => router.push("/")}>
+                <Icon type="return" />
+                <span>go back</span>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </main>
   );
 }

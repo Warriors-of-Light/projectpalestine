@@ -12,21 +12,24 @@ import app from "../assets/app.svg";
 import { CompanyCard, Icon } from "./modules";
 import appStore from "../assets/appstore.svg";
 import playStore from "../assets/playstore.svg";
-import {
-  collection,
-  getFirestore,
-  doc,
-  setDoc,
-  getDocs,
-  DocumentData,
-} from "firebase/firestore";
+import { collection, getFirestore, getDocs } from "firebase/firestore";
 import firebase_app from "./firebase/config";
 import { Company } from "@/constants";
 import { Spinner } from "@chakra-ui/react";
+import SearchBar from "./common/searchbar";
 
 const Hero = () => {
   const retrieveOnce = useRef(0);
   const [companies, setCompanies] = useState<Array<Company>>([]);
+  const [filteredResults, setFilteredResults] = useState<Array<string>>([]);
+
+  const companiesIDs: Array<string> = useMemo(() => {
+    return [];
+  }, []);
+
+  const onSearch = useCallback((filteredResults: string[] | undefined) => {
+    setFilteredResults(filteredResults ?? [...filteredResults!]);
+  }, []);
 
   const retrieveData = useCallback(async () => {
     const db = getFirestore(firebase_app);
@@ -37,7 +40,7 @@ const Hero = () => {
       querySnapshot.forEach((doc) => {
         const data = doc.data();
         array.push({
-          companyId: data.id,
+          companyId: doc.id,
           description: data.description,
           name: data.name,
           logo: data.logo,
@@ -45,9 +48,11 @@ const Hero = () => {
           claims: [],
         });
       });
+      const ids = array.map((x) => x.companyId);
+      companiesIDs.push(...ids);
       setCompanies(array);
     });
-  }, []);
+  }, [companiesIDs]);
 
   useEffect(() => {
     if (companies.length === 0) {
@@ -55,9 +60,18 @@ const Hero = () => {
     }
   }, [companies, retrieveData]);
 
-  const searching = (e: HTMLInputElement) => {
-    const searchingText = e.value;
-  };
+  useEffect(() => {
+    if (companiesIDs !== filteredResults) {
+      companiesIDs.length = 0;
+      companiesIDs.push(...filteredResults);
+      setCompanies((prev) =>
+        prev.filter((company) => filteredResults.includes(company.companyId))
+      );
+    }
+  }, [companiesIDs, filteredResults]);
+
+  // const endTheOccupation = [];
+  // const search = "Search a product or company";
 
   return (
     <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6">
@@ -65,18 +79,12 @@ const Hero = () => {
         <div className="w-full text-4xl font-black mb-10">
           A way for us to boycott the occupation and it’s supporters
         </div>
-        <div className="w-full relative center">
-          <div className="bg-app-light absolute left-0 top-0 -translate-y-1/2 w-fit text-3 z-50 px-2">
-            Search a product or company
-          </div>
-          <input
-            className="app-input"
-            type="text"
-            placeholder=".."
-            onChange={() => searching}
-          />
-          <Icon type="search" style="absolute right-0 mr-2" />
-        </div>
+        <SearchBar
+          label="Search a product or a company"
+          onSearch={onSearch}
+          placeholder="Search here"
+          searchableContent={companiesIDs}
+        />
 
         {companies.length === 0 ? (
           <Spinner />
@@ -88,7 +96,13 @@ const Hero = () => {
       </div>
 
       <div className="h-full w-full md:w-1/2 center flex-col">
-        <Image src={app} alt="Logo" width={300} height={300} />
+        <Image
+          src={app}
+          alt="Logo"
+          width={300}
+          height={300}
+          className="lg:mt-0 md:mt-0 xs:flex xs:mt-96"
+        />
         <div className="center">
           <Image
             alt={"Google Play button"}

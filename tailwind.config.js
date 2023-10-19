@@ -42,6 +42,9 @@ module.exports = {
         1500: "1500px",
         2000: "2000px",
       },
+      screens: {
+        xs: "320px", // Extra small screens
+      },
     },
   },
   plugins: [],

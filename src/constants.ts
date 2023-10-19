@@ -7,6 +7,7 @@ export type Reference = {
 export type Claim = {
   claimId: string;
   title: string;
+  date: string;
   description: string;
   rating: string;
   refrences: Array<Reference>;

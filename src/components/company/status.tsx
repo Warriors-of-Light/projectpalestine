@@ -1,4 +1,4 @@
-import {Icon} from "@/components/modules";
+import { Icon } from "@/components/modules";
 
 const Status = ({ status }: { status: 1 | 2 | 3 }) => {
   return (
@@ -13,9 +13,13 @@ const Status = ({ status }: { status: 1 | 2 | 3 }) => {
         }
         `}
       >
-        {status == 1 && <Icon type="" style="stroke-app--red" />}
-        {status == 2 && <Icon type="alert" style="stroke-app--yellow" />}
-        {status == 3 && <Icon type="check" style="stroke-app--green" />}
+        {status == 1 && <Icon type="" style="stroke-app--red" size={40} />}
+        {status == 2 && (
+          <Icon type="alert" style="stroke-app--yellow" size={40} />
+        )}
+        {status == 3 && (
+          <Icon type="check" style="stroke-app--green" size={40} />
+        )}
       </div>
       <span className="text">
         {status == 1 && "Poor"}
