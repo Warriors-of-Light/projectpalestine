@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import React, {
   useCallback,
   useEffect,
@@ -8,10 +7,8 @@ import React, {
   useRef,
   useState,
 } from "react";
-import app from "../assets/app.svg";
 import { CompanyCard } from "./modules";
-import appStore from "../assets/appstore.svg";
-import playStore from "../assets/playstore.svg";
+
 import { collection, getFirestore, getDocs } from "firebase/firestore";
 import firebase_app from "./firebase/config";
 import { Company } from "@/constants";
@@ -70,12 +67,12 @@ const Hero = () => {
 
   return (
     <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6">
-      <div className="bg-app-light app-container w-full md:w-1/2 flex flex-col justify-center content-end gap-4 p-8">
+      <div className="bg-app-light flex flex-col justify-start content-start gap-4 p-8">
         <div className="w-full text-4xl font-black mb-10">
           A way for us to boycott the occupation and it’s supporters
         </div>
         <SearchBar
-          label="Search a product or a company"
+          label="Search products or companies"
           onSearch={onSearch}
           placeholder="Search here"
           searchableContent={companiesIDs}
@@ -90,27 +87,7 @@ const Hero = () => {
         )}
       </div>
 
-      <div className="h-full w-full md:w-1/2 center flex-col xs:h-900">
-        <Image
-          src={app}
-          alt="Logo"
-          width={300}
-          height={300}
-          className="lg:mt-0 md:mt-0 xs:flex xs:mt-96"
-        />
-        <div className="center">
-          <Image
-            alt={"Google Play button"}
-            src={playStore}
-            className=" cursor-pointer"
-          />
-          <Image
-            alt={"App Store button"}
-            src={appStore}
-            className=" cursor-pointer"
-          />
-        </div>
-      </div>
+      {/* Mobile Version */}
     </div>
   );
 };

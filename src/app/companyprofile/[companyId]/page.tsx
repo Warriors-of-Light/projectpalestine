@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
-import { Header, Icon } from "@/components/modules";
+import { Icon } from "@/components/modules";
 import CompanyHistory from "@/components/company/companyHistory";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,7 +11,7 @@ import firebase_app from "@/components/firebase/config";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { Claim, Company } from "@/constants";
 import { Spinner } from "@chakra-ui/spinner";
-import ClaimCard from "@/components/common/IncidentCard";
+import ClaimCard from "@/components/common/claimCard";
 
 interface ICompanyProfileProps {
   params: { companyId: string };
@@ -109,7 +109,7 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
             </div>
 
             {/* History */}
-            <div className="absolute left-14 h-full mt-500 pr-10 ">
+            <div className="absolute left-14 h-full mt-500">
               <div>
                 {claims.map((claim, index) => (
                   <ClaimCard key={index} claim={claim} />

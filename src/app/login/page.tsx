@@ -52,104 +52,101 @@ export default function Login() {
   };
 
   return (
-    <>
-      <div className="bg-slate-100 h-full w-full flex flex-col justify-center items-center gap-4">
-        <div className="w-full max-w-[550px]">
-          <div className="flex justify-start border-l-4 border-black pb-8 -rotate-6 mr-12 mb-10 ml-56">
-            <Image
-              className="object-cover"
-              src={Palestine}
-              width={150}
-              height={150}
-              alt="Project Palestine Logo"
-            />
-          </div>
+    <div className="bg-slate-100 h-1000 w-full flex flex-col justify-center items-center gap-4">
+      <div className="flex flex-col w-full max-w-[550px] h-full justify-center">
+        <div className="flex justify-start border-l-4 border-black pb-8 -rotate-6 mr-12 mb-10 ml-56">
+          <Image
+            className="object-cover"
+            src={Palestine}
+            width={150}
+            height={150}
+            alt="Project Palestine Logo"
+          />
+        </div>
 
-          <div className="bg-app--light shadow-lg md:rounded-xl flex flex-col gap-6 p-6 border-2 border-app-primary">
-            <h2 className="text-4 text-app--primary text-center">
-              Project Palestine
-            </h2>
+        <div className="bg-app--light shadow-lg md:rounded-xl flex flex-col gap-6 p-6 border-2 border-app-primary">
+          <h2 className="text-4 text-app--primary text-center">
+            Project Palestine
+          </h2>
 
-            <form className="space-y-6" action="#" onSubmit={handleForm}>
+          <form className="space-y-6" action="#" onSubmit={handleForm}>
+            <div>
+              <label className="flex text-green-800 text-lg font-semibold mb-2">
+                Email Address
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                placeholder="free@palestine.com"
+                required
+                className="app-input p-3 bg-slate-50"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <label className="flex text-green-800 text-lg font-semibold mb-2">
+                Password
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="password"
+                placeholder="Password"
+                required
+                className="app-input p-3 bg-slate-50"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            {isRegisteration && (
               <div>
                 <label className="flex text-green-800 text-lg font-semibold mb-2">
-                  Email Address
+                  Confirm Password
                 </label>
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  placeholder="free@palestine.com"
-                  required
-                  className="app-input p-3 bg-slate-50"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div>
-                <label className="flex text-green-800 text-lg font-semibold mb-2">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  name="password"
+                  id="confirm-password"
+                  name="confirm-password"
                   type="password"
                   autoComplete="password"
                   placeholder="Password"
                   required
                   className="app-input p-3 bg-slate-50"
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
-              {isRegisteration && (
-                <div>
-                  <label className="flex text-green-800 text-lg font-semibold mb-2">
-                    Confirm Password
-                  </label>
-                  <input
-                    id="confirm-password"
-                    name="confirm-password"
-                    type="password"
-                    autoComplete="password"
-                    placeholder="Password"
-                    required
-                    className="app-input p-3 bg-slate-50"
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                  />
-                </div>
-              )}
+            )}
 
-              <div className="flex flex-col items-center gap-4">
-                <button type="submit" className="app-btn-dark w-1/2">
-                  Login
-                </button>
-                <Link href="#" className="app-link">
-                  Forgot password?
+            <div className="flex flex-col items-center gap-4">
+              <button type="submit" className="app-btn-dark w-1/2">
+                Login
+              </button>
+              <Link href="#" className="app-link">
+                Forgot password?
+              </Link>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-2">
+                <hr className="w-full border-t border-app--primary" />
+                <span className="text-app--primary">Or</span>
+                <hr className="w-full border-t border-app--primary" />
+              </div>
+              <div className="text-center">
+                {isRegisteration ? "Already a member?" : "Not a member?"} {"  "}
+                <Link
+                  href="#"
+                  className="app-link"
+                  onClick={() => setIsRegisteration(true)}
+                >
+                  {isRegisteration ? "Sign in" : "Sign up"}
                 </Link>
               </div>
-
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center gap-2">
-                  <hr className="w-full border-t border-app--primary" />
-                  <span className="text-app--primary">Or</span>
-                  <hr className="w-full border-t border-app--primary" />
-                </div>
-                <div className="text-center">
-                  {isRegisteration ? "Already a member?" : "Not a member?"}{" "}
-                  {"  "}
-                  <Link
-                    href="#"
-                    className="app-link"
-                    onClick={() => setIsRegisteration(true)}
-                  >
-                    {isRegisteration ? "Sign in" : "Sign up"}
-                  </Link>
-                </div>
-              </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
-    </>
+    </div>
   );
 }

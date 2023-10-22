@@ -12,10 +12,12 @@ import {
   FiX,
   FiInfo,
   FiAlertTriangle,
+  FiClock,
+  FiHeart,
 } from "react-icons/fi";
-import { BiDonateHeart, BiDownload, BiSolidContact } from "react-icons/bi";
+import { BiDonateHeart, BiDownload, BiSolidContact, BiSolidHeartCircle } from "react-icons/bi";
 import { RiSendPlaneFill } from "react-icons/ri";
-import { AiOutlineCheckCircle } from "react-icons/ai";
+import { AiFillGithub, AiOutlineCheckCircle } from "react-icons/ai";
 import { GrReturn } from "react-icons/gr";
 import { BiLogIn } from "react-icons/bi";
 import { BiLogOut } from "react-icons/bi";
@@ -32,6 +34,10 @@ const Icon = (props: {
   const size: number = props.size ? props.size : 20;
 
   switch (type) {
+    case "heart":
+      return <BiSolidHeartCircle className={style} size={size}/>
+    case "clock":
+      return <FiClock className={style} size={size}/>
     case "return":
       return <GrReturn className={style} size={size} />;
     case "submit":
@@ -62,6 +68,8 @@ const Icon = (props: {
       return <BiLogIn className={style} size={size} />;
     case "logout":
       return <BiLogOut className={style} size={size} />;
+    case "github":
+    return <AiFillGithub className={style} size={size} />;
     case "appstore":
       return (
         <svg
