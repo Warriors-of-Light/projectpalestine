@@ -6,9 +6,9 @@ import Link from "next/link";
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import React from "react";
-import signIn from "@/components/firebase/auth/signIn";
+import signIn from "@/firebase/auth/signIn";
 import Palestine from "@/assets/palestineFlag.png";
-import signUp from "@/components/firebase/auth/signUp";
+import signUp from "@/firebase/auth/signUp";
 import { useUserStore } from "@/store/useUserStore";
 
 export default function Login() {

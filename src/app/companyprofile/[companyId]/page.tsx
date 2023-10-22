@@ -3,11 +3,10 @@
 import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { Icon } from "@/components/modules";
-import CompanyHistory from "@/components/company/companyHistory";
 import Link from "next/link";
 import Image from "next/image";
 import Status from "@/components/company/status";
-import firebase_app from "@/components/firebase/config";
+import {firebase_app} from "@/firebase/config";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { Claim, Company } from "@/constants";
 import { Spinner } from "@chakra-ui/spinner";

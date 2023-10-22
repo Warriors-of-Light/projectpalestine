@@ -10,10 +10,12 @@ import React, {
 import { CompanyCard } from "./modules";
 
 import { collection, getFirestore, getDocs } from "firebase/firestore";
-import firebase_app from "./firebase/config";
+import {firebase_app} from "../firebase/config";
 import { Company } from "@/constants";
 import { Spinner } from "@chakra-ui/react";
 import SearchBar from "./common/searchbar";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+
 
 const Hero = () => {
   const [companies, setCompanies] = useState<Array<Company>>([]);
@@ -26,6 +28,7 @@ const Hero = () => {
   const onSearch = useCallback((filteredResults: string[] | undefined) => {
     setFilteredResults(filteredResults ?? [...filteredResults!]);
   }, []);
+
 
   const retrieveData = useCallback(async () => {
     const db = getFirestore(firebase_app);
@@ -93,3 +96,5 @@ const Hero = () => {
 };
 
 export default Hero;
+
+

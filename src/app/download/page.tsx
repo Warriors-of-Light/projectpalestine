@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import app from "../../assets/app.svg";
 import appStore from "../../assets/appstore.svg";
@@ -7,6 +8,8 @@ import Header from "@/components/header";
 
 export default function Download() {
   const appReleased = false; // delete once app is ready
+  const [onHover, setOnHover] = useState(false);
+
   return (
     <>
       <Header />
@@ -33,13 +36,21 @@ export default function Download() {
               />
             </div>
           ) : (
-            <div className="sparkle-image mt-8">
-              <div className="sparkle-image ml-14 " />
-              <span className="text-2xl  bg-yellow-200 p-2 rounded-full pl-4 pr-4 animate-pulse shadow-lg border-black-600">
+            <div
+              className="mt-8 ml-4 cursor-pointer"
+              onMouseEnter={() => setOnHover(true)}
+              onMouseLeave={() => setOnHover(false)}
+            >
+              <span
+                className={`text-2xl ${
+                  onHover && "bg-blue-200"
+                } bg-yellow-200 p-2 rounded-full pl-4 pr-4 ${
+                  onHover && "animate-pulse"
+                } shadow-lg border-black-600`}
+              >
                 Coming Soon{" "}
               </span>
-              <div className="sparkle-image ml-14" />
-              <div className="sparkle-image flex mb-4 ml-4 p-2" />
+              <div className={`${onHover && "sparkle-image"} ml-14`} />
             </div>
           )}
         </div>
