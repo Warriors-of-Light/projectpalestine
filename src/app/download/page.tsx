@@ -13,7 +13,7 @@ export default function Download() {
   return (
     <>
       <Header />
-      <div className="w-full min-h-screen flex flex-col justify-end items-center bg-app-light ">
+      <div className="w-full min-h-screen flex flex-col justify-end items-center bg-app--light ">
         <div className="h-full w-full md:w-1/2 center flex-col xs:h-900">
           <Image
             src={app}
@@ -44,7 +44,7 @@ export default function Download() {
               <span
                 className={`text-2xl ${
                   onHover && "bg-blue-200"
-                } bg-yellow-200 p-2 rounded-full pl-4 pr-4 ${
+                } bg-yellow-200 p-2 rounded-lg pl-4 pr-4 ${
                   onHover && "animate-pulse"
                 } shadow-lg border-black-600`}
               >

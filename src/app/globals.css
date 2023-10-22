@@ -17,7 +17,7 @@
 @layer components {
   /* Containers */
   .app-page {
-    @apply bg-app-primary relative h-screen w-screen flex flex-col;
+    @apply bg-app--light relative h-screen w-screen flex flex-col;
   }
 
   .app-header {

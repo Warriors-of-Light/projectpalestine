@@ -21,7 +21,7 @@ const Hero = () => {
   const [companies, setCompanies] = useState<Array<Company>>([]);
   const [filteredResults, setFilteredResults] = useState<Array<string>>([]);
   const firstFiveCompanies = useRef<Array<Company>>();
-  const { setCompaniesDic } = useCompaniesStore();
+  const { setCompaniesMap } = useCompaniesStore();
 
   const companiesIDs: Array<string> = useMemo(() => {
     return [];
@@ -62,13 +62,18 @@ const Hero = () => {
     companiesIDs.push(...ids);
 
     if (array.length > 0) {
-      const companiesDic: { [key: string]: Company } = {};
-      array.forEach((company) => (companiesDic[company.companyId] = company));
-      setCompaniesDic(companiesDic); // storing list of companies in the store
+      const companiesMap = new Map<string, Company>();
+      array.forEach((x) => {
+        // alert(JSON.stringify(x));
+        companiesMap.set(x.companyId, x);
+        // alert(JSON.stringify(companiesMap.size));
+      });
+      // alert(JSON.stringify(companiesMap));
+      setCompaniesMap(companiesMap); // storing list of companies in the store
     }
     firstFiveCompanies.current = array.splice(0, 5);
     setCompanies(firstFiveCompanies.current);
-  }, [companiesIDs, downloadLogo, setCompaniesDic]);
+  }, [companiesIDs, downloadLogo, setCompaniesMap]);
 
   useEffect(() => {
     if (companies.length === 0) {
@@ -88,7 +93,6 @@ const Hero = () => {
 
   return (
     <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6">
-      
       <div className="bg-app-light flex flex-col justify-start content-start gap-4 p-8">
         <div className="w-full text-4xl font-black mb-10">
           A way for us to boycott the genocide and it’s supporters

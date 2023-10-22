@@ -16,6 +16,7 @@ const Footer = () => {
           <span>About</span>
         </Link>
         <Link
+          target="_blank"
           href="https://github.com/haythamhakim/projectpalestine"
           className="app-link"
         >

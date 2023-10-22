@@ -20,8 +20,9 @@ interface ICompanyProfileProps {
 
 export default function CompanyProfile({ params }: ICompanyProfileProps) {
   const router = useRouter();
-  const { companiesDic  } = useCompaniesStore();
-  const company = companiesDic[0][params.companyId];
+  const { companiesMap }: { companiesMap: Map<string, Company> } =
+    useCompaniesStore();
+  const company = companiesMap?.get("ssss");
 
   // const retrieveData = useCallback(async () => {
   //   const db = getFirestore(firebase_app);
