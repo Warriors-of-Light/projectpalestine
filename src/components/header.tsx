@@ -59,10 +59,13 @@ const Header = () => {
       </div>
 
       {/* Title - Logo */}
-      <div className="center p-2">
-        <Image src="/logo.svg" width="25" height="25" alt="Logo" />
-        <span className="text-2 title uppercase">Project Palestine</span>
-      </div>
+      <Link href={"/"}>
+        <div className="center p-2 cursor-pointer">
+          <Image src="/logo.svg" width="25" height="25" alt="Logo" />
+
+          <span className="text-2 title uppercase">Project Palestine</span>
+        </div>
+      </Link>
 
       {/* Links - Routes */}
       <div className="hidden md:flex items-center gap-2">

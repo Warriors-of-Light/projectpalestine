@@ -4,41 +4,47 @@ import {
   LifebuoyIcon,
   NewspaperIcon,
   PhoneIcon,
+  CodeBracketIcon,
+  FilmIcon,
 } from "@heroicons/react/20/solid";
+
 import Image from "next/image";
 
 export default function About() {
   const cards = [
     {
-      name: "Sales",
+      name: "Tech",
       description:
-        "Consectetur vel non. Rerum ut consequatur nobis unde. Enim est quo corrupti consequatur.",
-      icon: PhoneIcon,
+        "We build tools using technology. Our coders are freedom fighters using code as a force for good.",
+      icon: CodeBracketIcon,
+      volunteer: "Volunteer a developer",
     },
     {
-      name: "Technical Support",
+      name: "Media",
       description:
-        "Quod possimus sit modi rerum exercitationem quaerat atque tenetur ullam.",
-      icon: LifebuoyIcon,
+        "We display our stories in different multi-media formats such as videos and movies, using art as a medium for liberation.",
+      icon: FilmIcon,
+      volunteer: "Volunteer as a creator",
     },
     {
-      name: "Media Inquiries",
+      name: "Research",
       description:
-        "Ratione et porro eligendi est sed ratione rerum itaque. Placeat accusantium impedit eum odit.",
+        "We share the truth with the world through research, writing and papers. If Zionism started with one paper, ending it can be one paper away.",
       icon: NewspaperIcon,
+      volunteer: "Volunteer as a researcher",
     },
   ];
   return (
     <>
       <Header />
       <div className="relative w-full lg:h-85vh">
-        <div className="relative isolate h-full overflow-hidden bg-gray-900 py-24 sm:py-20">
+        <div className="relative isolate h-full overflow-hidden bg-green-500 py-24 sm:py-20">
           <div className="max-h-screen">
-            <img
+            {/* <img
               src="https://images.unsplash.com/photo-1614517453351-6c1522fc7a56?auto=format&fit=crop&q=80&w=3870&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&blend-mode=multiply"
               alt=""
-              className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center blur-md"
-            />
+              className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center blur-xl"
+            /> */}
           </div>
           <div className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl">
             <div
@@ -61,27 +67,38 @@ export default function About() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:mx-0">
               <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-                Support center
+                Project Palestine
               </h2>
-              <p className="mt-6 text-lg leading-8 text-gray-300">
-                Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-                lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-                fugiat aliqua.
+              <p className="mt-6 text-lg leading-8 text-white">
+                A project born to restore justice and assist freedom fighters
+                against the inhumane cruelty of aparteid and occupation. We
+                believe that we all have a role in fighting injustice, and if we
+                all unite, we could reach liberation which is the ultimate road
+                to peace.
               </p>
             </div>
-            <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
+            <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8 ">
               {cards.map((card) => (
                 <div
                   key={card.name}
-                  className="flex gap-x-4 rounded-xl bg-white/5 p-6 ring-1 ring-inset ring-white/10"
+                  className="flex gap-x-4 rounded-xl bg-white p-6 ring-1 ring-inset ring-white/10 drop-shadow-xl"
                 >
                   <card.icon
-                    className="h-7 w-5 flex-none text-indigo-400"
+                    className="h-7 w-5 flex-none text-red-500 "
                     aria-hidden="true"
                   />
-                  <div className="text-base leading-7">
-                    <h3 className="font-semibold text-white">{card.name}</h3>
-                    <p className="mt-2 text-gray-300">{card.description}</p>
+                  <div className="text-base leading-7 ">
+                    <h3 className="font-semibold  text-green-500">
+                      {card.name}
+                    </h3>
+                    <p className="mt-2 text-black-500 h-24">
+                      {card.description}
+                    </p>
+                    <button
+                      className={`mt-4 bg-green-200 rounded-lg p-1 flex justify-end pl-2 pr-2 hover:bg-red-400 drop-shadow-sm`}
+                    >
+                      {card.volunteer}
+                    </button>
                   </div>
                 </div>
               ))}

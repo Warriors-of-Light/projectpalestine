@@ -2,7 +2,12 @@
 
 const nextConfig = {
   images: {
-    domains: ["plchldr.co", "img.icons8.com", "images.unsplash.com"],
+    domains: [
+      "plchldr.co",
+      "img.icons8.com",
+      "images.unsplash.com",
+      "firebasestorage.googleapis.com",
+    ],
   },
 };
 

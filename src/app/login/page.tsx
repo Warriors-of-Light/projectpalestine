@@ -119,7 +119,7 @@ export default function Login() {
             )}
 
             <div className="flex flex-col items-center gap-4">
-              <button type="submit" className="app-btn-dark w-1/2">
+              <button type="submit" className="app-btn w-1/2">
                 Login
               </button>
               <Link href="#" className="app-link">
