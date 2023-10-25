@@ -95,7 +95,7 @@ const Hero = () => {
     <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6">
       <div className="bg-app-light flex flex-col justify-start content-start gap-4 p-8">
         <div className="w-full text-4xl font-black mb-10">
-          A way for us to boycott the genocide and it’s supporters
+          A way for us to boycott the genocide and its supporters
         </div>
         <SearchBar
           label="Search products or companies"

@@ -1,6 +1,7 @@
 "use client";
 import Header from "@/components/header";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Donate() {
   const router = useRouter();
@@ -8,7 +9,7 @@ export default function Donate() {
     <>
       <main className="relative isolate min-h-screen">
         <Header />
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1573322867455-fc97c490c14c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80"
           alt=""
           className="absolute inset-0 -z-10 h-full w-full object-cover object-top"
