@@ -28,3 +28,18 @@ export type User = {
   userRating: string;
   userSubmissions: Array<string>; //array of claimIDs that we can retrieve from the database
 };
+
+export const Tags = {
+  Technology: "Technology",
+  Automotive: "Automotive",
+  Pharmaceuticals: "Pharmaceuticals",
+  FoodAndBeverages: "Food and Beverages",
+  Entertainment: "Entertainment",
+  FashionAndApparel: "Fashion and Apparel",
+  FinanceAndBanking: "Finance and Banking",
+  Retail: "Retail",
+  Telecommunications: "Telecommunications",
+  TravelAndHospitality: "Travel and Hospitality",
+  SportsAndFitness: "Sports and Fitness",
+  Other: "Other",
+};

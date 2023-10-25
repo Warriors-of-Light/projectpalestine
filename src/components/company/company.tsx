@@ -40,11 +40,7 @@ const Company = ({ props }: { props: propsType }) => {
           }`}
         ></div>
         <span className="text-2">
-          {props.status == 1
-            ? "Supports the occupation"
-            : props.status == 2
-            ? "Somewhat supportive of the occupation"
-            : "Doesn't Support the Occupation"}
+          {props.status == 1 ? "Poor" : props.status == 2 ? "Average" : "Good"}
         </span>
       </div>
     </div>

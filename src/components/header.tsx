@@ -69,7 +69,7 @@ const Header = () => {
 
       {/* Links - Routes */}
       <div className="hidden md:flex items-center gap-2">
-        <Link className="app-btn-yellow" href="/">
+        <Link className="app-btn-yellow" href="/upcomingfeatures">
           <Icon type="clock" style="stroke-app--yellow" />
           upcoming features
         </Link>
@@ -87,7 +87,7 @@ const Header = () => {
           <Icon type="download" />
           <span>Download</span>
         </Link>
-        <Link className="app-btn" href="/">
+        <Link className="app-btn" href="/donate">
           <Icon type="donate" />
           Donate
         </Link>
@@ -124,7 +124,7 @@ const Header = () => {
             <Icon type="close" />
           </button>
 
-          <Link className="app-btn-yellow" href="/">
+          <Link className="app-btn-yellow" href="/upcomingfeatures">
             <Icon type="clock" style="stroke-app--yellow" />
             upcoming features
           </Link>
@@ -142,7 +142,7 @@ const Header = () => {
             <Icon type="download" />
             <span>Download</span>
           </Link>
-          <Link className="app-btn" href="/">
+          <Link className="app-btn" href="/donate">
             <Icon type="donate" />
             Donate
           </Link>

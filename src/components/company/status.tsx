@@ -22,9 +22,9 @@ const Status = ({ status }: { status: 1 | 2 | 3 }) => {
         )}
       </div>
       <span className="text">
-        {status == 1 && "Supports the occupation"}
-        {status == 2 && "Somewhat supportive of the occupation"}
-        {status == 3 && "Doesn't Support the Occupation"}
+        {status == 1 && "Poor"}
+        {status == 2 && "Average"}
+        {status == 3 && "Good"}
       </span>
     </div>
   );

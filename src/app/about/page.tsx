@@ -7,8 +7,7 @@ import {
   CodeBracketIcon,
   FilmIcon,
 } from "@heroicons/react/20/solid";
-
-import Image from "next/image";
+import Link from "next/link";
 
 export default function About() {
   const cards = [
@@ -94,11 +93,16 @@ export default function About() {
                     <p className="mt-2 text-black-500 h-24">
                       {card.description}
                     </p>
-                    <button
-                      className={`mt-4 bg-green-200 rounded-lg p-1 flex justify-end pl-2 pr-2 hover:bg-red-400 drop-shadow-sm`}
+                    <Link
+                      href={"https://forms.gle/wqfQpm5DeTS9n6MaA"}
+                      target="_blank"
                     >
-                      {card.volunteer}
-                    </button>
+                      <button
+                        className={`mt-4 bg-green-200 rounded-lg p-1 flex justify-end pl-2 pr-2 hover:bg-red-400 drop-shadow-sm`}
+                      >
+                        {card.volunteer}
+                      </button>
+                    </Link>
                   </div>
                 </div>
               ))}

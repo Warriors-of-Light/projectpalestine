@@ -50,7 +50,7 @@ module.exports = {
         "60vh": "60vh",
         "70vh": "70vh",
         "80vh": "80vh",
-        "85vh": "85vh", 
+        "85vh": "85vh",
         "90vh": "90vh",
       },
       fontFamily: {
@@ -58,5 +58,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };
