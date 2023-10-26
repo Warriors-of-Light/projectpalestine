@@ -4,7 +4,7 @@ import { PhotoIcon, QuestionMarkCircleIcon } from "@heroicons/react/24/solid";
 
 export default function AddCompany() {
   return (
-    <main className="bg-app-light flex flex-col items-center justify-start h-full w-full gap-4">
+    <main className="bg-app-light flex flex-col items-center justify-start h-full w-full gap-4 ">
       <Header />
       <div className=" flex p-40">
         <form>

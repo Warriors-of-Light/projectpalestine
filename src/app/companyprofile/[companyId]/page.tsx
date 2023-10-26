@@ -10,7 +10,7 @@ import Status from "@/components/company/status";
 
 import { Claim, Company } from "@/constants";
 import { Spinner } from "@chakra-ui/spinner";
-import ClaimCard from "@/components/common/claimCard";
+import ClaimTable from "@/components/common/claimCard";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
 import Custom404 from "@/app/not-found";
 
@@ -27,7 +27,7 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
   return company === null ? (
     <Custom404 />
   ) : (
-    <main className="bg-app-light flex flex-col items-center justify-start h-screen w-screen gap-4">
+    <main className="bg-app-light flex flex-1 flex-col items-center justify-start h-screen w-screen gap-4">
       <div className="flex items-center justify-center w-full h-full">
         {company === undefined && <Spinner />}
       </div>
@@ -49,21 +49,22 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
               </div>
 
               {/* Status */}
-              <div className="flex w-400 justify-end ">
+              <div className="flex w-1/2 pr-12 justify-end ">
                 <Status status={company?.rating!} />
               </div>
             </div>
 
             {/* History */}
-            <div className="absolute left-14 h-full mt-500">
+            <div className="absolute left-14 h-full mt-300 lg:w-1000 md:w-600  ">
               <div>
-                {claims.map((claim, index) => (
-                  <ClaimCard key={index} claim={claim} />
-                ))}
+                <ClaimTable claims={company?.claims} />
               </div>
             </div>
             <div className="flex gap-4 w-full justify-start absolute left-14 bottom-20">
-              <Link href="/submitclaim" className="app-btn">
+              <Link
+                href={`/submitclaim?id=${company.companyId}`}
+                className="app-btn"
+              >
                 <Icon type="submit" />
                 <span>submit a claim</span>
               </Link>
@@ -78,22 +79,3 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
     </main>
   );
 }
-
-const claims: Array<Claim> = [
-  {
-    claimId: "11111",
-    date: "March 16 2020",
-    description:
-      "Provided Israeli Soldiers with 4000 Meals during the the second bombing of Gaza",
-    rating: "2",
-    title:
-      "Funded Israeli Soldiers with Mealsa sadadsadsaihdisajdsiaojdsiaojdsiaojdsaiojdsiaojdsaiodjsiodjs",
-    refrences: [
-      {
-        link: "nolink",
-        refrenceId: "1111",
-        title: "Macdonalds provided Israeli soldiers ",
-      },
-    ],
-  },
-];

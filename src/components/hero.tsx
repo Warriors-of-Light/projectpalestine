@@ -21,15 +21,19 @@ const Hero = () => {
   const [companies, setCompanies] = useState<Array<Company>>([]);
   const [filteredResults, setFilteredResults] = useState<Array<string>>([]);
   const firstFiveCompanies = useRef<Array<Company>>();
+  const searchableContent = useRef([""]);
   const { setCompaniesMap } = useCompaniesStore();
 
   const companiesIDs: Array<string> = useMemo(() => {
     return [];
   }, []);
 
-  const onSearch = useCallback((filteredResults: string[] | undefined) => {
-    setFilteredResults(filteredResults ?? [...filteredResults!]);
-  }, []);
+  const onSearch = useCallback(
+    (filteredResults: string[] | undefined) => {
+      setFilteredResults(filteredResults ?? [...companies.map((x) => x.name)]);
+    },
+    [companies]
+  );
 
   const downloadLogo = useCallback(async (logoLocation: string) => {
     const storage = getStorage(firebase_app);
@@ -56,7 +60,6 @@ const Hero = () => {
         claims: [],
       };
     });
-
     array.push(...(await Promise.all(downloadPromises)));
     const ids = array.map((x) => x.companyId);
     companiesIDs.push(...ids);
@@ -64,14 +67,14 @@ const Hero = () => {
     if (array.length > 0) {
       const companiesMap = new Map<string, Company>();
       array.forEach((x) => {
-        // alert(JSON.stringify(x));
         companiesMap.set(x.companyId, x);
-        // alert(JSON.stringify(companiesMap.size));
+        searchableContent.current.push(x.name);
       });
-      // alert(JSON.stringify(companiesMap));
       setCompaniesMap(companiesMap); // storing list of companies in the store
     }
+
     firstFiveCompanies.current = array.splice(0, 5);
+    setFilteredResults(firstFiveCompanies.current.map((x) => x.name));
     setCompanies(firstFiveCompanies.current);
   }, [companiesIDs, downloadLogo, setCompaniesMap]);
 
@@ -81,15 +84,15 @@ const Hero = () => {
     }
   }, [companies, retrieveData]);
 
-  useEffect(() => {
-    if (companiesIDs !== filteredResults) {
-      companiesIDs.length = 0;
-      companiesIDs.push(...filteredResults);
-      setCompanies((prev) =>
-        prev.filter((company) => filteredResults.includes(company.companyId))
-      );
-    }
-  }, [companiesIDs, filteredResults]);
+  // useEffect(() => {
+  //   if (companiesIDs !== filteredResults) {
+  //     companiesIDs.length = 0;
+  //     companiesIDs.push(...filteredResults);
+  //     setCompanies((prev) =>
+  //       prev.filter((company) => filteredResults.includes(company.companyId))
+  //     );
+  //   }
+  // }, [companiesIDs, filteredResults]);
 
   return (
     <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6">
@@ -101,19 +104,21 @@ const Hero = () => {
           label="Search products or companies"
           onSearch={onSearch}
           placeholder="Search here"
-          searchableContent={companiesIDs}
+          searchableContent={searchableContent.current}
         />
 
         {companies.length === 0 ? (
           <Spinner />
         ) : (
           companies.map((company, index) => {
-            return <CompanyCard key={index} company={company} />;
+            return (
+              filteredResults.includes(company.name) && (
+                <CompanyCard key={index} company={company} />
+              )
+            );
           })
         )}
       </div>
-
-      {/* Mobile Version */}
     </div>
   );
 };

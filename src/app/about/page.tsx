@@ -38,13 +38,7 @@ export default function About() {
       <Header />
       <div className="relative w-full lg:h-85vh">
         <div className="relative isolate h-full overflow-hidden bg-green-500 py-24 sm:py-20">
-          <div className="max-h-screen">
-            {/* <img
-              src="https://images.unsplash.com/photo-1614517453351-6c1522fc7a56?auto=format&fit=crop&q=80&w=3870&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&blend-mode=multiply"
-              alt=""
-              className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center blur-xl"
-            /> */}
-          </div>
+        
           <div className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl">
             <div
               className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20"
