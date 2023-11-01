@@ -5,20 +5,27 @@ import { firebase_app } from "@/firebase/config";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
 import { Stack, Tag } from "@chakra-ui/react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import { getFirestore, doc } from "firebase/firestore";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 import { FormEvent, useCallback, useMemo, useRef, useState } from "react";
 
-export default function SubmitClaim() {
+interface ISubmitClaimProps {
+  params: { companyId: string };
+}
+
+export default function SubmitClaim({ params }: ISubmitClaimProps) {
   const [referenceWebsites, setReferenceWebsites] = useState([""]);
   const [selectedTags, setselectedTags] = useState([""]);
   const { companiesMap } = useCompaniesStore();
 
+  const router = useRouter();
+
   const formRef = useRef({
     title: "",
     date: "",
-    references: [""],
     description: "",
     tags: [""],
+    websites: [""],
   });
 
   const handleAddReference = useCallback(() => {
@@ -49,46 +56,52 @@ export default function SubmitClaim() {
     // Remove Tag if its already selected
     if (selectedTags.includes(value)) {
       const updatedTags = selectedTags.filter((x) => x !== value);
+      formRef.current.tags = updatedTags;
       setselectedTags(updatedTags);
     } else {
-      const updatedTags = [...selectedTags, value];
+      const updatedTags = [...selectedTags, value].filter((tag) => tag);
+      formRef.current.tags = updatedTags;
       setselectedTags(updatedTags);
     }
-
-    const db = getFirestore(firebase_app);
-
-    const userRef = doc(db, "comapnies");
-    // userRef
-    //   .set(
-    //     {
-    //       name: "John Doe",
-    //       email: "johndoe@example.com",
-    //       age: 30,
-    //     },
-    //     { merge: true }
-    //   )
-    //   .then(() => {
-    //     console.log("Document created or updated successfully!");
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error creating or updating document: ", error);
-    //   });
   };
 
-  const onSubmit = useMemo(
-    () => async (event: FormEvent<HTMLFormElement>) => {
-      const newFormData = new FormData();
+  // function validateWebsite() {
+  //   const websiteValue = formRef.current.website;
+  //   const urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
 
-      newFormData.append("title", formRef.current.title);
-      newFormData.append("date", formRef.current.date);
-      newFormData.append("description", formRef.current.description);
-      newFormData.append("country", JSON.stringify(formRef.current.references));
-      newFormData.append("governorate", JSON.stringify(formRef.current.tags));
+  //   if (!urlPattern.test(websiteValue)) {
+  //     alert("Please enter a valid website URL.");
+  //     return false;
+  //   }
+  // }
 
+  const onSubmit = useCallback(
+    async (event: any) => {
       event.preventDefault();
+
+      alert(JSON.stringify("Item added to Database"));
+
+      const db = getFirestore(firebase_app);
+      const companyRef = doc(db, "Companies", params.companyId);
+      await setDoc(
+        companyRef,
+        {
+          incidents: [
+            {
+              title: formRef.current.title,
+              websites: formRef.current.websites,
+              date: formRef.current.date,
+              description: formRef.current.description,
+              tags: formRef.current.tags,
+            },
+          ],
+        },
+        { merge: true }
+      );
+      router.back();
     },
 
-    []
+    [params.companyId, router]
   );
 
   return (
@@ -117,7 +130,7 @@ export default function SubmitClaim() {
                     <div className="flex flex-col">
                       <div className="sm:col-span-4">
                         <label
-                          htmlFor="website"
+                          htmlFor="title"
                           className="block text-sm font-medium leading-6 text-black mt-4"
                         >
                           Title
@@ -126,10 +139,14 @@ export default function SubmitClaim() {
                           <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-green-600 sm:max-w-md">
                             <input
                               type="text"
-                              name="website"
-                              id="website"
+                              name="title"
+                              id="title"
+                              required
                               className="block flex-1 border-0 bg-white  py-1.5 pl-1 text-gray-900 placeholder:text-gray-300 focus:ring-0 sm:text-sm sm:leading-6"
                               placeholder="Macdonalds provided meals to Israeli soldiers"
+                              onChange={(e) =>
+                                (formRef.current.title = e.target.value)
+                              }
                             />
                           </div>
                         </div>
@@ -146,7 +163,15 @@ export default function SubmitClaim() {
                         </label>
                         <div className="mt-2">
                           <div className="flex sm:max-w-md">
-                            <input type="date" id="datePicker" name="date" />
+                            <input
+                              type="date"
+                              id="datePicker"
+                              name="date"
+                              required
+                              onChange={(e) =>
+                                (formRef.current.date = e.target.value)
+                              }
+                            />
                           </div>
                         </div>
                       </div>
@@ -164,19 +189,18 @@ export default function SubmitClaim() {
                         key={index}
                         className="flex rounded-md shadow-md sm:max-w-md mt-2 justify-center items-center"
                       >
-                        <span className="flex select-none items-center pl-3 h-9 text-black sm:text-sm bg-white">
-                          http://
-                        </span>
                         <input
-                          type="text"
                           name="website"
                           id={`website${index}`}
                           className="block flex-1 border-0 bg-white py-1.5 pl-1 text-gray-900 placeholder:text-gray-300 focus:ring-0 sm:text-sm sm:leading-6"
                           placeholder="www.example.com"
+                          type="url"
+                          required
                           value={website}
-                          onChange={(e) =>
-                            handleWebsiteChange(index, e.target.value)
-                          }
+                          onChange={(e) => {
+                            formRef.current.websites[index] = e.target.value;
+                            handleWebsiteChange(index, e.target.value);
+                          }}
                         />
                         {index > 0 && (
                           <XMarkIcon
@@ -206,11 +230,14 @@ export default function SubmitClaim() {
                   </label>
                   <div className="mt-2">
                     <textarea
-                      id="about"
-                      name="about"
+                      id="description"
+                      name="description"
                       rows={3}
                       className="block w-full rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-black placeholder:text-black focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
                       defaultValue={""}
+                      onChange={(e) =>
+                        (formRef.current.description = e.target.value)
+                      }
                     />
                   </div>
                 </div>
@@ -246,11 +273,12 @@ export default function SubmitClaim() {
             <button
               type="button"
               className="text-sm font-semibold leading-6 text-gray-900"
+              onClick={router.back}
             >
               Cancel
             </button>
             <button
-              type="submit"
+              onClick={onSubmit}
               className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Save

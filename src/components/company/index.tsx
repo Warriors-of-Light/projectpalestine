@@ -13,9 +13,8 @@ interface ICompanyCardProps {
 }
 
 const CompanyCard = ({ company }: ICompanyCardProps) => {
-  const [profile, setProfile] = useState(false);
   const router = useRouter();
-  const { logo, name, description, companyId, rating, claims } = company;
+  const { logo, name, description, companyId, rating } = company;
 
   const bgColor = useMemo((): string => {
     if (rating == 1) {
@@ -29,7 +28,6 @@ const CompanyCard = ({ company }: ICompanyCardProps) => {
     return "bg- green-400";
   }, [rating]);
 
-  useEffect(() => console.log(profile), [profile]);
 
   return (
     <div

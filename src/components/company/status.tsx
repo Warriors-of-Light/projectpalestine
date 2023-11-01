@@ -21,11 +21,11 @@ const Status = ({ status }: { status: 1 | 2 | 3 }) => {
           <Icon type="check" style="stroke-app--green" size={40} />
         )}
       </div>
-      <span className="text">
+      {/* <span className="text">
         {status == 1 && "Poor"}
         {status == 2 && "Average"}
         {status == 3 && "Good"}
-      </span>
+      </span> */}
     </div>
   );
 };

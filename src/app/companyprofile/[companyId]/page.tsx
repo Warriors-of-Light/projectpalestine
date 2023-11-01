@@ -2,17 +2,18 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/modules";
 import Link from "next/link";
-import Image from "next/image";
 import Status from "@/components/company/status";
 
-import { Claim, Company } from "@/constants";
+import { Incident, Company } from "@/constants";
 import { Spinner } from "@chakra-ui/spinner";
-import ClaimTable from "@/components/common/claimCard";
+import ClaimTable from "@/components/common/claimTable";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
 import Custom404 from "@/app/not-found";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { firebase_app } from "@/firebase/config";
 
 interface ICompanyProfileProps {
   params: { companyId: string };
@@ -21,8 +22,27 @@ interface ICompanyProfileProps {
 export default function CompanyProfile({ params }: ICompanyProfileProps) {
   const router = useRouter();
   const { companiesMap, setCompaniesMap } = useCompaniesStore();
+  const initialize = useRef(0);
+  const [incidents, setIncidents] = useState<Array<Incident>>();
 
   const company = companiesMap!.get(params.companyId);
+
+  const retrieveIncidents = useCallback(async () => {
+    const db = getFirestore(firebase_app);
+    const companyRef = doc(db, "Companies", params.companyId);
+    const companyDoc = await getDoc(companyRef);
+    const incidents = companyDoc?.data()?.incidents;
+    alert(JSON.stringify(incidents));
+    setIncidents(incidents);
+  }, [params.companyId]);
+
+  useEffect(() => {
+    // will happen once on mount
+    if (initialize.current === 0) {
+      retrieveIncidents();
+      initialize.current++;
+    }
+  }, [retrieveIncidents]);
 
   return company === null ? (
     <Custom404 />
@@ -57,17 +77,24 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
             {/* History */}
             <div className="absolute left-14 h-full mt-300 lg:w-1000 md:w-600  ">
               <div>
-                <ClaimTable claims={company?.claims} />
+                <ClaimTable
+                  companyId={company.companyId}
+                  incidents={incidents!}
+                />
               </div>
             </div>
             <div className="flex gap-4 w-full justify-start absolute left-14 bottom-20">
-              <Link
-                href={`/submitclaim?id=${company.companyId}`}
-                className="app-btn"
-              >
-                <Icon type="submit" />
-                <span>submit a claim</span>
-              </Link>
+              {incidents && incidents.length > 0 && (
+                <button
+                  onClick={() =>
+                    router.push(`/submitclaim/${params.companyId}`)
+                  }
+                  className="app-btn"
+                >
+                  <Icon type="submit" />
+                  <span>submit a claim</span>
+                </button>
+              )}
               <Link className="app-btn" href={"/"}>
                 <Icon type="return" />
                 <span>go back</span>

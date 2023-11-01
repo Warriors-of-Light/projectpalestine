@@ -138,7 +138,7 @@ export default function Login() {
                 <Link
                   href="#"
                   className="app-link"
-                  onClick={() => setIsRegisteration(true)}
+                  onClick={() => setIsRegisteration(!isRegisteration)}
                 >
                   {isRegisteration ? "Sign in" : "Sign up"}
                 </Link>

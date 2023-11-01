@@ -16,6 +16,7 @@ import { Spinner } from "@chakra-ui/react";
 import SearchBar from "./common/searchbar";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
+import Link from "next/link";
 
 const Hero = () => {
   const [companies, setCompanies] = useState<Array<Company>>([]);
@@ -36,6 +37,7 @@ const Hero = () => {
   );
 
   const downloadLogo = useCallback(async (logoLocation: string) => {
+    if (logoLocation === undefined) return;
     const storage = getStorage(firebase_app);
     const fileRef = ref(storage, `logos/${logoLocation}`);
     const url = await getDownloadURL(fileRef);
@@ -55,9 +57,9 @@ const Hero = () => {
         companyId: doc.id,
         description: data.description,
         name: data.name,
-        logo: url,
+        logo: url ?? "",
         rating: data.rating,
-        claims: [],
+        incidents: [],
       };
     });
     array.push(...(await Promise.all(downloadPromises)));
@@ -84,16 +86,6 @@ const Hero = () => {
     }
   }, [companies, retrieveData]);
 
-  // useEffect(() => {
-  //   if (companiesIDs !== filteredResults) {
-  //     companiesIDs.length = 0;
-  //     companiesIDs.push(...filteredResults);
-  //     setCompanies((prev) =>
-  //       prev.filter((company) => filteredResults.includes(company.companyId))
-  //     );
-  //   }
-  // }, [companiesIDs, filteredResults]);
-
   return (
     <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6">
       <div className="bg-app-light flex flex-col justify-start content-start gap-4 p-8">
@@ -118,6 +110,13 @@ const Hero = () => {
             );
           })
         )}
+        <div className="flex justify-center w-full">
+          <Link href="/addcompany">
+            <button className="app-btn bg-green-500 text-white w-40">
+              Add Company
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

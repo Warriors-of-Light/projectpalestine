@@ -1,8 +1,8 @@
 import React from "react";
-import { Claim } from "../../constants";
+import { Incident } from "../../constants";
 
 interface IComapnyHistory {
-  claims: Array<Claim>;
+  claims: Array<Incident>;
 }
 
 export default function CompanyHistory({ claims }: IComapnyHistory) {
@@ -41,7 +41,7 @@ export default function CompanyHistory({ claims }: IComapnyHistory) {
       </thead>
       <tbody>
         {claims.map((claim) => (
-          <tr key={claim.claimId} className="border-b border-gray-100">
+          <tr key={claim.incidentId} className="border-b border-gray-100">
             <td className="max-w-0 w-96 px-0 py-5 align-top">
               <div className="truncate font-medium text-gray-900">
                 {claim.title}
