@@ -16,11 +16,19 @@ export default function SearchBar({
 }: ISearchBarProps) {
   const handleSearch = useCallback(
     (text: string) => {
-      const filteredContent = searchableContent?.filter((x) =>
-        x.toLocaleLowerCase().includes(text.toLocaleLowerCase())
-      );
+      if (text.length === 0) {
+        onSearch([]);
+      } else {
+        const filteredContent = searchableContent?.filter((x) =>
+          x.toLocaleLowerCase().includes(text.toLocaleLowerCase())
+        );
 
-      onSearch(filteredContent);
+        onSearch(
+          filteredContent && filteredContent.length > 0
+            ? filteredContent
+            : ["No Results"]
+        );
+      }
     },
     [onSearch, searchableContent]
   );

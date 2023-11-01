@@ -21,17 +21,21 @@ import Link from "next/link";
 const Hero = () => {
   const [companies, setCompanies] = useState<Array<Company>>([]);
   const [filteredResults, setFilteredResults] = useState<Array<string>>([]);
-  const firstFiveCompanies = useRef<Array<Company>>();
+  // const firstFiveCompanies = useRef<Array<Company>>();
   const searchableContent = useRef([""]);
   const { setCompaniesMap } = useCompaniesStore();
 
-  const companiesIDs: Array<string> = useMemo(() => {
-    return [];
-  }, []);
-
   const onSearch = useCallback(
     (filteredResults: string[] | undefined) => {
-      setFilteredResults(filteredResults ?? [...companies.map((x) => x.name)]);
+      if (filteredResults![0] === "No Results") {
+        setFilteredResults([]);
+      } else {
+        setFilteredResults(
+          filteredResults && filteredResults?.length > 0
+            ? filteredResults
+            : [...companies.map((x) => x.name)].splice(0, 5)
+        );
+      }
     },
     [companies]
   );
@@ -63,8 +67,6 @@ const Hero = () => {
       };
     });
     array.push(...(await Promise.all(downloadPromises)));
-    const ids = array.map((x) => x.companyId);
-    companiesIDs.push(...ids);
 
     if (array.length > 0) {
       const companiesMap = new Map<string, Company>();
@@ -75,10 +77,11 @@ const Hero = () => {
       setCompaniesMap(companiesMap); // storing list of companies in the store
     }
 
-    firstFiveCompanies.current = array.splice(0, 5);
-    setFilteredResults(firstFiveCompanies.current.map((x) => x.name));
-    setCompanies(firstFiveCompanies.current);
-  }, [companiesIDs, downloadLogo, setCompaniesMap]);
+    // firstFiveCompanies.current = array.splice(0, 5);
+    // setFilteredResults(firstFiveCompanies.current.map((x) => x.name));
+    setFilteredResults(array.map((x) => x.name).splice(0, 5));
+    setCompanies(array);
+  }, [downloadLogo, setCompaniesMap]);
 
   useEffect(() => {
     if (companies.length === 0) {
@@ -87,7 +90,7 @@ const Hero = () => {
   }, [companies, retrieveData]);
 
   return (
-    <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6">
+    <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6 mb-10  mt-40">
       <div className="bg-app-light flex flex-col justify-start content-start gap-4 p-8">
         <div className="w-full text-4xl font-black mb-10">
           A way for us to boycott the genocide and its supporters
@@ -110,6 +113,19 @@ const Hero = () => {
             );
           })
         )}
+        {filteredResults.length === 0 && (
+          <span className="flex justify-center text-lg mb-20">
+            {" "}
+            No Results Found{" "}
+          </span>
+        )}
+        <div className="flex justify-center w-full">
+          <Link href="/companies">
+            <span className="hover:text-green-500 text-md">
+              See all companies
+            </span>
+          </Link>
+        </div>
         <div className="flex justify-center w-full">
           <Link href="/addcompany">
             <button className="app-btn bg-green-500 text-white w-40">

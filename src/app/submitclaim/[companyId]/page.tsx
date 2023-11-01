@@ -5,7 +5,7 @@ import { firebase_app } from "@/firebase/config";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
 import { Stack, Tag } from "@chakra-ui/react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { FormEvent, useCallback, useMemo, useRef, useState } from "react";
 
@@ -83,18 +83,28 @@ export default function SubmitClaim({ params }: ISubmitClaimProps) {
 
       const db = getFirestore(firebase_app);
       const companyRef = doc(db, "Companies", params.companyId);
+      const companyDoc = await getDoc(companyRef);
+      const existingData = companyDoc.data();
+
+      const newIncident = {
+        title: formRef.current.title,
+        websites: formRef.current.websites,
+        date: formRef.current.date,
+        description: formRef.current.description,
+        tags: formRef.current.tags,
+      };
+
+      if (existingData && existingData.incidents) {
+        existingData.incidents.push(newIncident);
+      }
+
       await setDoc(
         companyRef,
         {
-          incidents: [
-            {
-              title: formRef.current.title,
-              websites: formRef.current.websites,
-              date: formRef.current.date,
-              description: formRef.current.description,
-              tags: formRef.current.tags,
-            },
-          ],
+          incidents:
+            existingData && existingData?.incidents?.length > 0
+              ? [...existingData.incidents]
+              : [newIncident],
         },
         { merge: true }
       );

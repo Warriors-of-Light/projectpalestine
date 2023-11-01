@@ -17,7 +17,7 @@
 @layer components {
   /* Containers */
   .app-page {
-    @apply bg-app--light relative h-screen w-screen flex flex-col;
+    @apply bg-app--light relative w-screen flex flex-col;
   }
 
   .app-header {
@@ -26,8 +26,18 @@
 
   .app-container {
     max-width: 700px;
-    height: 100%;
+    min-height: 100%;
     margin: auto;
+  }
+
+  .app-page-container {
+    background-color: theme("colors.green.100");
+    min-height: 100vh;
+    margin: auto;
+  }
+
+  .footer {
+    padding-top: 20
   }
 
   .center {

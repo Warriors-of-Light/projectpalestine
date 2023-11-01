@@ -55,7 +55,7 @@ export default function ClaimTable({ incidents, companyId }: IClaimCard) {
               scope="col"
               className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900  lg:w-20 "
             >
-              Score
+              Validated
             </th>
             <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
               <span className="sr-only">Edit</span>
@@ -76,18 +76,16 @@ export default function ClaimTable({ incidents, companyId }: IClaimCard) {
               </td>
               <td className="whitespace-normal max-w-md w-500 truncate px-3 py-4 text-sm text-gray-500 sm:max-w-sm">
                 {incident.description}
-                <div className="mt-4">
-                  <a
-                    target="_blank"
-                    className="text-blue-500 hover:text-blue-800"
-                    href={incident.websites[0]}
-                  >
-                    {incident.websites[0]}
-                  </a>
-                </div>
+                <a
+                  target="_blank"
+                  className="text-blue-500 hover:text-blue-800"
+                  href={incident.websites[0]}
+                >
+                  <div className="mt-4">{incident.websites[0]}</div>
+                </a>
               </td>
               <td className="whitespace max-w-md truncate px-3 py-4 text-sm sm:max-w-sm text-gray-500">
-                {incident.rating}
+                <span>1 </span>
               </td>
               <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 ">
                 <a href="#" className="text-indigo-600 hover:text-indigo-900">
