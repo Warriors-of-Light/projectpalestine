@@ -28,14 +28,13 @@ const CompanyCard = ({ company }: ICompanyCardProps) => {
     return "bg- green-400";
   }, [rating]);
 
-
   return (
     <div
       className={`${bgColor} w-full grid grid-cols-12 items-center p-2 gap-4 rounded-lg cursor-pointer`}
       onClick={() => router.push(`/companyprofile/${companyId}`)}
     >
       {/* Logo */}
-      <div className="col-span-2 rounded-full">
+      <div className="col-span-2 rounded-full p-2">
         <img src={logo} alt="Logo" width={100} height={100} />
       </div>
 

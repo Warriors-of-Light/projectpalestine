@@ -1,5 +1,5 @@
 "use client";
-import Header from "@/components/header";
+import Header from "@/components/common/header";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 

@@ -153,7 +153,7 @@ export default function SubmitClaim({ params }: ISubmitClaimProps) {
                               id="title"
                               required
                               className="block flex-1 border-0 bg-white  py-1.5 pl-1 text-gray-900 placeholder:text-gray-300 focus:ring-0 sm:text-sm sm:leading-6"
-                              placeholder="Macdonalds provided meals to Israeli soldiers"
+                              placeholder="Mcdonalds provided meals to Israeli soldiers"
                               onChange={(e) =>
                                 (formRef.current.title = e.target.value)
                               }
@@ -252,29 +252,6 @@ export default function SubmitClaim({ params }: ISubmitClaimProps) {
                   </div>
                 </div>
                 {/** Tags */}
-                <div className="col-span-full">
-                  <label
-                    htmlFor="about"
-                    className="block text-sm font-medium leading-6 text-black"
-                  >
-                    Tags
-                  </label>
-                  <div className="mt-2 ring-black">
-                    {Object.values(Tags).map((tag, index) => (
-                      <Tag
-                        cursor={"pointer"}
-                        m={2}
-                        key={index}
-                        backgroundColor={
-                          selectedTags.includes(tag) ? "green.200" : undefined
-                        }
-                        onClick={() => onHandleSelectTag(tag)}
-                      >
-                        {tag}
-                      </Tag>
-                    ))}
-                  </div>
-                </div>
               </div>
             </div>
           </div>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import app from "../../assets/app.svg";
 import appStore from "../../assets/appstore.svg";
 import playStore from "../../assets/playstore.svg";
-import Header from "@/components/header";
+import Header from "@/components/common/header";
 
 export default function Download() {
   const appReleased = false; // delete once app is ready
@@ -44,11 +44,11 @@ export default function Download() {
               <span
                 className={`text-2xl ${
                   onHover && "bg-blue-200"
-                } bg-yellow-200 p-2 rounded-lg pl-4 pr-4 ${
+                } bg-yellow-200 p-2 rounded-lg pl-4 pr-4 mr-6 ${
                   onHover && "animate-pulse"
                 } shadow-lg border-black-600`}
               >
-                Coming Soon{" "}
+                Coming Soon
               </span>
               <div className={`${onHover && "sparkle-image"} ml-14`} />
             </div>

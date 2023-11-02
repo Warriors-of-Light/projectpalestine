@@ -7,8 +7,8 @@ import React from "react";
 import { Icon } from "@/components/modules";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/useUserStore";
-import logOut from "../firebase/auth/logout";
-import Alert from "./common/alert";
+import logOut from "../../firebase/auth/logout";
+import Alert from "./alert";
 
 const Header = () => {
   // Initialize

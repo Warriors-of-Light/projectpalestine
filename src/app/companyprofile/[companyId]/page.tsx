@@ -32,7 +32,6 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
     const companyRef = doc(db, "Companies", params.companyId);
     const companyDoc = await getDoc(companyRef);
     const incidents = companyDoc?.data()?.incidents;
-    alert(JSON.stringify(incidents));
     setIncidents(incidents);
   }, [params.companyId]);
 

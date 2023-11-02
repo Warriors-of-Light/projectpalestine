@@ -1,8 +1,7 @@
 "use client";
-import CompanyCards from "@/components/common/companyCard";
+import CompanyDisplay from "@/components/common/companyDisplay";
 import SearchBar from "@/components/common/searchbar";
-import Header from "@/components/header";
-import { Company } from "@/constants";
+import Header from "@/components/common/header";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
 import { HStack, Link } from "@chakra-ui/react";
 import { useCallback, useMemo, useRef, useState } from "react";
@@ -29,7 +28,7 @@ export default function Companies() {
 
   const onSearch = useCallback(
     (filteredResults: string[] | undefined) => {
-      if(filteredResults![0] === 'No Results') return []
+      if (filteredResults![0] === "No Results") return [];
       setFilteredResults(filteredResults ?? [...companies.map((x) => x)]);
     },
     [companies]
@@ -49,7 +48,7 @@ export default function Companies() {
           searchableContent={searchableContent.current}
         />
       </div>
-      <div className="flex mt-4">
+      <div className="flex mt-4 min-w-fit pl-20 pr-20 ">
         {charArray.map((char, index) => (
           <HStack key={index}>
             <Link
@@ -67,7 +66,7 @@ export default function Companies() {
           </HStack>
         ))}
       </div>
-      <CompanyCards />
+      <CompanyDisplay />
     </main>
   );
 }

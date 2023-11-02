@@ -1,5 +1,5 @@
-import Footer from "@/components/footer";
-import Header from "@/components/header";
+import Footer from "@/components/common/footer";
+import Header from "@/components/common/header";
 import {
   LifebuoyIcon,
   NewspaperIcon,
@@ -38,7 +38,6 @@ export default function About() {
       <Header />
       <div className="relative w-full lg:h-85vh">
         <div className="relative isolate h-full overflow-hidden bg-green-500 py-24 sm:py-20">
-        
           <div className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl">
             <div
               className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20"

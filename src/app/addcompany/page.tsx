@@ -21,6 +21,7 @@ export default function AddCompany() {
   const [selectedTags, setselectedTags] = useState([""]);
   const [companyName, setCompanyName] = useState("");
   const { companiesMap } = useCompaniesStore();
+  const fileName = useRef("");
   const router = useRouter();
 
   const formRef = useRef({
@@ -55,15 +56,13 @@ export default function AddCompany() {
   const onSubmit = useCallback(
     async (event: any) => {
       event.preventDefault();
-
-      alert(JSON.stringify("Item added to Database"));
-
       const db = getFirestore(firebase_app);
 
       await addDoc(collection(db, "Companies"), {
         name: formRef.current.name,
         description: formRef.current.description,
         tags: formRef.current.tags,
+        logo: fileName.current,
         rating: 1,
       });
 
@@ -78,17 +77,26 @@ export default function AddCompany() {
       const selectedFile = event.target.files ? event.target.files[0] : null; // Get the selected file
       if (selectedFile) {
         alert(selectedFile.type);
-        const uploadFile: File = {
-          ...selectedFile,
-          name: `${companyName}-logo.${selectedFile.type}`,
+        const fileExtension = selectedFile.name.split(".").pop() ?? "";
+
+        fileName.current = `${companyName
+          .toLocaleLowerCase()
+          .replaceAll(" ", "")}-logo.${fileExtension}`;
+        const metadata = {
+          contentType: selectedFile.type, // Set the content type to "image/png" for PNG files
         };
         const storage = getStorage();
-        const storageRef = ref(storage, "logos/");
+        const storageRef = ref(storage, `/logos/${fileName.current}`);
 
-        // 'file' comes from the Blob or File API
-        uploadBytes(storageRef, uploadFile).then((snapshot) => {
-          console.log("Uploaded a blob or file!");
-        });
+        uploadBytes(storageRef, selectedFile, metadata)
+          .then((snapshot) => {
+            alert("Image uploaded successfully!");
+            // You can also get the download URL here if needed:
+            // const downloadURL = getDownloadURL(snapshot.ref);
+          })
+          .catch((error) => {
+            console.error("Error uploading image: ", error);
+          });
       }
     },
     [companyName]
@@ -251,6 +259,7 @@ export default function AddCompany() {
                             id="file-upload"
                             name="file-upload"
                             type="file"
+                            accept="image/*"
                             onChange={handleFileUpload}
                             className="sr-only"
                           />

@@ -19,7 +19,7 @@ interface ICompanyCard {
   numberOfBoycotters: number;
 }
 
-export default function CompanyCards() {
+export default function CompanyDisplay() {
   return (
     <ul
       role="list"

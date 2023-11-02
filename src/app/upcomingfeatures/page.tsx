@@ -1,5 +1,5 @@
 "use client";
-import Header from "@/components/header";
+import Header from "@/components/common/header";
 import {
   NewspaperIcon,
   MagnifyingGlassIcon,
@@ -80,7 +80,7 @@ export default function UpcomingFeatures() {
     <>
       <Header />
       <div className="w-full min-h-screen flex flex-col justify-center items-center bg-app--light ">
-        <div className="flex divide-y divide-gray-200 overflow-hidden rounded-lg xs:grind xs:gap-px sm:grid sm:gap-px sm:divide-y-0 ">
+        <div className="flex divide-y divide-gray-200 overflow-hidden rounded-lg xs:grid xs:gap-px sm:grid sm:gap-px sm:divide-y-0 ">
           {features.map((feature, actionIdx) => (
             <div
               key={feature.title}
@@ -93,7 +93,7 @@ export default function UpcomingFeatures() {
                 actionIdx === features.length - 1
                   ? "rounded-bl-lg rounded-br-lg sm:rounded-bl-none"
                   : "",
-                "group relative flex bg-white p-6 hover:ring-2 hover:ring-inset m-2 shadow w-500 cursor-pointer lg:w-400 xs:w-80 sm:w-96 text-center"
+                "group relative bg-white p-6 hover:ring-2 hover:ring-inset m-2 shadow w-500 cursor-pointer lg:w-600 xs:w-80 sm:w-96 text-center"
               )}
               onClick={() => setFocusedCard(feature.title)}
             >
