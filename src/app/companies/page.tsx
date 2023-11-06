@@ -3,7 +3,7 @@ import CompanyDisplay from "@/components/common/companyDisplay";
 import SearchBar from "@/components/common/searchbar";
 import Header from "@/components/common/header";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
-import { HStack, Link } from "@chakra-ui/react";
+import { HStack, Link, Stack } from "@chakra-ui/react";
 import { useCallback, useMemo, useRef, useState } from "react";
 
 export default function Companies() {
@@ -16,7 +16,12 @@ export default function Companies() {
       : [""]
   );
 
-  const [selectedLetter, setSelectedLetter] = useState("A");
+  const companiesArray = Array.from(
+    companiesMap.values(),
+    (company) => company
+  );
+
+  const [selectedLetter, setSelectedLetter] = useState("All");
   const charArray = useMemo(() => {
     const chars = [];
     for (let charCode = 65; charCode <= 90; charCode++) {
@@ -35,7 +40,7 @@ export default function Companies() {
   );
 
   return (
-    <main className="bg-app-light flex flex-1 flex-col items-center justify-start h-screen w-screen gap-4">
+    <main className="bg-app-light flex flex-1 flex-col items-center justify-start h-full w-screen gap-4 min-h-screen">
       <div>
         <Header />
       </div>
@@ -49,24 +54,69 @@ export default function Companies() {
         />
       </div>
       <div className="flex mt-4 min-w-fit pl-20 pr-20 ">
-        {charArray.map((char, index) => (
-          <HStack key={index}>
-            <Link
-              ml={5}
-              onClick={() => {
-                setSelectedLetter(char);
-              }}
-            >
-              <span
-                className={`${selectedLetter === char && "text-green-600"}`}
+        <Link>
+          <span
+            className={`${selectedLetter === "All" && "text-green-600"}`}
+            onClick={() => setSelectedLetter("All")}
+          >
+            All
+          </span>
+        </Link>
+        <Stack>
+          <HStack>
+            {charArray.slice(0, 14).map((char, index) => (
+              <Link
+                key={index}
+                ml={5}
+                onClick={() => {
+                  setSelectedLetter(char);
+                }}
               >
-                {char}
-              </span>
-            </Link>
+                <span
+                  className={`${selectedLetter === char && "text-green-600"}`}
+                >
+                  {char}
+                </span>
+              </Link>
+            ))}
           </HStack>
-        ))}
+          <HStack>
+            {charArray.slice(14, 27).map((char, index) => (
+              <Link
+                key={index}
+                ml={5}
+                onClick={() => {
+                  setSelectedLetter(char);
+                }}
+              >
+                <span
+                  className={`${selectedLetter === char && "text-green-600"}`}
+                >
+                  {char}
+                </span>
+              </Link>
+            ))}
+          </HStack>
+        </Stack>
       </div>
-      <CompanyDisplay />
+      <div className="grid grid-cols-5 w-full p-20 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 ">
+        {companiesArray
+          .filter((company) =>
+            selectedLetter === "All"
+              ? true
+              : company.name.toUpperCase()[0] === selectedLetter
+          )
+          .map((c) => (
+            <div className="lg:w-1500 mb-10 max-h-96 min-h-max md:w-1000">
+              <CompanyDisplay
+                id={c.companyId}
+                name={c.name}
+                src={c.logo}
+                description={c.description}
+              />
+            </div>
+          ))}
+      </div>
     </main>
   );
 }

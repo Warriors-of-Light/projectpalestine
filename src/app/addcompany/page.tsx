@@ -10,12 +10,11 @@ import { getStorage, ref, uploadBytes } from "firebase/storage";
 import {
   addDoc,
   collection,
-  doc,
   getFirestore,
-  setDoc,
 } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useCallback, useRef, useState } from "react";
+import { useUserStore } from "@/store/useUserStore";
 
 export default function AddCompany() {
   const [selectedTags, setselectedTags] = useState([""]);
@@ -23,6 +22,7 @@ export default function AddCompany() {
   const { companiesMap } = useCompaniesStore();
   const fileName = useRef("");
   const router = useRouter();
+  const { user } = useUserStore();
 
   const formRef = useRef({
     name: "",
@@ -55,21 +55,22 @@ export default function AddCompany() {
 
   const onSubmit = useCallback(
     async (event: any) => {
-      event.preventDefault();
-      const db = getFirestore(firebase_app);
+      if (user?.user) {
+        event.preventDefault();
+        const db = getFirestore(firebase_app);
 
-      await addDoc(collection(db, "Companies"), {
-        name: formRef.current.name,
-        description: formRef.current.description,
-        tags: formRef.current.tags,
-        logo: fileName.current,
-        rating: 1,
-      });
+        await addDoc(collection(db, "Companies"), {
+          name: formRef.current.name,
+          description: formRef.current.description,
+          tags: formRef.current.tags,
+          logo: fileName.current,
+          rating: 1,
+        });
 
-      router.push("/");
+        router.push("/");
+      }
     },
-
-    [router]
+    [router, user]
   );
 
   const handleFileUpload = useCallback(
@@ -91,8 +92,7 @@ export default function AddCompany() {
         uploadBytes(storageRef, selectedFile, metadata)
           .then((snapshot) => {
             alert("Image uploaded successfully!");
-            // You can also get the download URL here if needed:
-            // const downloadURL = getDownloadURL(snapshot.ref);
+     
           })
           .catch((error) => {
             console.error("Error uploading image: ", error);

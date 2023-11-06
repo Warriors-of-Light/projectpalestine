@@ -17,6 +17,7 @@ import SearchBar from "./common/searchbar";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
 import Link from "next/link";
+import { useUserStore } from "@/store/useUserStore";
 
 const Hero = () => {
   const [companies, setCompanies] = useState<Array<Company>>([]);
@@ -24,6 +25,7 @@ const Hero = () => {
   // const firstFiveCompanies = useRef<Array<Company>>();
   const searchableContent = useRef([""]);
   const { setCompaniesMap } = useCompaniesStore();
+  const { user } = useUserStore();
 
   const onSearch = useCallback(
     (filteredResults: string[] | undefined) => {
@@ -44,8 +46,13 @@ const Hero = () => {
     if (logoLocation === undefined) return;
     const storage = getStorage(firebase_app);
     const fileRef = ref(storage, `logos/${logoLocation}`);
-    const url = await getDownloadURL(fileRef);
-    return url;
+    try {
+      const url = await getDownloadURL(fileRef);
+      return url;
+    } catch (error) {
+      console.error("Error downloading logo:", error);
+      return "";
+    }
   }, []);
 
   const retrieveData = useCallback(async () => {
@@ -101,7 +108,6 @@ const Hero = () => {
           placeholder="Search here"
           searchableContent={searchableContent.current}
         />
-
         {companies.length === 0 ? (
           <Spinner />
         ) : (
@@ -127,7 +133,7 @@ const Hero = () => {
           </Link>
         </div>
         <div className="flex justify-center w-full">
-          <Link href="/addcompany">
+          <Link href={user ? "/addcompany" : "/login"}>
             <button className="app-btn bg-green-500 text-white w-40">
               Add Company
             </button>

@@ -4,8 +4,8 @@ import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 
 interface IUserStore {
-  user: UserCredential | null;
-  setUser: (user: UserCredential | null) => void;
+  user: User | null;
+  setUser: (user: User | null) => void;
 }
 
 export const useUserStore = create<IUserStore>()(
@@ -13,7 +13,7 @@ export const useUserStore = create<IUserStore>()(
     persist(
       (set) => ({
         user: null,
-        setUser: (user: UserCredential | null) => set({ user }),
+        setUser: (user: User | null) => set({ user }),
       }),
       {
         name: "user-storage",

@@ -14,6 +14,7 @@ import { useCompaniesStore } from "@/store/useCompaniesStore";
 import Custom404 from "@/app/not-found";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { firebase_app } from "@/firebase/config";
+import { useUserStore } from "@/store/useUserStore";
 
 interface ICompanyProfileProps {
   params: { companyId: string };
@@ -21,9 +22,10 @@ interface ICompanyProfileProps {
 
 export default function CompanyProfile({ params }: ICompanyProfileProps) {
   const router = useRouter();
-  const { companiesMap, setCompaniesMap } = useCompaniesStore();
+  const { companiesMap } = useCompaniesStore();
   const initialize = useRef(0);
   const [incidents, setIncidents] = useState<Array<Incident>>();
+  const { user } = useUserStore();
 
   const company = companiesMap!.get(params.companyId);
 
@@ -47,7 +49,7 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
     <Custom404 />
   ) : (
     <main className="bg-app-light flex flex-1 flex-col items-center justify-start h-screen w-screen gap-4">
-      <div className="flex items-center justify-center w-full h-full">
+      <div className="flex items-center justify-center w-full h-full ">
         {company === undefined && <Spinner />}
       </div>
       {company && (
@@ -74,7 +76,7 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
             </div>
 
             {/* History */}
-            <div className="absolute left-14 h-full mt-300 lg:w-1000 md:w-600  ">
+            <div className="absolute left-14 h-full mt-300 lg:w-1000 md:w-full xs:w-full xs:overflow-scroll">
               <div>
                 <ClaimTable
                   companyId={company.companyId}
@@ -86,18 +88,20 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
               {incidents && incidents.length > 0 && (
                 <button
                   onClick={() =>
-                    router.push(`/submitclaim/${params.companyId}`)
+                    user
+                      ? router.push(`/submitclaim/${params.companyId}`)
+                      : router.push("/login")
                   }
                   className="app-btn"
                 >
                   <Icon type="submit" />
-                  <span>submit a claim</span>
+                  <span>report an incident</span>
                 </button>
               )}
-              <Link className="app-btn" href={"/"}>
+              <button className="app-btn" onClick={() => router.back()}>
                 <Icon type="return" />
                 <span>go back</span>
-              </Link>
+              </button>
             </div>
           </div>
         </div>

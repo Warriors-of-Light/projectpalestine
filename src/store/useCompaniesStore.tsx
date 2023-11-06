@@ -1,4 +1,4 @@
-import { Company, User } from "@/constants";
+import { Company } from "@/constants";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 

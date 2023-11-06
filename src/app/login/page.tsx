@@ -15,6 +15,7 @@ export default function Login() {
   const router = useRouter();
 
   /** UseState **/
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -28,14 +29,15 @@ export default function Login() {
       if (password !== confirmPassword) {
         alert("password mismatch");
       } else {
-        const { result, error } = await signUp(email, password);
+        const { result, error } = await signUp(name, email, password);
         if (error) {
           alert("Sign up failed");
           return console.log(error);
         }
         alert("Sign up successful!");
         setUser(result);
-        return router.push("/");
+        setIsRegisteration(false);
+        return router.push("/login");
       }
       return;
     }
@@ -70,6 +72,23 @@ export default function Login() {
           </h2>
 
           <form className="space-y-6" action="#" onSubmit={handleForm}>
+            {isRegisteration && (
+              <div>
+                <label className="flex text-green-800 text-lg font-semibold mb-2">
+                  Display Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autoComplete="email"
+                  placeholder="Palestinian"
+                  required
+                  className=" border-0 w-full bg-white"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+            )}
             <div>
               <label className="flex text-green-800 text-lg font-semibold mb-2">
                 Email Address
@@ -120,7 +139,7 @@ export default function Login() {
 
             <div className="flex flex-col items-center gap-4">
               <button type="submit" className="app-btn w-1/2">
-                Login
+                {isRegisteration ? "Sign up" : "Login"}
               </button>
               <Link href="#" className="app-link">
                 Forgot password?

@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/useUserStore";
 import logOut from "../../firebase/auth/logout";
 import Alert from "./alert";
+import { Avatar } from "@chakra-ui/react";
+import { getAuth } from "firebase/auth";
 
 const Header = () => {
   // Initialize
@@ -35,6 +37,8 @@ const Header = () => {
   };
 
   const { user, setUser } = useUserStore();
+
+  const currentUser = getAuth().currentUser;
 
   const dissmissAlert = () => {
     setDisplayAlert(false);
@@ -109,6 +113,14 @@ const Header = () => {
             <Icon type="login" />
             Log in
           </button>
+        )}
+        {user?.user && (
+          <Avatar
+            name={currentUser?.displayName!}
+            size={"sm"}
+            cursor={"pointer"}
+            onClick={() => router.push("/account")}
+          />
         )}
       </div>
 

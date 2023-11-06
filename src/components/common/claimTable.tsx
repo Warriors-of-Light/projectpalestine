@@ -14,7 +14,7 @@ export default function ClaimTable({ incidents, companyId }: IClaimCard) {
   const { user } = useUserStore();
 
   return !incidents || incidents.length == 0 ? (
-    <div className="flex w-full h-full justify-center mt-20">
+    <div className="flex w-full h-full justify-center mt-20 ">
       <Stack>
         <span className="text-xl"> No incidents submitted yet </span>
         <button
@@ -29,7 +29,7 @@ export default function ClaimTable({ incidents, companyId }: IClaimCard) {
       </Stack>
     </div>
   ) : (
-    <div className="min-w-fit pr-10">
+    <div className=" pr-10 overflow-x-scroll min-h-screen">
       <table className="min-w-full divide-y divide-gray-300 ">
         <thead>
           <tr>

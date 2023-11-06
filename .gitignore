@@ -38,3 +38,4 @@ next-env.d.ts
 src/firebase/serviceAccountKey.json
 serviceAccountKey.json
 src/firebase/addClaim.ts
+src/firebase/admins.ts

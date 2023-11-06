@@ -1,8 +1,5 @@
-// export type Reference = {
-//   refrenceId: string;
-//   title: string;
-//   link: string;
-// };
+
+import { UserCredential } from "firebase/auth";
 
 export type Incident = {
   incidentId: string;
@@ -23,17 +20,38 @@ export type Company = {
   incidents: Array<Incident>;
 };
 
-export type User = {
-  username: string;
-  userId: string;
-  userRating: string;
-  userSubmissions: Array<string>; //array of claimIDs that we can retrieve from the database
+export type User = UserCredential & {
+  BoycottDays?: number;
 };
+
+export const ReputationLevels = [
+  {
+    name: "Newbie",
+    points: 0,
+    badge: "Newbie Badge",
+  },
+  {
+    name: "Contributor",
+    points: 100,
+    badge: "Contributor Badge",
+  },
+  {
+    name: "Expert",
+    points: 500,
+    badge: "Expert Badge",
+  },
+  {
+    name: "Master",
+    points: 1000,
+    badge: "Master Badge",
+  },
+];
 
 export const Tags = {
   Technology: "Technology",
   Automotive: "Automotive",
   Pharmaceuticals: "Pharmaceuticals",
+  Cosmetics: "Cosmetics",
   FoodAndBeverages: "Food and Beverages",
   Entertainment: "Entertainment",
   FashionAndApparel: "Fashion and Apparel",

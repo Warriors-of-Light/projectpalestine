@@ -7,6 +7,7 @@ import React from "react";
 import Status from "./status";
 import { Company } from "@/constants";
 import { useRouter } from "next/navigation";
+import { Avatar } from "@chakra-ui/react";
 
 interface ICompanyCardProps {
   company: Company;
@@ -34,18 +35,25 @@ const CompanyCard = ({ company }: ICompanyCardProps) => {
       onClick={() => router.push(`/companyprofile/${companyId}`)}
     >
       {/* Logo */}
-      <div className="col-span-2 rounded-full p-2">
-        <img src={logo} alt="Logo" width={100} height={100} />
+      <div className="col-span-2 rounded-full p-4 ">
+        {logo.length > 0 ? (
+          // <img src={logo} alt="Logo" width={100} height={100} />
+          <Avatar src={logo} size={"xl"} />
+        ) : (
+          <Avatar name={name} />
+        )}
       </div>
 
       {/* Name */}
-      <div className="col-span-8 flex flex-col items-start">
+      <div className="col-span-8 flex flex-col items-start ml-10 lg:ml-0">
         <span className="text-3 title capitalize">{name}</span>
         <span className="text capitalize">{description}</span>
       </div>
 
       {/* Rating */}
-      <Status status={rating} />
+      <div className="p-4 lg:p-0">
+        <Status status={rating} />
+      </div>
     </div>
   );
 };

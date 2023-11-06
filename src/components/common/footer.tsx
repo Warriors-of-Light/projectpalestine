@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <div className="bg-white flex flex-col items-center gap-4 p-4 pb-10 pt-10 xl:m-0 lg:m-0 md:m-0 ">
       <div className="flex flex-col md:flex-row items-center md:items-center gap-4">
-        <Link href="mailto:crushinjustice@gmail.com" className="app-link">
+        <Link href="mailto:injusticecrush@gmail.com" className="app-link">
           <Icon type="contact" />
           <span>Contact</span>
         </Link>
