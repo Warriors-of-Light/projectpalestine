@@ -106,8 +106,11 @@ export default function Companies() {
               ? true
               : company.name.toUpperCase()[0] === selectedLetter
           )
-          .map((c) => (
-            <div className="lg:w-1500 mb-10 max-h-96 min-h-max md:w-1000">
+          .map((c, index) => (
+            <div
+              key={index}
+              className="lg:w-1500 mb-10 max-h-96 min-h-max md:w-1000"
+            >
               <CompanyDisplay
                 id={c.companyId}
                 name={c.name}
