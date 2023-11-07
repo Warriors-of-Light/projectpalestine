@@ -129,7 +129,7 @@ export default function SubmitClaim({ params }: ISubmitClaimProps) {
       router.back();
     },
 
-    [params.companyId, router]
+    [params.companyId, router, user?.user.uid]
   );
 
   return (
