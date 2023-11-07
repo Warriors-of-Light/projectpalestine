@@ -1,6 +1,6 @@
 "use client";
 import { Header } from "@/components/modules";
-import {  Tags } from "@/constants";
+import { Tags } from "@/constants";
 import { firebase_app } from "@/firebase/config";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
 import { Avatar, Tag } from "@chakra-ui/react";
@@ -17,8 +17,8 @@ import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useCallback, useRef, useState } from "react";
 import { useUserStore } from "@/store/useUserStore";
-import { isAdmin } from "@/firebase/admins";
 import { useSubmittedCompaniesStore } from "@/store/useSubmittedCompaniesStore";
+import { Admins } from "@/firebase/admins";
 
 export default function AddCompany() {
   const [selectedTags, setselectedTags] = useState([""]);
@@ -36,6 +36,10 @@ export default function AddCompany() {
     description: "",
     tags: [""],
   });
+
+  const isAdmin = (uid: string) => {
+    return Admins.includes(uid);
+  };
 
   const onHandleSelectTag = (value: string) => {
     // Remove Tag if its already selected
@@ -68,7 +72,7 @@ export default function AddCompany() {
         event.preventDefault();
         const db = getFirestore(firebase_app);
 
-        if(isAdmin(user.user.uid)){
+        if (isAdmin(user.user.uid)) {
           await addDoc(collection(db, "Companies"), {
             name: formRef.current.name,
             description: formRef.current.description,
@@ -77,7 +81,7 @@ export default function AddCompany() {
             logo: fileName.current,
             rating: 1,
           });
-        } else{
+        } else {
           await addDoc(collection(db, "SubmittedCompanies"), {
             name: formRef.current.name,
             description: formRef.current.description,
