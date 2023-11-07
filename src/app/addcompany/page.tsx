@@ -88,6 +88,7 @@ export default function AddCompany() {
             website: formRef.current.website,
             tags: formRef.current.tags,
             logo: fileName.current,
+            addedby: user.user.email,
             rating: 1,
           });
         }
