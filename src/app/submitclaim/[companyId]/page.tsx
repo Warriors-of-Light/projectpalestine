@@ -1,6 +1,5 @@
 "use client";
 import { Header } from "@/components/modules";
-import { Tags } from "@/constants";
 import { Admins } from "@/firebase/admins";
 import { firebase_app } from "@/firebase/config";
 import { useUserStore } from "@/store/useUserStore";
@@ -8,7 +7,7 @@ import { Stack, Tag } from "@chakra-ui/react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
-import { FormEvent, useCallback, useMemo, useRef, useState } from "react";
+import {  useCallback, useRef, useState } from "react";
 
 interface ISubmitClaimProps {
   params: { companyId: string };

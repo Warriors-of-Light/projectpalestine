@@ -1,6 +1,6 @@
 "use client";
 import { Header } from "@/components/modules";
-import { Company, Tags } from "@/constants";
+import {  Tags } from "@/constants";
 import { firebase_app } from "@/firebase/config";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
 import { Avatar, Tag } from "@chakra-ui/react";
