@@ -27,10 +27,10 @@ export default function Companies() {
     (company) => company
   );
 
-  const submittedCompaniesArray = Array.from(
-    submittedCompaniesMap.values(),
-    (company) => company
-  );
+  const submittedCompaniesArray =
+    submittedCompaniesMap.size > 0
+      ? Array.from(submittedCompaniesMap.values(), (company) => company)
+      : [];
 
   const [selectedLetter, setSelectedLetter] = useState("All");
   const charArray = useMemo(() => {
@@ -142,7 +142,7 @@ export default function Companies() {
       {displaySubmittedCompanies && (
         <div className="grid grid-cols-5 w-full p-20 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 ">
           {submittedCompaniesArray
-            .filter((company) =>
+            ?.filter((company) =>
               selectedLetter === "All"
                 ? true
                 : company.name.toUpperCase()[0] === selectedLetter
