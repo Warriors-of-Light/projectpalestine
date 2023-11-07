@@ -4,12 +4,18 @@ import SearchBar from "@/components/common/searchbar";
 import Header from "@/components/common/header";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
 import { HStack, Link, Stack } from "@chakra-ui/react";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/20/solid";
+import { useSubmittedCompaniesStore } from "@/store/useSubmittedCompaniesStore";
 
 export default function Companies() {
   const [filteredResults, setFilteredResults] = useState<Array<string>>([]);
-  const searchableContent = useRef([""]);
+  // const searchableContent = useRef([""]);
+  const [displaySubmittedCompanies, setDisplaySubmittedCompanies] =
+    useState(false);
   const { companiesMap } = useCompaniesStore();
+  const { submittedCompaniesMap } = useSubmittedCompaniesStore();
+
   const [companies, setCompanies] = useState<Array<string>>(
     companiesMap instanceof Map
       ? Array.from(companiesMap.values(), (company) => company.name)
@@ -18,6 +24,11 @@ export default function Companies() {
 
   const companiesArray = Array.from(
     companiesMap.values(),
+    (company) => company
+  );
+
+  const submittedCompaniesArray = Array.from(
+    submittedCompaniesMap.values(),
     (company) => company
   );
 
@@ -46,12 +57,12 @@ export default function Companies() {
       </div>
 
       <div className="lg:w-500 mt-24">
-        <SearchBar
+        {/* <SearchBar
           label="Search companies"
           onSearch={onSearch}
           placeholder="Search here"
           searchableContent={searchableContent.current}
-        />
+        /> */}
       </div>
       <div className="flex mt-4 min-w-fit pl-20 pr-20 ">
         <Link>
@@ -115,11 +126,43 @@ export default function Companies() {
                 id={c.companyId}
                 name={c.name}
                 src={c.logo}
+                tags={c.tags}
                 description={c.description}
               />
             </div>
           ))}
       </div>
+      <span className="text-xl text-black"> Submitted Companies </span>
+      <div
+        className="w-5 cursor-pointer pb-20"
+        onClick={() => setDisplaySubmittedCompanies((prev) => !prev)}
+      >
+        {displaySubmittedCompanies ? <ArrowDownIcon /> : <ArrowUpIcon />}
+      </div>
+      {displaySubmittedCompanies && (
+        <div className="grid grid-cols-5 w-full p-20 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 ">
+          {submittedCompaniesArray
+            .filter((company) =>
+              selectedLetter === "All"
+                ? true
+                : company.name.toUpperCase()[0] === selectedLetter
+            )
+            .map((c, index) => (
+              <div
+                key={index}
+                className="lg:w-1500 mb-10 max-h-96 min-h-max md:w-1000"
+              >
+                <CompanyDisplay
+                  id={c.companyId}
+                  name={c.name}
+                  src={c.logo}
+                  tags={c.tags}
+                  description={c.description}
+                />
+              </div>
+            ))}
+        </div>
+      )}
     </main>
   );
 }

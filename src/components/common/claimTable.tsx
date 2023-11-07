@@ -7,29 +7,36 @@ import React from "react";
 interface IClaimCard {
   incidents: Array<Incident>;
   companyId: string;
+  displayClaimButton: boolean;
 }
 
-export default function ClaimTable({ incidents, companyId }: IClaimCard) {
+export default function ClaimTable({
+  incidents,
+  companyId,
+  displayClaimButton,
+}: IClaimCard) {
   const router = useRouter();
   const { user } = useUserStore();
 
   return !incidents || incidents.length == 0 ? (
     <div className="flex w-full h-full justify-center mt-20 ">
-      <Stack>
-        <span className="text-xl"> No incidents submitted yet </span>
-        <button
-          onClick={() =>
-            router.push(user ? `/submitclaim/${companyId}` : "/login")
-          }
-          className="app-btn bg-red-400 text-black border-red-800"
-        >
-          {" "}
-          Submit first incident{" "}
-        </button>
-      </Stack>
+      {displayClaimButton && (
+        <Stack>
+          <span className="text-xl"> No incidents submitted yet </span>
+          <button
+            onClick={() =>
+              router.push(user ? `/submitclaim/${companyId}` : "/login")
+            }
+            className="app-btn bg-red-400 text-black border-red-800"
+          >
+            {" "}
+            Submit first incident{" "}
+          </button>
+        </Stack>
+      )}
     </div>
   ) : (
-    <div className=" pr-10 overflow-x-scroll min-h-screen">
+    <div className=" overflow-x-scroll mr-20">
       <table className="min-w-full divide-y divide-gray-300 ">
         <thead>
           <tr>

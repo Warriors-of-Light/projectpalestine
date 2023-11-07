@@ -5,21 +5,27 @@ import { firebase_app } from "@/firebase/config";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
 import { Avatar, Tag } from "@chakra-ui/react";
 import { PhotoIcon } from "@heroicons/react/24/solid";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
-
 import {
-  addDoc,
-  collection,
-  getFirestore,
-} from "firebase/firestore";
+  StorageReference,
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
+
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useCallback, useRef, useState } from "react";
 import { useUserStore } from "@/store/useUserStore";
+import { isAdmin } from "@/firebase/admins";
+import { useSubmittedCompaniesStore } from "@/store/useSubmittedCompaniesStore";
 
 export default function AddCompany() {
   const [selectedTags, setselectedTags] = useState([""]);
   const [companyName, setCompanyName] = useState("");
+  const [logoUrl, setLogoUrl] = useState("");
   const { companiesMap } = useCompaniesStore();
+  const { submittedCompaniesMap } = useSubmittedCompaniesStore();
   const fileName = useRef("");
   const router = useRouter();
   const { user } = useUserStore();
@@ -49,8 +55,11 @@ export default function AddCompany() {
       if (companiesMap?.has(company.toLocaleLowerCase())) {
         alert("company already exists");
       }
+      if (submittedCompaniesMap?.has(company.toLocaleLowerCase())) {
+        alert("company already exists");
+      }
     },
-    [companiesMap]
+    [companiesMap, submittedCompaniesMap]
   );
 
   const onSubmit = useCallback(
@@ -59,13 +68,25 @@ export default function AddCompany() {
         event.preventDefault();
         const db = getFirestore(firebase_app);
 
-        await addDoc(collection(db, "Companies"), {
-          name: formRef.current.name,
-          description: formRef.current.description,
-          tags: formRef.current.tags,
-          logo: fileName.current,
-          rating: 1,
-        });
+        if(isAdmin(user.user.uid)){
+          await addDoc(collection(db, "Companies"), {
+            name: formRef.current.name,
+            description: formRef.current.description,
+            website: formRef.current.website,
+            tags: formRef.current.tags,
+            logo: fileName.current,
+            rating: 1,
+          });
+        } else{
+          await addDoc(collection(db, "SubmittedCompanies"), {
+            name: formRef.current.name,
+            description: formRef.current.description,
+            website: formRef.current.website,
+            tags: formRef.current.tags,
+            logo: fileName.current,
+            rating: 1,
+          });
+        }
 
         router.push("/");
       }
@@ -77,7 +98,6 @@ export default function AddCompany() {
     (event: ChangeEvent<HTMLInputElement>) => {
       const selectedFile = event.target.files ? event.target.files[0] : null; // Get the selected file
       if (selectedFile) {
-        alert(selectedFile.type);
         const fileExtension = selectedFile.name.split(".").pop() ?? "";
 
         fileName.current = `${companyName
@@ -92,7 +112,7 @@ export default function AddCompany() {
         uploadBytes(storageRef, selectedFile, metadata)
           .then((snapshot) => {
             alert("Image uploaded successfully!");
-     
+            downloadLogo(storageRef);
           })
           .catch((error) => {
             console.error("Error uploading image: ", error);
@@ -101,6 +121,11 @@ export default function AddCompany() {
     },
     [companyName]
   );
+
+  const downloadLogo = async (fileRef: StorageReference) => {
+    const url = await getDownloadURL(fileRef);
+    setLogoUrl(url);
+  };
 
   return (
     <main className="bg-app-light flex flex-col items-center justify-start h-full w-full gap-4 ">
@@ -122,7 +147,7 @@ export default function AddCompany() {
               <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2 ">
                 <div className="sm:col-span-4">
                   <label
-                    htmlFor="website"
+                    htmlFor="name"
                     className="block text-sm font-medium leading-6 text-black"
                   >
                     Company Name
@@ -131,8 +156,8 @@ export default function AddCompany() {
                     <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-green-600 sm:max-w-md">
                       <input
                         type="text"
-                        name="website"
-                        id="website"
+                        name="name"
+                        id="name"
                         onChange={(e) =>
                           (formRef.current.name = e.target.value)
                         }
@@ -225,14 +250,11 @@ export default function AddCompany() {
                     Logo
                   </label>
                   <div className="mt-2 flex items-center gap-x-3">
-                    <Avatar name={companyName} />
-
-                    <button
-                      type="button"
-                      className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                    >
-                      change
-                    </button>
+                    <Avatar
+                      size={"lg"}
+                      name={companyName}
+                      src={logoUrl ?? undefined}
+                    />
                   </div>
                 </div>
 
@@ -252,9 +274,9 @@ export default function AddCompany() {
                       <div className="mt-4 flex text-sm leading-6 text-gray-600">
                         <label
                           htmlFor="file-upload"
-                          className="relative cursor-pointer rounded-md bg-grey-600 font-semibold text-green-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-green-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                          className="relative cursor-pointer rounded-md bg-grey-600  font-semibold text-green-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-green-600 focus-within:ring-offset-2 hover:text-indigo-500"
                         >
-                          <span>Upload a file</span>
+                          <span className="ml-8">Upload a file</span>
                           <input
                             id="file-upload"
                             name="file-upload"
@@ -264,7 +286,7 @@ export default function AddCompany() {
                             className="sr-only"
                           />
                         </label>
-                        <p className="pl-1">or drag and drop</p>
+                        {/* <p className="pl-1">or drag and drop</p> */}
                       </div>
                       <p className="text-xs leading-5 text-gray-600">
                         PNG, JPG, GIF up to 10MB

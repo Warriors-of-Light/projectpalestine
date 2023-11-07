@@ -18,6 +18,8 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
 import Link from "next/link";
 import { useUserStore } from "@/store/useUserStore";
+import { getAuth } from "firebase/auth";
+import { useSubmittedCompaniesStore } from "@/store/useSubmittedCompaniesStore";
 
 const Hero = () => {
   const [companies, setCompanies] = useState<Array<Company>>([]);
@@ -25,6 +27,7 @@ const Hero = () => {
   // const firstFiveCompanies = useRef<Array<Company>>();
   const searchableContent = useRef([""]);
   const { setCompaniesMap } = useCompaniesStore();
+  const { setSubmittedCompaniesMap } = useSubmittedCompaniesStore();
   const { user } = useUserStore();
 
   const onSearch = useCallback(
@@ -58,7 +61,9 @@ const Hero = () => {
   const retrieveData = useCallback(async () => {
     const db = getFirestore(firebase_app);
     const array: Array<Company> = [];
+    const array2: Array<Company> = [];
     const querySnapshot = await getDocs(collection(db, "Companies"));
+    const querySnapshot2 = await getDocs(collection(db, "SubmittedCompanies"));
 
     const downloadPromises = querySnapshot.docs.map(async (doc) => {
       const data = doc.data();
@@ -69,11 +74,28 @@ const Hero = () => {
         description: data.description,
         name: data.name,
         logo: url ?? "",
+        tags: data.tags,
         rating: data.rating,
-        incidents: [],
+        incidents: data.incidents ?? [],
       };
     });
     array.push(...(await Promise.all(downloadPromises)));
+
+    const downloadPromises2 = querySnapshot2.docs.map(async (doc) => {
+      const data = doc.data();
+      const url = await downloadLogo(data.logo);
+
+      return {
+        companyId: doc.id,
+        description: data.description,
+        name: data.name,
+        logo: url ?? "",
+        tags: data.tags,
+        rating: data.rating,
+        incidents: data.incidents ?? [],
+      };
+    });
+    array2.push(...(await Promise.all(downloadPromises2)));
 
     if (array.length > 0) {
       const companiesMap = new Map<string, Company>();
@@ -84,11 +106,17 @@ const Hero = () => {
       setCompaniesMap(companiesMap); // storing list of companies in the store
     }
 
-    // firstFiveCompanies.current = array.splice(0, 5);
-    // setFilteredResults(firstFiveCompanies.current.map((x) => x.name));
+    if (array2.length > 0) {
+      const companiesMap2 = new Map<string, Company>();
+      array2.forEach((x) => {
+        companiesMap2.set(x.companyId, x);
+      });
+      setSubmittedCompaniesMap(companiesMap2);
+    }
+
     setFilteredResults(array.map((x) => x.name).splice(0, 5));
     setCompanies(array);
-  }, [downloadLogo, setCompaniesMap]);
+  }, [downloadLogo, setCompaniesMap, setSubmittedCompaniesMap]);
 
   useEffect(() => {
     if (companies.length === 0) {

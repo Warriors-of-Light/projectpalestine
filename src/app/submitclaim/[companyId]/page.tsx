@@ -1,8 +1,9 @@
 "use client";
 import { Header } from "@/components/modules";
 import { Tags } from "@/constants";
+import { Admins } from "@/firebase/admins";
 import { firebase_app } from "@/firebase/config";
-import { useCompaniesStore } from "@/store/useCompaniesStore";
+import { useUserStore } from "@/store/useUserStore";
 import { Stack, Tag } from "@chakra-ui/react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
@@ -16,7 +17,7 @@ interface ISubmitClaimProps {
 export default function SubmitClaim({ params }: ISubmitClaimProps) {
   const [referenceWebsites, setReferenceWebsites] = useState([""]);
   const [selectedTags, setselectedTags] = useState([""]);
-  const { companiesMap } = useCompaniesStore();
+  const { user } = useUserStore();
 
   const router = useRouter();
 
@@ -94,20 +95,37 @@ export default function SubmitClaim({ params }: ISubmitClaimProps) {
         tags: formRef.current.tags,
       };
 
-      if (existingData && existingData.incidents) {
-        existingData.incidents.push(newIncident);
+      if (Admins.includes(user?.user.uid!)) {
+        if (existingData && existingData.incidents) {
+          existingData.incidents.push(newIncident);
+        }
+
+        await setDoc(
+          companyRef,
+          {
+            incidents:
+              existingData && existingData?.incidents?.length > 0
+                ? [...existingData.incidents]
+                : [newIncident],
+          },
+          { merge: true }
+        );
+      } else {
+        if (existingData && existingData.submittedIncidents) {
+          existingData.submittedIncidents.push(newIncident);
+        }
+        await setDoc(
+          companyRef,
+          {
+            submittedIncidents:
+              existingData && existingData?.submittedIncidents?.length > 0
+                ? [...existingData.submittedIncidents]
+                : [newIncident],
+          },
+          { merge: true }
+        );
       }
 
-      await setDoc(
-        companyRef,
-        {
-          incidents:
-            existingData && existingData?.incidents?.length > 0
-              ? [...existingData.incidents]
-              : [newIncident],
-        },
-        { merge: true }
-      );
       router.back();
     },
 

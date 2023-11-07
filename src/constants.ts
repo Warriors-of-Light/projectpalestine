@@ -14,6 +14,7 @@ export type Company = {
   logo: string;
   name: string;
   description: string;
+  website?:string;
   companyId: string;
   tags?: Array<string>;
   rating: 1 | 2 | 3;

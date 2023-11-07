@@ -4,10 +4,8 @@
 import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/modules";
-import Link from "next/link";
 import Status from "@/components/company/status";
-
-import { Incident, Company } from "@/constants";
+import { Incident } from "@/constants";
 import { Spinner } from "@chakra-ui/spinner";
 import ClaimTable from "@/components/common/claimTable";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
@@ -15,6 +13,8 @@ import Custom404 from "@/app/not-found";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { firebase_app } from "@/firebase/config";
 import { useUserStore } from "@/store/useUserStore";
+import { Divider, HStack, Stack } from "@chakra-ui/react";
+import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/24/solid";
 
 interface ICompanyProfileProps {
   params: { companyId: string };
@@ -25,6 +25,10 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
   const { companiesMap } = useCompaniesStore();
   const initialize = useRef(0);
   const [incidents, setIncidents] = useState<Array<Incident>>();
+  const [displayPendingClaims, setDisplayPendingClaims] = useState(false);
+
+  const [submittedIncidents, setSubmittedIncidents] =
+    useState<Array<Incident>>();
   const { user } = useUserStore();
 
   const company = companiesMap!.get(params.companyId);
@@ -34,7 +38,12 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
     const companyRef = doc(db, "Companies", params.companyId);
     const companyDoc = await getDoc(companyRef);
     const incidents = companyDoc?.data()?.incidents;
+    const submittedIncidents = companyDoc?.data()?.submittedIncidents;
     setIncidents(incidents);
+    setSubmittedIncidents(submittedIncidents);
+    if (!submittedIncidents) {
+      setDisplayPendingClaims(true);
+    }
   }, [params.companyId]);
 
   useEffect(() => {
@@ -66,6 +75,7 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
                   <span className="text capitalize">
                     {company?.description}
                   </span>
+                  <span className="text capitalize">{company?.website}</span>
                 </div>
               </div>
 
@@ -76,14 +86,34 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
             </div>
 
             {/* History */}
-            <div className="absolute left-14 h-full mt-300 lg:w-1000 md:w-full xs:w-full xs:overflow-scroll">
-              <div>
+            <div className="absolute left-14 h-full mt-300 lg:w-1000 md:w-full xs:w-full">
+              <Stack>
                 <ClaimTable
                   companyId={company.companyId}
                   incidents={incidents!}
+                  displayClaimButton={false}
                 />
-              </div>
+
+                <Divider />
+                <HStack>
+                  <span className="flex text-xl relative ">Pending Claims</span>
+                  <div
+                    className="w-5 cursor-pointer"
+                    onClick={() => setDisplayPendingClaims((prev) => !prev)}
+                  >
+                    {displayPendingClaims ? <ArrowDownIcon /> : <ArrowUpIcon />}
+                  </div>
+                </HStack>
+                {displayPendingClaims && (
+                  <ClaimTable
+                    companyId={company.companyId}
+                    incidents={submittedIncidents!}
+                    displayClaimButton={true}
+                  />
+                )}
+              </Stack>
             </div>
+
             <div className="flex gap-4 w-full justify-start absolute left-14 bottom-20">
               {incidents && incidents.length > 0 && (
                 <button

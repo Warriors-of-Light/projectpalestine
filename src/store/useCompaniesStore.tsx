@@ -7,6 +7,7 @@ interface ICompanyStore {
   setCompaniesMap: (companiesMap: Map<string, Company>) => void;
 }
 
+
 export const useCompaniesStore = create<ICompanyStore>()(
   devtools(
     persist(

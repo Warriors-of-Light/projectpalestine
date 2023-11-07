@@ -6,6 +6,7 @@ interface ICompanyCardProps {
   id: string;
   name: string;
   description: string;
+  tags?: Array<string>;
   src?: string;
   numberOfBoycotters?: number;
 }
@@ -14,10 +15,10 @@ export default function CompanyDisplay({
   id,
   name,
   description,
+  tags,
   src,
 }: ICompanyCardProps) {
   const router = useRouter();
-
   return (
     <ul
       role="list"
@@ -41,9 +42,14 @@ export default function CompanyDisplay({
               {description}
             </dd>
             <dd className="mt-3">
-              <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                {name}
-              </span>
+              {tags?.map((tag, index) => (
+                <span
+                  key={index}
+                  className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 mr-2"
+                >
+                  {tag}
+                </span>
+              ))}
             </dd>
           </dl>
         </div>

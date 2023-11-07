@@ -31,13 +31,12 @@ const CompanyCard = ({ company }: ICompanyCardProps) => {
 
   return (
     <div
-      className={`${bgColor} w-full grid grid-cols-12 items-center p-2 gap-4 rounded-lg cursor-pointer`}
+      className={`${bgColor} w-full grid grid-cols-12 items-center p-2 gap-4 rounded-lg cursor-pointer max-w-5xl`}
       onClick={() => router.push(`/companyprofile/${companyId}`)}
     >
       {/* Logo */}
-      <div className="col-span-2 rounded-full p-4 ">
+      <div className="col-span-2  p-4 ">
         {logo.length > 0 ? (
-          // <img src={logo} alt="Logo" width={100} height={100} />
           <Avatar src={logo} size={"xl"} />
         ) : (
           <Avatar name={name} />
