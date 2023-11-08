@@ -27,7 +27,7 @@ A browser extension that gets activated when you are about to make a purchase on
 
 ## How can you help?
 
-- If you would like to voulnteer as a researcher, designer or a developer join our discord server [here](https://discord.gg/D5yZGRVZ).
+- If you would like to voulnteer as a researcher, designer or a developer join our discord server [here](https://discord.gg/4XPUxZpC).
 - If you are a web developer with experience in JS, you could submit pull requests with changes and bug fixes.
 - If you are a react native developer, join our server to become part of our mobile app efforts.
 - Share this application with everyone
