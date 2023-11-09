@@ -6,6 +6,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
 import Header from "../components/common/header";
 import NextThemesProvider from "@/components/providers/nextThemesProvider";
+import { Footer } from "@/components/modules";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
           <NextThemesProvider>
             <Header />
             {children}
+            <Footer />
           </NextThemesProvider>
         </ChakraProvider>
       </body>
