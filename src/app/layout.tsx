@@ -4,7 +4,8 @@ import { Inter } from "next/font/google";
 import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
-import  Header  from "../components/common/header";
+import Header from "../components/common/header";
+import NextThemesProvider from "@/components/providers/nextThemesProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,12 +22,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <ChakraProvider>
-        <body className={inter.className}>
-          <Header />
-          {children}
-        </body>
-      </ChakraProvider>
+      <body className={inter.className}>
+        <ChakraProvider>
+          <NextThemesProvider>
+            <Header />
+            {children}
+          </NextThemesProvider>
+        </ChakraProvider>
+      </body>
     </html>
   );
 }
