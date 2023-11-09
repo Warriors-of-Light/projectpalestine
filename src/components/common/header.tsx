@@ -48,8 +48,10 @@ const Header = () => {
 
   return (
     <header
-      className={`app-header ${
-        showBackground ? "bg-app-light shadow-sm shadow-app-shadow" : ""
+      className={`app-header xl:px-64 lg:px-32 md:px-4 flex justify-center md:justify-between align-center ${
+        showBackground
+          ? " bg-app-light shadow-sm shadow-app-shadow  "
+          : ""
       }`}
     >
       {/* Alert */}
@@ -63,20 +65,25 @@ const Header = () => {
       </div>
 
       {/* Title - Logo */}
-      <Link href={"/"}>
-        <div className="center p-2 cursor-pointer">
-          <Image src="/logo.svg" width="25" height="25" alt="Logo" />
 
-          <span className="text-2 title uppercase">Project Palestine</span>
+      <Link href={"/"}>
+        <div className="center p-4 cursor-pointer  ">
+          <Image src="/logo.svg" width="35" height="35" alt="Logo" />
+
+          <span className=" text-4 title uppercase">
+            Project Palestine
+          </span>
         </div>
       </Link>
 
       {/* Links - Routes */}
+
       <div className="hidden md:flex items-center gap-2">
         <Link className="app-btn-yellow" href="/upcomingfeatures">
           <Icon type="clock" style="stroke-app--yellow" />
-          upcoming features
+          <span className="xl:text-3 text-2 ">upcoming features</span>
         </Link>
+
         <Link
           className="app-btn relative overflow-hidden"
           href="/download"
@@ -85,15 +92,15 @@ const Header = () => {
         >
           {comingSoon && (
             <div className="absolute w-full h-full center bg-blue-500 text-app-light">
-              Coming Soon
+              <span className="xl:text-3 text-2">Coming Soon</span>
             </div>
           )}
           <Icon type="download" />
-          <span>Download</span>
+          <span className="xl:text-3 text-2">Download</span>
         </Link>
         <Link className="app-btn" href="/donate">
           <Icon type="donate" />
-          Donate
+          <span className="xl:text-3 text-2">Donate</span>
         </Link>
         {user?.user.email && user.user.email.length > 0 ? (
           <button
@@ -106,14 +113,15 @@ const Header = () => {
             }}
           >
             <Icon type="login" />
-            Log Out
+            <span className="xl:text-3 text-2">Log Out</span>
           </button>
         ) : (
           <button className="app-btn" onClick={() => navigateToPage("login")}>
             <Icon type="login" />
-            Log in
+            <span className="xl:text-3 text-2">Log In</span>
           </button>
         )}
+
         {user?.user && (
           <Avatar
             name={currentUser?.displayName!}
@@ -123,16 +131,21 @@ const Header = () => {
           />
         )}
       </div>
-
       {/* Menu btn */}
-      <button className="app-btn md:hidden" onClick={toggleMenu}>
+      <button
+        className=" absolute app-btn md:hidden  w-12 h-12 top-4 right-4 "
+        onClick={toggleMenu}
+      >
         <Icon type="menu" />
       </button>
 
       {/* Menu */}
       {menu && (
-        <div className="bg-app-light absolute top-0 left-0 w-screen h-screen flex flex-col gap-2 p-2 z-50 animate-leftright">
-          <button className="app-btn w-fit md:hidden" onClick={toggleMenu}>
+        <div className=" dark:bg-app-dark bg-app-light absolute top-0 left-0 w-screen h-screen flex flex-col pt-20 gap-2 p-2 z-50 animate-leftright">
+          <button
+            className="app-btn w-12 h-12 absolute top-4 right-4 w-fit md:hidden"
+            onClick={toggleMenu}
+          >
             <Icon type="close" />
           </button>
 
