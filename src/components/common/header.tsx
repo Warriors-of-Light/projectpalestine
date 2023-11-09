@@ -38,7 +38,7 @@ const Header = () => {
 
   const { user, setUser } = useUserStore();
 
-  const currentUser = getAuth().currentUser;
+  // const currentUser = getAuth().currentUser;
 
   const dissmissAlert = () => {
     setDisplayAlert(false);
