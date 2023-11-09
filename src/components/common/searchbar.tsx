@@ -20,26 +20,26 @@ export default function SearchBar({
         onSearch([]);
       } else {
         const filteredContent = searchableContent?.filter((x) =>
-          x.toLocaleLowerCase().includes(text.toLocaleLowerCase())
+          x.toLocaleLowerCase().includes(text.toLocaleLowerCase()),
         );
 
         onSearch(
           filteredContent && filteredContent.length > 0
             ? filteredContent
-            : ["No Results"]
+            : ["No Results"],
         );
       }
     },
-    [onSearch, searchableContent]
+    [onSearch, searchableContent],
   );
 
   return (
     <div className="w-full relative center">
-      <div className="bg-app-light absolute left-0 top-0 -translate-y-1/2 w-fit text-3 z-10 px-2">
+      <div className="bg-app-light dark:bg-app--dark absolute left-0 top-0 -translate-y-1/2 w-fit text-3 z-10 px-2">
         {label}
       </div>
       <input
-        className="app-input"
+        className="app-input dark:placeholder-white"
         type="text"
         placeholder={placeholder}
         onChange={(e) => handleSearch(e.target.value)}

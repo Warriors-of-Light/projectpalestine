@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Icon } from "@/components/modules";
+import { Icon, ToggleTheme } from "@/components/modules";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/useUserStore";
 import logOut from "../../firebase/auth/logout";
@@ -48,9 +48,9 @@ const Header = () => {
 
   return (
     <header
-      className={`app-header xl:px-64 lg:px-32 md:px-4 flex justify-center md:justify-between align-center ${
+      className={`app-header dark:bg-app-dark  xl:px-64 lg:px-32 md:px-4 flex justify-center md:justify-between align-center ${
         showBackground
-          ? " bg-app-light shadow-sm shadow-app-shadow  "
+          ? " dark:bg-app--dark bg-app-light shadow-sm shadow-app-shadow  "
           : ""
       }`}
     >
@@ -70,7 +70,7 @@ const Header = () => {
         <div className="center p-4 cursor-pointer  ">
           <Image src="/logo.svg" width="35" height="35" alt="Logo" />
 
-          <span className=" text-4 title uppercase">
+          <span className=" dark:text-white text-4 title uppercase">
             Project Palestine
           </span>
         </div>
@@ -79,11 +79,18 @@ const Header = () => {
       {/* Links - Routes */}
 
       <div className="hidden md:flex items-center gap-2">
+        <ToggleTheme />
         <Link className="app-btn-yellow" href="/upcomingfeatures">
           <Icon type="clock" style="stroke-app--yellow" />
           <span className="xl:text-3 text-2 ">upcoming features</span>
         </Link>
-
+        {/* <HeaderLink */}
+        {/*   className="app-btn-yellow" */}
+        {/*   href="/upcomingfeatures" */}
+        {/*   type="clock" */}
+        {/*   styles="stroke-app--yellow" */}
+        {/*   label="upcoming features" */}
+        {/* /> */}
         <Link
           className="app-btn relative overflow-hidden"
           href="/download"
@@ -102,6 +109,12 @@ const Header = () => {
           <Icon type="donate" />
           <span className="xl:text-3 text-2">Donate</span>
         </Link>
+        {/* <HeaderLink */}
+        {/*   className="app-btn" */}
+        {/*   href="/donate" */}
+        {/*   type="donate" */}
+        {/*   label="Donate" */}
+        {/* /> */}
         {user?.user.email && user.user.email.length > 0 ? (
           <button
             className="app-btn"
@@ -148,6 +161,7 @@ const Header = () => {
           >
             <Icon type="close" />
           </button>
+          <ToggleTheme style="absolute top-6 right-16" />
 
           <Link className="app-btn-yellow" href="/upcomingfeatures">
             <Icon type="clock" style="stroke-app--yellow" />

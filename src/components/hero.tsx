@@ -125,8 +125,8 @@ const Hero = () => {
   }, [companies, retrieveData]);
 
   return (
-    <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6 mb-10  mt-40">
-      <div className="bg-app-light flex flex-col justify-start content-start gap-4 p-8">
+    <div className="h-screen w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6 mb-10">
+		<div className="rounded-3xl bg-app-light dark:bg-app--dark flex flex-col justify-start content-start gap-4 p-8 w-9/12 lg:w-7/12">
         <div className="w-full text-4xl font-black mb-10">
           A way for us to boycott the genocide and its supporters
         </div>
