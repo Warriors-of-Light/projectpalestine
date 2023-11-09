@@ -23,6 +23,14 @@ const Footer = () => {
           <Icon type="github" />
           <span>Contribute with us</span>
         </Link>
+        <Link
+          target="_blank"
+          href="https://discord.com/invite/4XPUxZpC"
+          className="app-link"
+        >
+          <Icon type="discord" />
+          <span>Get In Touch</span>
+        </Link>
       </div>
       <Link href="" className="app-link">
         <span>© {new Date().getFullYear()} Project Palestine</span>
