@@ -50,7 +50,7 @@ const Header = () => {
     <header
       className={`app-header dark:bg-app-dark  xl:px-64 lg:px-32 md:px-4 flex justify-center md:justify-between align-center ${
         showBackground
-          ? " dark:bg-app--dark bg-app-light shadow-sm shadow-app-shadow  "
+          ? " dark:bg-black bg-app-light shadow-sm shadow-app-shadow  "
           : ""
       }`}
     >
