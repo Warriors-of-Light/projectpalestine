@@ -13,14 +13,18 @@ import {
   FiInfo,
   FiAlertTriangle,
   FiClock,
-  FiHeart,
 } from "react-icons/fi";
-import { BiDonateHeart, BiDownload, BiSolidContact, BiSolidHeartCircle } from "react-icons/bi";
+import {
+  BiDonateHeart,
+  BiDownload,
+  BiSolidContact,
+  BiSolidHeartCircle,
+} from "react-icons/bi";
+import { BsDiscord } from "react-icons/bs";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { AiFillGithub, AiOutlineCheckCircle } from "react-icons/ai";
 import { GrReturn } from "react-icons/gr";
-import { BiLogIn } from "react-icons/bi";
-import { BiLogOut } from "react-icons/bi";
+import { BiLogIn, BiLogOut } from "react-icons/bi";
 
 import React from "react";
 
@@ -35,9 +39,9 @@ const Icon = (props: {
 
   switch (type) {
     case "heart":
-      return <BiSolidHeartCircle className={style} size={size}/>
+      return <BiSolidHeartCircle className={style} size={size} />;
     case "clock":
-      return <FiClock className={style} size={size}/>
+      return <FiClock className={style} size={size} />;
     case "return":
       return <GrReturn className={style} size={size} />;
     case "submit":
@@ -66,10 +70,12 @@ const Icon = (props: {
       return <BiDonateHeart className={style} size={size} />;
     case "login":
       return <BiLogIn className={style} size={size} />;
+    case "discord":
+      return <BsDiscord className={style} size={size} />;
     case "logout":
       return <BiLogOut className={style} size={size} />;
     case "github":
-    return <AiFillGithub className={style} size={size} />;
+      return <AiFillGithub className={style} size={size} />;
     case "appstore":
       return (
         <svg

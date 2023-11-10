@@ -29,7 +29,7 @@ const Footer = () => {
           className="app-link"
         >
           <Icon type="discord" />
-          <span>Get In Touch</span>
+          <span>Join our discord</span>
         </Link>
       </div>
       <Link href="" className="app-link">
