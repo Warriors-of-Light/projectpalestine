@@ -5,7 +5,7 @@ import {
 } from "firebase/auth";
 import { firebase_app } from "../config";
 
-// const auth = getAuth(firebase_app);
+const auth = getAuth(firebase_app);
 
 export default async function signUp(
   name: string,
@@ -15,11 +15,11 @@ export default async function signUp(
   let result = null,
     error = null;
   try {
-    // result = await createUserWithEmailAndPassword(auth, email, password);
+    result = await createUserWithEmailAndPassword(auth, email, password);
 
-    // updateProfile(result.user, {
-      // displayName: name,
-    // });
+    updateProfile(result.user, {
+      displayName: name,
+    });
     
   } catch (e) {
     error = e;

@@ -38,7 +38,7 @@ const Header = () => {
 
   const { user, setUser } = useUserStore();
 
-  // const currentUser = getAuth().currentUser;
+  const currentUser = getAuth().currentUser;
 
   const dissmissAlert = () => {
     setDisplayAlert(false);
@@ -84,13 +84,6 @@ const Header = () => {
           <Icon type="clock" style="stroke-app--yellow" />
           <span className="xl:text-3 text-2 ">upcoming features</span>
         </Link>
-        {/* <HeaderLink */}
-        {/*   className="app-btn-yellow" */}
-        {/*   href="/upcomingfeatures" */}
-        {/*   type="clock" */}
-        {/*   styles="stroke-app--yellow" */}
-        {/*   label="upcoming features" */}
-        {/* /> */}
         <Link
           className="app-btn relative overflow-hidden"
           href="/download"
@@ -109,12 +102,6 @@ const Header = () => {
           <Icon type="donate" />
           <span className="xl:text-3 text-2">Donate</span>
         </Link>
-        {/* <HeaderLink */}
-        {/*   className="app-btn" */}
-        {/*   href="/donate" */}
-        {/*   type="donate" */}
-        {/*   label="Donate" */}
-        {/* /> */}
         {user?.user.email && user.user.email.length > 0 ? (
           <button
             className="app-btn"
@@ -161,6 +148,7 @@ const Header = () => {
           >
             <Icon type="close" />
           </button>
+          {/* ToggleTheme Button appeares only when the side menu activated*/}
           <ToggleTheme style="absolute top-6 right-16" />
 
           <Link className="app-btn-yellow" href="/upcomingfeatures">
