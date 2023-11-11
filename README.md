@@ -19,7 +19,7 @@ This is the current website hosted [here](https://projectpalestine.org). The web
 
 ## Stage 2 (need volunteers): Mobile app
 
-Soon you will be able to scan a bar code and get results on the fly with a mobile app. If you are an experienced React Native developer and want to assist, please join our discord server [here](https://discord.gg/D5yZGRVZ).
+Soon you will be able to scan a bar code and get results on the fly with a mobile app. If you are an experienced React Native developer and want to assist, please join our discord server [here](https://discord.gg/4XPUxZpC).
 
 ## Stage 3 (need volunteers): Browser Extension
 
