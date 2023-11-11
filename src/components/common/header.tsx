@@ -11,6 +11,7 @@ import logOut from "../../firebase/auth/logout";
 import Alert from "./alert";
 import { Avatar } from "@chakra-ui/react";
 import { getAuth } from "firebase/auth";
+import LanguageSelector from "./languageSelect";
 
 const Header = () => {
   // Initialize
@@ -73,6 +74,10 @@ const Header = () => {
 
       {/* Links - Routes */}
       <div className="hidden md:flex items-center gap-2">
+
+        {/* Language Selector */}
+        <LanguageSelector /> 
+
         <Link className="app-btn-yellow" href="/upcomingfeatures">
           <Icon type="clock" style="stroke-app--yellow" />
           upcoming features
@@ -135,7 +140,7 @@ const Header = () => {
           <button className="app-btn w-fit md:hidden" onClick={toggleMenu}>
             <Icon type="close" />
           </button>
-
+           
           <Link className="app-btn-yellow" href="/upcomingfeatures">
             <Icon type="clock" style="stroke-app--yellow" />
             upcoming features
