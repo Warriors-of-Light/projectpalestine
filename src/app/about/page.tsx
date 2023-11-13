@@ -35,7 +35,6 @@ export default function About() {
   ];
   return (
     <>
-      <Header />
       <div className="relative w-full lg:h-85vh">
         <div className="relative isolate h-full overflow-hidden bg-green-500 py-24 sm:py-20">
           <div className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl">
@@ -102,7 +101,6 @@ export default function About() {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     </>
   );

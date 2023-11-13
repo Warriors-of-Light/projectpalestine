@@ -52,9 +52,6 @@ export default function Companies() {
 
   return (
     <main className="bg-app-light flex flex-1 flex-col items-center justify-start h-full w-screen gap-4 min-h-screen">
-      <div>
-        <Header />
-      </div>
 
       <div className="lg:w-500 mt-24">
         {/* <SearchBar

@@ -78,7 +78,6 @@ export default function UpcomingFeatures() {
 
   return (
     <>
-      <Header />
       <div className="w-full min-h-screen flex flex-col justify-center items-center bg-app--light ">
         <div className="flex divide-y divide-gray-200 overflow-hidden rounded-lg xs:grid xs:gap-px sm:grid sm:gap-px sm:divide-y-0 ">
           {features.map((feature, actionIdx) => (

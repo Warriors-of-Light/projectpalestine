@@ -175,7 +175,6 @@ export default function Account() {
 
   return (
     <>
-      <Header />
 
       <main>
         {/* <div className="absolute left-16 top-full -mt-16 transform-gpu opacity-50 blur-3xl xl:left-1/2 xl:-ml-80">
