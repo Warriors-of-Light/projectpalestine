@@ -5,7 +5,7 @@ import { Icon } from "@/components/modules";
 
 const Footer = () => {
   return (
-    <div className="relative bottom-0 left-0 full bg-app--light z-50 stack items-start content-start md:center gap-4 py-6 px-4 animate-downtop">
+    <div className="relative bottom-0 left-0 full bg-[#ffffff50] z-50 stack items-start content-start md:center gap-4 py-6 px-4 animate-downtop">
       <div className="stack items-start md:flex-row gap-4">
         <Link href="mailto:injusticecrush@gmail.com" className="app-link">
           <Icon type="contact" />

@@ -10,7 +10,9 @@ export default function Home() {
 
   return (
     <main className="main">
-      <Image src={products} className="absolute w-screen h-screen -z-10 opacity-10 animate-rotate-long" alt="points" width={800} height={500}/>
+      <div className="absolute top-0 left-0 w-screen h-screen center -z-10 overflow-hidden">
+      <Image src={products} className="full opacity-10 animate-rotate-long object-contain" alt="points" width={800} height={500}/>
+      </div>
       <Header />
       <Hero />
       <Footer />

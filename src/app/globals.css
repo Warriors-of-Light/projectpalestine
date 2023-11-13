@@ -11,6 +11,22 @@
   body {
     @apply w-screen h-screen bg-app-light overflow-x-hidden
   }
+
+  /* Cunstom Scroll Bar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    @apply bg-app-primary
+}
+::-webkit-scrollbar-thumb {
+    @apply bg-app--primary
+}
+::-webkit-scrollbar-thumb:hover {
+    opacity: .5;
+    cursor: pointer;
+}
 }
 
 @layer components {
@@ -41,7 +57,7 @@
   }
 
   .app-header {
-    @apply bg-app--light fixed left-1/2 -translate-x-1/2
+    @apply bg-[#ffffff50] backdrop-blur-sm fixed left-1/2 -translate-x-1/2
     flex justify-between items-center app-max-w z-50 p-4
     duration-300 shadow-sm md:my-2 md:rounded-full md:px-6
     animate-leftright;

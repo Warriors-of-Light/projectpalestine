@@ -122,7 +122,7 @@ export default function Hero() {
     }
   }, [companies, retrieveData]);
 
-  const testing : Company[] = [
+  const testingData : Company[] = [
     {
       logo: '',
       name: 'company',
@@ -247,7 +247,7 @@ export default function Hero() {
 
 
   return (
-    <div className="my-40 mb-96 center items-start full p-2 md:rounded-full animate-leftright">
+    <div className="my-40 mb-96 center bg-[#ffffff50] items-start full p-2 md:rounded-full animate-leftright shadow-sm">
 
       <div className="stack gap-8">
 
@@ -259,7 +259,7 @@ export default function Hero() {
           placeholder="Search here..."
           searchableContent={searchableContent.current}
         />
-        <Companies companies={companies} filteredResults={filteredResults} />
+        <Companies companies={testingData} filteredResults={filteredResults} />
 
         <div className="w-full flex-col center gap-4 p-4">
           <Link href="/companies" className="app-link">See all companies</Link>
@@ -289,7 +289,7 @@ const Companies = ({ companies, filteredResults }: { companies: Company[], filte
   // ! Max display 12 company
 
   return (
-    <div className="stack gap-4">
+    <div className="full stack gap-4">
       {
         companies.length ? (
           filteredResults.length ? companies.map((company: any) => {

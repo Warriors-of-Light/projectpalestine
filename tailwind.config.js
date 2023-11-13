@@ -10,7 +10,7 @@ module.exports = {
       colors: {
         "app-dark": "theme(colors.slate.900)",
         "app--dark": "theme(colors.slate.800)",
-        "app-light": "theme(colors.slate.50)",
+        "app-light": "theme(colors.green.50)",
         "app--light": "theme(colors.white)",
         "app-primary": "theme(colors.green.100)",
         "app--primary": "theme(colors.green.500)",
