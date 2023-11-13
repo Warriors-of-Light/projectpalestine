@@ -3,49 +3,78 @@
 @tailwind utilities;
 
 @layer base {
+
   * {
     @apply text-1;
   }
 
   body {
-    width: 100vw;
-    min-height: 100vh;
-    overflow-x: hidden;
+    @apply w-screen h-screen bg-app-light overflow-x-hidden overflow-y-auto
   }
 }
 
 @layer components {
-  /* Containers */
-  .app-page {
-    @apply bg-app--light relative w-screen flex flex-col;
+
+  /* ----------------- Containers ----------------- */
+  .full {
+    @apply w-full h-full
+  }
+
+  .main {
+    @apply full app-max-w flex flex-col bg-app-light relative
+  }
+
+  .layer {
+    @apply full absolute top-0 left-0
+  }
+
+  .center {
+    @apply full flex justify-center items-center
+  }
+
+  .stack {
+    @apply full flex flex-col
+  }
+
+  .see {
+    @apply border-2 border-app-red
   }
 
   .app-header {
-    @apply fixed left-0 flex justify-between items-center w-full z-50 p-2 md:p-4 duration-300;
+    @apply bg-app--light fixed left-1/2 -translate-x-1/2
+    flex justify-between items-center app-max-w z-50 p-2 md:p-4
+    duration-300 shadow-sm;
   }
 
+  .app-max-w {
+    @apply w-full md:max-w-[1000px] xl:max-w-[1400px] mx-auto
+  }
+  /* ---------------------------------------------- */
+
+  /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+  .app-page {
+    @apply bg-app--light relative w-screen flex flex-col;
+  }
   .app-container {
     max-width: 700px;
     min-height: 100%;
     margin: auto;
   }
-
   .app-page-container {
     background-color: theme("colors.green.100");
     min-height: 100vh;
     margin: auto;
   }
-
   .footer {
     padding-top: 20;
   }
+  /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
-  .center {
-    @apply flex justify-center items-center gap-2;
-  }
-
-  .layer {
-    @apply bg-app--light fixed top-0 left-0 w-screen h-screen z-50;
+  /* Inputs */
+  .app-input {
+    @apply bg-transparent w-full h-full rounded-lg p-6 z-0 duration-300
+    placeholder:opacity-50 placeholder:text-app-dark border-none
+    ring-2 ring-app-shadow focus:ring-app-primary focus:ring-4;
   }
 
   /* Links */
@@ -57,59 +86,30 @@
   /* Buttons */
   .app-btn {
     @apply bg-app-primary text-app--primary fill-app--primary stroke-app--primary
-    center rounded-lg p-2 duration-200 capitalize cursor-pointer outline-none
-    border border-transparent border-b-app--primary hover:border-b-4 active:border-b;
+    center rounded-full gap-2 py-2 px-3 duration-300 capitalize cursor-pointer outline-none
+    ring-2 ring-transparent hover:ring-app--primary whitespace-nowrap w-fit;
   }
 
   .app-btn-green {
     @apply bg-app-primary text-app--primary fill-app--primary stroke-app--primary
-    center rounded-lg p-2 duration-200 capitalize cursor-pointer outline-none
-    border border-transparent border-b-app--primary hover:border-b-4 active:border-b;
+    center rounded-full gap-2 py-2 px-3 duration-300 capitalize cursor-pointer outline-none
+    ring-2 ring-transparent hover:ring-app--primary whitespace-nowrap w-fit;
   }
 
   .app-btn-yellow {
     @apply bg-app-yellow text-app--yellow fill-app--yellow stroke-app--yellow
-    center rounded-lg p-2 duration-200 capitalize cursor-pointer outline-none
-    border border-transparent border-b-app--yellow hover:border-b-4 active:border-b;
+    center rounded-full gap-2 py-2 px-3 duration-300 capitalize cursor-pointer outline-none
+    ring-2 ring-transparent hover:ring-app--yellow whitespace-nowrap w-fit;
   }
 
   .app-btn-red {
     @apply bg-app-red text-app--red fill-app--red stroke-app--red
-    center rounded-lg p-2 duration-200 capitalize cursor-pointer outline-none
-    border border-transparent border-b-app--red hover:border-b-4 active:border-b;
+    center rounded-full gap-2 py-2 px-3 duration-300 capitalize cursor-pointer outline-none
+    ring-2 ring-transparent hover:ring-app--red whitespace-nowrap w-fit;
   }
 
   .app-btn-disabled {
-    @apply bg-app-primary text-app--primary center rounded-lg p-2
-    capitalize outline-none border-2 border-transparent;
-  }
-
-  /* Inputs */
-  .app-input {
-    @apply bg-transparent w-full h-full rounded-lg p-4 pt-6 z-0 duration-200
-    placeholder:opacity-50 placeholder:text-app-dark border-none
-    outline outline-app-dark outline-2 focus:outline-4 focus:outline-app-primary;
-  }
-
-  /* Text sizing */
-  .text-1 {
-    @apply text-sm font-medium;
-  }
-
-  .text-2 {
-    @apply text-base font-medium;
-  }
-
-  .text-3 {
-    @apply text-lg font-bold;
-  }
-
-  .text-4 {
-    @apply text-xl font-black;
-  }
-
-  .title {
-    @apply font-black;
+    @apply opacity-50 ring-transparent cursor-none;
   }
 
   /* Sparkle */
@@ -143,6 +143,25 @@
 }
 
 @layer utilities {
+
+    /* Text sizing */
+    .text-1 {
+      @apply text-sm;
+    }
+  
+    .text-2 {
+      @apply text-lg;
+    }
+  
+    .text-3 {
+      @apply text-2xl;
+    }
+  
+    .title {
+      @apply font-black;
+    }
+
+
   /* Custom Animtions */
   .animate-leftright {
     animation: k-leftright 0.5s;

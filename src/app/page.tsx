@@ -3,14 +3,15 @@
 import React from "react";
 import { Header, Hero, Footer } from "@/components/modules";
 
-const Home = () => {
+export default async function Home() {
+
+  //await new Promise(resolve => setTimeout(resolve, 300000))
+
   return (
-    <main className="app-page-container border min-h-full">
+    <main className="main">
       <Header />
       <Hero />
-      <Footer />
+      {/* <Footer /> */}
     </main>
   );
 };
-
-export default Home;

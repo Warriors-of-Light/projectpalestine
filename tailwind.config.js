@@ -8,18 +8,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "app-dark": "theme(colors.green.950)",
-        "app--dark": "theme(colors.green.800)",
-        "app-light": "theme(colors.green.50)",
-        "app--light": "theme(colors.green.100)",
+        "app-dark": "theme(colors.gray.900)",
+        "app--dark": "theme(colors.gray.800)",
+        "app-light": "theme(colors.gray.50)",
+        "app--light": "theme(colors.white)",
         "app-primary": "theme(colors.green.200)",
-        "app--primary": "theme(colors.green.600)",
+        "app--primary": "theme(colors.green.500)",
         "app-red": "theme(colors.red.200)",
-        "app--red": "theme(colors.red.600)",
+        "app--red": "theme(colors.red.500)",
         "app-yellow": "theme(colors.yellow.200)",
-        "app--yellow": "theme(colors.yellow.600)",
+        "app--yellow": "theme(colors.yellow.500)",
         "app-green": "theme(colors.green.200)",
-        "app--green": "theme(colors.green.600)",
+        "app--green": "theme(colors.green.500)",
         "app-shadow": "#00000025",
       },
       spacing: {

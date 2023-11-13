@@ -1,6 +1,6 @@
 /*
     Icon common component
-    To Add New Icons -> https://react-icons.github.io/
+    To Add New Icons -> https://react-icons.github.io/react-icons/
 */
 
 import {
@@ -26,16 +26,15 @@ import { AiFillGithub, AiOutlineCheckCircle } from "react-icons/ai";
 import { GrReturn } from "react-icons/gr";
 import { BiLogIn, BiLogOut } from "react-icons/bi";
 
-import React from "react";
-
-const Icon = (props: {
-  type?: string;
-  style?: string;
-  size?: 20 | 30 | 40 | 50;
-}) => {
-  const type: string = props.type ? props.type : "";
-  const style: string = props.style ? props.style : "stroke-app-dark";
-  const size: number = props.size ? props.size : 20;
+export function Icon ({
+  type = "",
+  style = "stroke-app-dark",
+  size = 20,
+}: {
+  type?: string,
+  style?: string,
+  size?: 20 | 30 | 40 | 50,
+}) {
 
   switch (type) {
     case "heart":
@@ -222,8 +221,6 @@ const Icon = (props: {
         </svg>
       );
   }
-
   return <FiSlash size={size} className={style} />;
+  
 };
-
-export default Icon;

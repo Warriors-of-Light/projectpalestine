@@ -1,11 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
-import { useCompaniesStore } from "@/store/useCompaniesStore";
 
-const inter = Inter({ subsets: ["latin"] });
+const catamaran = Ubuntu({ subsets: ["latin"], weight: ["400", "500", "700", "300", "400", "500", "700"] });
 
 export const metadata: Metadata = {
   icons: ["/logo.svg"],
@@ -20,8 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ChakraProvider>{children}</ChakraProvider>
+      <body className={catamaran.className}>
+        {children}
+        {/* <ChakraProvider>{children}</ChakraProvider> */}
       </body>
     </html>
   );

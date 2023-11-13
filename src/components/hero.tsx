@@ -21,7 +21,9 @@ import { useUserStore } from "@/store/useUserStore";
 import { getAuth } from "firebase/auth";
 import { useSubmittedCompaniesStore } from "@/store/useSubmittedCompaniesStore";
 
-const Hero = () => {
+export default function Hero() {
+
+  // Initialize
   const [companies, setCompanies] = useState<Array<Company>>([]);
   const [filteredResults, setFilteredResults] = useState<Array<string>>([]);
   // const firstFiveCompanies = useRef<Array<Company>>();
@@ -30,6 +32,7 @@ const Hero = () => {
   const { setSubmittedCompaniesMap } = useSubmittedCompaniesStore();
   const { user } = useUserStore();
 
+  // Function
   const onSearch = useCallback(
     (filteredResults: string[] | undefined) => {
       if (filteredResults![0] === "No Results") {
@@ -44,7 +47,6 @@ const Hero = () => {
     },
     [companies]
   );
-
   const downloadLogo = useCallback(async (logoLocation: string) => {
     if (logoLocation === undefined) return;
     const storage = getStorage(firebase_app);
@@ -57,7 +59,6 @@ const Hero = () => {
       return "";
     }
   }, []);
-
   const retrieveData = useCallback(async () => {
     const db = getFirestore(firebase_app);
     const array: Array<Company> = [];
@@ -125,51 +126,30 @@ const Hero = () => {
   }, [companies, retrieveData]);
 
   return (
-    <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6 mb-10  mt-40">
-      <div className="bg-app-light flex flex-col justify-start content-start gap-4 p-8">
-        <div className="w-full text-4xl font-black mb-10">
-          A way for us to boycott the genocide and its supporters
-        </div>
+    <div className="main see">
+
+      <div className="center flex-col gap-8">
+
+        {/* BIG TITLE */}
+        <BigTitle />
         <SearchBar
           label="Search products or companies"
           onSearch={onSearch}
-          placeholder="Search here"
+          placeholder="Search here..."
           searchableContent={searchableContent.current}
         />
-        {companies.length === 0 ? (
-          <Spinner />
-        ) : (
-          companies.map((company, index) => {
-            return (
-              filteredResults.includes(company.name) && (
-                <CompanyCard key={index} company={company} />
-              )
-            );
-          })
-        )}
-        {filteredResults.length === 0 && (
-          <span className="flex justify-center text-lg mb-20">
-            {" "}
-            No Results Found{" "}
-          </span>
-        )}
-        <div className="flex justify-center w-full">
-          <Link href="/companies">
-            <span className="hover:text-green-500 text-md">
-              See all companies
-            </span>
-          </Link>
-        </div>
-        <div className="flex justify-center w-full">
-          <Link href={user ? "/addcompany" : "/login"}>
-            <button className="app-btn bg-green-500 text-white w-40">
-              Add Company
-            </button>
-          </Link>
-        </div>
+
       </div>
+
     </div>
   );
 };
 
-export default Hero;
+
+const BigTitle = () => {
+  return (
+    <div className="text-2xl md:text-4xl title">
+      A way for us to boycott the genocide and its supporters
+    </div>
+  )
+}

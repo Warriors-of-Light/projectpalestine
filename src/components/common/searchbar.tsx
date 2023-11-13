@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Icon } from "../modules";
+import { Icon } from "@/component/modules";
 
 interface ISearchBarProps {
   placeholder: string;
@@ -34,8 +34,8 @@ export default function SearchBar({
   );
 
   return (
-    <div className="w-full relative center">
-      <div className="bg-app-light absolute left-0 top-0 -translate-y-1/2 w-fit text-3 z-10 px-2">
+    <div className="w-full max-w-[800px] relative">
+      <div className="bg-app-light absolute -translate-y-1/2 w-fit text-2 z-10 px-2">
         {label}
       </div>
       <input
@@ -44,7 +44,7 @@ export default function SearchBar({
         placeholder={placeholder}
         onChange={(e) => handleSearch(e.target.value)}
       />
-      <Icon type="search" style="absolute right-0 mr-4" />
+      <Icon type="search" style="absolute right-0 top-1/2 -translate-y-1/2 mr-4" />
     </div>
   );
 }
