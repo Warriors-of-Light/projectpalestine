@@ -5,8 +5,7 @@ import { Icon } from "@/components/modules";
 
 const Footer = () => {
   return (
-    <div className="full bg-app--light z-50 stack items-start content-start md:center gap-4 py-6 px-4 relative">
-      <div className="-z-[1] top-0 left-0 absolute w-full h-[1000px] bg-app--light"></div>
+    <div className="relative bottom-0 left-0 full bg-app--light z-50 stack items-start content-start md:center gap-4 py-6 px-4 animate-downtop">
       <div className="stack items-start md:flex-row gap-4">
         <Link href="mailto:injusticecrush@gmail.com" className="app-link">
           <Icon type="contact" />
@@ -33,9 +32,7 @@ const Footer = () => {
           <span>Join our discord</span>
         </Link>
       </div>
-      <Link href="" className="app-link">
-        <span>© {new Date().getFullYear()} Project Palestine</span>
-      </Link>
+      <span>© {new Date().getFullYear()} Project Palestine</span>
     </div>
   );
 };

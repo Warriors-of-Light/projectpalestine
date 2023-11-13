@@ -122,9 +122,132 @@ export default function Hero() {
     }
   }, [companies, retrieveData]);
 
+  const testing : Company[] = [
+    {
+      logo: '',
+      name: 'company',
+      description: 'description',
+      website: undefined,
+      companyId: 'qwrdfsdf',
+      tags: undefined,
+      rating: 1,
+      incidents: [],
+    },
+    {
+      logo: '',
+      name: 'company',
+      description: 'description',
+      website: undefined,
+      companyId: 'asuify',
+      tags: undefined,
+      rating: 3,
+      incidents: [],
+    },
+    {
+      logo: '',
+      name: 'company',
+      description: 'description',
+      website: undefined,
+      companyId: 'qwe',
+      tags: undefined,
+      rating: 2,
+      incidents: [],
+    },
+    {
+      logo: '',
+      name: 'company',
+      description: 'description',
+      website: undefined,
+      companyId: 'weer',
+      tags: undefined,
+      rating: 1,
+      incidents: [],
+    },
+    {
+      logo: '',
+      name: 'company',
+      description: 'description',
+      website: undefined,
+      companyId: 'ewtet',
+      tags: undefined,
+      rating: 1,
+      incidents: [],
+    },
+    {
+      logo: '',
+      name: 'company',
+      description: 'description',
+      website: undefined,
+      companyId: 'ewtet',
+      tags: undefined,
+      rating: 1,
+      incidents: [],
+    },
+    {
+      logo: '',
+      name: 'company',
+      description: 'description',
+      website: undefined,
+      companyId: 'ewtet',
+      tags: undefined,
+      rating: 1,
+      incidents: [],
+    },
+    {
+      logo: '',
+      name: 'company',
+      description: 'description',
+      website: undefined,
+      companyId: 'ewtet',
+      tags: undefined,
+      rating: 1,
+      incidents: [],
+    },
+    {
+      logo: '',
+      name: 'company',
+      description: 'description',
+      website: undefined,
+      companyId: 'ewtet',
+      tags: undefined,
+      rating: 1,
+      incidents: [],
+    },
+    {
+      logo: '',
+      name: 'company',
+      description: 'description',
+      website: undefined,
+      companyId: 'ewtet',
+      tags: undefined,
+      rating: 1,
+      incidents: [],
+    },
+    {
+      logo: '',
+      name: 'company',
+      description: 'description',
+      website: undefined,
+      companyId: 'ewtet',
+      tags: undefined,
+      rating: 1,
+      incidents: [],
+    },
+    {
+      logo: '',
+      name: 'company',
+      description: 'description',
+      website: undefined,
+      companyId: 'ewtet',
+      tags: undefined,
+      rating: 1,
+      incidents: [],
+    },
+  ]
+
 
   return (
-    <div className="mt-40 center items-start full p-2">
+    <div className="my-40 mb-96 center items-start full p-2 md:rounded-full animate-leftright">
 
       <div className="stack gap-8">
 
@@ -162,6 +285,9 @@ const BigTitle = () => {
 }
 
 const Companies = ({ companies, filteredResults }: { companies: Company[], filteredResults: string[] }) => {
+
+  // ! Max display 12 company
+
   return (
     <div className="stack gap-4">
       {

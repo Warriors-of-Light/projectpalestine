@@ -2,7 +2,7 @@
 "use client";
 import Image from "next/image";
 import { Header, Hero, Footer } from "@/components/modules";
-import points from '@/assets/points.svg'
+import products from '@/assets/products.svg'
 
 export default function Home() {
 
@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <main className="main">
-      <Image src={points} className="layer full object-cover -z-10 opacity-10" alt="points" width={800} height={500}/>
+      <Image src={products} className="absolute w-screen h-screen -z-10 opacity-10 animate-rotate-long" alt="points" width={800} height={500}/>
       <Header />
       <Hero />
       <Footer />
