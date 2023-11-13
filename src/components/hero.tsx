@@ -3,16 +3,12 @@
 import React, {
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from "react";
-import { CompanyCard } from "./modules";
-
 import { collection, getFirestore, getDocs } from "firebase/firestore";
 import { firebase_app } from "../firebase/config";
 import { Company } from "@/constants";
-import { Spinner } from "@chakra-ui/react";
 import SearchBar from "./common/searchbar";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
@@ -20,6 +16,7 @@ import Link from "next/link";
 import { useUserStore } from "@/store/useUserStore";
 import { getAuth } from "firebase/auth";
 import { useSubmittedCompaniesStore } from "@/store/useSubmittedCompaniesStore";
+import { CompanyCard, Icon, Loader } from "@/components/modules";
 
 export default function Hero() {
 
@@ -125,10 +122,11 @@ export default function Hero() {
     }
   }, [companies, retrieveData]);
 
-  return (
-    <div className="main see">
 
-      <div className="center flex-col gap-8">
+  return (
+    <div className="mt-40 center items-start full p-2">
+
+      <div className="stack gap-8">
 
         {/* BIG TITLE */}
         <BigTitle />
@@ -138,6 +136,15 @@ export default function Hero() {
           placeholder="Search here..."
           searchableContent={searchableContent.current}
         />
+        <Companies companies={companies} filteredResults={filteredResults} />
+
+        <div className="w-full flex-col center gap-4 p-4">
+          <Link href="/companies" className="app-link">See all companies</Link>
+          <Link className="app-btn" href={user ? "/addcompany" : "/login"}>
+              <Icon type="add"/>
+              <span>Add Company</span>
+          </Link>
+        </div>
 
       </div>
 
@@ -150,6 +157,24 @@ const BigTitle = () => {
   return (
     <div className="text-2xl md:text-4xl title">
       A way for us to boycott the genocide and its supporters
+    </div>
+  )
+}
+
+const Companies = ({ companies, filteredResults }: { companies: Company[], filteredResults: string[] }) => {
+  return (
+    <div className="stack gap-4">
+      {
+        companies.length ? (
+          filteredResults.length ? companies.map((company: any) => {
+            return (
+              filteredResults.includes(company.name) &&
+              <CompanyCard key={company.companyId} company={company} />
+            );
+          })
+          : companies.map((company: any) => <CompanyCard key={company.companyId} company={company} />)
+        ) : <div className="center full"><Loader /></div>
+      }
     </div>
   )
 }

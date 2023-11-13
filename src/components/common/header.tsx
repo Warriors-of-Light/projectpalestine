@@ -65,7 +65,7 @@ const Logo = () => {
   return (
     <div>
       <Link href={"/"}>
-        <div className="stack gap-2 cursor-pointer">
+        <div className="flex items-center gap-2 cursor-pointer">
           <Image src="/logo.svg" width="30" height="30" alt="Logo" />
           <span className="title uppercase">Project Palestine</span>
         </div>
@@ -84,11 +84,11 @@ const Links = ({ user }: { user: any }) => {
         <Icon type="clock" style="stroke-app--yellow" />
         upcoming features
       </Link>
-      <Link className="app-btn" href="/download">
+      <Link className="app-btn-red" href="/download">
         <Icon type="download" />
         <span>Download</span>
       </Link>
-      <Link className="app-btn" href="/donate">
+      <Link className="app-btn-blue" href="/donate">
         <Icon type="donate" />
         Donate
       </Link>
@@ -97,7 +97,7 @@ const Links = ({ user }: { user: any }) => {
       user.user.email.length > 0
         ? (
           <button
-            className="app-btn"
+            className="app-btn-red"
             onClick={logout}
           >
             <Icon type="login" />

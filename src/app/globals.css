@@ -9,7 +9,7 @@
   }
 
   body {
-    @apply w-screen h-screen bg-app-light overflow-x-hidden overflow-y-auto
+    @apply w-screen min-h-screen bg-app-light overflow-x-hidden
   }
 }
 
@@ -21,19 +21,19 @@
   }
 
   .main {
-    @apply full app-max-w flex flex-col bg-app-light relative
+    @apply full app-max-w flex flex-col items-start relative
   }
 
   .layer {
-    @apply full absolute top-0 left-0
+    @apply absolute top-0 left-0
   }
 
   .center {
-    @apply full flex justify-center items-center
+    @apply flex justify-center items-center
   }
 
   .stack {
-    @apply full flex flex-col
+    @apply flex flex-col
   }
 
   .see {
@@ -42,13 +42,17 @@
 
   .app-header {
     @apply bg-app--light fixed left-1/2 -translate-x-1/2
-    flex justify-between items-center app-max-w z-50 p-2 md:p-4
-    duration-300 shadow-sm;
+    flex justify-between items-center app-max-w z-50 p-4
+    duration-300 shadow-sm md:my-2 md:rounded-full md:px-6;
   }
 
   .app-max-w {
     @apply w-full md:max-w-[1000px] xl:max-w-[1400px] mx-auto
   }
+
+  .app-max-w-element {
+    @apply w-full max-w-[800px]
+  } 
   /* ---------------------------------------------- */
 
   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
@@ -73,13 +77,13 @@
   /* Inputs */
   .app-input {
     @apply bg-transparent w-full h-full rounded-lg p-6 z-0 duration-300
-    placeholder:opacity-50 placeholder:text-app-dark border-none
+    placeholder:opacity-50 placeholder:text-app-dark border-none shadow-md
     ring-2 ring-app-shadow focus:ring-app-primary focus:ring-4;
   }
 
   /* Links */
   .app-link {
-    @apply text-app-dark duration-200 capitalize cursor-pointer center
+    @apply text-app-dark duration-200 capitalize cursor-pointer center gap-2
     hover:underline hover:opacity-100 opacity-60;
   }
 
@@ -87,25 +91,31 @@
   .app-btn {
     @apply bg-app-primary text-app--primary fill-app--primary stroke-app--primary
     center rounded-full gap-2 py-2 px-3 duration-300 capitalize cursor-pointer outline-none
-    ring-2 ring-transparent hover:ring-app--primary whitespace-nowrap w-fit;
+    ring-2 ring-transparent hover:ring-app--primary whitespace-nowrap w-fit shadow-sm;
   }
 
   .app-btn-green {
     @apply bg-app-primary text-app--primary fill-app--primary stroke-app--primary
     center rounded-full gap-2 py-2 px-3 duration-300 capitalize cursor-pointer outline-none
-    ring-2 ring-transparent hover:ring-app--primary whitespace-nowrap w-fit;
+    ring-2 ring-transparent hover:ring-app--primary whitespace-nowrap w-fit shadow-sm;
   }
 
   .app-btn-yellow {
     @apply bg-app-yellow text-app--yellow fill-app--yellow stroke-app--yellow
     center rounded-full gap-2 py-2 px-3 duration-300 capitalize cursor-pointer outline-none
-    ring-2 ring-transparent hover:ring-app--yellow whitespace-nowrap w-fit;
+    ring-2 ring-transparent hover:ring-app--yellow whitespace-nowrap w-fit shadow-sm;
   }
 
   .app-btn-red {
     @apply bg-app-red text-app--red fill-app--red stroke-app--red
     center rounded-full gap-2 py-2 px-3 duration-300 capitalize cursor-pointer outline-none
-    ring-2 ring-transparent hover:ring-app--red whitespace-nowrap w-fit;
+    ring-2 ring-transparent hover:ring-app--red whitespace-nowrap w-fit shadow-sm;
+  }
+
+  .app-btn-blue {
+    @apply bg-app-blue text-app--blue fill-app--blue stroke-app--blue
+    center rounded-full gap-2 py-2 px-3 duration-300 capitalize cursor-pointer outline-none
+    ring-2 ring-transparent hover:ring-app--blue whitespace-nowrap w-fit shadow-sm;
   }
 
   .app-btn-disabled {
@@ -235,6 +245,17 @@
     }
     100% {
       transform: rotateY(0deg);
+    }
+  }
+
+  .animate-appear {
+    animation: kfs-appear .5s ease-in-out;
+  }
+
+  @keyframes kfs-appear {
+    0% {
+      transform: scaleX(0);
+      opacity: 0;
     }
   }
 

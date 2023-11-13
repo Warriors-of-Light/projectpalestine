@@ -17,6 +17,7 @@ import {
 import {
   BiDonateHeart,
   BiDownload,
+  BiPlus,
   BiSolidContact,
   BiSolidHeartCircle,
 } from "react-icons/bi";
@@ -39,6 +40,8 @@ export function Icon ({
   switch (type) {
     case "heart":
       return <BiSolidHeartCircle className={style} size={size} />;
+    case "add":
+      return <BiPlus className={style} size={size} />;
     case "clock":
       return <FiClock className={style} size={size} />;
     case "return":

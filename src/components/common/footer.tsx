@@ -5,8 +5,9 @@ import { Icon } from "@/components/modules";
 
 const Footer = () => {
   return (
-    <div className="bg-white flex flex-col items-center gap-4 p-4 pb-10 pt-10 xl:m-0 lg:m-0 md:m-0 ">
-      <div className="flex flex-col md:flex-row items-center md:items-center gap-4">
+    <div className="full bg-app--light z-50 stack items-start content-start md:center gap-4 py-6 px-4 relative">
+      <div className="-z-[1] top-0 left-0 absolute w-full h-[1000px] bg-app--light"></div>
+      <div className="stack items-start md:flex-row gap-4">
         <Link href="mailto:injusticecrush@gmail.com" className="app-link">
           <Icon type="contact" />
           <span>Contact</span>

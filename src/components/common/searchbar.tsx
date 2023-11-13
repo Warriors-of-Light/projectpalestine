@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Icon } from "@/component/modules";
+import { Icon } from "@/components/modules"
 
 interface ISearchBarProps {
   placeholder: string;
@@ -34,7 +34,7 @@ export default function SearchBar({
   );
 
   return (
-    <div className="w-full max-w-[800px] relative">
+    <div className="bg-app-light app-max-w-element relative">
       <div className="bg-app-light absolute -translate-y-1/2 w-fit text-2 z-10 px-2">
         {label}
       </div>
