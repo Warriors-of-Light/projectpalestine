@@ -1,0 +1,248 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  /* App custom colors variables */
+  :root {
+    --foreground: theme(colors.neutral.800);
+    --background: theme(colors.neutral.100);
+    ---background: theme(colors.neutral.50);
+    --primary: theme(colors.lime.300);
+    ---primary: theme(colors.lime.600);
+    --danger: theme(colors.red.300);
+    ---danger: theme(colors.red.600);
+    --alert: theme(colors.yellow.300);
+    ---alert: theme(colors.yellow.600);
+    --success: theme(colors.green.300);
+    ---success: theme(colors.green.600);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --foreground: theme(colors.neutral.100);
+      --background: theme(colors.neutral.900);
+      ---background: theme(colors.neutral.800);
+      --primary: theme(colors.lime.600);
+      ---primary: theme(colors.lime.300);
+      --danger: theme(colors.red.700);
+      ---danger: theme(colors.red.300);
+      --alert: theme(colors.yellow.600);
+      ---alert: theme(colors.yellow.300);
+      --success: theme(colors.green.600);
+      ---success: theme(colors.green.300);
+    }
+  }
+
+  html {
+    --animation-duration: 1.5s
+  }
+
+  * {
+    @apply text-1
+  }
+
+  body {
+    color: var(--foreground);
+    background: var(--background);
+    overflow-x: hidden;
+  }
+
+  /* Cunstom Scroll Bar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    opacity: .5;
+    cursor: pointer;
+  }
+
+}
+
+@layer components {
+
+  /* Containers */
+  .full {
+    @apply w-full h-full
+  }
+
+  .layer {
+    @apply absolute top-0 left-0
+  }
+
+  .layer-screen {
+    @apply absolute top-0 left-0 w-screen h-screen
+  }
+
+  .center {
+    @apply flex justify-center items-center gap-2
+  }
+
+  .stack {
+    @apply flex flex-col gap-2
+  }
+
+  .main {
+    @apply full stack container mx-auto
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply center w-fit cursor-pointer whitespace-nowrap rounded-full bg-primary px-4 py-2 capitalize shadow text-top-primary outline-none ring-2 ring-transparent duration-300 hover:scale-105 hover:ring-top-primary fill-top-primary stroke-top-primary;
+  }
+
+  .btn-danger {
+    @apply center w-fit cursor-pointer whitespace-nowrap rounded-full bg-danger px-4 py-2 capitalize shadow text-top-danger outline-none ring-2 ring-transparent duration-300 hover:scale-105 hover:ring-top-danger fill-top-danger stroke-top-danger;
+  }
+
+  .btn-alert {
+    @apply center w-fit cursor-pointer whitespace-nowrap rounded-full bg-alert px-4 py-2 capitalize shadow text-top-alert outline-none ring-2 ring-transparent duration-300 hover:scale-105 hover:ring-top-alert fill-top-alert stroke-top-alert;
+  }
+
+  .btn-success {
+    @apply center w-fit cursor-pointer whitespace-nowrap rounded-full bg-success px-4 py-2 capitalize shadow text-top-success outline-none ring-2 ring-transparent duration-300 hover:scale-105 hover:ring-top-success fill-top-success stroke-top-success;
+  }
+
+  /* Inputs */
+  .input {
+    @apply bg-transparent full rounded-full p-6 z-0 duration-300 text-2
+    placeholder:opacity-50 placeholder:text-foreground border-none shadow
+    ring-2 ring-foreground focus:ring-primary focus:ring-4 outline-none;
+  }
+
+  /* Links */
+  .link {
+    @apply text-app-dark duration-200 capitalize cursor-pointer center gap-2
+    hover:underline hover:opacity-100 opacity-60;
+  }
+
+  /* Line / separator */
+  .line {
+    @apply border-b border-foreground opacity-50 w-full
+  }
+
+  /* Blood loader */
+  .loading svg polyline {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .loading svg polyline#back {
+    fill: none;
+    stroke: var(---danger);
+  }
+
+  .loading svg polyline#front {
+    fill: none;
+    stroke: var(--danger);
+    stroke-dasharray: 48, 144;
+    stroke-dashoffset: 192;
+    animation: dash_682 1.4s linear infinite;
+  }
+
+  @keyframes dash_682 {
+    72.5% {
+      opacity: 0;
+    }
+
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+
+}
+
+@layer utilities {
+
+  /* For testing - make your component visible to you when working on it */
+  .see {
+    @apply border-2 border-danger
+  }
+
+  /* Max width */
+  .max-width {
+    @apply max-w-[700px]
+  }
+
+  /* Shadow */
+  .shadow {
+    @apply shadow-sm shadow-[#00000050]
+  }
+
+  /* Radius */
+  .rd {
+    @apply rounded-lg
+  }
+
+  /* Text sizing */
+  .text-1 {
+    @apply text-sm;
+  }
+
+  .text-2 {
+    @apply text-lg;
+  }
+
+  .text-3 {
+    @apply text-2xl;
+  }
+
+  .title {
+    @apply font-black capitalize;
+  }
+
+  /* Animations */
+  .animate-toright {
+    animation: k-toright var(--animation-duration);
+  }
+
+  @keyframes k-toright {
+    0% {
+      transform: translate(-100%);
+      opacity: 0;
+    }
+  }
+
+  .animate-toleft {
+    animation: k-toleft var(--animation-duration);
+  }
+
+  @keyframes k-toleft {
+    0% {
+      transform: translate(100%);
+      opacity: 0;
+    }
+  }
+
+  .animate-todown {
+    animation: k-todown var(--animation-duration);
+  }
+
+  @keyframes k-todown {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+  }
+
+  .animate-totop {
+    animation: k-totop var(--animation-duration);
+  }
+
+  @keyframes k-totop {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+}

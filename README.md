@@ -1,33 +1,36 @@
-## Project Palestine
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-What is project palestine? Watch a video explanation here.
+## Getting Started
 
----
+First, run the development server:
 
-Project Palesine is an open source project to support the Palestinan people, restore our voices and show the world that even though governments could be inhumane, we the people hold the real power to shape humanity.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-Project Palestine is/will be a hub for many tools and applications to support the Palestinian cause and aid their humanitarian crisis. Right now it only has one application to assist humans who don't support the occupation in making more informed purchases from brands and companies that don't support the occupation. Here is how it works:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- You go to the store or browse online, about to buy something
-- You check Project Palestine database to see if the product or company is listed
-- If it's listed, you don't buy the product, go to the store or acquire the service
-- If it's not listed, you are good to go
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Stage 1 : Web app
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-This is the current website hosted [here](https://projectpalestine.org). The website hosts a database that is community-sourced, this means you as an individual can make a difference by researching and validating information and adding them to the database.
+## Learn More
 
-## Stage 2 (need volunteers): Mobile app
+To learn more about Next.js, take a look at the following resources:
 
-Soon you will be able to scan a bar code and get results on the fly with a mobile app. If you are an experienced React Native developer and want to assist, please join our discord server [here](https://discord.gg/4XPUxZpC).
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Stage 3 (need volunteers): Browser Extension
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-A browser extension that gets activated when you are about to make a purchase online, highlighting if the product supports the occupation or not. It also will ask you to round up on every online purchase to a support Gaza and the Palestinian people.
+## Deploy on Vercel
 
-## How can you help?
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-- If you would like to voulnteer as a researcher, designer or a developer join our discord server [here](https://discord.gg/4XPUxZpC).
-- If you are a web developer with experience in JS, you could submit pull requests with changes and bug fixes.
-- If you are a react native developer, join our server to become part of our mobile app efforts.
-- Share this application with everyone
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

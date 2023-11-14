@@ -1,28 +1,25 @@
-import "./globals.css";
-import type { Metadata } from "next";
-import { Ubuntu } from "next/font/google";
-import React from "react";
-import { ChakraProvider } from "@chakra-ui/react";
+import type { Metadata } from 'next'
+import { Ubuntu } from 'next/font/google'
+import '@/css//globals.css'
 
-const catamaran = Ubuntu({ subsets: ["latin"], weight: ["400", "500", "700", "300", "400", "500", "700"] });
+const ubuntu = Ubuntu({ subsets: ["latin"], weight: ["300", "400", "500", "700"] });
 
 export const metadata: Metadata = {
-  icons: ["/logo.svg"],
-  title: "Project Palestine",
-  description: "A way for us to boycott the occupation and it’s supporters",
-};
+  title: 'Project Palestine',
+  description: '"A way for us to boycott the occupation and it’s supporters',
+  icons: ['palestine.png']
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en">
-      <body className={catamaran.className}>
+      <body className={ubuntu.className}>
         {children}
-        {/* <ChakraProvider>{children}</ChakraProvider> */}
       </body>
     </html>
-  );
+  )
 }

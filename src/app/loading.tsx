@@ -1,12 +1,13 @@
+// Loading page
+
+// local
 import { Loader } from '@/components/modules'
 
-export default function Loading(){
+export default function Loading() {
 
     return (
-        <div className="layer full">
-            <div className="center full">
-                <Loader/>
-            </div>
+        <div className="layer-screen center">
+            <Loader type={2} />
         </div>
     )
 
