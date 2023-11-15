@@ -5,6 +5,7 @@ import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
 import '../i18n';
+import LayoutProvider from "@/components/layoutProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ChakraProvider>{children}</ChakraProvider>
+        <ChakraProvider>
+          <LayoutProvider>{children}</LayoutProvider>
+        </ChakraProvider>
       </body>
     </html>
   );

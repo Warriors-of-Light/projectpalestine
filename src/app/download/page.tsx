@@ -12,7 +12,6 @@ export default function Download() {
 
   return (
     <>
-      <Header />
       <div className="w-full min-h-screen flex flex-col justify-end items-center bg-app--light ">
         <div className="h-full w-full md:w-1/2 center flex-col xs:h-900">
           <Image
