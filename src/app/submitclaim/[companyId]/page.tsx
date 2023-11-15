@@ -133,7 +133,6 @@ export default function SubmitClaim({ params }: ISubmitClaimProps) {
 
   return (
     <main className="bg-app-light flex flex-col items-center justify-start h-full w-full gap-4">
-      <Header />
       <div className=" flex p-40">
         <form>
           <div className="space-y-12">
