@@ -151,21 +151,20 @@ const Hero = () => {
         )}
         {filteredResults.length === 0 && (
           <span className="flex justify-center text-lg mb-20">
-            {" "}
-            No Results Found{" "}
+            {t("hero.no-result-message",{ defaultValue:"No Results Found"})}
           </span>
         )}
         <div className="flex justify-center w-full">
           <Link href="/companies">
             <span className="hover:text-green-500 text-md">
-              See all companies
+              {t("hero.see-all-companies",{ defaultValue:"See all companies"})}
             </span>
           </Link>
         </div>
         <div className="flex justify-center w-full">
           <Link href={user ? "/addcompany" : "/login"}>
             <button className="app-btn bg-green-500 text-white w-40">
-              Add Company
+              {t("hero.add-company-button",{ defaultValue:"Add Company"})}
             </button>
           </Link>
         </div>

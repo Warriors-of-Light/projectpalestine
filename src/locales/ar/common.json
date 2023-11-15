@@ -1,7 +1,13 @@
 {
+  "header":{
+    
+  },
   "hero":{
     "title":"وسيلة لمقاطعة الإبادة الجماعية وداعميها",
     "search":"ابحث في المنتجات او الشركات",
-    "search-placeholder":"ابحث هنا"
-  } 
+    "search-placeholder":"ابحث هنا",
+    "add-company-button":"اضف شركه",
+    "see-all-companies":"اعرض كل الشركات",
+    "no-result-message":"لا توجد نتائج"
+  }
 }

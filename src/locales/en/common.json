@@ -1,7 +1,13 @@
 {
+  "header":{
+    
+  },
   "hero":{
     "title":"A way for us to boycott the genocide and its supporters",
     "search":"Search products or companies",
-    "search-placeholder":"Search here"
-  } 
+    "search-placeholder":"Search here",
+    "add-company-button":"Add Company",
+    "see-all-companies":"See all companies",
+    "no-result-message":"No Result Found"
+  }
 }
