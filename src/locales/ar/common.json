@@ -1,6 +1,13 @@
 {
   "header":{
-    
+    "sign-out-message": "تم تسجيل الخروج بنجاح!",
+    "logout": "تسجيل الخروج",
+    "login": "تسجيل الدخول",
+    "project-name": "مشروع فلسطين",
+    "upcoming-features":"خواص قادمه ",
+    "coming-soon":"قادم قريبا",
+    "download": "تنزيل",
+    "donate":"تبرع"
   },
   "hero":{
     "title":"وسيلة لمقاطعة الإبادة الجماعية وداعميها",

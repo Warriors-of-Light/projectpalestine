@@ -1,6 +1,13 @@
 {
   "header":{
-    
+    "sign-out-message": "Signed out Successfully!",
+    "logout": "Log Out",
+    "login": "Log in",
+    "project-name": "Project Palestine",
+    "upcoming-features":"upcoming features",
+    "coming-soon":"Coming Soon",
+    "download": "Download",
+    "donate":"Donate"
   },
   "hero":{
     "title":"A way for us to boycott the genocide and its supporters",
