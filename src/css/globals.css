@@ -19,19 +19,19 @@
     ---success: theme(colors.green.600);
   }
 
-  @media (prefers-color-scheme: light) {
+  @media (prefers-color-scheme: dark) {
     :root {
       --foreground: theme(colors.neutral.100);
       --background: theme(colors.neutral.900);
       ---background: theme(colors.neutral.800);
-      --primary: theme(colors.lime.600);
-      ---primary: theme(colors.lime.300);
-      --danger: theme(colors.red.700);
-      ---danger: theme(colors.red.300);
-      --alert: theme(colors.yellow.600);
-      ---alert: theme(colors.yellow.300);
-      --success: theme(colors.green.600);
-      ---success: theme(colors.green.300);
+      --primary: theme(colors.green.800);
+      ---primary: theme(colors.green.400);
+      --danger: theme(colors.red.800);
+      ---danger: theme(colors.red.400);
+      --alert: theme(colors.yellow.800);
+      ---alert: theme(colors.yellow.400);
+      --success: theme(colors.green.800);
+      ---success: theme(colors.green.400);
     }
   }
 
@@ -73,6 +73,10 @@
     @apply w-full h-full
   }
 
+  .full-screen {
+    @apply w-screen h-screen
+  }
+
   .layer {
     @apply absolute top-0 left-0
   }
@@ -82,11 +86,15 @@
   }
 
   .center {
-    @apply flex justify-center items-center gap-2
+    @apply flex justify-center items-center gap-4
   }
 
   .stack {
-    @apply flex flex-col gap-2
+    @apply flex flex-col items-start gap-4
+  }
+
+  .box {
+    @apply bg-top-background p-4 rounded-md shadow
   }
 
   .main {
@@ -95,32 +103,54 @@
 
   /* Buttons */
   .btn-primary {
-    @apply center w-fit cursor-pointer whitespace-nowrap rounded-full bg-primary px-4 py-2 capitalize shadow text-top-primary outline-none ring-2 ring-transparent duration-300 hover:scale-105 hover:ring-top-primary fill-top-primary stroke-top-primary;
+    @apply center full cursor-pointer whitespace-nowrap rounded-md bg-primary p-3 capitalize shadow text-top-primary outline-none ring-2 ring-transparent duration-300 hover:ring-top-primary fill-top-primary stroke-top-primary;
   }
 
   .btn-danger {
-    @apply center w-fit cursor-pointer whitespace-nowrap rounded-full bg-danger px-4 py-2 capitalize shadow text-top-danger outline-none ring-2 ring-transparent duration-300 hover:scale-105 hover:ring-top-danger fill-top-danger stroke-top-danger;
+    @apply center w-fit cursor-pointer whitespace-nowrap rounded-md bg-danger px-4 py-2 capitalize shadow text-top-danger outline-none ring-2 ring-transparent duration-300 hover:ring-top-danger fill-top-danger stroke-top-danger;
   }
 
   .btn-alert {
-    @apply center w-fit cursor-pointer whitespace-nowrap rounded-full bg-alert px-4 py-2 capitalize shadow text-top-alert outline-none ring-2 ring-transparent duration-300 hover:scale-105 hover:ring-top-alert fill-top-alert stroke-top-alert;
+    @apply center w-fit cursor-pointer whitespace-nowrap rounded-md bg-alert px-4 py-2 capitalize shadow text-top-alert outline-none ring-2 ring-transparent duration-300 hover:ring-top-alert fill-top-alert stroke-top-alert;
   }
 
   .btn-success {
-    @apply center w-fit cursor-pointer whitespace-nowrap rounded-full bg-success px-4 py-2 capitalize shadow text-top-success outline-none ring-2 ring-transparent duration-300 hover:scale-105 hover:ring-top-success fill-top-success stroke-top-success;
+    @apply center w-fit cursor-pointer whitespace-nowrap rounded-md bg-success px-4 py-2 capitalize shadow text-top-success outline-none ring-2 ring-transparent duration-300 hover:ring-top-success fill-top-success stroke-top-success;
   }
 
   /* Inputs */
   .input {
-    @apply bg-transparent full rounded-full p-6 z-0 duration-300 text-2
-    placeholder:opacity-50 placeholder:text-foreground border-none shadow
-    ring-2 ring-foreground focus:ring-primary focus:ring-4 outline-none;
+    @apply relative bg-background full rounded-md p-4 z-0 duration-300 text-2 placeholder:opacity-60 placeholder:text-foreground shadow ring-1 ring-transparent focus:ring-top-primary border-none outline-none;
+  }
+
+  .inputs-radio {
+    @apply bg-background flex rounded-md p-1
+  }
+
+  .inputs-radio .radio {
+    @apply relative
+  }
+  
+  .inputs-radio .radio input {
+    @apply hidden
+  }
+
+  .inputs-radio .radio input + div {
+    @apply p-2 rounded-md duration-300 cursor-pointer
+  }
+  
+  .inputs-radio .radio input:checked + div {
+    @apply bg-top-background
+  }
+
+  /* Select */
+  .select {
+    @apply bg-background rounded-md outline-none focus:ring-top-primary ring-transparent ring-1 full p-4
   }
 
   /* Links */
   .link {
-    @apply text-app-dark duration-200 capitalize cursor-pointer center gap-2
-    hover:underline hover:opacity-100 opacity-60;
+    @apply text-foreground duration-200 capitalize cursor-pointer center gap-2 hover:underline hover:opacity-100 opacity-60;
   }
 
   /* Line / separator */
@@ -176,7 +206,7 @@
 
   /* Shadow */
   .shadow {
-    @apply shadow-sm shadow-[#00000050]
+    @apply shadow-md shadow-[#00000050]
   }
 
   /* Radius */
@@ -202,6 +232,17 @@
   }
 
   /* Animations */
+  .animate-appear {
+    animation: k-appear 1;
+  }
+
+  @keyframes k-appear {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+  }
+
   .animate-toright {
     animation: k-toright var(--animation-duration);
   }
@@ -244,5 +285,19 @@
       transform: translateY(100%);
       opacity: 0;
     }
+  }
+
+  /* pattern */
+  .pattern-atoms {
+    --s: 60px;
+    --c1: var(--background);
+    --c2: #00000015;
+    --_g: radial-gradient(25% 25% at 25% 25%,
+        var(--c1) 99%,
+        rgba(0, 0, 0, 0) 101%);
+    background: var(--_g) var(--s) var(--s) / calc(2 * var(--s)) calc(2 * var(--s)),
+      var(--_g) 0 0 / calc(2 * var(--s)) calc(2 * var(--s)),
+      radial-gradient(50% 50%, var(--c2) 98%, rgba(0, 0, 0, 0)) 0 0 / var(--s) var(--s),
+      repeating-conic-gradient(var(--c2) 0 50%, var(--c1) 0 100%) calc(0.5 * var(--s)) 0 / calc(2 * var(--s)) var(--s);
   }
 }

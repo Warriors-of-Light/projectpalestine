@@ -1,7 +1,7 @@
 // Loading page
 
 // local
-import { Loader } from '@/components/modules'
+import { Loader } from '@/app/_lib/modules'
 
 export default function Loading() {
 

@@ -17,6 +17,7 @@ import {
     BiDonateHeart,
     BiDownload,
     BiPlus,
+    BiRefresh,
     BiSolidContact,
 } from "react-icons/bi";
 import { BsDiscord } from "react-icons/bs";
@@ -24,6 +25,7 @@ import { RiSendPlaneFill } from "react-icons/ri";
 import { AiFillGithub, AiOutlineCheckCircle } from "react-icons/ai";
 import { GrReturn } from "react-icons/gr";
 import { BiLogIn, BiLogOut } from "react-icons/bi";
+import { FaIndustry } from "react-icons/fa6";
 
 export function Icon({
     type = "",
@@ -36,6 +38,10 @@ export function Icon({
 }) {
 
     switch (type) {
+        case "company":
+            return <FaIndustry className={style} size={size} />;
+        case "refresh":
+            return <BiRefresh className={style} size={size} />;
         case "add":
             return <BiPlus className={style} size={size} />;
         case "clock":

@@ -7,13 +7,12 @@ import Image from "next/image"
 import Link from "next/link"
 
 // local
-import { Icon } from "@/components/modules"
+import { Icon } from "@/app/_lib/modules"
 
 export function Header() {
     return (
         <header
-            className={`animate-toleft bg-top-background
-            shadow md:rounded-full md:mt-4 w-full sticky top-0
+            className={`animate-toleft bg-top-background shadow w-full sticky top-0
             flex items-center justify-between p-4 overflow-hidden z-20`}
         >
             <Logo />
@@ -67,7 +66,7 @@ function SmallScreenLinks({ user }: { user: boolean }) {
     const [menu, setMenu] = useState(false)
     return (
         <div className="center md:hidden">
-            <button className="btn-primary" onClick={() => setMenu(state => !state)}>
+            <button className="btn-primary p-2" onClick={() => setMenu(state => !state)}>
                 <Icon type={menu ? 'close' : 'menu'} />
             </button>
             {

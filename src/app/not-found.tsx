@@ -2,9 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-// local
-import { Icon } from "@/components/modules";
-
 export default function NotFound() {
     return (
         <main className="layer-screen flex flex-col md:flex-row items-center justify-center gap-4 p-4">
@@ -12,7 +9,6 @@ export default function NotFound() {
                 <div className="text-3 title">This Page is Not Found</div>
                 <div className="">Could not find this page. Click below to go back home.</div>
                 <Link className="btn-primary" href={'/'}>
-                    <Icon type="return"/>
                     <span>go back home</span>
                 </Link>
             </div>

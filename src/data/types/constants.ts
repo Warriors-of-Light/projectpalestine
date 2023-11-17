@@ -1,21 +1,21 @@
-export type Incident = {
+export type INCIDENT_TYPE = {
   id: string;
   title: string;
   description: string;
   date: string;
-  rating: string;
+  rating: 1 | 2 | 3;
   websites: Array<string>;
 };
 
-export type Company = {
+export type COMPANY_TYPE = {
   id: string;
   logo: string;
   name: string;
   description: string;
-  status: 1 | 2 | 3;
-  website?:string;
-  tags?: Array<string>;
-  incidents: Array<Incident>;
+  rating: 1 | 2 | 3;
+  website: string;
+  tags: Array<string>;
+  incidents?: Array<INCIDENT_TYPE>;
 };
 
 // export type User = UserCredential & {
@@ -45,18 +45,18 @@ export type Company = {
 //   },
 // ];
 
-// export const Tags = {
-//   Technology: "Technology",
-//   Automotive: "Automotive",
-//   Pharmaceuticals: "Pharmaceuticals",
-//   Cosmetics: "Cosmetics",
-//   FoodAndBeverages: "Food and Beverages",
-//   Entertainment: "Entertainment",
-//   FashionAndApparel: "Fashion and Apparel",
-//   FinanceAndBanking: "Finance and Banking",
-//   Retail: "Retail",
-//   Telecommunications: "Telecommunications",
-//   TravelAndHospitality: "Travel and Hospitality",
-//   SportsAndFitness: "Sports and Fitness",
-//   Other: "Other",
-// };
+export const TAGS = [
+  { tag: 'Technology', name: "Technology" },
+  { tag: 'Automotive', name: "Automotive" },
+  { tag: 'Pharmaceuticals', name: "Pharmaceuticals" },
+  { tag: 'Cosmetics', name: "Cosmetics" },
+  { tag: 'FoodAndBeverages', name: "Food and Beverages" },
+  { tag: 'Entertainment', name: "Entertainment" },
+  { tag: 'FashionAndApparel', name: "Fashion and Apparel" },
+  { tag: 'FinanceAndBanking', name: "Finance and Banking" },
+  { tag: 'Retail', name: "Retail" },
+  { tag: 'Telecommunications', name: "Telecommunications" },
+  { tag: 'TravelAndHospitality', name: "Travel and Hospitality" },
+  { tag: 'SportsAndFitness', name: "Sports and Fitness" },
+  { tag: 'Other', name: "Other" },
+]

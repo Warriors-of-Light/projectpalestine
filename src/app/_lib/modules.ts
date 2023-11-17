@@ -8,5 +8,5 @@ export { Hero } from './hero'
 // common components
 export { Icon } from './common/icon'
 export { Loader } from './common/loader'
-export { Status } from './common/status'
+export { Rating } from './common/rating'
 export { CompanyCard } from './common/companyCard'

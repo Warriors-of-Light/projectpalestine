@@ -2,7 +2,7 @@
 
 'use client'
 
-import { CompanyCard, Icon, Loader } from "@/components/modules"
+import { CompanyCard, Icon, Loader } from "@/app/_lib/modules"
 import { Company } from "@/data/modules"
 
 export function Hero() {
