@@ -15,6 +15,26 @@
     "contribute":"ساهم معنا",
     "join-discord":"سيرفر الديسكورد"
   },
+  "login":{
+    "email": "البريد الإلكتروني",
+    "email-placeholder": "free@palestine.com",
+    "password": "كلمة المرور",
+    "password-placeholder": "كلمة المرور",
+    "confirm-password": "تأكيد كلمة المرور",
+    "login-button": "تسجيل الدخول",
+    "forgot-password": "هل نسيت كلمة المرور؟",
+    "or": "أو",
+    "no-account": "ليس لديك حساب؟",
+    "already-account": "هل أنت بالفعل عضو؟",
+    "sign-up": " تسجيل حساب",
+    "sign-in": "تسجيل الدخول",
+    "password-mismatch": "عدم تطابق كلمة المرور",
+    "sign-up-failed": "فشل التسجيل",
+    "sign-up-success": "تم التسجيل بنجاح!",
+    "sign-in-failed": "فشل تسجيل الدخول",
+    "sign-in-success": "تم تسجيل الدخول بنجاح",
+    "display-name": "الإسم"
+  },
   "hero":{
     "title":"وسيلة لمقاطعة الإبادة الجماعية وداعميها",
     "search":"ابحث في المنتجات او الشركات",
@@ -22,5 +42,23 @@
     "add-company-button":"اضف شركه",
     "see-all-companies":"اعرض كل الشركات",
     "no-result-message":"لا توجد نتائج"
+  },
+  "upcoming-feature":{
+    "volunteer-button":"تطوع",
+    
+    "feature-1-title":"تطبيق هاتف بخاصيه سكان للباركود",
+    "feature-1-desc":"تطبيق لمساعدتك في القيام بعمليات شراء دون دعم الاحتلال",
+
+    "feature-2-title":"إضافه متصفح كروم للتبرع",
+    "feature-2-desc":"اضافه لمتصفح كروم لتجميع التبرعات لغزة وفلسطين.",
+
+    "feature-3-title":"بحث عن تظاهرات قريبه ",
+    "feature-3-desc":"أداة لمساعدتك في العثور على تظاهرات قريبة.",
+
+    "feature-4-title":"صفحه الشهداء",
+    "feature-4-desc":"صفحة لتكريم أولئك الذين توفوا في غزة، ومشاركة قصصهم، ومقاطع الفيديو، والصور، وأحلامهم.",
+
+    "feature-5-title":"تحقق من صحه الأخبار",
+    "feature-5-desc":"أداة لفحص صحة الأخبار، تصنيف الأخبار الزائفة، ومنع انتشار البروباجاندا."
   }
 }

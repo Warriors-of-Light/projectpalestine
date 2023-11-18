@@ -15,6 +15,26 @@
     "contribute":"Contribute with us",
     "join-discord":"Join our discord"
   },
+  "login":{
+    "email":"Email Address",
+    "email-placeholder":"free@palestine.com",
+    "password":"Password",
+    "password-placeholder":"Password",
+    "confirm-password":"Confirm Password",
+    "login-button":"Login",
+    "forgot-password":"Forgot password?",
+    "or":"Or",
+    "no-account":"Not a member?",
+    "already-account":"Already a member?",
+    "sign-up":"Sign up",
+    "sign-in":"Sign in",
+    "password-mismatch":"password mismatch",
+    "sign-up-failed":"Sign up failed",
+    "sign-up-success":"Sign up successful!",
+    "sign-in-failed":"Sign in failed",
+    "sign-in-success":"Sign in success",
+    "display-name":"Display Name"
+  },
   "hero":{
     "title":"A way for us to boycott the genocide and its supporters",
     "search":"Search products or companies",
