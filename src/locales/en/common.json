@@ -64,5 +64,8 @@
   "download":{
     "coming-soon":"Coming Soon"
   },
+  "donate":{
+    "coming-soon":"Coming Soon",
+    "back-to-home":"Back to home"
   }
 }

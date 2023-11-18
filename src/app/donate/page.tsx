@@ -2,9 +2,11 @@
 import Header from "@/components/common/header";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 export default function Donate() {
   const router = useRouter();
+  const { t } = useTranslation();
   return (
     <>
       <main className="relative isolate min-h-screen">
@@ -15,7 +17,7 @@ export default function Donate() {
         />
         <div className="mx-auto max-w-7xl px-6 py-32 text-center sm:py-40 lg:px-8">
           <h1 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl">
-            Coming soon
+          {t("donate.coming-soon", { defaultValue:"Coming Soon" })}
           </h1>
           <div className="mt-10 flex justify-center">
             <a
@@ -23,7 +25,7 @@ export default function Donate() {
               onClick={() => router.push("/")}
               className="font-semibold leading-7 text-white text-3xl"
             >
-              <span aria-hidden="true">&larr;</span> Back to home
+              <span aria-hidden="true">&larr;</span> {t("donate.back-to-home", { defaultValue:"Back to home" })}
             </a>
           </div>
         </div>

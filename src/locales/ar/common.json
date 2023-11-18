@@ -64,5 +64,8 @@
   "download":{
     "coming-soon":"قادم قريبا"
   },
+  "donate":{
+    "coming-soon":"قادم قريبا",
+    "back-to-home":"رجوع إلي الصفحه الرئيسيه"
   }
 }
