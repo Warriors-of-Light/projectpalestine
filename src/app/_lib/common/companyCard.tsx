@@ -2,17 +2,17 @@
 
 "use client";
 
-import { useMemo } from "react"
+import { useMemo, memo } from "react"
 import { useRouter } from "next/navigation"
 import { COMPANY_TYPE } from "@/data/modules"
-import { Icon, Rating } from "@/app/_lib/modules"
+import { Rating } from "@/app/_lib/modules"
 
-export function CompanyCard({ company }: { company: COMPANY_TYPE }) {
+function CompanyCard({ company }: { company: COMPANY_TYPE }) {
 
     // Initialize
     const router = useRouter()
     const defaultLogo = 'https://cdn0.iconfinder.com/data/icons/phosphor-fill-vol-4/256/placeholder-fill-64.png'
-    const { _id, logo, name, description, rating } = company
+    const { _id, logo, name, description, rating } = useMemo(() => company, [company])
     const cardColors = useMemo(() => {
         return [
             "bg-danger text-t-danger ring-t-danger",
@@ -36,8 +36,12 @@ export function CompanyCard({ company }: { company: COMPANY_TYPE }) {
 
             {/* Name And Description */}
             <div className="col-span-8 flex flex-col items-start">
-                <span className="text-3 title">{name}</span>
-                <span className="text-1 capitalize">{description}</span>
+                <span className="text-3 title">
+                    {name}
+                </span>
+                <span className="text-1 truncate w-1/2 first-letter:uppercase lowercase">
+                    {description}
+                </span>
             </div>
 
             {/* Rating */}
@@ -51,4 +55,4 @@ export function CompanyCard({ company }: { company: COMPANY_TYPE }) {
 
 }
 
-export default CompanyCard;
+export default memo(CompanyCard)

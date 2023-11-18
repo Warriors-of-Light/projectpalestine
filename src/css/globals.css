@@ -19,7 +19,7 @@
     --t-success: theme(colors.green.600);
   }
 
-  @media (prefers-color-scheme: -dark) {
+  @media (prefers-color-scheme: dark) {
     :root {
       --foreground: theme(colors.neutral.200);
       --background: theme(colors.neutral.900);
@@ -36,8 +36,8 @@
   }
 
   html {
-    --duration: 0.6s;
-    --duration-long: 1.6s;
+    --duration: 0.5s;
+    --duration-long: 1s;
   }
 
   * {
@@ -103,7 +103,7 @@
   }
 
   .box {
-    @apply bg-t-background full p-4
+    @apply bg-t-background full padding
   }
 
   .main {

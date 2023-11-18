@@ -2,7 +2,7 @@
 
 'use client'
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, memo } from "react"
 import { COMPANY_TYPE } from "@/data/modules"
 import { CompanyCard, Icon, Loader, Rating } from "@/app/_lib/modules"
 
@@ -14,6 +14,7 @@ export default function Admin() {
         data: []
     })
     const [form, setForm] = useState(false)
+    const [filter, setFilter] = useState('')
     useEffect(() => fetchCompanies(), [])
 
     // Functions //
@@ -28,11 +29,11 @@ export default function Admin() {
 
         <div className="full stack gap padding max-width">
             <Label fetchCompanies={fetchCompanies} />
-            <SearchBar openForm={() => setForm(true)} />
+            <SearchBar form={form} openForm={() => setForm(true)} setFilter={(filter: string) => setFilter(filter)} />
             {
                 form
                     ? <Form fetchCompanies={fetchCompanies} cencelForm={() => setForm(false)} />
-                    : <CompaniesList companies={companies} />
+                    : <CompaniesList companies={companies} filter={filter} />
             }
         </div>
 
@@ -49,11 +50,20 @@ function Label({ fetchCompanies }: { fetchCompanies: () => void }) {
     )
 }
 
-function SearchBar({ openForm }: { openForm: () => void }) {
+function SearchBar({
+    form,
+    openForm,
+    setFilter
+}: {
+    form: boolean,
+    openForm: () => void,
+    setFilter: (filter: string) => void
+}) {
     return (
-        <div className="box center gap">
+        <div className={`box center gap overflow-hidden duration-500 ${form ? '-mt-24 scale-0 opacity-0' : ''}`}>
             <input
                 className="input"
+                onChange={(e) => setFilter(e.target.value)}
                 placeholder="search for company..."
             />
             <button className="btn" onClick={openForm}>
@@ -63,25 +73,45 @@ function SearchBar({ openForm }: { openForm: () => void }) {
     )
 }
 
-function CompaniesList({ companies }: { companies: { loading: boolean, data: COMPANY_TYPE[] } }) {
+function CompaniesList({
+    companies,
+    filter
+}: {
+    companies: { loading: boolean, data: COMPANY_TYPE[] }
+    filter: string
+}) {
 
+    // Loading
     if (companies.loading) return (
         <div className="box min-h-[300px] center">
             <Loader />
         </div>
     )
+
+    // No company is found
     if (!companies.data.length) return (
         <div className="box min-h-[300px] center">
             <div className="title text-t-primary">No company is found :(</div>
         </div>
     )
 
+    // Compnies list
     return (
         <div className="box stack gap overflow-hidden min-h-[300px]">
             {
-                companies.data.map((company: COMPANY_TYPE) => {
-                    return <CompanyCard key={Math.random()} company={company} />
-                })
+                filter
+                    ? companies.data.map((company: COMPANY_TYPE) => {
+                        if (
+                            company.name.toLowerCase().includes(filter.toLowerCase())
+                            ||
+                            company.description.toLowerCase().includes(filter.toLowerCase())
+                        ) {
+                            return <CompanyCard key={Math.random()} company={company} />
+                        }
+                    })
+                    : companies.data.map((company: COMPANY_TYPE) => {
+                        return <CompanyCard key={Math.random()} company={company} />
+                    })
             }
         </div>
     )
@@ -157,7 +187,7 @@ function Form({ fetchCompanies, cencelForm }: { fetchCompanies: () => void, cenc
                                 />
                             )
                         })
-                        : <div className="full absolute center"><Loader/></div>
+                        : <div className="full absolute center"><Loader /></div>
                 }
             </div>
         )
@@ -166,15 +196,16 @@ function Form({ fetchCompanies, cencelForm }: { fetchCompanies: () => void, cenc
 
     return (
 
-        <form className="box stack gap" onSubmit={addCompany}>
+        <form className="box stack gap animate-totop" onSubmit={addCompany}>
 
-            <div className="full sm:stack md:flex-row gap">
+            <div className="full flex flex-col md:flex-row gap">
 
                 {/* Logo */}
                 <div className="full relative">
                     <input
                         className="input peer"
                         onChange={(e) => setLogo(e.target.value)}
+                        onFocus={() => setLogo('')}
                         value={logo}
                         type="url"
                         placeholder="search logo or past link here"
@@ -219,7 +250,7 @@ function Form({ fetchCompanies, cencelForm }: { fetchCompanies: () => void, cenc
                 required
             ></textarea>
 
-            <div className="flex flex-col gap-4 md:flex-row md:items-center full">
+            <div className="flex flex-col gap md:flex-row md:items-center full">
                 {/* Website */}
                 <input
                     className="input"
@@ -246,7 +277,7 @@ function Form({ fetchCompanies, cencelForm }: { fetchCompanies: () => void, cenc
                 </select>
             </div>
 
-            <div className="flex flex-col gap-4 md:flex-row md:items-center full">
+            <div className="center gap">
                 <button className="btn-primary" type='submit'>
                     {loading ? <Loader /> : <span>add</span>}
                 </button>
