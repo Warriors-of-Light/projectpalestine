@@ -79,7 +79,9 @@ function CompaniesList({ companies }: { companies: { loading: boolean, data: COM
     return (
         <div className="box stack gap overflow-hidden min-h-[300px]">
             {
-                companies.data.map((company: COMPANY_TYPE) => <CompanyCard key={Math.random()} company={company} />)
+                companies.data.map((company: COMPANY_TYPE) => {
+                    return <CompanyCard key={Math.random()} company={company} />
+                })
             }
         </div>
     )
@@ -90,16 +92,14 @@ function Form({ fetchCompanies, cencelForm }: { fetchCompanies: () => void, cenc
     // Initialize //
     const [loading, setLoading] = useState(false)
     const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [rating, setRating] = useState<0 | 1 | 2 | 3>(0);
+    const [description, setDescription] = useState('')
+    const [rating, setRating] = useState<0 | 1 | 2 | 3>(0)
     const [logo, setLogo] = useState('');
-    const [website, setWebsite] = useState('');
-    const [tags, setTags] = useState('Other');
+    const [website, setWebsite] = useState('')
+    const [tags, setTags] = useState('Other')
     const [icons, setIcons] = useState<{ src: string, width: number, height: number }[]>([])
 
-    useEffect(() => {
-        getIcons(logo)
-    }, [logo])
+    useEffect(() => getIcons(logo), [logo])
 
     // Functions //
     const addCompany = (e: any) => {
@@ -145,19 +145,19 @@ function Form({ fetchCompanies, cencelForm }: { fetchCompanies: () => void, cenc
             >
                 {
                     icons.length
-                    ? icons.map((icon, index) => {
-                        return (
-                            <img
-                                key={Math.random()}
-                                src={icon.src}
-                                width={icon.width}
-                                height={icon.height}
-                                className="bg-t-background cursor-pointer"
-                                onMouseDown={(e) => setLogo(icon.src)}
-                            />
-                        )
-                    })
-                    : <div className="full absolute center">Searching</div>
+                        ? icons.map(icon => {
+                            return (
+                                <img
+                                    key={Math.random()}
+                                    src={icon.src}
+                                    width={icon.width}
+                                    height={icon.height}
+                                    className="bg-t-background cursor-pointer"
+                                    onMouseDown={() => setLogo(icon.src)}
+                                />
+                            )
+                        })
+                        : <div className="full absolute center"><Loader/></div>
                 }
             </div>
         )
@@ -170,58 +170,65 @@ function Form({ fetchCompanies, cencelForm }: { fetchCompanies: () => void, cenc
 
             <div className="full sm:stack md:flex-row gap">
 
-                <input
-                    onChange={(e) => setName(e.target.value)}
-                    className="input"
-                    type="text"
-                    placeholder="name"
-                    required
-                />
-                
                 {/* Logo */}
                 <div className="full relative">
                     <input
+                        className="input peer"
                         onChange={(e) => setLogo(e.target.value)}
                         value={logo}
-                        className="input peer"
                         type="url"
                         placeholder="search logo or past link here"
                     />
                     {<IconsMenu />}
                 </div>
 
+                {/* Name */}
+                <input
+                    className="input"
+                    onChange={(e) => setName(e.target.value)}
+                    value={name}
+                    type="text"
+                    placeholder="name"
+                    required
+                />
+
+                {/* Rating */}
                 <div className="inputs-radio">
                     <label className="radio">
-                        <input type="radio" name="radio" onChange={(e) => setRating(1)} />
+                        <input type="radio" name="radio" onChange={() => setRating(1)} />
                         <Rating rating={1} />
                     </label>
                     <label className="radio">
-                        <input type="radio" name="radio" onChange={(e) => setRating(2)} />
+                        <input type="radio" name="radio" onChange={() => setRating(2)} />
                         <Rating rating={2} />
                     </label>
 
                     <label className="radio">
-                        <input type="radio" name="radio" onChange={(e) => setRating(3)} />
+                        <input type="radio" name="radio" onChange={() => setRating(3)} />
                         <Rating rating={3} />
                     </label>
                 </div>
 
             </div>
 
-            <input
+            <textarea
+                className="input resize-none"
                 onChange={(e) => setDescription(e.target.value)}
-                className="input"
-                type="text"
+                value={description}
                 placeholder="description"
                 required
-            />
+            ></textarea>
 
             <div className="flex flex-col gap-4 md:flex-row md:items-center full">
+                {/* Website */}
                 <input
-                    onChange={(e) => setWebsite(e.target.value)}
                     className="input"
+                    onChange={(e) => setWebsite(e.target.value)}
+                    value={website}
                     type="url"
-                    placeholder="website" />
+                    placeholder="website"
+                />
+                {/* Tags */}
                 <select className="select" onChange={(e) => setTags(e.target.value)}>
                     <option value="Technology">Technology</option>
                     <option value="Automotive">Automotive</option>

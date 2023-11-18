@@ -27,7 +27,7 @@ async function searchIcon(query: string) {
         }
     }
     
-    const response = await fetch(`https://api.iconfinder.com/v4/icons/search?query=${query}&count=20`, options)
+    const response = await fetch(`https://api.iconfinder.com/v4/icons/search?query=${query}&count=24`, options)
         .then(res => res.json())
 
     const cleanData = response.icons.map((icon: any) => {

@@ -1,7 +1,6 @@
 // modules manager
 
 // components
-export { Background } from './background'
 export { Header } from './header'
 export { Hero } from './hero'
 

@@ -5,8 +5,17 @@ import { company, COMPANY_TYPE } from "@/data/modules"
 // GET
 export async function GET(request: NextRequest) {
     try {
-        const data = await getCompanies()
-        return NextResponse.json({ data })
+
+        const { searchParams } = new URL(request.url)
+
+        if(searchParams.get('id')) {
+            const data = await getCompany(searchParams.get('id') || '')
+            return NextResponse.json({ data })
+        } else {
+            const data = await getCompanies()
+            return NextResponse.json({ data })
+        }
+        
     } catch (e) {
         console.log('[Error]', e)
         NextResponse.json({ message: 'Error' })
@@ -17,6 +26,12 @@ export async function GET(request: NextRequest) {
 async function getCompanies() {
     await connectToDatabase()
     return await company.find({})
+}
+
+// Get company
+async function getCompany(id: string) {
+    await connectToDatabase()
+    return await company.findOne({'_id' : id})
 }
 
 // Post

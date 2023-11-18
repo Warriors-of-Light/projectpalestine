@@ -3,18 +3,18 @@ export function Loader({ type = 1 }: { type?: 1 | 2 }) {
     switch (type) {
         case 1:
             return (
-                <div className="full center">
+                <div className="full center gap">
                     <div
-                        className={`rounded-full shadow bg-t-primary animate-ping`}
-                        style={{ width: 15, height: 15 }}
+                        className={`bg-foreground rounded-full shadow animate-ping`}
+                        style={{ width: 10, height: 10 }}
                     ></div>
                     <div
-                        className={`rounded-full shadow bg-t-primary animate-ping [animation-delay:.3s]`}
-                        style={{ width: 15, height: 15 }}
+                        className={`bg-foreground rounded-full shadow animate-ping [animation-delay:.25s]`}
+                        style={{ width: 10, height: 10 }}
                     ></div>
                     <div
-                        className={`rounded-full shadow bg-t-primary animate-ping [animation-delay:.5s]`}
-                        style={{ width: 15, height: 15 }}
+                        className={`bg-foreground rounded-full shadow animate-ping [animation-delay:.5s]`}
+                        style={{ width: 10, height: 10 }}
                     ></div>
                 </div>
             )
