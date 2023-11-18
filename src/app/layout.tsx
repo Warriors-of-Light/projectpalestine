@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { Ubuntu } from 'next/font/google'
-import '@/css//globals.css'
+import { Livvic } from 'next/font/google'
+import '@/css/globals.css'
 
-const ubuntu = Ubuntu({ subsets: ["latin"], weight: ["300", "400", "500", "700"] });
+const livvic = Livvic({ subsets: ["latin"], weight: ["300", "700"] });
 
 export const metadata: Metadata = {
   title: 'Project Palestine',
@@ -17,8 +17,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={ubuntu.className}>
-        {children}
+      <body className={livvic.className}>
+        <main className='main'>{children}</main>
       </body>
     </html>
   )

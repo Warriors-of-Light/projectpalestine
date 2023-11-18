@@ -16,9 +16,9 @@ export function CompanyCard({ company }: { company: COMPANY_TYPE }) {
     const { id, logo, name, description, rating } = company;
     const cardColors = useMemo(() => {
         return [
-            "bg-danger text-top-danger ring-top-danger",
-            "bg-alert text-top-alert ring-top-alert",
-            "bg-success text-top-success ring-top-success",
+            "bg-danger text-t-danger ring-t-danger",
+            "bg-alert text-t-alert ring-t-alert",
+            "bg-success text-t-success ring-t-success",
         ][rating - 1]
     }, [rating])
 
@@ -32,9 +32,9 @@ export function CompanyCard({ company }: { company: COMPANY_TYPE }) {
             <div className="col-span-2 center">
                 {
                     logo
-                        ? <img src={logo} width={100} height={100} alt={"logo"} />
-                        : <div className="center w-[100px] h-[100px] bg-background rounded-full">
-                            <Icon type="company" size={30} />
+                        ? <img src={logo} width={64} height={64} alt={"logo"} />
+                        : <div className="center w-[64px] h-[64px]">
+                            <Icon type="company" size={50} />
                         </div>
                 }
             </div>

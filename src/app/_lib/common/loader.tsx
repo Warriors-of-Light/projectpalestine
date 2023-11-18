@@ -5,15 +5,15 @@ export function Loader({ type = 1 }: { type?: 1 | 2 }) {
             return (
                 <div className="full center">
                     <div
-                        className={`rounded-full shadow bg-top-primary animate-bounce`}
+                        className={`rounded-full shadow bg-t-primary animate-ping`}
                         style={{ width: 15, height: 15 }}
                     ></div>
                     <div
-                        className={`rounded-full shadow bg-top-primary animate-bounce [animation-delay:-.3s]`}
+                        className={`rounded-full shadow bg-t-primary animate-ping [animation-delay:.3s]`}
                         style={{ width: 15, height: 15 }}
                     ></div>
                     <div
-                        className={`rounded-full shadow bg-top-primary animate-bounce [animation-delay:-.5s]`}
+                        className={`rounded-full shadow bg-t-primary animate-ping [animation-delay:.5s]`}
                         style={{ width: 15, height: 15 }}
                     ></div>
                 </div>
