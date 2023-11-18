@@ -60,5 +60,9 @@
 
     "feature-5-title":"News Validity Checker",
     "feature-5-desc":"A tool to check the validity of news, categorize false ones and prevent the spread of propaganda."
+  },
+  "download":{
+    "coming-soon":"Coming Soon"
+  },
   }
 }
