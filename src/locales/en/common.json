@@ -22,5 +22,23 @@
     "add-company-button":"Add Company",
     "see-all-companies":"See all companies",
     "no-result-message":"No Result Found"
+  },
+  "upcoming-feature":{
+    "volunteer-button":"Volunteer",
+    
+    "feature-1-title":"Mobile app with barcode scanner",
+    "feature-1-desc":"An app to help you make purchases without supporting the occupation",
+
+    "feature-2-title":"Donation Extension",
+    "feature-2-desc":"A chrome extension to round up donations to Gaza and Palestine.",
+
+    "feature-3-title":"Demonstration Finder",
+    "feature-3-desc":"A tool to help you find demonstrations nearby.",
+
+    "feature-4-title":"Martyer Honor Page",
+    "feature-4-desc":"A page to honor those who died in Gaza, sharing their stories, videos, pictures and dreams.",
+
+    "feature-5-title":"News Validity Checker",
+    "feature-5-desc":"A tool to check the validity of news, categorize false ones and prevent the spread of propaganda."
   }
 }
