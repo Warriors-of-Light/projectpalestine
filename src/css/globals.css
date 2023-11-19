@@ -116,11 +116,11 @@
 
   /* Buttons */
   .btn {
-    @apply bg-background center gap w-fit cursor-pointer whitespace-nowrap rd shadow p-4 capitalize outline-none ring-2 ring-transparent hover:ring-foreground duration stroke-foreground;
+    @apply bg-background center gap w-fit cursor-pointer whitespace-nowrap rd shadow px-4 py-2  capitalize outline-none ring-2 ring-transparent hover:ring-foreground duration stroke-foreground;
   }
 
   .btn-primary {
-    @apply bg-primary text-t-primary center gap w-fit cursor-pointer whitespace-nowrap rd shadow p-4 capitalize outline-none ring-2 ring-transparent hover:ring-t-primary duration fill-t-primary stroke-t-primary;
+    @apply bg-primary text-t-primary center gap w-fit cursor-pointer whitespace-nowrap rd shadow px-4 py-2 capitalize outline-none ring-2 ring-transparent hover:ring-t-primary duration fill-t-primary stroke-t-primary;
   }
 
   /* Inputs */

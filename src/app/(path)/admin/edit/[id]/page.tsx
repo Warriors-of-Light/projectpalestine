@@ -5,13 +5,15 @@
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { COMPANY_TYPE } from "@/data/modules"
-import { CompanyCard, Icon, Loader, Rating, } from "@/app/_lib/modules"
+import { CompanyCard, Icon, Loader, Rating, Message } from "@/app/_lib/modules"
 
 export default function Edit({ params }: { params: { id: string } }) {
 
     // Initialize //
+    const [message, setMessage] = useState<{type: 'danger' | 'alert' | 'success',message: string} | null>(null)
     const [icons, setIcons] = useState<{ src: string, width: number, height: number }[]>([])
     const [loading, setLoading] = useState(true)
+    const [fetching, setFetching] = useState(false)
     const [name, setName] = useState('');
     const [description, setDescription] = useState('')
     const [rating, setRating] = useState<1 | 2 | 3>(3)
@@ -31,7 +33,6 @@ export default function Edit({ params }: { params: { id: string } }) {
                 setLogo(res.data.logo)
                 setWebsite(res.data.website)
                 setTags(res.data.tags[0])
-                console.log(res.data.tags[0])
                 setLoading(false)
             })
 
@@ -39,20 +40,15 @@ export default function Edit({ params }: { params: { id: string } }) {
     useEffect(() => getIcons(logo), [logo])
 
     // Functions //
-    const clearForm = () => {
-        setName('')
-        setDescription('')
-        setRating(3)
-        setLogo('')
-        setWebsite('')
-        setTags('Other')
-    }
-    const addCompany = (e: any) => {
+    const updateCompany = (e: any) => {
 
         e.preventDefault()
         if (!name || !rating || !description || !tags) return
-        const data = { name, rating, description, logo, website, tags }
-        setLoading(true)
+        const data = {
+            action: 'edit',
+            companyData: { _id: params.id, name, rating, description, logo, website, tags }
+        }
+        setFetching(true)
         fetch('/api/data', {
             method: 'POST',
             headers: {
@@ -63,8 +59,16 @@ export default function Edit({ params }: { params: { id: string } }) {
             .then(res => res.json())
             .then(res => {
                 if (res.status) {
-                    setLoading(false)
-                    clearForm()
+                    setFetching(false)
+                    setMessage({
+                        type: 'success',
+                        message: 'Company is updated.'
+                    })
+                } else {
+                    setMessage({
+                        type: 'alert',
+                        message: 'Something went wrong! try again.'
+                    })
                 }
             })
 
@@ -106,12 +110,11 @@ export default function Edit({ params }: { params: { id: string } }) {
 
     }
 
-    if (loading) return <div className="layer full-screen"><Loader /></div>
-
-    return (
+    return !loading ? (
         <>
+            <Message message={message} closeMessage={() => setMessage(null)}/>
             <CompanyCard company={companyPreview} />
-            <form className="box stack gap animate-toright" onSubmit={addCompany}>
+            <form className="box stack gap animate-totop" onSubmit={updateCompany}>
 
                 <div className="full flex flex-col md:flex-row gap">
 
@@ -211,12 +214,12 @@ export default function Edit({ params }: { params: { id: string } }) {
                         <span>go back</span>
                     </Link>
                     <button className="btn-primary" type='submit'>
-                        {loading ? <Loader /> : <><Icon type="refresh" /><span>Update</span></>}
+                        {fetching ? <Loader /> : <><Icon type="refresh" /><span>Update</span></>}
                     </button>
                 </div>
 
             </form>
         </>
-    )
+    ) : <div className="box w-full min-h-[300px] center"><Loader /></div>
 
 }

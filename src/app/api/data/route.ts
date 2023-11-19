@@ -37,9 +37,14 @@ async function getCompany(id: string) {
 // Post
 export async function POST(request: NextRequest) {
     try {
-        const data: COMPANY_TYPE = await request.json()
-        await addCompany(data)
-        return NextResponse.json({ status: true })
+        const {action, companyData}: {action: string, companyData: COMPANY_TYPE} = await request.json()
+        if(action === 'add') {
+            await addCompany(companyData)
+            return NextResponse.json({ status: true })
+        } else if(action === 'edit') {
+            await editCompany(companyData)
+            return NextResponse.json({ status: true })
+        } else return NextResponse.json({ status: false })
     } catch (e) {
         console.log('[Error]', e)
         NextResponse.json({ status: false })
@@ -47,10 +52,16 @@ export async function POST(request: NextRequest) {
 }
 
 // Add company
-async function addCompany(data: COMPANY_TYPE) {
+async function addCompany(companyData: COMPANY_TYPE) {
     await connectToDatabase()
-    const newCompany = new company(data)
+    const newCompany = new company(companyData)
     await newCompany.save()
+    return true
+}
+
+async function editCompany(companyData: COMPANY_TYPE) {
+    await connectToDatabase()
+    await company.findByIdAndUpdate({'_id': companyData._id}, companyData)
     return true
 }
 

@@ -10,9 +10,9 @@ import { Icon, Loader, Rating, CompanyCard, Message } from "@/app/_lib/modules"
 export default function Add() {
 
     // Initialize //
-    const [message, setMessage] = useState('')
+    const [message, setMessage] = useState<{type: 'danger' | 'alert' | 'success',message: string} | null>(null)
     const [icons, setIcons] = useState<{ src: string, width: number, height: number }[]>([])
-    const [loading, setLoading] = useState(false)
+    const [fetching, setFetching] = useState(false)
     const [name, setName] = useState('');
     const [description, setDescription] = useState('')
     const [rating, setRating] = useState<1 | 2 | 3>(3)
@@ -36,8 +36,11 @@ export default function Add() {
 
         e.preventDefault()
         if (!name || !rating || !description || !tags) return
-        const data = { name, rating, description, logo, website, tags }
-        setLoading(true)
+        const data = {
+            action: 'add',
+            companyData: { name, rating, description, logo, website, tags }
+        }
+        setFetching(true)
         fetch('/api/data', {
             method: 'POST',
             headers: {
@@ -48,9 +51,17 @@ export default function Add() {
             .then(res => res.json())
             .then(res => {
                 if (res.status) {
-                    setLoading(false)
+                    setFetching(false)
                     clearForm()
-                    setMessage('Company is added')
+                    setMessage({
+                        type: 'success',
+                        message: 'Company is added.'
+                    })
+                }else {
+                    setMessage({
+                        type: 'alert',
+                        message: 'Something went wrong! try again.'
+                    })
                 }
             })
 
@@ -95,13 +106,12 @@ export default function Add() {
     return (
 
         <>
-        <Message
-                type="success"
+            <Message
                 message={message}
-                closeMessage={() => setMessage('')}
+                closeMessage={() => setMessage(null)}
             />
             <CompanyCard company={companyPreview} />
-            <form className="box stack gap animate-toright" onSubmit={addCompany}>
+            <form className="box stack gap animate-totop" onSubmit={addCompany}>
 
                 <div className="full flex flex-col md:flex-row gap">
 
@@ -201,12 +211,12 @@ export default function Add() {
                         <span>go back</span>
                     </Link>
                     <button className="btn-primary" type='submit'>
-                        {loading ? <Loader /> : <><Icon type="add" /><span>add</span></>}
+                        {fetching ? <Loader /> : <><Icon type="add" /><span>add</span></>}
                     </button>
                 </div>
 
             </form>
-            
+
         </>
 
     )
