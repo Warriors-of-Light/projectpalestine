@@ -92,5 +92,9 @@
     "badges": "شارات",
     "coming-soon": "قريبًا",
     "view-companies": "عرض الشركات"
+  },
+  "all-companies": {
+    "submitted-companies": "الشركات المقدمة",
+    "view-company": "عرض بيانات الشركة"
   }
 }

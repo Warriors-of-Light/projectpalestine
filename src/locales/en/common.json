@@ -92,5 +92,10 @@
     "badges":"Badges",
     "coming-soon":"Coming Soon",
     "view-companies":"View Companies"
+  },
+  "all-companies":{
+    "submitted-companies":"Submitted Companies",
+    "view-company":"View Company"
+  },
   }
 }
