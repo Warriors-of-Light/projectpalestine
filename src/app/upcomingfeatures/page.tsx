@@ -120,7 +120,7 @@ export default function UpcomingFeatures() {
             </div>
           ))}
           <div className="flex justify-center mt-4">
-            <Link href={"https://forms.gle/KYvobH2yhJUE68G79"} target="_blank">
+            <Link href={t("upcoming-feature.form-url",{defaultValue:"https://forms.gle/KYvobH2yhJUE68G79"} )} target="_blank">
               <button className="app-btn w-96 bg-red-300 text-black flex justify-center border-red-800 text-xl">
                 {t("upcoming-feature.volunteer-button",{defaultValue:"Voulnteer"} )}
               </button>

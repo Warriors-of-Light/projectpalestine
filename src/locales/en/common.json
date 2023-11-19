@@ -59,7 +59,9 @@
     "feature-4-desc":"A page to honor those who died in Gaza, sharing their stories, videos, pictures and dreams.",
 
     "feature-5-title":"News Validity Checker",
-    "feature-5-desc":"A tool to check the validity of news, categorize false ones and prevent the spread of propaganda."
+    "feature-5-desc":"A tool to check the validity of news, categorize false ones and prevent the spread of propaganda.",
+
+    "form-url":"https://forms.gle/KYvobH2yhJUE68G79"
   },
   "download":{
     "coming-soon":"Coming Soon"
