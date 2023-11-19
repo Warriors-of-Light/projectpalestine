@@ -50,7 +50,7 @@ export default function Add() {
                 if (res.status) {
                     setLoading(false)
                     clearForm()
-                    setMessage('Company is added to list :)')
+                    setMessage('Company is added')
                 }
             })
 
@@ -95,6 +95,11 @@ export default function Add() {
     return (
 
         <>
+        <Message
+                type="success"
+                message={message}
+                closeMessage={() => setMessage('')}
+            />
             <CompanyCard company={companyPreview} />
             <form className="box stack gap animate-toright" onSubmit={addCompany}>
 
@@ -201,11 +206,7 @@ export default function Add() {
                 </div>
 
             </form>
-            <Message
-                type="success"
-                message={message}
-                closeMessage={() => setMessage('')}
-            />
+            
         </>
 
     )

@@ -17,9 +17,8 @@ export function Message({
 
     if(!message) return
 
-
     useEffect(() => {
-        setTimeout(() => closeMessage, 2000)
+        setTimeout(() => closeMessage(), 4000)
     }, [])
 
     return (

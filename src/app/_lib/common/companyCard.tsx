@@ -9,11 +9,13 @@ import { Icon, Rating } from "@/app/_lib/modules"
 
 function CompanyCard({
         company,
-        control = false
+        control = false,
+        deleteCompany,
     }
     : {
         company: COMPANY_TYPE,
-        control?: boolean
+        control?: boolean,
+        deleteCompany?: () => void
     }) {
 
     // Initializez
@@ -43,9 +45,6 @@ function CompanyCard({
     }
     const editCompany = () => {
         router.push(`/admin/edit/${_id}`)
-    }
-    const deleteCompany = () => {
-        // just Fetch api to delete company
     }
 
     return (

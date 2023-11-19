@@ -29,7 +29,7 @@ export default function Admin() {
 
         <div className="full stack gap">
             <SearchBar fetchCompanies={fetchCompanies} setFilter={(filter: string) => setFilter(filter)} />
-            <CompaniesList companies={companies} filter={filter} />
+            <CompaniesList companies={companies} fetchCompanies={fetchCompanies} filter={filter} />
         </div>
 
     )
@@ -62,9 +62,11 @@ function SearchBar({
 
 function CompaniesList({
     companies,
+    fetchCompanies,
     filter
 }: {
     companies: { loading: boolean, data: COMPANY_TYPE[] }
+    fetchCompanies: () => void,
     filter: string
 }) {
 
@@ -82,6 +84,14 @@ function CompaniesList({
         </div>
     )
 
+    const deleteCompany = (id: any) => {
+        fetch(`/api/data?id=${id}`, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(res => fetchCompanies())
+    }
+
     // Compnies list
     return (
         <div className="box stack gap min-h-[300px] animate-toleft">
@@ -93,11 +103,25 @@ function CompaniesList({
                             ||
                             company.description.toLowerCase().includes(filter.toLowerCase())
                         ) {
-                            return <CompanyCard key={Math.random()} company={company} control={true} />
+                            return (
+                                <CompanyCard
+                                    key={Math.random()}
+                                    company={company}
+                                    control={true}
+                                    deleteCompany={() => deleteCompany(company._id)}
+                                />
+                            )
                         }
                     })
                     : companies.data.map((company: COMPANY_TYPE) => {
-                        return <CompanyCard key={Math.random()} company={company} control={true} />
+                        return (
+                            <CompanyCard
+                                key={Math.random()}
+                                company={company}
+                                control={true}
+                                deleteCompany={() => deleteCompany(company._id)}
+                            />
+                        )
                     })
             }
         </div>

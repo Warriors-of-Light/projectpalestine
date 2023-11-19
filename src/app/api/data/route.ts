@@ -53,3 +53,25 @@ async function addCompany(data: COMPANY_TYPE) {
     await newCompany.save()
     return true
 }
+
+// Delete
+export async function DELETE(request: NextRequest) {
+    try {
+        const { searchParams } = new URL(request.url)
+        if(searchParams.get('id')) {
+            await deleteCompany(searchParams.get('id') || '')
+            return NextResponse.json({ status: true })
+        } else {
+            return NextResponse.json({ status: false })
+        }
+    } catch (e) {
+        console.log('[Error]', e)
+        NextResponse.json({ status: false })
+    }
+}
+
+// Delete company
+async function deleteCompany(id: string) {
+    await connectToDatabase()
+    return await company.deleteOne({'_id': id})
+}
