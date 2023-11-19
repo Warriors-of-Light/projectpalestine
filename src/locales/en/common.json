@@ -84,5 +84,13 @@
     "cancel":"Cancel",
     "company-exists":"company already exists",   
     "image-uploaded":"Image uploaded successfully!"
+  },
+  "account-page":{
+    "new-member":"New Member",
+    "summary":"Summary",
+    "days-boycot":"Days Boycotting",
+    "badges":"Badges",
+    "coming-soon":"Coming Soon",
+    "view-companies":"View Companies"
   }
 }

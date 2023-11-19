@@ -84,5 +84,13 @@
     "cancel": "إلغاء",
     "company-exists": "الشركة موجودة بالفعل",
     "image-uploaded": "تم تحميل الصورة بنجاح!"
-}
+  },
+  "account-page": {
+    "new-member": "عضو جديد",
+    "summary": "ملخص",
+    "days-boycot": "أيام المقاطعة",
+    "badges": "شارات",
+    "coming-soon": "قريبًا",
+    "view-companies": "عرض الشركات"
+  }
 }

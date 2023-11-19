@@ -23,6 +23,7 @@ import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { useUserStore } from "@/store/useUserStore";
 import { Header } from "@/components/modules";
 import { Avatar, Stack, Tag } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 const navigation = [
   { name: "Home", href: "#" },
@@ -172,7 +173,7 @@ export default function Account() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selected, setSelected] = useState(moods[5]);
   const { user } = useUserStore();
-
+  const { t } = useTranslation();
   return (
     <>
 
@@ -192,19 +193,19 @@ export default function Account() {
             <Avatar size={"xl"} name={user?.user.displayName!} />
             <Stack>
               <span className="text-2xl ml-4"> {user?.user.displayName} </span>
-              <Tag ml={4}>New Member</Tag>
+              <Tag ml={4}>{t("account-page.new-member", { defaultValue:"New Member"})}</Tag>
             </Stack>
           </div>
 
           <div className=" mx-auto grid max-w-2xl grid-cols-1 grid-rows-1 items-start gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             {/* Invoice summary */}
             <div className="lg:col-start-1 lg:row-end-1">
-              <h2 className="sr-only">Summary</h2>
+              <h2 className="sr-only">{t("account-page.summary", { defaultValue:"Summary"})}</h2>
               <div className="rounded-lg bg-gray-50 shadow-sm ring-1 ring-gray-900/5">
                 <dl className="flex flex-wrap">
                   <div className="flex-auto pl-6 pt-6">
                     <dt className="text-sm font-semibold leading-6 text-gray-900">
-                      Days Boycotting
+                    {t("account-page.days-boycot", { defaultValue:"Days Boycotting"})}
                     </dt>
                     <dd className="mt-1 text-base font-semibold leading-6 text-gray-900">
                       1
@@ -212,10 +213,10 @@ export default function Account() {
                   </div>
 
                   <div className="mt-6 flex w-full flex-none gap-x-4 border-t border-gray-900/5 px-6 pt-6"></div>
-                  <span className="gap-x-4 ml-4 text-lg"> Badges </span>
+                  <span className="gap-x-4 ml-4 text-lg"> {t("account-page.badges", { defaultValue:"Badges"})} </span>
                   <div className="mt-4 flex w-full flex-none gap-x-4 px-6">
                     <dt className="flex-none">
-                      <span>Coming Soon</span>
+                      <span>{t("account-page.coming-soon", { defaultValue:"Coming Soon"})}</span>
                     </dt>
                   </div>
                 </dl>
@@ -224,7 +225,7 @@ export default function Account() {
                     href="/companies"
                     className="text-sm font-semibold leading-6 text-gray-900"
                   >
-                    View Companies <span aria-hidden="true">&rarr;</span>
+                    {t("account-page.view-companies", { defaultValue:"View Companies"})} <span aria-hidden="true">&rarr;</span>
                   </a>
                 </div>
               </div>
