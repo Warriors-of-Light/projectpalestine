@@ -7,7 +7,14 @@ import { useRouter } from "next/navigation"
 import { COMPANY_TYPE } from "@/data/modules"
 import { Icon, Rating } from "@/app/_lib/modules"
 
-function CompanyCard({ company, control = false }: { company: COMPANY_TYPE, control?: boolean }) {
+function CompanyCard({
+        company,
+        control = false
+    }
+    : {
+        company: COMPANY_TYPE,
+        control?: boolean
+    }) {
 
     // Initializez
     const [controlFrame, setControlFrame] = useState(false)
@@ -22,13 +29,23 @@ function CompanyCard({ company, control = false }: { company: COMPANY_TYPE, cont
         ][rating - 1]
     }, [rating])
 
+    // Functions //
     const openControl = () => {
-        if(!control) return
+        if (!control) return
         setControlFrame(true)
     }
     const closeControl = () => {
-        if(!control) return
+        if (!control) return
         setControlFrame(false)
+    }
+    const visitCompany = () => {
+        router.push(`/company/${_id}`)
+    }
+    const editCompany = () => {
+        router.push(`/admin/edit/${_id}`)
+    }
+    const deleteCompany = () => {
+        // just Fetch api to delete company
     }
 
     return (
@@ -64,14 +81,14 @@ function CompanyCard({ company, control = false }: { company: COMPANY_TYPE, cont
             {
                 controlFrame &&
                 <div className="absolute h-full top-0 right-0 bg-[#00000050] flex gap padding rd">
-                    <button className="btn" onClick={() => router.push(`/company/${_id}`)}>
-                        <Icon type="link"/>
+                    <button className="btn" onClick={visitCompany}>
+                        <Icon type="link" />
                     </button>
-                    <button className="btn">
-                        <Icon type="edit"/>
+                    <button className="btn" onClick={editCompany}>
+                        <Icon type="edit" />
                     </button>
-                    <button className="btn">
-                        <Icon type="delete"/>
+                    <button className="btn" onClick={deleteCompany}>
+                        <Icon type="delete" />
                     </button>
                 </div>
             }

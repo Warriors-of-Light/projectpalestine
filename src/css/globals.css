@@ -102,6 +102,10 @@
     @apply p-2 md:p-4
   }
 
+  .margin {
+    @apply m-2 md:m-4
+  }
+
   .box {
     @apply bg-t-background full padding
   }
@@ -112,27 +116,16 @@
 
   /* Buttons */
   .btn {
-    @apply
-    bg-background center gap w-fit cursor-pointer
-    whitespace-nowrap rd shadow p-4 capitalize outline-none
-    ring-2 ring-transparent hover:ring-foreground duration
-    stroke-foreground;
+    @apply bg-background center gap w-fit cursor-pointer whitespace-nowrap rd shadow p-4 capitalize outline-none ring-2 ring-transparent hover:ring-foreground duration stroke-foreground;
   }
 
   .btn-primary {
-    @apply
-    bg-primary text-t-primary center gap w-fit cursor-pointer
-    whitespace-nowrap rd shadow p-4 capitalize outline-none
-    ring-2 ring-transparent hover:ring-t-primary duration
-    fill-t-primary stroke-t-primary;
+    @apply bg-primary text-t-primary center gap w-fit cursor-pointer whitespace-nowrap rd shadow p-4 capitalize outline-none ring-2 ring-transparent hover:ring-t-primary duration fill-t-primary stroke-t-primary;
   }
 
   /* Inputs */
   .input {
-    @apply
-    bg-background full border-none outline-none p-4 z-0 duration-300
-    placeholder:opacity-60 placeholder:text-foreground
-    rd shadow ring-2 ring-transparent focus:ring-foreground;
+    @apply bg-background full border-none outline-none p-4 z-0 duration-300 placeholder:opacity-60 placeholder:text-foreground rd shadow ring-2 ring-transparent focus:ring-foreground;
   }
 
   .inputs-radio {
@@ -157,16 +150,12 @@
 
   /* Select */
   .select {
-    @apply
-    bg-background full rd shadow outline-none
-    focus:ring-foreground ring-transparent ring-1 p-4
+    @apply bg-background full rd shadow outline-none focus:ring-foreground ring-transparent ring-1 p-4
   }
 
   /* Links */
   .link {
-    @apply
-    duration capitalize cursor-pointer center gap
-    hover:underline hover:opacity-100 opacity-60;
+    @apply duration capitalize cursor-pointer center gap hover:underline hover:opacity-100 opacity-60;
   }
 
   /* Line / separator */
@@ -216,17 +205,8 @@
   }
 
   /* patterns */
-  .pattern-atoms {
-    --s: 60px;
-    --c1: var(--background);
-    --c2: #00000015;
-    --_g: radial-gradient(25% 25% at 25% 25%,
-        var(--c1) 99%,
-        rgba(0, 0, 0, 0) 101%);
-    background: var(--_g) var(--s) var(--s) / calc(2 * var(--s)) calc(2 * var(--s)),
-      var(--_g) 0 0 / calc(2 * var(--s)) calc(2 * var(--s)),
-      radial-gradient(50% 50%, var(--c2) 98%, rgba(0, 0, 0, 0)) 0 0 / var(--s) var(--s),
-      repeating-conic-gradient(var(--c2) 0 50%, var(--c1) 0 100%) calc(0.5 * var(--s)) 0 / calc(2 * var(--s)) var(--s);
+  .atomic-pattern {
+    background: radial-gradient(ellipse, var(--t-background), transparent, var(--background)) var(--background);
   }
 
   /* Max width */
@@ -275,16 +255,45 @@
     animation: k-appear var(--duration);
   }
 
-  .animate-appear:nth-child(1){animation-delay: .1s}
-  .animate-appear:nth-child(2){animation-delay: .2s}
-  .animate-appear:nth-child(3){animation-delay: .3s}
-  .animate-appear:nth-child(4){animation-delay: .4s}
-  .animate-appear:nth-child(5){animation-delay: .5s}
-  .animate-appear:nth-child(6){animation-delay: .6s}
-  .animate-appear:nth-child(7){animation-delay: .7s}
-  .animate-appear:nth-child(8){animation-delay: .8s}
-  .animate-appear:nth-child(9){animation-delay: .9s}
-  .animate-appear:nth-child(10){animation-delay: 1s}
+  .animate-appear:nth-child(1) {
+    animation-delay: .1s
+  }
+
+  .animate-appear:nth-child(2) {
+    animation-delay: .2s
+  }
+
+  .animate-appear:nth-child(3) {
+    animation-delay: .3s
+  }
+
+  .animate-appear:nth-child(4) {
+    animation-delay: .4s
+  }
+
+  .animate-appear:nth-child(5) {
+    animation-delay: .5s
+  }
+
+  .animate-appear:nth-child(6) {
+    animation-delay: .6s
+  }
+
+  .animate-appear:nth-child(7) {
+    animation-delay: .7s
+  }
+
+  .animate-appear:nth-child(8) {
+    animation-delay: .8s
+  }
+
+  .animate-appear:nth-child(9) {
+    animation-delay: .9s
+  }
+
+  .animate-appear:nth-child(10) {
+    animation-delay: 1s
+  }
 
   @keyframes k-appear {
     0% {

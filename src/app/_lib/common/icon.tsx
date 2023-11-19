@@ -31,7 +31,7 @@ import { GrReturn } from "react-icons/gr";
 import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { FaIndustry } from "react-icons/fa6";
 import { CiEdit } from "react-icons/ci";
-import { IoMdLink } from "react-icons/io";
+import { IoMdLink, IoMdArrowBack  } from "react-icons/io";
 
 export function Icon({
     type = "",
@@ -44,8 +44,10 @@ export function Icon({
 }) {
 
     switch (type) {
+        case "goback":
+            return <IoMdArrowBack className={style} size={size} />
         case "link":
-            return <IoMdLink  className={style} size={size} />
+            return <IoMdLink className={style} size={size} />
         case "edit":
             return <CiEdit className={style} size={size} />;
             case "edit":
