@@ -220,6 +220,6 @@ export default function Edit({ params }: { params: { id: string } }) {
 
             </form>
         </>
-    ) : <div className="box w-full min-h-[300px] center"><Loader /></div>
+    ) : <div className="full min-h-[300px] center"><Loader /></div>
 
 }

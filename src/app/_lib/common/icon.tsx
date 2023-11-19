@@ -15,6 +15,8 @@ import {
     FiEdit,
 } from "react-icons/fi";
 import {
+    BiChevronLeft,
+    BiChevronRight,
     BiDonateHeart,
     BiDownload,
     BiPlus,
@@ -23,15 +25,16 @@ import {
 } from "react-icons/bi";
 import { BsDiscord } from "react-icons/bs";
 import { RiSendPlaneFill } from "react-icons/ri";
-import { AiFillGithub,
+import {
+    AiFillGithub,
     AiOutlineCheckCircle,
-    AiOutlineDelete 
+    AiOutlineDelete
 } from "react-icons/ai";
 import { GrReturn } from "react-icons/gr";
 import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { FaIndustry } from "react-icons/fa6";
 import { CiEdit } from "react-icons/ci";
-import { IoMdLink, IoMdArrowBack  } from "react-icons/io";
+import { IoMdLink, IoMdArrowBack } from "react-icons/io";
 
 export function Icon({
     type = "",
@@ -44,13 +47,17 @@ export function Icon({
 }) {
 
     switch (type) {
+        case "left":
+            return <BiChevronLeft className={style} size={size} />
+        case "right":
+            return <BiChevronRight className={style} size={size} />
         case "goback":
             return <IoMdArrowBack className={style} size={size} />
         case "link":
             return <IoMdLink className={style} size={size} />
         case "edit":
             return <CiEdit className={style} size={size} />;
-            case "edit":
+        case "edit":
             return <FiEdit className={style} size={size} />;
         case "company":
             return <FaIndustry className={style} size={size} />;
@@ -73,7 +80,7 @@ export function Icon({
         case "search":
             return <FiSearch className={style} size={size} />;
         case "delete":
-            return <AiOutlineDelete  className={style} size={size} />;
+            return <AiOutlineDelete className={style} size={size} />;
         case "close":
             return <FiX className={style} size={size} />;
         case "download":

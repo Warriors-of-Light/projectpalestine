@@ -36,7 +36,7 @@
   }
 
   html {
-    --duration: 0.5s;
+    --duration: 0.3s;
     --duration-long: 1s;
   }
 
@@ -116,16 +116,20 @@
 
   /* Buttons */
   .btn {
-    @apply bg-background center gap w-fit cursor-pointer whitespace-nowrap rd shadow px-4 py-2  capitalize outline-none ring-2 ring-transparent hover:ring-foreground duration stroke-foreground;
+    @apply bg-background center gap w-fit cursor-pointer whitespace-nowrap rd shadow px-4 py-2
+    capitalize outline-none ring-2 ring-transparent hover:ring-foreground duration stroke-foreground;
   }
 
   .btn-primary {
-    @apply bg-primary text-t-primary center gap w-fit cursor-pointer whitespace-nowrap rd shadow px-4 py-2 capitalize outline-none ring-2 ring-transparent hover:ring-t-primary duration fill-t-primary stroke-t-primary;
+    @apply bg-primary text-t-primary center gap w-fit cursor-pointer whitespace-nowrap rd shadow
+    px-4 py-2 capitalize outline-none ring-2 ring-transparent hover:ring-t-primary duration
+    fill-t-primary stroke-t-primary;
   }
 
   /* Inputs */
   .input {
-    @apply bg-background full border-none outline-none p-4 z-0 duration-300 placeholder:opacity-60 placeholder:text-foreground rd shadow ring-2 ring-transparent focus:ring-foreground;
+    @apply bg-background full border-none outline-none p-4 z-0 duration-300 placeholder:opacity-60
+    placeholder:text-foreground rd shadow ring-2 ring-transparent focus:ring-foreground;
   }
 
   .inputs-radio {

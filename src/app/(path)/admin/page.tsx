@@ -13,12 +13,13 @@ export default function Admin() {
     const [companies, setCompanies] = useState<COMPANY_TYPE[]>([])
     const [loading, setLoading] = useState(true)
     const [filter, setFilter] = useState('')
+    const [companiesRange, setCompaniesRange] = useState(1)
     useEffect(() => fetchCompanies, [])
 
     // Functions //
     const fetchCompanies = () => {
         setLoading(true)
-        fetch('/api/data')
+        fetch(`/api/data?range=${companiesRange}`)
             .then(res => res.json())
             .then(res => {
                 setCompanies(res.data)
@@ -32,8 +33,11 @@ export default function Admin() {
             <SearchBar fetchCompanies={fetchCompanies} setFilter={(filter: string) => setFilter(filter)} />
             {
                 !loading
-                    ? <CompaniesList companies={companies} fetchCompanies={fetchCompanies} filter={filter} />
-                    : <div className="box w-full min-h-[300px] center"><Loader /></div>
+                    ? <>
+                        <CompaniesList companies={companies} fetchCompanies={fetchCompanies} filter={filter} />
+                        <Range companiesRange={companiesRange} setCompaniesRange={setCompaniesRange}/>
+                    </>
+                    : <div className="full min-h-[300px] center"><Loader /></div>
             }
         </div>
 
@@ -86,8 +90,8 @@ function CompaniesList({
 
     // No company is found
     if (!companies.length) return (
-        <div className="box w-full min-h-[300px] center">
-            <div className="title text-t-primary">No company is found :(</div>
+        <div className="box w-full min-h-[300px] center animate-toleft">
+            <div className="title opacity-50">No company is found :(</div>
         </div>
     )
 
@@ -123,6 +127,20 @@ function CompaniesList({
                         )
                     })
             }
+        </div>
+    )
+}
+
+function Range({ companiesRange, setCompaniesRange }: { companiesRange: number, setCompaniesRange: (range: number) => void }) {
+    return (
+        <div className="box center gap">
+            <button className="btn" onClick={() => setCompaniesRange(companiesRange - 1)}>
+                <Icon type="left" />
+            </button>
+            <span className="bg-background rd px-4 py-2">{companiesRange}</span>
+            <button className="btn" onClick={() => setCompaniesRange(companiesRange + 1)}>
+                <Icon type="right" />
+            </button>
         </div>
     )
 }
