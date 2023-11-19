@@ -18,7 +18,7 @@ export type COMPANY_TYPE = {
   incidents?: Array<INCIDENT_TYPE>;
 };
 
-// export type User = UserCredential & {
+// export type User = UserCredential & { m3a 10
 //   BoycottDays?: number;
 // };
 

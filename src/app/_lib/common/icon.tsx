@@ -12,6 +12,7 @@ import {
     FiInfo,
     FiAlertTriangle,
     FiClock,
+    FiEdit,
 } from "react-icons/fi";
 import {
     BiDonateHeart,
@@ -22,10 +23,15 @@ import {
 } from "react-icons/bi";
 import { BsDiscord } from "react-icons/bs";
 import { RiSendPlaneFill } from "react-icons/ri";
-import { AiFillGithub, AiOutlineCheckCircle } from "react-icons/ai";
+import { AiFillGithub,
+    AiOutlineCheckCircle,
+    AiOutlineDelete 
+} from "react-icons/ai";
 import { GrReturn } from "react-icons/gr";
 import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { FaIndustry } from "react-icons/fa6";
+import { CiEdit } from "react-icons/ci";
+import { IoMdLink } from "react-icons/io";
 
 export function Icon({
     type = "",
@@ -38,6 +44,12 @@ export function Icon({
 }) {
 
     switch (type) {
+        case "link":
+            return <IoMdLink  className={style} size={size} />
+        case "edit":
+            return <CiEdit className={style} size={size} />;
+            case "edit":
+            return <FiEdit className={style} size={size} />;
         case "company":
             return <FaIndustry className={style} size={size} />;
         case "refresh":
@@ -58,8 +70,8 @@ export function Icon({
             return <FiMenu className={style} size={size} />;
         case "search":
             return <FiSearch className={style} size={size} />;
-        case "trash":
-            return <FiTrash className={style} size={size} />;
+        case "delete":
+            return <AiOutlineDelete  className={style} size={size} />;
         case "close":
             return <FiX className={style} size={size} />;
         case "download":

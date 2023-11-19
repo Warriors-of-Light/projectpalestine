@@ -106,11 +106,11 @@ function CompaniesList({
                             ||
                             company.description.toLowerCase().includes(filter.toLowerCase())
                         ) {
-                            return <CompanyCard key={Math.random()} company={company} />
+                            return <CompanyCard key={Math.random()} company={company} control={true} />
                         }
                     })
                     : companies.data.map((company: COMPANY_TYPE) => {
-                        return <CompanyCard key={Math.random()} company={company} />
+                        return <CompanyCard key={Math.random()} company={company} control={true} />
                     })
             }
         </div>

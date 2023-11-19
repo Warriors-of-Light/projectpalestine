@@ -115,7 +115,8 @@
     @apply
     bg-background center gap w-fit cursor-pointer
     whitespace-nowrap rd shadow p-4 capitalize outline-none
-    ring-2 ring-transparent hover:ring-foreground duration;
+    ring-2 ring-transparent hover:ring-foreground duration
+    stroke-foreground;
   }
 
   .btn-primary {
