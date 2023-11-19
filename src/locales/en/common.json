@@ -69,5 +69,20 @@
   "donate":{
     "coming-soon":"Coming Soon",
     "back-to-home":"Back to home"
+  },
+  "add-company":{
+    "profile":"Company Profile",
+    "disclaimer":"This information will be displayed publicly so make sure it is accurate.",
+    "name":"Company Name",
+    "website":"Website",
+    "desc":"Description",
+    "tags":"Tags",
+    "Logo":"Logo",
+    "upload-file":"Upload a file",
+    "accepted-formats":"PNG, JPG, GIF up to 10MB",
+    "submit":"Submit",
+    "cancel":"Cancel",
+    "company-exists":"company already exists",   
+    "image-uploaded":"Image uploaded successfully!"
   }
 }

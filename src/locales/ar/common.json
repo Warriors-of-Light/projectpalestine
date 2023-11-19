@@ -69,5 +69,20 @@
   "donate":{
     "coming-soon":"قادم قريبا",
     "back-to-home":"رجوع إلي الصفحه الرئيسيه"
-  }
+  },
+  "add-company": {
+    "profile": "بروفايل الشركة",
+    "disclaimer": "سيتم عرض هذه البيانات علنيًا، لذا تأكد من دقتها.",
+    "name": "اسم الشركة",
+    "website": "موقع الشركة",
+    "desc": "الوصف",
+    "tags": "وسوم",
+    "Logo": "الشركه(logo) شعار",
+    "upload-file": "تحميل ملف",
+    "accepted-formats": "PNG، JPG، GIF حتى 10 ميجابايت",
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "company-exists": "الشركة موجودة بالفعل",
+    "image-uploaded": "تم تحميل الصورة بنجاح!"
+}
 }
