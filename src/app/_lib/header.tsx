@@ -3,7 +3,6 @@
 'use client'
 
 import { useState } from "react"
-import Image from "next/image"
 import Link from "next/link"
 
 // local
@@ -12,8 +11,8 @@ import { Icon } from "@/app/_lib/modules"
 export function Header() {
     return (
         <header
-            className={`animate-toleft bg-top-background shadow w-full sticky top-0
-            flex items-center justify-between p-4 overflow-hidden z-20`}
+            className={`box animate-toleft shadow sticky top-0
+            flex items-center justify-between gap overflow-hidden z-20`}
         >
             <Logo />
             <LargeScreenLinks user={false} />
@@ -25,7 +24,7 @@ export function Header() {
 function Logo() {
     return (
         <div className="flex items-center gap-2">
-            <Image src={'/palestine.png'} width={35} height={35} alt="palestine" />
+            <img src={'/palestine.png'} width={35} height={35} alt="palestine" />
             <span className="title">project palestine</span>
         </div>
     )
@@ -33,29 +32,25 @@ function Logo() {
 
 function LargeScreenLinks({ user }: { user: boolean }) {
     return (
-        <div className="hidden md:center">
-            <Link className="btn-alert" href="/upcomingfeatures">
-                <Icon type="clock" style="fill-alert" />
-                <span>upcoming features</span>
-            </Link>
-            <Link className="btn-primary" href="/download">
+        <div className="hidden md:center gap">
+            <Link className="btn" href="/download">
                 <Icon type="download" />
                 <span>download</span>
             </Link>
-            <Link className="btn-primary" href="/donate">
+            <Link className="btn" href="/donate">
                 <Icon type="donate" />
                 <span>donate</span>
             </Link>
             {
                 user ?
-                    <Link className="btn-success" href="/login">
-                        <Icon type="login" />
-                        <span>login</span>
-                    </Link>
-                    :
-                    <Link className="btn-danger" href="/logout">
+                    <Link className="btn" href="/logout">
                         <Icon type="logout" />
                         <span>logout</span>
+                    </Link>
+                    :
+                    <Link className="btn" href="/signin">
+                        <Icon type="login" />
+                        <span>sign in</span>
                     </Link>
             }
         </div>
@@ -65,37 +60,33 @@ function LargeScreenLinks({ user }: { user: boolean }) {
 function SmallScreenLinks({ user }: { user: boolean }) {
     const [menu, setMenu] = useState(false)
     return (
-        <div className="center md:hidden">
-            <button className="btn-primary p-2" onClick={() => setMenu(state => !state)}>
+        <div className="center gap md:hidden">
+            <button className="btn p-2" onClick={() => setMenu(state => !state)}>
                 <Icon type={menu ? 'close' : 'menu'} />
             </button>
             {
                 menu &&
-                <div className="fixed left-0 top-0 w-[80%] h-screen stack gap-4 p-4 bg-top-background shadow animate-toright z-50">
+                <div className="box fixed left-0 top-0 w-[80%] h-screen stack gap shadow animate-toright z-50">
                     <Logo />
                     <div className="line" />
-                    <Link className="btn-alert" href="/upcomingfeatures">
-                        <Icon type="clock" style="fill-alert" />
-                        <span>upcoming features</span>
-                    </Link>
-                    <Link className="btn-primary" href="/download">
+                    <Link className="btn w-full justify-start" href="/download">
                         <Icon type="download" />
                         <span>download</span>
                     </Link>
-                    <Link className="btn-primary" href="/donate">
+                    <Link className="btn w-full justify-start" href="/donate">
                         <Icon type="donate" />
                         <span>donate</span>
                     </Link>
                     {
                         user ?
-                            <Link className="btn-success" href="/login">
-                                <Icon type="login" />
-                                <span>login</span>
-                            </Link>
-                            :
-                            <Link className="btn-danger" href="/logout">
+                            <Link className="btn w-full justify-start" href="/logout">
                                 <Icon type="logout" />
                                 <span>logout</span>
+                            </Link>
+                            :
+                            <Link className="btn w-full justify-start" href="/signin">
+                                <Icon type="login" />
+                                <span>login</span>
                             </Link>
                     }
                 </div>

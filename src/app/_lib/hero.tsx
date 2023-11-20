@@ -2,87 +2,34 @@
 
 'use client'
 
+import { useState, useEffect } from "react"
 import { CompanyCard, Icon, Loader } from "@/app/_lib/modules"
-import { Company } from "@/data/modules"
+import { COMPANY_TYPE } from "@/data/modules"
 
 export function Hero() {
-    const testingData : Company[] = [
-        {
-          logo: 'https://icons8.com/icon/XvRFJSfgZ328/mcdonalds-app',
-          name: 'Mcdonald',
-          description: 'description',
-          website: undefined,
-          id: 'qwrdfsdf',
-          tags: undefined,
-          status: 1,
-          incidents: [],
-        },
-        {
-          logo: 'https://icons8.com/icon/30840/apple-logo',
-          name: 'Apple',
-          description: 'description',
-          website: undefined,
-          id: 'asuify',
-          tags: undefined,
-          status: 1,
-          incidents: [],
-        },
-        {
-          logo: 'https://icons8.com/icon/wGYgIlqPWdC2/samsung',
-          name: 'Samsung',
-          description: 'description',
-          website: undefined,
-          id: 'qwe',
-          tags: undefined,
-          status: 1,
-          incidents: [],
-        },
-        {
-          logo: 'https://icons8.com/icon/38607/hp',
-          name: 'HP',
-          description: 'description',
-          website: undefined,
-          id: 'weer',
-          tags: undefined,
-          status: 3,
-          incidents: [],
-        },
-        {
-          logo: 'https://icons8.com/icon/24934/air-jordan',
-          name: 'Air Jordan',
-          description: 'description',
-          website: undefined,
-          id: 'ewtet',
-          tags: undefined,
-          status: 2,
-          incidents: [],
-        },
-        {
-          logo: 'https://icons8.com/icon/57660/ford',
-          name: 'Ford',
-          description: 'description',
-          website: undefined,
-          id: 'ewtet',
-          tags: undefined,
-          status: 1,
-          incidents: [],
-        },
-        {
-          logo: 'https://icons8.com/icon/16647/nike',
-          name: 'Nike',
-          description: 'description',
-          website: undefined,
-          id: 'ewtet',
-          tags: undefined,
-          status: 1,
-          incidents: [],
-        },
-      ]
+    const [companies, setCompanies] = useState<COMPANY_TYPE[]>([])
+    const [loading, setLoading] = useState(true)
+    useEffect(() => fetchCompanies, [])
+
+    // Functions //
+    const fetchCompanies = () => {
+        setLoading(true)
+        fetch(`/api/data?range=${1}`)
+            .then(res => res.json())
+            .then(res => {
+                setCompanies(res.data)
+                setLoading(false)
+            })
+    }
     return (
-        <div className="animate-totop bg-top-background min-h-screen stack items-center gap-10 p-4 pt-10 rd shadow">
+        <div className="box animate-toright min-h-screen stack items-center gap-10 p-4 pt-10 rd shadow">
             <BigTitle />
             <SearchBar />
-            <Companies companies={testingData} filter={[]}/>
+            {
+                !loading
+                    ? <Companies companies={companies} filter={[]} />
+                    : <div className="full min-h-[300px] center"><Loader /></div>
+            }
         </div>
     )
 }
@@ -105,18 +52,18 @@ function SearchBar() {
                 placeholder="search..."
                 onChange={handleSearch}
             />
-            <div className="bg-foreground font-sans peer-focus:bg-primary duration-300 text-top-background peer-focus:text-top-primary absolute top-1/2 peer-focus:top-0 rounded-full -translate-y-1/2 w-fit px-2 py-1 ml-2">
+            <div className="bg-foreground text-background text-xs font-sans absolute top-1/2 peer-focus:top-0 rounded-full -translate-y-1/2 w-fit px-2 py-1 ml-2">
                 Search products or companies
             </div>
             <Icon
                 type="search"
-                style="peer-focus:stroke-primary duration-300 absolute right-0 top-1/2 -translate-y-1/2 mr-4"
+                style="absolute right-0 top-1/2 -translate-y-1/2 mr-4"
             />
         </div>
     )
 }
 
-function Companies({ companies, filter }: { companies: Company[], filter: string[] }) {
+function Companies({ companies, filter }: { companies: COMPANY_TYPE[], filter: string[] }) {
 
     return (
         <div className="full stack gap-4 max-width">

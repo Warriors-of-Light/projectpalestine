@@ -6,6 +6,7 @@ import { useMemo, memo, useState } from "react"
 import { useRouter } from "next/navigation"
 import { COMPANY_TYPE } from "@/data/modules"
 import { Icon, Rating } from "@/app/_lib/modules"
+import Link from "next/link";
 
 function CompanyCard({
         company,
@@ -49,11 +50,13 @@ function CompanyCard({
 
     return (
 
-        <div
+        <Link
             className={`${cardColors} w-full grid grid-cols-10 items-center relative
                 padding gap rd cursor-pointer shadow hover:ring-2 animate-appear`}
             onMouseEnter={openControl}
             onMouseLeave={closeControl}
+            onClick={e => {controlFrame && e.preventDefault()}}
+            href={`/company/${company._id}`}
         >
 
             {/* Logo */}
@@ -79,7 +82,7 @@ function CompanyCard({
             {/* Control Frame */}
             {
                 controlFrame &&
-                <div className="absolute h-full top-0 right-0 bg-[#00000050] flex gap padding rd">
+                <div className="absolute h-full top-0 right-0 bg-[#ffffff50] flex gap padding rounded-md rounded-l-none">
                     <button className="btn" onClick={visitCompany}>
                         <Icon type="link" />
                     </button>
@@ -92,7 +95,7 @@ function CompanyCard({
                 </div>
             }
 
-        </div>
+        </Link>
 
     )
 

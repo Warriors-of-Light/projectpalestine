@@ -7,12 +7,13 @@ import {
     FiSlash,
     FiMenu,
     FiSearch,
-    FiTrash,
+    FiMail,
     FiX,
     FiInfo,
     FiAlertTriangle,
     FiClock,
     FiEdit,
+    FiUser,
 } from "react-icons/fi";
 import {
     BiChevronLeft,
@@ -35,6 +36,8 @@ import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { FaIndustry } from "react-icons/fa6";
 import { CiEdit } from "react-icons/ci";
 import { IoMdLink, IoMdArrowBack } from "react-icons/io";
+import { FcGoogle } from "react-icons/fc";
+import { IoLockClosedOutline } from "react-icons/io5";
 
 export function Icon({
     type = "",
@@ -47,6 +50,14 @@ export function Icon({
 }) {
 
     switch (type) {
+        case "user":
+            return <FiUser className={style} size={size} />
+        case "email":
+            return <FiMail className={style} size={size} />
+        case "lock":
+            return <IoLockClosedOutline className={style} size={size} />
+        case "google":
+            return <FcGoogle className={style} size={size} />
         case "left":
             return <BiChevronLeft className={style} size={size} />
         case "right":

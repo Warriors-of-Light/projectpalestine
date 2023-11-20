@@ -1,5 +1,6 @@
 // Models
 export { default as company } from './model/company'
+export { default as users } from './model/user'
 
 // Constant Types
 export type {
