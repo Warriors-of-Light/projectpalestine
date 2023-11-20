@@ -57,7 +57,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-primary
+    @apply bg-foreground rd
   }
 
   ::-webkit-scrollbar-thumb:hover {

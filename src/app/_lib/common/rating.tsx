@@ -14,7 +14,7 @@ export function Rating({
 
   if(type === 1) return (
 
-    <div className="rounded-full">
+    <div className="">
       {rating === 1 && <Icon type="" style="stroke-t-danger" size={size} />}
       {rating === 2 && <Icon type="alert" style="stroke-t-alert" size={size} />}
       {rating === 3 && <Icon type="check" style="fill-t-success" size={size} />}
@@ -23,7 +23,7 @@ export function Rating({
   )
   if(type === 2) return (
 
-    <div className="bg-t-background stack items-center padding rd shadow">
+    <div className="stack items-center">
       {rating === 1 && <Icon type="" style="stroke-t-danger" size={size} />}
       {rating === 2 && <Icon type="alert" style="stroke-t-alert" size={size} />}
       {rating === 3 && <Icon type="check" style="fill-t-success" size={size} />}

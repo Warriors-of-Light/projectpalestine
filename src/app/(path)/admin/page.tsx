@@ -90,14 +90,14 @@ function CompaniesList({
 
     // No company is found
     if (!companies.length) return (
-        <div className="box w-full min-h-[300px] center animate-toleft">
+        <div className="box w-full min-h-[300px] center animate-toright">
             <div className="title opacity-50">No company is found :(</div>
         </div>
     )
 
     // Compnies list
     return (
-        <div className="box stack gap min-h-[300px] animate-toleft">
+        <div className="box stack gap min-h-[300px] animate-toright">
             {
                 filter
                     ? companies.map((company: COMPANY_TYPE) => {
@@ -133,7 +133,7 @@ function CompaniesList({
 
 function Range({ companiesRange, setCompaniesRange }: { companiesRange: number, setCompaniesRange: (range: number) => void }) {
     return (
-        <div className="box center gap">
+        <div className="box center gap animate-toleft">
             <button className="btn" onClick={() => setCompaniesRange(companiesRange - 1)}>
                 <Icon type="left" />
             </button>

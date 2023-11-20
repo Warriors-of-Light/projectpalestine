@@ -2,6 +2,7 @@
 
 'use client'
 
+import Link from "next/link"
 import { useEffect, useState } from "react"
 import { Loader, Rating } from "@/app/_lib/modules"
 import { COMPANY_TYPE } from "@/data/modules"
@@ -22,33 +23,36 @@ export default function Company({ params }: { params: { id: string } }) {
 
     return company ? (
 
-        <div className="w-full md:h-screen md:center padding max-width">
-            <div className="full stack gap">
+        <div className="stack gap padding w-full max-width">
 
-                {/* Header */}
-                <div className="w-full flex items-center justify-between">
-                    <div className="center gap">
-                        {/* Logo */}
-                        <div className="center">
-                            <img src={company.logo || defaultLogo} width={64} height={64} alt={"logo"} />
-                        </div>
-
-                        {/* Name And Description */}
-                        <div className="col-span-8 flex flex-col items-start">
-                            <span className="text-3 title">{company.name}</span>
-                            <span className="text-1 truncate max-w-[150px] see first-letter:uppercase lowercase">
-                                {company.description}
-                            </span>
-                        </div>
-                    </div>
-
-                    {/* Rating */}
+            {/* Header */}
+            <div className="full flex items-center justify-between animate-toright">
+                <div className="center gap">
+                    {/* Logo */}
                     <div className="center">
-                        <Rating rating={company.rating} type={2} />
+                        <img src={company.logo || defaultLogo} width={64} height={64} alt={"logo"} />
                     </div>
+
+                    {/* Name */}
+                    <span className="text-3 title">{company.name}</span>
                 </div>
 
+                {/* Rating */}
+                <div className="center">
+                    <Rating rating={company.rating} type={2} />
+                </div>
             </div>
+
+            {/* Description */}
+            <div className="box flex gap animate-toleft">
+                <Link href={company.website} className="btn">website</Link>
+            </div>
+            {/* Description */}
+            <div className="box animate-toright">
+                <p className="text-2 title">Description</p>
+                <p className="text-1 first-letter:uppercase lowercase">{company.description}</p>
+            </div>
+
         </div>
 
     ) : (
