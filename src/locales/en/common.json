@@ -97,5 +97,11 @@
     "submitted-companies":"Submitted Companies",
     "view-company":"View Company"
   },
+  "company-profile":{
+    "pending-claims":"Pending Claims",
+    "no-incidents":"No incidents submitted yet",
+    "submit-1st-incident":"Submit First Incident",
+    "submit-incident":"report an incident",
+    "go-back":"go back"
   }
 }

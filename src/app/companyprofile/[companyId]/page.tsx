@@ -15,12 +15,14 @@ import { firebase_app } from "@/firebase/config";
 import { useUserStore } from "@/store/useUserStore";
 import { Divider, HStack, Stack } from "@chakra-ui/react";
 import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/24/solid";
+import { useTranslation } from "react-i18next";
 
 interface ICompanyProfileProps {
   params: { companyId: string };
 }
 
 export default function CompanyProfile({ params }: ICompanyProfileProps) {
+  const { t } = useTranslation();
   const router = useRouter();
   const { companiesMap } = useCompaniesStore();
   const initialize = useRef(0);
@@ -96,7 +98,7 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
 
                 <Divider />
                 <HStack>
-                  <span className="flex text-xl relative ">Pending Claims</span>
+                  <span className="flex text-xl relative ">{t("company-profile.pending-claims", {defaultValue:"Pending Claims"})}</span>
                   <div
                     className="w-5 cursor-pointer"
                     onClick={() => setDisplayPendingClaims((prev) => !prev)}
@@ -125,12 +127,12 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
                   className="app-btn"
                 >
                   <Icon type="submit" />
-                  <span>report an incident</span>
+                  <span>{t("company-profile.submit-incident", {defaultValue:"report an incident"})}</span>
                 </button>
               )}
               <button className="app-btn" onClick={() => router.back()}>
                 <Icon type="return" />
-                <span>go back</span>
+                <span>{t("company-profile.go-back", {defaultValue:"go back"})}</span>
               </button>
             </div>
           </div>

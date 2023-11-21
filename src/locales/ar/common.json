@@ -96,5 +96,12 @@
   "all-companies": {
     "submitted-companies": "الشركات المقدمة",
     "view-company": "عرض بيانات الشركة"
+  },
+  "company-profile": {
+    "pending-claims": "الحوادث المعلقة",
+    "no-incidents": "لم يتم تقديم أي حوادث بعد",
+    "submit-1st-incident": "قدم حادثة الأولى",
+    "submit-incident": "الإبلاغ عن حادثة",
+    "go-back": "رجوع"
   }
 }
