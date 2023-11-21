@@ -106,7 +106,7 @@ const News = () => {
                   </div>
                 </Link>
                 <Link
-                  href="https://www.instagram.com/shaunking/"
+                  href="https://www.instagram.com/saleh_aljafarawi/"
                   target="_blank"
                 >
                   <div className="flex-col flex justify-center items-center hover:animate-pulse">
@@ -128,7 +128,7 @@ const News = () => {
               </span>
               <div className="grid grid-cols-3 grid-flow-col space-x-4 mt-4">
                 <Link
-                  href="https://www.instagram.com/eyeonpalestine/"
+                  href="https://www.instagram.com/eye.on.palestine/"
                   target="_blank"
                 >
                   <div className="flex-col flex justify-center items-center hover:animate-pulse">
