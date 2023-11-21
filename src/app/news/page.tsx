@@ -20,6 +20,9 @@ const News = () => {
         <link rel="preload" href={saleh.src} as="image" />
         <link rel="preload" href={bisan.src} as="image" />
         <link rel="preload" href={shaun.src} as="image" />
+        <link rel="preload" href={eyeonpalestine.src} as="image" />
+        <link rel="preload" href={aljazeeraenglish.src} as="image" />
+        <link rel="preload" href={ali.src} as="image" />
       </Head>
 
       <div className="w-full h-90-screen flex flex-col bg-app--light ">
