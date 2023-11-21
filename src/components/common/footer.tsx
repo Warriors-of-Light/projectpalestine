@@ -25,7 +25,7 @@ const Footer = () => {
         </Link>
         <Link
           target="_blank"
-          href="https://discord.com/invite/4XPUxZpC"
+          href="https://discord.gg/nGnUknegaC"
           className="app-link"
         >
           <Icon type="discord" />
