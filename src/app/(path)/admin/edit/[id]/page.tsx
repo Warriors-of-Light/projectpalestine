@@ -20,7 +20,7 @@ export default function Edit({ params }: { params: { id: string } }) {
     const [logo, setLogo] = useState('');
     const [website, setWebsite] = useState('')
     const [tags, setTags] = useState('Other')
-    const companyPreview: COMPANY_TYPE = { name, description, rating, logo, website, tags: [tags] }
+    const companyPreview: COMPANY_TYPE = { _id: params.id, name, description, rating, logo, website, tags: [tags] }
 
     useEffect(() => {
 
