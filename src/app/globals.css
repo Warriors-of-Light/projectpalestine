@@ -64,6 +64,17 @@
     @apply flex justify-center items-center gap-2;
   }
 
+  .h-70-screen {
+    height: 70vh;
+  }
+  .h-80-screen {
+    height: 80vh;
+  }
+
+  .h-90-screen {
+    height: 90vh;
+  }
+
   .layer {
     @apply bg-app--light fixed top-0 left-0 w-screen h-screen z-50;
   }

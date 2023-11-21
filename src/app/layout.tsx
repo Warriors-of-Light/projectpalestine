@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
-import { useCompaniesStore } from "@/store/useCompaniesStore";
 import LayoutProvider from "@/components/layoutProvider";
 const inter = Inter({ subsets: ["latin"] });
 
