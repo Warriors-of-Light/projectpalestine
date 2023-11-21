@@ -1,11 +1,14 @@
+'use client'
+
 import { Icon } from "@/app/_lib/modules";
 import Link from "next/link";
 
-export default function Login() {
+export default function Signin() {
+
     return (
         <div className="w-full h-screen center padding">
             <div className="box h-fit stack gap rd max-w-[400px] shadow">
-                <div className="full text-3 title text-center">Sign in</div>
+                <div className="full text-3 title text-center padding">Sign in</div>
                 <form className="full stack gap">
                     <div className="relative full">
                         <input className="input" type="email" placeholder="email" />

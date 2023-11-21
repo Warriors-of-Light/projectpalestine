@@ -164,7 +164,7 @@
 
   /* Line / separator */
   .line {
-    @apply border-b border-foreground opacity-50 w-full
+    @apply border-b-2 border-background opacity-50 w-full my-2
   }
 
   /* Blood loader */
