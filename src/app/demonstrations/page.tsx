@@ -15,7 +15,7 @@ const Demonstrations = () => {
         date: "Nov 22th, 2023",
         location: "NYC",
         description:
-          "lood Manhattan For Gaza! Wednesday November 22nd. 2:00 pm. Union Square. For updates on the march follow @wolpalestine. L N Q R W 4 5 6 trains to 14th St.🇵🇸 In the past 44 days according to the Palestinian Ministry of Health at least 13,300 Palestinians have been massacred in Gaza by the israeli occupation with U.S. made bombs paid for with our taxes.",
+          "Flood Manhattan For Gaza! Wednesday November 22nd. 2:00 pm. Union Square. For updates on the march follow @wolpalestine. L N Q R W 4 5 6 trains to 14th St.🇵🇸 In the past 44 days according to the Palestinian Ministry of Health at least 13,300 Palestinians have been massacred in Gaza by the israeli occupation with U.S. made bombs paid for with our taxes.",
         title: "Flood Manhattan",
         image: floodManhatan,
         website: "https://www.instagram.com/p/Cz472YYgFyO/",
