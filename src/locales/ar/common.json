@@ -124,5 +124,18 @@
     "validity": "تم التحقق",
     "edit": "تعديل",
     "validate": "التحقق"
-  }
+  },
+  "submit-claim": {
+    "maximum-reference": "وصلت إالي الحد الأقصى لعدد المراجع المضافة ",
+    "item-added": "تمت إضافة الحادث إلى قاعدة البيانات",
+    "incident-details": "تفاصيل الحادث",
+    "disclaimer": "سيتم عرض هذه المعلومات علنيًا، لذا تأكد من دقتها.",
+    "title": "العنوان",
+    "select-date": "اختر تاريخًا",
+    "refrence-website": "ويبسايت المرجع",
+    "add-other-reference": "إضافة مرجع آخر",
+    "desc": "تفاصيل",
+    "cancel": "إلغاء",
+    "save": "حفظ"
+}
 }

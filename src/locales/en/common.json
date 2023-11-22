@@ -124,5 +124,18 @@
     "validity":"Validated",
     "edit":"Edit",
     "validate":"validate"
+  },
+  "submit-claim":{
+    "maximum-reference":"maximum number of references added",
+    "item-added":"Item added to Database",
+    "incident-details":"Incident Details",
+    "disclaimer":"This information will be displayed publicly so make sure it is accurate.",
+    "title":"Title",
+    "select-date":"Select a Date",
+    "refrence-website":"Reference Website",
+    "add-other-reference":"Add another reference",
+    "desc":"Description",
+    "cancel":"Cancel",
+    "save":"Save"
   }
 }

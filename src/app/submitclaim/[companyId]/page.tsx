@@ -8,6 +8,7 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import {  useCallback, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface ISubmitClaimProps {
   params: { companyId: string };
@@ -17,6 +18,7 @@ export default function SubmitClaim({ params }: ISubmitClaimProps) {
   const [referenceWebsites, setReferenceWebsites] = useState([""]);
   const [selectedTags, setselectedTags] = useState([""]);
   const { user } = useUserStore();
+  const { t } = useTranslation();
 
   const router = useRouter();
 
@@ -32,7 +34,7 @@ export default function SubmitClaim({ params }: ISubmitClaimProps) {
     if (referenceWebsites.length < 4) {
       setReferenceWebsites([...referenceWebsites, ""]);
     } else {
-      alert("maximum number of references added");
+      alert(t("submit-claim.maximum-reference", {defaultValue:"maximum number of references added"}));
     }
   }, [referenceWebsites]);
 
@@ -79,7 +81,7 @@ export default function SubmitClaim({ params }: ISubmitClaimProps) {
     async (event: any) => {
       event.preventDefault();
 
-      alert(JSON.stringify("Item added to Database"));
+      alert(JSON.stringify(t("submit-claim.item-added", {defaultValue:"Item added to Database"})));
 
       const db = getFirestore(firebase_app);
       const companyRef = doc(db, "Companies", params.companyId);
@@ -139,11 +141,10 @@ export default function SubmitClaim({ params }: ISubmitClaimProps) {
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-black/10 pb-12 md:grid-cols-3">
               <div>
                 <h2 className="text-base font-semibold leading-7 text-black">
-                  Incident Details
+                  {t("submit-claim.incident-details", {defaultValue:"Incident Details"})}
                 </h2>
                 <p className="mt-1 text-sm leading-6 text-gray-600">
-                  This information will be displayed publicly so make sure it is
-                  accurate.
+                {t("submit-claim.disclaimer", {defaultValue:"This information will be displayed publicly so make sure it is accurate."})}
                 </p>
               </div>
 
@@ -159,7 +160,7 @@ export default function SubmitClaim({ params }: ISubmitClaimProps) {
                           htmlFor="title"
                           className="block text-sm font-medium leading-6 text-black mt-4"
                         >
-                          Title
+                          {t("submit-claim.title", {defaultValue:"Title"})}
                         </label>
                         <div className="mt-2">
                           <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-green-600 sm:max-w-md">
@@ -185,7 +186,7 @@ export default function SubmitClaim({ params }: ISubmitClaimProps) {
                           htmlFor="datePicker"
                           className="block text-sm font-medium leading-6 text-black"
                         >
-                          Select a Date:
+                          {t("submit-claim.select-date", {defaultValue:"Select a Date"})}:
                         </label>
                         <div className="mt-2">
                           <div className="flex sm:max-w-md">
@@ -207,7 +208,7 @@ export default function SubmitClaim({ params }: ISubmitClaimProps) {
                     htmlFor="website"
                     className="block text-sm font-medium leading-6 text-black mt-4"
                   >
-                    Reference Website
+                    {t("submit-claim.refrence-website", {defaultValue:"Reference Website"})}
                   </label>
                   <div className="mt-2 ">
                     {referenceWebsites.map((website, index) => (
@@ -241,7 +242,7 @@ export default function SubmitClaim({ params }: ISubmitClaimProps) {
                       onClick={handleAddReference}
                       className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold mt-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                     >
-                      Add another reference
+                      {t("submit-claim.add-other-reference", {defaultValue:"Add another reference"})}
                     </button>
                   </div>
                 </div>
@@ -252,7 +253,7 @@ export default function SubmitClaim({ params }: ISubmitClaimProps) {
                     htmlFor="about"
                     className="block text-sm font-medium leading-6 text-gray-900"
                   >
-                    Description
+                    {t("submit-claim.desc", {defaultValue:"Description"})}
                   </label>
                   <div className="mt-2">
                     <textarea
@@ -278,13 +279,13 @@ export default function SubmitClaim({ params }: ISubmitClaimProps) {
               className="text-sm font-semibold leading-6 text-gray-900"
               onClick={router.back}
             >
-              Cancel
+              {t("submit-claim.cancel", {defaultValue:"Cancel"})}
             </button>
             <button
               onClick={onSubmit}
               className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Save
+              {t("submit-claim.save", {defaultValue:"Save"})}
             </button>
           </div>
         </form>
