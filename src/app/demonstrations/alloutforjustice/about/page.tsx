@@ -61,7 +61,7 @@ export default function About() {
       <header className="p-10">
         <span
           className="  text-black cursor-pointer p-10"
-          onClick={() => router.replace("/demonstrations/loveforjustice")}
+          onClick={() => router.back()}
         >
           <IoMdArrowRoundBack />
         </span>
@@ -298,7 +298,8 @@ export default function About() {
                   <div className="max-w-2xl gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div className="sm:col-span-4">
                       <span className="justify-center text-black text-center">
-                        We will send you walk details in your city
+                        We will send details for the nearest walk to you on
+                        Thursday. Make sure to follow our page.
                       </span>
                       <label
                         htmlFor="email"
@@ -424,7 +425,7 @@ export default function About() {
                 </div>
               </form>
               <a
-                href="https://www.instagram.com/lovefor.justice"
+                href="https://www.instagram.com/project.palestine_org"
                 target="_blank"
                 className="instagram-follow-button  p-10 relative justify-center top-4 left-28"
               >
@@ -439,7 +440,7 @@ export default function About() {
         ) : (
           <div className="justify-center w-full flex align-top h-20 -mt-20">
             <span className="text-black">
-              Form already submitted! We will send details shortly :)
+              Form already submitted. We will send details on Thursday.
             </span>
           </div>
         ))}{" "}
@@ -447,11 +448,11 @@ export default function About() {
         <div className="w-screen pb-10 -mt-20 justify-center relative flex items-center ">
           <span className="text-black pr-2"> DM us on </span>
           <a
-            href="https://www.instagram.com/lovefor.justice"
+            href="https://www.instagram.com/project.palestine_org"
             target="_blank"
             className="instagram-follow-button  "
           >
-            <i className="fab fa-instagram"></i> lovefor.justice
+            <i className="fab fa-instagram"></i> project.palestine_org
           </a>
           <link
             rel="stylesheet"

@@ -56,6 +56,12 @@ module.exports = {
       fontFamily: {
         visible: "'Lilita One', sans-serif",
       },
+      animation: {
+        colorChange: "opacityChange 2s forwards, colorChange 3s infinite",
+        moveText1: "moveText1 2s forwards",
+        moveText2: "moveText2 2s forwards",
+        moveText3: "moveText3 2s forwards",
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],

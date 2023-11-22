@@ -10,7 +10,7 @@ export default function Home() {
   const retrieveData = useCallback(async () => {
     const db = getFirestore(firebase_app);
     const querySnapshot = await getDocs(collection(db, "Signups"));
-    setCounter(querySnapshot.size + 52);
+    setCounter(querySnapshot.size + 1252);
   }, []);
 
   useEffect(() => {
@@ -33,24 +33,27 @@ export default function Home() {
           >
             11.24.2023
           </h1>
-          <h1 className=" text-3xl font-bold tracking-tight text-black sm:text-5xl p-0 mt-8 text-animate animate-moveText1 relative ">
-            Love for Peace
+          <h1 className=" text-3xl font-bold tracking-tight sm:text-6xl p-0 mt-8">
+            All Out
+          </h1>
+          <h1 className=" text-3xl font-bold tracking-tight text-red-500   sm:text-5xl p-0 mt-2 text-animate animate-moveText1 relative ">
+            for Peace
           </h1>
           <h1
-            className=" text-3xl font-bold tracking-tight text-green-500 sm:text-5xl p-0  text-animate animate-moveText1 "
+            className=" text-3xl font-bold tracking-tight  text-black sm:text-5xl p-0  text-animate animate-moveText1 "
             style={{ animationDelay: "1s" }}
           >
-            Love for Justice
+            for Justice
           </h1>
           <h1
-            className=" text-3xl font-bold tracking-tight text-red-500 sm:text-5xl p-0  text-animate animate-moveText3"
+            className=" text-3xl font-bold tracking-tight text-green-500 sm:text-5xl p-0  text-animate animate-moveText3"
             style={{ animationDelay: "2s" }}
           >
-            Love for Freedom
+            for Freedom
           </h1>
           <div>
             <span className="lg:text-lg md:text-lg font-bold tracking-tight text-black sm:text-lg ">
-              Join us for a gathering to talk about justice, freedom and peace
+              Stand up for justice, freedom and peace
             </span>
           </div>
 
@@ -59,9 +62,11 @@ export default function Home() {
               <span aria-hidden="true">&larr;</span> Back to home
             </a>
           </div> */}
-          <button className="btn mt-10 border-green-400 border-2  ">
-            <Link href={"/demonstrations/loveforjustice/about"}>
-              <span className="text-black font-semibold">Learn more</span>
+          <button className="btn mt-10 border-green-400 border-2  ring-2 ring-green-400 ">
+            <Link href={"/demonstrations/alloutforjustice/about"}>
+              <span className="text-black font-semibold text-2xl ">
+                Join us
+              </span>
             </Link>
           </button>
         </div>
@@ -71,7 +76,7 @@ export default function Home() {
             {counter}
           </span>
           <span className="text-black text-lg relative top-20 font-semibold">
-            People registered
+            People coming
           </span>
         </div>
       </div>

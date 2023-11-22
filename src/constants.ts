@@ -1,4 +1,5 @@
 import { UserCredential } from "firebase/auth";
+import { StaticImageData } from "next/image";
 
 export type Incident = {
   incidentId: string;
@@ -18,6 +19,15 @@ export type Company = {
   tags?: Array<string>;
   rating: 1 | 2 | 3;
   incidents: Array<Incident>;
+};
+
+export type Demonstration = {
+  title: string;
+  date: string;
+  description: string;
+  location: string;
+  image: StaticImageData;
+  website: string;
 };
 
 export type User = UserCredential & {

@@ -38,7 +38,10 @@ const Home = () => {
                 Boycott & Dinvestment
               </span>
             </div>
-            <div className="flex flex-col ">
+            <div
+              className="flex flex-col cursor-pointer"
+              onClick={() => router.push("/demonstrations")}
+            >
               <Card
                 w={150}
                 h={150}

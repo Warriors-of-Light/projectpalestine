@@ -5,8 +5,12 @@ import { Footer, Header } from "./modules";
 
 const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
-  const specificRoute = "/login";
-  const showComponent = pathname !== specificRoute;
+  const specificRoutes = [
+    "/login",
+    "/demonstrations/alloutforjustice",
+    "/demonstrations/alloutforjustice/about",
+  ];
+  const showComponent = !specificRoutes.includes(pathname);
   return (
     <>
       {showComponent && <Header />}

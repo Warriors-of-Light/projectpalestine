@@ -173,6 +173,81 @@
   }
 }
 
+/* Custom Animation */
+@keyframes colorChange {
+  0%,
+  100% {
+    color: red;
+  }
+  33% {
+    color: green;
+  }
+  66% {
+    color: black;
+  }
+}
+
+@keyframes opacityChange {
+  0% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes moveText1 {
+  from {
+    margin-top: 0;
+    opacity: 0;
+  }
+  to {
+    margin-top: 120;
+    opacity: 1;
+  } /* Adjust 'top' value to desired final position */
+}
+
+@keyframes moveText2 {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 100px;
+    opacity: 1;
+  } /* Adjust 'top' value to desired final position */
+}
+
+@keyframes moveText3 {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 150px;
+    opacity: 1;
+  } /* Adjust 'top' value to desired final position */
+}
+
+/* Custom Effects */
+.hover-gradient:hover {
+  background-image: radial-gradient(
+    circle at center,
+    #30e96b,
+    #12e861
+  ); /* Example gradient colors */
+}
+.hover-gradient-red:hover {
+  background-image: radial-gradient(
+    circle at center,
+    #e93030,
+    #ff5656
+  ); /* Example gradient colors */
+}
+
 @layer utilities {
   /* Custom Animtions */
   .animate-leftright {
