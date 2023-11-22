@@ -17,7 +17,8 @@ const Demonstrations = () => {
           "13,000+ innocent people have been killed in Gaza. More than 5,500 children. Israel isn't just committing a masacre against Palestine, it's one against humanity. Time to go all out.",
         title: "All Out For Justice",
         image: march,
-        website: "www.projectpalestine.org/demonstrations/loveforjustice",
+        website:
+          "https://www.projectpalestine.org/demonstrations/loveforjustice",
       },
     ];
   }, []);
