@@ -18,7 +18,7 @@ const Demonstrations = () => {
         title: "All Out For Justice",
         image: march,
         website:
-          "https://www.projectpalestine.org/demonstrations/loveforjustice",
+          "https://www.projectpalestine.org/demonstrations/alloutforjustice",
       },
     ];
   }, []);
