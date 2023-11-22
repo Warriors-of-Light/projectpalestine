@@ -47,7 +47,7 @@ const CompanyCard = ({ company }: ICompanyCardProps) => {
       {/* Name */}
       <div className="col-span-8 flex flex-col items-start ml-10 lg:ml-0">
         <span className="text-3 title capitalize">{name}</span>
-        <span className="text capitalize">{description}</span>
+        <span className="text overflow-hidden line-clamp-2">{description}</span>
       </div>
 
       {/* Rating */}
