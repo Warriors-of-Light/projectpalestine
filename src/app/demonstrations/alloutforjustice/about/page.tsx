@@ -11,7 +11,7 @@ import { firebase_app } from "@/firebase/config";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import palestine from "../../../../assets/palestine.png";
-import gaza from "../../../../assets/freeGaza.png";
+import Link from "next/link";
 
 export default function About() {
   const [isParticipate, setIsParticipate] = useState(false);
@@ -467,19 +467,38 @@ export default function About() {
           </div>
         ))}{" "}
       {isOragnize && (
-        <div className="w-screen pb-10 -mt-20 justify-center relative flex items-center ">
-          <span className="text-black pr-2"> DM us on </span>
-          <a
-            href="https://www.instagram.com/project.palestine_org"
-            target="_blank"
-            className="instagram-follow-button"
-          >
-            <i className="fab fa-instagram"></i> project.palestine_org
-          </a>
-          <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-          />
+        <div className="flex-col -mt-20 justify-center  flex items-center">
+          <div className="mb-3">
+            <span className="text-black pr-2 ">
+              {" "}
+              Email us{" "}
+              <Link
+                className="text-blue-600 underline"
+                href={
+                  "mailto:injusticecrush@gmail.com?subject=Will%20Help%20Organize%20In%20[Country,%20State,%20City]"
+                }
+              >
+                here
+              </Link>
+            </span>
+          </div>
+          <div className="mb-3">
+            <span className="text-black pr-2"> Or </span>
+          </div>
+          <div className="w-screen pb-10  justify-center relative flex items-center ">
+            <span className="text-black pr-2"> DM us on </span>
+            <a
+              href="https://www.instagram.com/project.palestine_org"
+              target="_blank"
+              className="instagram-follow-button"
+            >
+              <i className="fab fa-instagram"></i> project.palestine_org
+            </a>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            />
+          </div>
         </div>
       )}
     </main>
