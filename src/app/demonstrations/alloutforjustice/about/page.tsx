@@ -9,6 +9,9 @@ import { useCallback, useRef, useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { firebase_app } from "@/firebase/config";
 import Cookies from "js-cookie";
+import Image from "next/image";
+import palestine from "../../../../assets/palestine.png";
+import gaza from "../../../../assets/freeGaza.png";
 
 export default function About() {
   const [isParticipate, setIsParticipate] = useState(false);
@@ -67,7 +70,26 @@ export default function About() {
         </span>
       </header>
       <div className="p-40 pt-10">
-        <span className="text-black text-md">
+        <Image
+          src={palestine}
+          alt={"Image of palstine"}
+          className={`lg:absolute md:relative sm:relative xs:relative lg:right-96 lg:top-60`}
+        />
+        {/* <Image
+          src={palestine}
+          alt={"Image of palstine"}
+          className={`lg:absolute md:relative sm:relative xs:relative lg:right-600 lg:top-96 pl-40 rotate-0`}
+        />
+
+        <Image
+          src={gaza}
+          alt={
+            "sticker of a hand in the color of the palestinian flag with free Gaza and free Palestine written on it"
+          }
+          className={`lg:absolute md:relative sm:relative xs:relative lg:right-600 lg:top-200 pl-96 rotate-0`}
+        /> */}
+
+        <span className="text-black text-lg">
           Nothing justifies the killing of innocent people of any race or
           religion
           <br />

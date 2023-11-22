@@ -35,7 +35,7 @@ const News = () => {
               <span className="flex pt-2 font-semibold text-xl">
                 On the ground in Gaza
               </span>
-              <div className="grid lg:grid-cols-5 xs:grid-cols-4 -mt-4 justify-evenly ">
+              <div className="grid lg:grid-cols-5 xs:grid-cols-4 xxs:grid-cols-4 -mt-4 justify-evenly ">
                 <Link
                   href="https://www.instagram.com/wizard_bisan1/"
                   target="_blank"

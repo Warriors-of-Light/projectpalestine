@@ -35,11 +35,25 @@ const DemonstrationCard = ({ demonstration }: IDemonstrationCardProps) => {
           <Stack mt="6" spacing="3">
             <Heading size="md">{title}</Heading>
             <span
-              style={{ fontSize: 14, maxHeight: 50, minHeight: 50 }}
-              className="mb-4"
+              style={{
+                fontSize: 14,
+                maxWidth: 300,
+                minWidth: 300,
+                lineHeight: "1.4em", // Example line height
+                maxHeight: "5.7em", // 1.4em (line height) * 3 (number of lines)
+                overflow: "hidden",
+                display: "-webkit-box",
+                WebkitLineClamp: 4,
+                WebkitBoxOrient: "vertical",
+                textOverflow: "ellipsis",
+              }}
             >
               {description}
             </span>
+          </Stack>
+        </CardBody>
+        <CardFooter>
+          <Stack spacing={3}>
             <div className="flex-row flex items-center mt-5">
               <Text color="blue.600" fontSize="xl">
                 <FaRegCalendarAlt size={20} />
@@ -56,19 +70,14 @@ const DemonstrationCard = ({ demonstration }: IDemonstrationCardProps) => {
                 {location}
               </Text>
             </div>
+            <ButtonGroup spacing="2">
+              <Link href={website} target="_blank">
+                <Button variant="solid" colorScheme="green" cursor={"pointer"}>
+                  Learn More
+                </Button>
+              </Link>
+            </ButtonGroup>
           </Stack>
-        </CardBody>
-        <CardFooter>
-          <ButtonGroup spacing="2">
-            <Link
-              href={website}
-              target="_blank"
-            >
-              <Button variant="solid" colorScheme="green">
-                Learn More
-              </Button>
-            </Link>
-          </ButtonGroup>
         </CardFooter>
       </Card>
     )

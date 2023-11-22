@@ -44,6 +44,7 @@ module.exports = {
       },
       screens: {
         xs: "320px", // Extra small screens
+        xxs: "150px", // Extra small screens
       },
       height: {
         "50vh": "50vh",

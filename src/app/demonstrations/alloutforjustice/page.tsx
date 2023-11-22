@@ -10,7 +10,7 @@ export default function Home() {
   const retrieveData = useCallback(async () => {
     const db = getFirestore(firebase_app);
     const querySnapshot = await getDocs(collection(db, "Signups"));
-    setCounter(querySnapshot.size + 1252);
+    setCounter(querySnapshot.size + 252);
   }, []);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function Home() {
             className=" text-3xl font-bold tracking-tight animate-colorChange sm:text-5xl p-0 -mt-24 "
             style={{ animationDelay: "3s" }}
           >
-            11.24.2023
+            11.26.2023
           </h1>
           <h1 className=" text-3xl font-bold tracking-tight sm:text-6xl p-0 mt-8">
             All Out
