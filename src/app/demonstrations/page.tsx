@@ -4,22 +4,44 @@ import DemonstrationCard from "@/components/common/demonstrationCard";
 import SearchBar from "@/components/common/searchbar";
 import { Demonstration } from "@/constants";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import march from "../../assets/march.png";
 
 const Demonstrations = () => {
-  const router = useRouter();
-  const demonstrations: Array<Demonstration> = [
-    {
-      date: "Nov 24th, 2023",
-      location: "Everywhere",
-      description:
-        "13,000+ innocent people have been killed in Gaza. More than 5,500 children. Israel isn't just committing a masacre against Palestine, it's one against humanity.",
-      title: "All Out For Justice",
-      image: march,
-      website: "www.projectpalestine.org/demonstrations/loveforjustice",
+  const demonstrations: Array<Demonstration> = useMemo(() => {
+    return [
+      {
+        date: "Nov 24th, 2023",
+        location: "Everywhere",
+        description:
+          "13,000+ innocent people have been killed in Gaza. More than 5,500 children. Israel isn't just committing a masacre against Palestine, it's one against humanity. Time to go all out.",
+        title: "All Out For Justice",
+        image: march,
+        website: "www.projectpalestine.org/demonstrations/loveforjustice",
+      },
+    ];
+  }, []);
+  const [filteredResults, setFilteredResults] = useState<Array<string>>(
+    demonstrations.map((x) => x.title)
+  );
+
+  const onSearch = useCallback(
+    (filteredResults: string[] | undefined) => {
+      if (filteredResults![0] === "No Results") {
+        setFilteredResults([]);
+      } else {
+        setFilteredResults(
+          filteredResults && filteredResults?.length > 0
+            ? filteredResults
+            : [...demonstrations.map((x) => x.title)].splice(0, 5)
+        );
+      }
     },
-  ];
+    [demonstrations]
+  );
+
+  const router = useRouter();
+
   return (
     <main className="app-page-container border min-h-full">
       <div className="h-screen w-full flex flex-col-reverse md:flex-row items-start justify-start p-10 gap-6 mb-10  mt-40">
@@ -40,8 +62,8 @@ const Demonstrations = () => {
           </span>
           <div className="mt-10">
             <SearchBar
-              searchableContent={[]}
-              onSearch={() => {}}
+              searchableContent={demonstrations.map((x) => x.title)}
+              onSearch={onSearch}
               placeholder="Boycott Friday"
               label="Find demonstrations nearby"
             />
@@ -50,7 +72,14 @@ const Demonstrations = () => {
             Upcoming demonstrations
           </span>
           <div className="mt-8">
-            <DemonstrationCard demonstration={demonstrations[0]} />
+            {filteredResults.map((x, index) => (
+              <DemonstrationCard
+                key={index}
+                demonstration={demonstrations.find(
+                  (demonstration) => demonstration.title === x
+                )}
+              />
+            ))}
           </div>
         </div>
       </div>

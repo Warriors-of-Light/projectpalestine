@@ -450,7 +450,7 @@ export default function About() {
           <a
             href="https://www.instagram.com/project.palestine_org"
             target="_blank"
-            className="instagram-follow-button  "
+            className="instagram-follow-button"
           >
             <i className="fab fa-instagram"></i> project.palestine_org
           </a>

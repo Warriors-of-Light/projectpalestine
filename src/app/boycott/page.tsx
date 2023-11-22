@@ -1,24 +1,20 @@
 "use client";
 
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import { collection, getFirestore, getDocs } from "firebase/firestore";
 import { Company } from "@/constants";
-import { Spinner } from "@chakra-ui/react";
+import { Spinner, chakra } from "@chakra-ui/react";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
 import Link from "next/link";
 import { useUserStore } from "@/store/useUserStore";
 import { useSubmittedCompaniesStore } from "@/store/useSubmittedCompaniesStore";
+import { IoIosWarning } from "react-icons/io";
 import { firebase_app } from "@/firebase/config";
 import SearchBar from "@/components/common/searchbar";
 import { CompanyCard } from "@/components/modules";
+import { Text } from "@chakra-ui/react";
 
 const Boycott = () => {
   const [companies, setCompanies] = useState<Array<Company>>([]);
@@ -124,50 +120,66 @@ const Boycott = () => {
 
   return (
     <main className="app-page-container border min-h-full">
-
-    <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6 mb-10  mt-40">
-      <div className="bg-app-light flex flex-col justify-start content-start gap-4 p-8">
-        <div className="w-full text-4xl font-black mb-10">
-          Boycott the genocide and its supporters
-        </div>
-        <SearchBar
-          label="Search products or companies"
-          onSearch={onSearch}
-          placeholder="Search here"
-          searchableContent={searchableContent.current}
-        />
-        {companies.length === 0 ? (
-          <Spinner />
-        ) : (
-          companies.map((company, index) => {
-            return (
-              filteredResults.includes(company.name) && (
-                <CompanyCard key={index} company={company} />
-              )
-            );
-          })
-        )}
-        {filteredResults.length === 0 && (
-          <span className="flex justify-center text-lg mb-20">
-            No Results Found
+      <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6 mb-10  mt-40">
+        <div className="bg-app-light flex flex-col justify-start content-start gap-4 p-8">
+          <div className="w-full text-4xl font-black">
+            Boycott the genocide and its supporters
+          </div>
+          <span className="mb-4">
+            <div className="flex flex-row items-center">
+              <Text color={"yellow.400"} stroke={"black"}>
+                <IoIosWarning size={20} />
+              </Text>
+              Note: Our tool is still a work in progress, check out Witness for
+              a better compiled list
+              <Link
+                className="ml-1 text-blue-600 underline"
+                href="https://boycott.thewitness.news/browse/1"
+                target="_blank"
+              >
+                {" "}
+                here{" "}
+              </Link>
+            </div>
           </span>
-        )}
-        <div className="flex justify-center w-full">
-          <Link href="/companies">
-            <span className="hover:text-green-500 text-md">
-              See all companies
+          <SearchBar
+            label="Search products or companies"
+            onSearch={onSearch}
+            placeholder="Search here"
+            searchableContent={searchableContent.current}
+          />
+          {companies.length === 0 ? (
+            <Spinner />
+          ) : (
+            companies.map((company, index) => {
+              return (
+                filteredResults.includes(company.name) && (
+                  <CompanyCard key={index} company={company} />
+                )
+              );
+            })
+          )}
+          {filteredResults.length === 0 && (
+            <span className="flex justify-center text-lg mb-20">
+              No Results Found
             </span>
-          </Link>
-        </div>
-        <div className="flex justify-center w-full">
-          <Link href={user ? "/addcompany" : "/login"}>
-            <button className="app-btn bg-green-500 text-white w-40">
-              Add Company
-            </button>
-          </Link>
+          )}
+          <div className="flex justify-center w-full">
+            <Link href="/companies">
+              <span className="hover:text-green-500 text-md">
+                See all companies
+              </span>
+            </Link>
+          </div>
+          <div className="flex justify-center w-full">
+            <Link href={user ? "/addcompany" : "/login"}>
+              <button className="app-btn bg-green-500 text-white w-40">
+                Add Company
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
     </main>
   );
 };

@@ -35,20 +35,20 @@ const News = () => {
               <span className="flex pt-2 font-semibold text-xl">
                 On the ground in Gaza
               </span>
-              <div className="grid grid-cols-1 grid-flow-col xs:grid-cols-4 space-x-4 -mt-4 ">
+              <div className="grid lg:grid-cols-5 xs:grid-cols-4 -mt-4 justify-evenly ">
                 <Link
                   href="https://www.instagram.com/wizard_bisan1/"
                   target="_blank"
                 >
-                  <div className="flex-col flex justify-center items-center hover:animate-pulse">
+                  <div className="flex-col flex items-center hover:animate-pulse">
                     <Avatar
                       mt={10}
-                      size={"2xl"}
+                      size={"xl"}
                       src={plestia.src}
                       ring={"2px"}
                       ringColor={"facebook.400"}
                     />
-                    <span className="flex-col flex justify-center text-xl font-semibold">
+                    <span className="flex-col flex text-xl font-semibold">
                       Plestia
                     </span>
                   </div>
@@ -58,15 +58,15 @@ const News = () => {
                   href="https://www.instagram.com/motaz_azaiza/"
                   target="_blank"
                 >
-                  <div className="flex-col flex justify-center items-center cursor-pointer hover:animate-pulse">
+                  <div className="flex-col flex  items-center cursor-pointer hover:animate-pulse">
                     <Avatar
                       mt={10}
-                      size={"2xl"}
+                      size={"xl"}
                       src={motaz.src}
                       ring={"2px"}
                       ringColor={"facebook.400"}
                     />
-                    <span className="flex-col flex justify-center text-xl font-semibold">
+                    <span className="flex-col flex  text-xl font-semibold">
                       Motaz
                     </span>
                   </div>
@@ -75,15 +75,15 @@ const News = () => {
                   href="https://www.instagram.com/byplestia/"
                   target="_blank"
                 >
-                  <div className="flex-col flex justify-center items-center hover:animate-pulse">
+                  <div className="flex-col flex  items-center hover:animate-pulse">
                     <Avatar
                       mt={10}
-                      size={"2xl"}
+                      size={"xl"}
                       src={bisan.src}
                       ring={"2px"}
                       ringColor={"facebook.400"}
                     />
-                    <span className="flex-col flex justify-center text-xl font-semibold">
+                    <span className="flex-col flex text-xl font-semibold">
                       Bisan
                     </span>
                   </div>
@@ -92,10 +92,10 @@ const News = () => {
                   href="https://www.instagram.com/alijadallah66/"
                   target="_blank"
                 >
-                  <div className="flex-col flex justify-center items-center hover:animate-pulse">
+                  <div className="flex-col flex  items-center hover:animate-pulse">
                     <Avatar
                       mt={10}
-                      size={"2xl"}
+                      size={"xl"}
                       src={ali.src}
                       ring={"2px"}
                       ringColor={"facebook.400"}
@@ -109,10 +109,10 @@ const News = () => {
                   href="https://www.instagram.com/saleh_aljafarawi/"
                   target="_blank"
                 >
-                  <div className="flex-col flex justify-center items-center hover:animate-pulse">
+                  <div className="flex-col flex  items-center hover:animate-pulse">
                     <Avatar
                       mt={10}
-                      size={"2xl"}
+                      size={"xl"}
                       src={saleh.src}
                       ring={"2px"}
                       ringColor={"facebook.400"}
@@ -126,7 +126,7 @@ const News = () => {
               <span className="flex font-semibold text-xl  bg-red-400 rounded-md mt-4 pl-2">
                 Global
               </span>
-              <div className="grid grid-cols-3 grid-flow-col space-x-4 mt-4">
+              <div className="grid grid-cols-5 grid-flow-col space-x-4 mt-4">
                 <Link
                   href="https://www.instagram.com/eye.on.palestine/"
                   target="_blank"
@@ -134,7 +134,7 @@ const News = () => {
                   <div className="flex-col flex justify-center items-center hover:animate-pulse">
                     <Avatar
                       mt={10}
-                      size={"2xl"}
+                      size={"xl"}
                       src={eyeonpalestine.src}
                       ring={"2px"}
                       ringColor={"facebook.400"}
@@ -145,14 +145,14 @@ const News = () => {
                   </div>
                 </Link>
 
-                <Link
+                {/* <Link
                   href="https://www.instagram.com/shaunking/"
                   target="_blank"
                 >
                   <div className="flex-col flex justify-center items-center hover:animate-pulse">
                     <Avatar
                       mt={10}
-                      size={"2xl"}
+                      size={"xl"}
                       src={shaun.src}
                       ring={"2px"}
                       ringColor={"facebook.400"}
@@ -161,7 +161,7 @@ const News = () => {
                       Shaun
                     </span>
                   </div>
-                </Link>
+                </Link> */}
 
                 <Link
                   href="https://www.instagram.com/aljazeeraenglish/"
@@ -170,7 +170,7 @@ const News = () => {
                   <div className="flex-col flex justify-center items-center hover:animate-pulse">
                     <Avatar
                       mt={10}
-                      size={"2xl"}
+                      size={"xl"}
                       src={aljazeeraenglish.src}
                       ring={"2px"}
                       ringColor={"facebook.400"}
