@@ -13,7 +13,8 @@ const Demonstrations = () => {
     {
       date: "Nov 24th, 2023",
       location: "Everywhere",
-      description: "13,000+ innocent people have been killed in Gaza. More than 5,500 children. Israel isn't just committing a masacre against Palestine, it's one against humanity.",
+      description:
+        "13,000+ innocent people have been killed in Gaza. More than 5,500 children. Israel isn't just committing a masacre against Palestine, it's one against humanity.",
       title: "All Out For Justice",
       image: march,
       website: "www.projectpalestine.org/demonstrations/loveforjustice",
@@ -30,7 +31,7 @@ const Demonstrations = () => {
             To achieve this we need to unite and amplify the voice of humanity.
           </span>
           <span className="text-lg">
-            Scattered demonstrations won't cut it anymore, we need to
+            Scattered demonstrations won&apos;t cut it anymore, we need to
             demonstrate our stance all together.
           </span>
           <span className="text-lg">
