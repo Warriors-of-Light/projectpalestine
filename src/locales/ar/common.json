@@ -116,6 +116,13 @@
     "no-incidents": "لم يتم تقديم أي حوادث بعد",
     "submit-1st-incident": "قدم حادثة الأولى",
     "submit-incident": "الإبلاغ عن حادثة",
-    "go-back": "رجوع"
+    "go-back": "رجوع",
+    
+    "date": "التاريخ",
+    "title": "العنوان",
+    "reference": "المرجع",
+    "validity": "تم التحقق",
+    "edit": "تعديل",
+    "validate": "التحقق"
   }
 }

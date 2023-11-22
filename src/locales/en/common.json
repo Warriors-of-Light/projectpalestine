@@ -116,6 +116,13 @@
     "no-incidents":"No incidents submitted yet",
     "submit-1st-incident":"Submit First Incident",
     "submit-incident":"report an incident",
-    "go-back":"go back"
+    "go-back":"go back",
+
+    "date":"Date",
+    "title":"Title",
+    "reference":"Reference",
+    "validity":"Validated",
+    "edit":"Edit",
+    "validate":"validate"
   }
 }

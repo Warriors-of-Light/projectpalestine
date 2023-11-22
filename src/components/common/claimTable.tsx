@@ -3,6 +3,7 @@ import { useUserStore } from "@/store/useUserStore";
 import { Stack } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface IClaimCard {
   incidents: Array<Incident>;
@@ -15,6 +16,7 @@ export default function ClaimTable({
   companyId,
   displayClaimButton,
 }: IClaimCard) {
+  const { t } = useTranslation();
   const router = useRouter();
   const { user } = useUserStore();
 
@@ -22,7 +24,7 @@ export default function ClaimTable({
     <div className="flex w-full h-full justify-center mt-20 ">
       {displayClaimButton && (
         <Stack>
-          <span className="text-xl"> No incidents submitted yet </span>
+          <span className="text-xl"> {t("company-profile.no-incidents", {defaultValue:"No incidents submitted yet"})} </span>
           <button
             onClick={() =>
               router.push(user ? `/submitclaim/${companyId}` : "/login")
@@ -30,7 +32,7 @@ export default function ClaimTable({
             className="app-btn bg-red-400 text-black border-red-800"
           >
             {" "}
-            Submit first incident{" "}
+            {t("company-profile.submit-1st-incident", {defaultValue:"Submit first incident"})}{" "}
           </button>
         </Stack>
       )}
@@ -44,28 +46,28 @@ export default function ClaimTable({
               scope="col"
               className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0 lg:w-40 "
             >
-              <span className="relative left-4 "> Date </span>
+              <span className="relative left-4 "> {t("company-profile.date", {defaultValue:"Date"})} </span>
             </th>
             <th
               scope="col"
               className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900  lg:w-40 "
             >
-              Title
+              {t("company-profile.title", {defaultValue:"Title"})} 
             </th>
             <th
               scope="col"
               className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900  lg:w-60 "
             >
-              Reference
+              {t("company-profile.reference", {defaultValue:"Reference"})} 
             </th>
             <th
               scope="col"
               className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900  lg:w-20 "
             >
-              Validated
+              {t("company-profile.validity", {defaultValue:"Validated"})} 
             </th>
             <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
-              <span className="sr-only">Edit</span>
+              <span className="sr-only">{t("company-profile.edit", {defaultValue:"Edit"})} </span>
             </th>
           </tr>
         </thead>
@@ -96,7 +98,7 @@ export default function ClaimTable({
               </td>
               <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 ">
                 <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                  <span className="relative right-5"> validate </span>
+                  <span className="relative right-5"> {t("company-profile.validate", {defaultValue:"validate"})}  </span>
                 </a>
                 {/** validate | flag |  */}
               </td>
