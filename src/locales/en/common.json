@@ -70,6 +70,20 @@
     "coming-soon":"Coming Soon",
     "back-to-home":"Back to home"
   },
+  "about":{
+    "tech":"Tech",
+    "tech-desc":"We build tools using technology. Our coders are freedom fighters using code as a force for good.",
+    "tech-vol-btn":"Volunteer as a developer",
+    "media":"Media",
+    "media-desc":"We display our stories in different multi-media formats such as videos and movies, using art as a medium for liberation.",
+    "media-vol-btn":"Volunteer as a creator",
+    "research":"Research",
+    "research-desc":"We share the truth with the world through research, writing and papers. If Zionism started with one paper, ending it can be one paper away.",
+    "research-vol-btn":"Volunteer as a researcher",
+
+    "headline":"Project Palestine",
+    "paragraph":"A project born to restore justice and assist freedom fighters against the inhumane cruelty of aparteid and occupation. We believe that we all have a role in fighting injustice, and if we all unite, we could reach liberation which is the ultimate road to peace."
+  },
   "add-company":{
     "profile":"Company Profile",
     "disclaimer":"This information will be displayed publicly so make sure it is accurate.",
