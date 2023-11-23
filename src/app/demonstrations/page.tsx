@@ -89,10 +89,10 @@ const Demonstrations = () => {
               label="Find demonstrations nearby"
             />
           </div>
-          <span className="mt-10 text-xl bg-green-400 p-1 rounded-sm">
+          <span className="mt-10 text-xl bg-green-400 p-1 rounded-sm ">
             Upcoming demonstrations
           </span>
-          <div className="mt-8 flex-row flex space-x-3">
+          <div className="mt-8 space-x-3 grid grid-cols-3">
             {filteredResults.map((x, index) => (
               <DemonstrationCard
                 key={index}
