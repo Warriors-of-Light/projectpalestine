@@ -320,8 +320,8 @@ export default function About() {
                   <div className="max-w-2xl gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div className="sm:col-span-4">
                       <span className="justify-center text-black text-center">
-                        We will send details for the nearest walk to you on
-                        Thursday. Make sure to follow our page.
+                        We will send details for the nearest walk to you this
+                        weekend. Make sure to follow our page.
                       </span>
                       <label
                         htmlFor="email"
@@ -462,7 +462,7 @@ export default function About() {
         ) : (
           <div className="justify-center w-full flex align-top h-20 -mt-20">
             <span className="text-black">
-              Form already submitted. We will send details on Thursday.
+              Form already submitted. We will send details this weekend.
             </span>
           </div>
         ))}{" "}
