@@ -44,6 +44,7 @@ module.exports = {
       },
       screens: {
         xs: "320px", // Extra small screens
+        xxs: "150px", // Extra small screens
       },
       height: {
         "50vh": "50vh",
@@ -55,6 +56,12 @@ module.exports = {
       },
       fontFamily: {
         visible: "'Lilita One', sans-serif",
+      },
+      animation: {
+        colorChange: "opacityChange 2s forwards, colorChange 3s infinite",
+        moveText1: "moveText1 2s forwards",
+        moveText2: "moveText2 2s forwards",
+        moveText3: "moveText3 2s forwards",
       },
     },
   },

@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
-import { useCompaniesStore } from "@/store/useCompaniesStore";
-import '../i18n';
 import LayoutProvider from "@/components/layoutProvider";
+import { Analytics } from "@vercel/analytics/react";
+import '../i18n';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +26,7 @@ export default function RootLayout({
         <ChakraProvider>
           <LayoutProvider>{children}</LayoutProvider>
         </ChakraProvider>
+        <Analytics />
       </body>
     </html>
   );

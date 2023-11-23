@@ -16,6 +16,7 @@ interface ICompanyCardProps {
 const CompanyCard = ({ company }: ICompanyCardProps) => {
   const router = useRouter();
   const { logo, name, description, companyId, rating } = company;
+  const windowSize = window.innerWidth;
 
   const bgColor = useMemo((): string => {
     if (rating == 1) {
@@ -37,7 +38,7 @@ const CompanyCard = ({ company }: ICompanyCardProps) => {
       {/* Logo */}
       <div className="col-span-2  p-4 ">
         {logo.length > 0 ? (
-          <Avatar src={logo} size={"xl"} />
+          <Avatar src={logo} size={windowSize < 350 ? "sm" : "xl"} />
         ) : (
           <Avatar name={name} />
         )}
@@ -46,11 +47,11 @@ const CompanyCard = ({ company }: ICompanyCardProps) => {
       {/* Name */}
       <div className="col-span-8 flex flex-col items-start ml-10 lg:ml-0">
         <span className="text-3 title capitalize">{name}</span>
-        <span className="text capitalize">{description}</span>
+        <span className="text overflow-hidden line-clamp-2">{description}</span>
       </div>
 
       {/* Rating */}
-      <div className="p-4 lg:p-0">
+      <div className="p-4 lg:p-0 ">
         <Status status={rating} />
       </div>
     </div>

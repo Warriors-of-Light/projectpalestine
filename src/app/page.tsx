@@ -1,14 +1,14 @@
 // Home Page
 "use client";
 import React from "react";
-import { Hero } from "@/components/modules";
+import Home from "./home/page";
 
-const Home = () => {
+const App = () => {
   return (
     <main className="app-page-container border min-h-full">
-      <Hero />
+      <Home />
     </main>
   );
 };
 
-export default Home;
+export default App;
