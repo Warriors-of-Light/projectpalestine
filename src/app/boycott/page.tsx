@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import { collection, getFirestore, getDocs } from "firebase/firestore";
 import { Company } from "@/constants";
-import { Spinner, chakra } from "@chakra-ui/react";
+import { Spinner } from "@chakra-ui/react";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
 import Link from "next/link";

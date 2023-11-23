@@ -25,7 +25,7 @@ const Demonstrations = () => {
         date: "Nov 26th, 2023",
         location: "Everywhere",
         description:
-          "13,000+ innocent people have been killed in Gaza. More than 5,500 children. Israel isn't just committing a masacre against Palestine, it's one against humanity. Time to go all out.",
+          "13,000+ innocent people have been killed in Gaza. More than 5,500 children. Israel isn't just committing a massacre against Palestine, it's one against humanity. Time to go all out.",
         title: "All Out For Justice",
         image: alloutforjustice,
         website:
