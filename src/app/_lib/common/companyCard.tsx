@@ -1,21 +1,23 @@
 // Company Card
 
-"use client";
+"use client"
 
+import Link from "next/link"
 import { useMemo, memo, useState } from "react"
 import { useRouter } from "next/navigation"
 import { COMPANY_TYPE } from "@/data/modules"
 import { Icon, Rating } from "@/app/_lib/modules"
-import Link from "next/link";
 
 function CompanyCard({
         company,
         control = false,
+        animation = true,
         deleteCompany,
     }
     : {
         company: COMPANY_TYPE,
         control?: boolean,
+        animation?:boolean,
         deleteCompany?: () => void
     }) {
 
@@ -51,8 +53,8 @@ function CompanyCard({
     return (
 
         <Link
-            className={`${cardColors} w-full grid grid-cols-10 items-center relative
-                padding gap rd cursor-pointer shadow hover:ring-2 animate-appear`}
+            className={`${cardColors} ${animation ? 'animate-appear':''} w-full grid grid-cols-10 items-center relative
+                padding gap rd cursor-pointer shadow hover:ring-2 duration-300`}
             onMouseEnter={openControl}
             onMouseLeave={closeControl}
             onClick={e => {controlFrame && e.preventDefault()}}

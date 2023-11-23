@@ -13,7 +13,7 @@ export default function Admin() {
     const [companies, setCompanies] = useState<COMPANY_TYPE[]>([])
     const [loading, setLoading] = useState(true)
     const [filter, setFilter] = useState('')
-    const [companiesRange, setCompaniesRange] = useState(1)
+    const [companiesRange, setCompaniesRange] = useState(0)
     useEffect(() => fetchCompanies, [])
 
     // Functions //
@@ -34,8 +34,8 @@ export default function Admin() {
             {
                 !loading
                     ? <>
-                        <CompaniesList companies={companies} fetchCompanies={fetchCompanies} filter={filter} />
-                        <Range companiesRange={companiesRange} setCompaniesRange={setCompaniesRange}/>
+                        <CompaniesList companies={companies} fetchCompanies={fetchCompanies} companiesRange={companiesRange} filter={filter} />
+                        <Range companiesRange={companiesRange} setCompaniesRange={setCompaniesRange} companiesLength={companies.length} />
                     </>
                     : <div className="full min-h-[300px] center"><Loader /></div>
             }
@@ -72,10 +72,12 @@ function SearchBar({
 function CompaniesList({
     companies,
     fetchCompanies,
+    companiesRange,
     filter
 }: {
     companies: COMPANY_TYPE[],
     fetchCompanies: () => void,
+    companiesRange: number,
     filter: string
 }) {
 
@@ -99,7 +101,7 @@ function CompaniesList({
     return (
         <div className="box stack gap min-h-[300px] animate-toright">
             {
-                filter
+                filter.length
                     ? companies.map((company: COMPANY_TYPE) => {
                         if (
                             company.name.toLowerCase().includes(filter.toLowerCase())
@@ -111,34 +113,73 @@ function CompaniesList({
                                     key={Math.random()}
                                     company={company}
                                     control={true}
+                                    animation={false}
                                     deleteCompany={() => deleteCompany(company._id)}
                                 />
                             )
                         }
                     })
-                    : companies.map((company: COMPANY_TYPE) => {
-                        return (
-                            <CompanyCard
-                                key={Math.random()}
-                                company={company}
-                                control={true}
-                                deleteCompany={() => deleteCompany(company._id)}
-                            />
-                        )
+                    : companies.map((company: COMPANY_TYPE, index: number) => {
+                        if (companiesRange * 10 <= index && index < (companiesRange + 1) * 10) {
+                            return (
+                                <CompanyCard
+                                    key={company._id}
+                                    company={company}
+                                    control={true}
+                                    deleteCompany={() => deleteCompany(company._id)}
+                                />
+                            )
+                        }
                     })
             }
         </div>
     )
 }
 
-function Range({ companiesRange, setCompaniesRange }: { companiesRange: number, setCompaniesRange: (range: number) => void }) {
+function Range({
+    companiesRange,
+    setCompaniesRange,
+    companiesLength,
+}: {
+    companiesRange: number,
+    setCompaniesRange: (range: number) => void,
+    companiesLength: number
+}) {
+
+    // Initilize //
+    const companiesPerList = 10
+    const calcLength = Math.floor(companiesLength / companiesPerList)
+    const plusLength = companiesLength % 10 ? 1 : 0
+
+    // Functions //
+    const incrementRange = () => {
+        if (companiesRange + 1 < calcLength || (companiesRange + 1 === calcLength && plusLength)) {
+            setCompaniesRange(companiesRange + 1)
+            window.scroll({
+                top: 0,
+                left: 0,
+                behavior: "smooth",
+            })
+        }
+    }
+    const decerementRange = () => {
+        if (companiesRange > 0) {
+            setCompaniesRange(companiesRange - 1)
+            window.scroll({
+                top: 0,
+                left: 0,
+                behavior: "smooth",
+            })
+        }
+    }
+
     return (
         <div className="box center gap animate-toleft">
-            <button className="btn" onClick={() => setCompaniesRange(companiesRange - 1)}>
+            <button className="btn" onClick={decerementRange}>
                 <Icon type="left" />
             </button>
-            <span className="bg-background rd px-4 py-2">{companiesRange}</span>
-            <button className="btn" onClick={() => setCompaniesRange(companiesRange + 1)}>
+            <span className="bg-background rd px-4 py-2">{companiesRange + 1} / {calcLength + plusLength}</span>
+            <button className="btn" onClick={incrementRange}>
                 <Icon type="right" />
             </button>
         </div>

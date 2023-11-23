@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { URLSearchParams } from 'url'
 import { type NextRequest } from 'next/server'
-import { connectToDatabase } from '@/utils/moduels'
+import { connectToDatabase } from '@/utils/modules'
 import { users } from '@/data/modules'
 
 export async function GET(request: NextRequest) {

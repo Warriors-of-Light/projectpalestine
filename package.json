@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "aws4": "^1.12.0",
     "axios": "^1.6.2",
+    "encryptly": "^1.0.0",
     "mongoose": "^8.0.0",
     "next": "14.0.2",
     "react": "^18",

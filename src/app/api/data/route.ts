@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { connectToDatabase } from "@/utils/moduels"
+import { connectToDatabase } from "@/utils/modules"
 import { company, COMPANY_TYPE } from "@/data/modules"
 
 // GET
@@ -7,15 +7,15 @@ export async function GET(request: NextRequest) {
     try {
 
         const { searchParams } = new URL(request.url)
-
-        if(searchParams.get('id')) {
+        
+        if (searchParams.get('id')) {
             const data = await getCompany(searchParams.get('id') || '')
             return NextResponse.json({ data })
         } else {
             const data = await getCompanies()
             return NextResponse.json({ data })
         }
-        
+
     } catch (e) {
         console.log('[Error]', e)
         NextResponse.json({ message: 'Error' })
@@ -31,17 +31,17 @@ async function getCompanies() {
 // Get company
 async function getCompany(id: string) {
     await connectToDatabase()
-    return await company.findOne({'_id' : id})
+    return await company.findOne({ '_id': id })
 }
 
 // Post
 export async function POST(request: NextRequest) {
     try {
-        const {action, companyData}: {action: string, companyData: COMPANY_TYPE} = await request.json()
-        if(action === 'add') {
+        const { action, companyData }: { action: string, companyData: COMPANY_TYPE } = await request.json()
+        if (action === 'add') {
             await addCompany(companyData)
             return NextResponse.json({ status: true })
-        } else if(action === 'edit') {
+        } else if (action === 'edit') {
             await editCompany(companyData)
             return NextResponse.json({ status: true })
         } else return NextResponse.json({ status: false })
@@ -61,7 +61,7 @@ async function addCompany(companyData: COMPANY_TYPE) {
 
 async function editCompany(companyData: COMPANY_TYPE) {
     await connectToDatabase()
-    await company.findByIdAndUpdate({'_id': companyData._id}, companyData)
+    await company.findByIdAndUpdate({ '_id': companyData._id }, companyData)
     return true
 }
 
@@ -69,7 +69,7 @@ async function editCompany(companyData: COMPANY_TYPE) {
 export async function DELETE(request: NextRequest) {
     try {
         const { searchParams } = new URL(request.url)
-        if(searchParams.get('id')) {
+        if (searchParams.get('id')) {
             await deleteCompany(searchParams.get('id') || '')
             return NextResponse.json({ status: true })
         } else {
@@ -84,5 +84,5 @@ export async function DELETE(request: NextRequest) {
 // Delete company
 async function deleteCompany(id: string) {
     await connectToDatabase()
-    return await company.deleteOne({'_id': id})
+    return await company.deleteOne({ '_id': id })
 }

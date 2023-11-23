@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server"
-import { connectToDatabase } from '@/utils/moduels'
+import { connectToDatabase } from '@/utils/modules'
 import { users } from '@/data/modules'
+import { verifyData } from "@/utils/modules"
+
+const encryptly = require('encryptly')
 
 // Post
 export async function POST(request: NextRequest) {
@@ -12,59 +15,41 @@ export async function POST(request: NextRequest) {
         if (!cookie) return Response.json({ message: 'No cookie' })
 
         const {
-            name,
             email,
             password
         }: {
-            name: string,
             email: string,
             password: string
         } = await request.json()
 
-        if (name && email && password) {
-            if(!isOldEmail(email)){
-                await registerUser(name, email, password, cookie)
-            return NextResponse.json({ message: 'signin' })
-            }else {
-                return NextResponse.json({ message: 'incorrect email' })
-            }
-        } else {
-            return NextResponse.json({ message: 'incorrect data' })
-        }
+        if (
+            verifyData({type: 'email', value: email}) &&
+            verifyData({type: 'password', value: password})
+            ) {
+            if (await isUser(email, password, cookie)) return NextResponse.json({ status: true })
+            else return NextResponse.json({ status: false })
+        } else return NextResponse.json({ status: false })
 
     } catch (e) {
-        console.log('[Error]', e)
+        console.log('[Error](signin)')
         NextResponse.json({ status: false })
     }
-    
-}
-
-// check is old user
-async function isOldEmail(email: string) {
-
-    return await users.findOne({ 'email': email }) ? true : false
 
 }
 
-// Register new user in database
-async function registerUser(name: string, email: string, password: string, cookie: string) {
-
+// Check if already sign up then update new cookie and return true
+async function isUser(email: string, password: string, cookie: string) {
     try {
 
-        const data = Object.assign({}, {
-            name,
-            email, 
-            password,
-            picture: '',
-            cookie
-        })
-        const newUser = new users(data)
-        await newUser.save()
+        const encryptedPassword = encryptly.encrypt(password, process.env.ENCRYPTION_KEY)
+        const user = await users.findOne({ 'email': email, 'password': encryptedPassword })
+        if(user && user.cookie !== cookie) {
+            await users.findOneAndUpdate({ '_id': user._id }, {'cookie': cookie})
+            return true
+        } else return false
 
     } catch (e) {
-
-        console.log('[Error](register user)')
-
+        console.log('[Error](isUser)')
+        return false
     }
-
 }

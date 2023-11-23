@@ -6,11 +6,11 @@
 
   /* App custom colors variables */
   :root {
-    --foreground: theme(colors.neutral.800);
-    --background: theme(colors.neutral.200);
-    --t-background: theme(colors.neutral.100);
-    --primary: theme(colors.lime.300);
-    --t-primary: theme(colors.lime.600);
+    --foreground: theme(colors.slate.900);
+    --background: theme(colors.slate.100);
+    --t-background: theme(colors.slate.200);
+    --primary: theme(colors.blue.300);
+    --t-primary: theme(colors.blue.600);
     --danger: theme(colors.red.300);
     --t-danger: theme(colors.red.600);
     --alert: theme(colors.yellow.300);
@@ -19,13 +19,13 @@
     --t-success: theme(colors.green.600);
   }
 
-  @media (prefers-color-scheme: -dark) {
+  @media (prefers-color-scheme: dark) {
     :root {
-      --foreground: theme(colors.neutral.200);
+      --foreground: theme(colors.neutral.100);
       --background: theme(colors.neutral.900);
       --t-background: theme(colors.neutral.800);
-      --primary: theme(colors.lime.800);
-      --t-primary: theme(colors.lime.300);
+      --primary: theme(colors.blue.800);
+      --t-primary: theme(colors.blue.300);
       --danger: theme(colors.red.800);
       --t-danger: theme(colors.red.400);
       --alert: theme(colors.yellow.800);
@@ -256,7 +256,7 @@
 
   /* Animations */
   .animate-appear {
-    animation: k-appear var(--duration);
+    animation: k-appear var(--duration-long);
   }
 
   .animate-appear:nth-child(1) {
@@ -301,7 +301,7 @@
 
   @keyframes k-appear {
     0% {
-      transform: scale(0);
+      transform: scale(0.5);
       opacity: 0;
     }
   }
@@ -312,7 +312,7 @@
 
   @keyframes k-toright {
     0% {
-      transform: translate(-100%);
+      transform: translate(-10%);
       opacity: 0;
     }
   }
@@ -323,7 +323,7 @@
 
   @keyframes k-toleft {
     0% {
-      transform: translate(100%);
+      transform: translate(10%);
       opacity: 0;
     }
   }
@@ -334,7 +334,7 @@
 
   @keyframes k-todown {
     0% {
-      transform: translateY(-100%);
+      transform: translateY(-10%);
       opacity: 0;
     }
   }
@@ -345,7 +345,7 @@
 
   @keyframes k-totop {
     0% {
-      transform: translateY(100%);
+      transform: translateY(10%);
       opacity: 0;
     }
   }

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
-import { connectToDatabase } from '@/utils/moduels'
-import { users } from '@/data/modules'
+import { connectToDatabase, verifyData } from '@/utils/modules'
+import { users, verificationCode } from '@/data/modules'
+
+const encryptly = require('encryptly')
 
 // Post
 export async function POST(request: NextRequest) {
@@ -9,20 +11,27 @@ export async function POST(request: NextRequest) {
 
         await connectToDatabase()
         const cookie = request.cookies.get('token')?.value
-        if (!cookie) return Response.json({ message: 'No cookie' })
+        if (!cookie) return NextResponse.json({ message: 'No cookie' })
 
         const {
             name,
             email,
-            password
+            password,
+            code
         }: {
             name: string,
             email: string,
-            password: string
+            password: string,
+            code: string
         } = await request.json()
 
-        if (name && email && password) {
-            if (!isOldEmail(email)) {
+        if (
+            verifyData({ type: 'name', value: name }) &&
+            verifyData({ type: 'email', value: email }) &&
+            verifyData({ type: 'password', value: password }) &&
+            await isValidVerificationCode(email, code)
+        ) {
+            if (!await isOldEmail(email)) {
                 await registerUser(name, email, password, cookie)
                 return NextResponse.json({ status: true })
             } else {
@@ -33,17 +42,29 @@ export async function POST(request: NextRequest) {
         }
 
     } catch (e) {
-        console.log('[Error]', e)
-        NextResponse.json({ status: false })
+        console.log('[Error](signup)')
+        return NextResponse.json({ status: false })
     }
 
 }
 
 // check is old user
 async function isOldEmail(email: string) {
+    try {
+        return await users.findOne({ 'email': email }) ? true : false
+    } catch (e) {
+        console.log('[Error](isOldEmail)')
+    }
 
-    return await users.findOne({ 'email': email }) ? true : false
+}
 
+// Check verification code
+async function isValidVerificationCode(email: string, code: string) {
+    try {
+        return await verificationCode.findOne({ 'email': email, 'code': code }) ? true : false
+    } catch (e) {
+        console.log('[Error](isValidVerificationCode)')
+    }
 }
 
 // Register new user in database
@@ -51,11 +72,14 @@ async function registerUser(name: string, email: string, password: string, cooki
 
     try {
 
+        const defaultPicture = 'https://cdn3.iconfinder.com/data/icons/leto-user-group/64/__user_person_profile-64.png'
+        const encryptedPassword = encryptly.encrypt(password, process.env.ENCRYPTION_KEY)
+
         const data = Object.assign({}, {
             name,
             email,
-            password,
-            picture: '',
+            password: encryptedPassword,
+            picture: defaultPicture,
             cookie
         })
         const newUser = new users(data)
@@ -63,7 +87,7 @@ async function registerUser(name: string, email: string, password: string, cooki
 
     } catch (e) {
 
-        console.log('[Error](register user)')
+        console.log('[Error](registerUser)', e)
 
     }
 

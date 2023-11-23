@@ -1,6 +1,7 @@
 // Models
 export { default as company } from './model/company'
 export { default as users } from './model/user'
+export { default as verificationCode } from './model/verificationCode'
 
 // Constant Types
 export type {
