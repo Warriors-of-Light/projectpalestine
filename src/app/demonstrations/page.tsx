@@ -5,8 +5,9 @@ import SearchBar from "@/components/common/searchbar";
 import { Demonstration } from "@/constants";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useMemo, useState } from "react";
-import march from "../../assets/march.png";
-import floodManhatan from "../../assets/floodManhatan.png";
+import alloutforjustice from "../../assets/demonstrations/alloutforjustice.png";
+import floodManhatan from "../../assets/demonstrations/floodManhatan.png";
+import shutitdown from "../../assets/demonstrations/shutitdown.png";
 
 const Demonstrations = () => {
   const demonstrations: Array<Demonstration> = useMemo(() => {
@@ -26,9 +27,18 @@ const Demonstrations = () => {
         description:
           "13,000+ innocent people have been killed in Gaza. More than 5,500 children. Israel isn't just committing a masacre against Palestine, it's one against humanity. Time to go all out.",
         title: "All Out For Justice",
-        image: march,
+        image: alloutforjustice,
         website:
           "https://www.projectpalestine.org/demonstrations/alloutforjustice",
+      },
+      {
+        date: "Nov 24th, 2023",
+        location: "San Francisco, City Hall",
+        description:
+          "Join us this Friday to shut it down for Palestine. Ceasefire Now!!",
+        title: "Shut It Down",
+        image: shutitdown,
+        website: "https://www.instagram.com/p/Cz20KBFLMQ3/",
       },
     ];
   }, []);
