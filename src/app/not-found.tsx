@@ -9,7 +9,7 @@ export default function NotFound() {
             <div className="stack gap-4">
                 <div className="text-3 title">This Page is Not Found</div>
                 <div className="">Could not find this page. Click below to go back home.</div>
-                <Link className="btn-primary" href={'/'}>
+                <Link className="btn" href={'/'}>
                     <span>go back home</span>
                 </Link>
             </div>

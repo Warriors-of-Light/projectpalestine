@@ -15,6 +15,10 @@ export async function middleware(request: NextRequest) {
         }
     }
 
-    // ! Decilned access to admin and submit report not done yet
+    // ! Decilned normal access to /admin
+    if(request.nextUrl.pathname.startsWith('/admin')){
+        if(request.cookies.get('admin')?.value !== process.env.ADMIN_PASSWORD)
+            return Response.redirect(`${process.env.BASE_URL}`)
+    }
 
 }

@@ -1,5 +1,3 @@
-// Hero : contain introduction - search bar
-
 'use client'
 
 import { useState, useEffect } from "react"
@@ -27,7 +25,7 @@ export function Hero() {
     }
 
     return (
-        <div className="box stack gap-10 pt-10">
+        <div className="box min-h-screen stack gap-10 pt-20 atomic-pattern">
             <BigTitle />
             <SearchBar filter={filter} setFilter={setFilter} />
             {
@@ -44,8 +42,17 @@ export function Hero() {
 
 function BigTitle() {
     return (
-        <div className="full flex items-center text-3xl md:text-4xl xl:text-6xl title max-width animate-totop">
-            A way for us to boycott the genocide and its supporters
+        <div className="full stack gap max-width animate-totop">
+            <span className="text-3xl md:text-4xl xl:text-6xl title">
+                A way for us to boycott the genocide and its supporters
+            </span>
+            <span className="text-1">
+                Note: Our tool is still a work in progress,
+                check out Witness for a better compiled list 
+                <a className="px-2 text-t-success underline" href="https://boycott.thewitness.news/browse/1">
+                    here
+                </a>
+            </span>
         </div>
     )
 }
@@ -149,7 +156,7 @@ function Range({
     }
 
     return (
-        <div className="box center gap">
+        <div className="full center gap">
             <button className="btn" onClick={decerementRange}>
                 <Icon type="left" />
             </button>

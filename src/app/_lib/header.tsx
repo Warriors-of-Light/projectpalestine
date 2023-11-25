@@ -1,22 +1,30 @@
-// Header
-
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
-
-// local
 import { Icon } from "@/app/_lib/modules"
 
 export function Header() {
-    return (
+
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        fetch('/api/auth/user', {
+            method: 'POST',
+            body: JSON.stringify({action: 'status'})
+        })
+        .then(res => res.json())
+        .then(res => setUser(res.status))
+    }, [])
+
+    return user !== null && (
         <header
-            className={`box animate-toleft shadow sticky top-0
-            flex items-center justify-between gap overflow-hidden z-20`}
+            className={`bg-t-background w-full animate-toleft shadow sticky top-0 md:rd
+            flex items-center justify-between gap padding md:margin overflow-hidden z-20`}
         >
             <Logo />
-            <LargeScreenLinks user={false} />
-            <SmallScreenLinks user={false} />
+            <LargeScreenLinks user={user} />
+            <SmallScreenLinks user={user} />
         </header>
     )
 }
@@ -42,16 +50,11 @@ function LargeScreenLinks({ user }: { user: boolean }) {
                 <span>donate</span>
             </Link>
             {
-                user ?
-                    <Link className="btn" href="/logout">
-                        <Icon type="logout" />
-                        <span>logout</span>
-                    </Link>
-                    :
-                    <Link className="btn" href="/signin">
-                        <Icon type="login" />
-                        <span>sign in</span>
-                    </Link>
+                !user &&
+                <Link className="btn w-full" href="api/auth/google">
+                    <Icon type="google" />
+                    <span>Sign up with google</span>
+                </Link>
             }
         </div>
     )
@@ -78,16 +81,11 @@ function SmallScreenLinks({ user }: { user: boolean }) {
                         <span>donate</span>
                     </Link>
                     {
-                        user ?
-                            <Link className="btn w-full justify-start" href="/logout">
-                                <Icon type="logout" />
-                                <span>logout</span>
-                            </Link>
-                            :
-                            <Link className="btn w-full justify-start" href="/signin">
-                                <Icon type="login" />
-                                <span>login</span>
-                            </Link>
+                        !user &&
+                        <Link className="btn w-full" href="api/auth/google">
+                            <Icon type="google" />
+                            <span>Sign up with google</span>
+                        </Link>
                     }
                 </div>
             }

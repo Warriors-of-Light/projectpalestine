@@ -13,11 +13,10 @@ export async function GET(request: NextRequest) {
     const cookie = request.cookies.get('token')?.value
 
     if (!cookie) return Response.json({ message: 'No cookie' })
+    if (!googleInfo) return Response.json({ message: 'No information' })
 
-    if (await isOldUser(googleInfo.id))
-      await updateCookie(googleInfo.id, cookie)
-    else
-      await registerUser(googleInfo, cookie)
+    if (await isOldUser(googleInfo.id)) await updateCookie(googleInfo.id, cookie)
+    else await registerUser(googleInfo, cookie)
 
     return Response.redirect(`${process.env.BASE_URL}`)
 
@@ -66,8 +65,12 @@ async function getGoogleInfo(request: NextRequest) {
 // check is old user
 async function isOldUser(id: string) {
 
-  return await users.findOne({ 'id': id }) ? true : false
-
+  try {
+    return await users.findOne({ 'id': id }) ? true : false
+  } catch (e) {
+    console.log('[Error](isOldUser)')
+  }
+  
 }
 
 // add new connection cookie
@@ -90,7 +93,7 @@ async function registerUser(googleInfo: any, cookie: string) {
 
   try {
 
-    const data = Object.assign(googleInfo, {cookie})
+    const data = Object.assign(googleInfo, { cookie })
     const newUser = new users(data)
     await newUser.save()
 
