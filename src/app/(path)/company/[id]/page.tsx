@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { Icon, Loader, Rating } from "@/app/_lib/modules"
-import { COMPANY_TYPE } from "@/data/modules"
+import { COMPANY_TYPE, INCIDENT_TYPE } from "@/data/modules"
 
 export default function Company({ params }: { params: { id: string } }) {
 
@@ -25,7 +25,7 @@ export default function Company({ params }: { params: { id: string } }) {
 
             <Header logo={company.logo} name={company.name} rating={company.rating} />
             <Info description={company.description} website={company.website} />
-            <Incidents />
+            <Incidents incidents={company.incidents} id={company._id || null} />
 
         </div>
 
@@ -80,10 +80,69 @@ function Info({
     )
 }
 
-function Incidents() {
-    return (
+function Incidents({
+    id,
+    incidents,
+}: {
+    id: string,
+    incidents: INCIDENT_TYPE[] | undefined
+}) {
+    return incidents && (
         <div className="box stack gap">
             <div className="text-2 title">incidents</div>
+            {
+                incidents.length &&
+                incidents.map((incident: INCIDENT_TYPE) => {
+                    return <Incident id={id} incident={incident} />
+                })
+            }
+            <AddIncident id={id}/>
+        </div>
+    )
+}
+
+function Incident({
+    id,
+    incident
+}: {
+    id: string,
+    incident: INCIDENT_TYPE
+}) {
+    return incident && (
+        <div className="bg-background rd stack padding gap">
+            <div className="flex items-center justify-between">
+                <div className="title text-2">{incident.title}</div>
+                <div className="title opacity-50">{incident.date}</div>
+                <div className="">{incident.ups}</div>
+            </div>
+            <div className="flex items-center justify-between">
+                <div className="title text-2">{incident.description}</div>
+            </div>
+            <div className="flex items-center justify-between">
+                <div className="title text-2">{incident.resource}</div>
+            </div>
+        </div>
+    )
+}
+
+function AddIncident({
+    id
+}: {
+    id: string
+}){
+
+    const [accident, setAccident] = useState(null)
+
+    const AddAccident = () => {
+        fetch('/api/data', {
+            method: 'POST',
+            body: JSON.stringify({action: 'addCompany', id: id, accident: accident})
+        })
+    }
+
+    return (
+        <div>
+            <button className="btn" onClick={AddAccident}>submit accident</button>
         </div>
     )
 }

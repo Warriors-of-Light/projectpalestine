@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server"
 import { connectToDatabase } from "@/utils/modules"
-import { company, COMPANY_TYPE } from "@/data/modules"
+import { company, COMPANY_TYPE, INCIDENT_TYPE } from "@/data/modules"
 
 // GET
 export async function GET(request: NextRequest) {
     try {
 
         const { searchParams } = new URL(request.url)
-        
+
         if (searchParams.get('id')) {
             const data = await getCompany(searchParams.get('id') || '')
             return NextResponse.json({ data })
@@ -36,13 +36,17 @@ async function getCompany(id: string) {
 
 // Post
 export async function POST(request: NextRequest) {
+
     try {
-        const { action, companyData }: { action: string, companyData: COMPANY_TYPE } = await request.json()
-        if (action === 'add') {
-            await addCompany(companyData)
+        const res = await request.json()
+        if (res.action === 'add' && res.companyData) {
+            await addCompany(res.companyData)
             return NextResponse.json({ status: true })
-        } else if (action === 'edit') {
-            await editCompany(companyData)
+        } else if (res.action === 'edit' && res.companyData) {
+            await editCompany(res.companyData)
+            return NextResponse.json({ status: true })
+        } else if (res.action === 'addCompany' && res.id) {
+            await addIncident(res.id, res.incident)
             return NextResponse.json({ status: true })
         } else return NextResponse.json({ status: false })
     } catch (e) {
@@ -63,6 +67,13 @@ async function editCompany(companyData: COMPANY_TYPE) {
     await connectToDatabase()
     await company.findByIdAndUpdate({ '_id': companyData._id }, companyData)
     return true
+}
+
+// Edit company
+async function addIncident(id: string, incident: INCIDENT_TYPE | null) {
+    await connectToDatabase()
+    console.log(await company.updateOne({ '_id': id }, { $push: { 'incidents': incident } }))
+    //return await company.updateOne({ '_id': id }, { $push: { 'incidents': incident } })
 }
 
 // Delete

@@ -3,8 +3,8 @@ export type INCIDENT_TYPE = {
   title: string;
   description: string;
   date: string;
-  rating: 1 | 2 | 3;
-  websites: Array<string>;
+  ups: number;
+  resource: Array<string>;
 };
 
 export type COMPANY_TYPE = {

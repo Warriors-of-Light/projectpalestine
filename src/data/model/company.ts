@@ -7,8 +7,17 @@ const CompanySchema = new mongoose.Schema({
     description: String,
     rating: Number,
     website: String,
-    tags: Array,
-    incidents: Array,
-})
+    tags: [String],
+    incidents: [
+      {
+        id: String,
+        title: String,
+        description: String,
+        date: String,
+        ups: Number,
+        resource: [String]
+      }
+    ]
+  })
 
 export default mongoose.models.company || mongoose.model('company', CompanySchema)
