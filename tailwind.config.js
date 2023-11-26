@@ -21,6 +21,18 @@ module.exports = {
         "app-green": "theme(colors.green.200)",
         "app--green": "theme(colors.green.600)",
         "app-shadow": "#00000025",
+
+        "foreground": "var(--foreground)",
+        "background": "var(--background)",
+        "t-background": "var(--t-background)",
+        "primary": "var(--primary)",
+        "t-primary": "var(--t-primary)",
+        "danger": "var(--danger)",
+        "t-danger": "var(--t-danger)",
+        "alert": "var(--alert)",
+        "t-alert": "var(--t-alert)",
+        "success": "var(--success)",
+        "t-success": "var(--t-success)",
       },
       spacing: {
         300: "300px",

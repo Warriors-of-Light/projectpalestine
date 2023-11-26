@@ -1,0 +1,353 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  /* App custom colors variables */
+  :root {
+    --foreground: theme(colors.lime.950);
+    --background: theme(colors.lime.50);
+    --t-background: theme(colors.lime.100);
+    --primary: theme(colors.blue.300);
+    --t-primary: theme(colors.blue.600);
+    --danger: theme(colors.red.300);
+    --t-danger: theme(colors.red.600);
+    --alert: theme(colors.yellow.300);
+    --t-alert: theme(colors.yellow.600);
+    --success: theme(colors.green.300);
+    --t-success: theme(colors.green.600);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground: theme(colors.blue.50);
+      --background: theme(colors.blue.950);
+      --t-background: theme(colors.blue.900);
+      --primary: theme(colors.blue.600);
+      --t-primary: theme(colors.blue.300);
+      --danger: theme(colors.red.600);
+      --t-danger: theme(colors.red.300);
+      --alert: theme(colors.yellow.600);
+      --t-alert: theme(colors.yellow.300);
+      --success: theme(colors.green.600);
+      --t-success: theme(colors.green.300);
+    }
+  }
+
+  html {
+    --duration: 0.3s;
+    --duration-long: 1s;
+  }
+
+  * {
+    @apply text-1
+  }
+
+  body {
+    color: var(--foreground);
+    background: var(--background);
+    overflow-x: hidden;
+  }
+
+  /* Cunstom Scroll Bar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-foreground rd
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    opacity: .5;
+    cursor: pointer;
+  }
+
+}
+
+@layer components {
+
+  /* Containers */
+  .full {
+    @apply w-full h-full
+  }
+
+  .full-screen {
+    @apply w-screen h-screen
+  }
+
+  .layer {
+    @apply absolute top-0 left-0
+  }
+
+  .layer-screen {
+    @apply absolute top-0 left-0 w-screen h-screen
+  }
+
+  .center {
+    @apply flex justify-center items-center
+  }
+
+  .stack {
+    @apply flex flex-col items-start
+  }
+
+  .gap {
+    @apply gap-2 md:gap-4
+  }
+
+  .padding {
+    @apply p-2 md:p-4
+  }
+
+  .margin {
+    @apply m-2 md:m-4
+  }
+
+  .box {
+    @apply bg-t-background full padding
+  }
+
+  .main {
+    @apply full stack container mx-auto
+  }
+
+  /* Buttons */
+  .btn {
+    @apply bg-background center gap w-fit cursor-pointer whitespace-nowrap rd shadow px-4 py-2
+    capitalize outline-none ring-2 ring-transparent hover:ring-foreground duration stroke-foreground;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-t-primary center gap w-fit cursor-pointer whitespace-nowrap rd shadow
+    px-4 py-2 capitalize outline-none ring-2 ring-transparent hover:ring-t-primary duration
+    fill-t-primary stroke-t-primary;
+  }
+
+  /* Inputs */
+  .input {
+    @apply bg-background full border-none outline-none p-4 z-0 duration-300 placeholder:opacity-60
+    placeholder:text-foreground rd shadow ring-2 ring-transparent focus:ring-foreground;
+  }
+
+  .inputs-radio {
+    @apply bg-background full flex rd shadow p-1 center
+  }
+
+  .inputs-radio .radio {
+    @apply relative
+  }
+
+  .inputs-radio .radio input {
+    @apply hidden
+  }
+
+  .inputs-radio .radio input+div {
+    @apply p-2 duration cursor-pointer rounded-full
+  }
+
+  .inputs-radio .radio input:checked+div {
+    @apply bg-t-background
+  }
+
+  /* Select */
+  .select {
+    @apply bg-background full rd shadow outline-none focus:ring-foreground ring-transparent ring-1 p-4
+  }
+
+  /* Links */
+  .link {
+    @apply duration capitalize cursor-pointer center gap hover:underline hover:opacity-100 opacity-60;
+  }
+
+  /* Line / separator */
+  .line {
+    @apply border-b-2 border-background opacity-50 w-full my-2
+  }
+
+  /* Blood loader */
+  .loading svg polyline {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .loading svg polyline#back {
+    fill: none;
+    stroke: var(---danger);
+  }
+
+  .loading svg polyline#front {
+    fill: none;
+    stroke: var(--danger);
+    stroke-dasharray: 48, 144;
+    stroke-dashoffset: 192;
+    animation: dash_682 1.4s linear infinite;
+  }
+
+  @keyframes dash_682 {
+    72.5% {
+      opacity: 0;
+    }
+
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+
+}
+
+@layer utilities {
+
+  /* For testing - make your component visible to you when working on it */
+  .see {
+    @apply border-2 border-danger
+  }
+
+  /* patterns */
+  .atomic-pattern {
+    background: radial-gradient(ellipse, var(--t-background), transparent, var(--background)) var(--background);
+  }
+
+  /* Max width */
+  .max-width {
+    @apply max-w-[800px] mx-auto
+  }
+
+  /* Shadow */
+  .shadow {
+    @apply shadow-sm shadow-[#00000050]
+  }
+
+  /* Radius */
+  .rd {
+    @apply rounded-md
+  }
+
+  /* Text sizing */
+  .text-1 {
+    @apply text-base font-light;
+  }
+
+  .text-2 {
+    @apply text-lg font-light;
+  }
+
+  .text-3 {
+    @apply text-2xl font-light;
+  }
+
+  .title {
+    @apply font-black capitalize;
+  }
+
+  /* Animation Duration */
+  .duration {
+    animation-duration: var(--duration);
+  }
+
+  .duration-long {
+    animation-duration: var(--duration-long);
+  }
+
+  /* Animations */
+  .animate-appear {
+    animation: k-appear var(--duration-long);
+  }
+
+  .animate-appear:nth-child(1) {
+    animation-delay: .1s
+  }
+
+  .animate-appear:nth-child(2) {
+    animation-delay: .2s
+  }
+
+  .animate-appear:nth-child(3) {
+    animation-delay: .3s
+  }
+
+  .animate-appear:nth-child(4) {
+    animation-delay: .4s
+  }
+
+  .animate-appear:nth-child(5) {
+    animation-delay: .5s
+  }
+
+  .animate-appear:nth-child(6) {
+    animation-delay: .6s
+  }
+
+  .animate-appear:nth-child(7) {
+    animation-delay: .7s
+  }
+
+  .animate-appear:nth-child(8) {
+    animation-delay: .8s
+  }
+
+  .animate-appear:nth-child(9) {
+    animation-delay: .9s
+  }
+
+  .animate-appear:nth-child(10) {
+    animation-delay: 1s
+  }
+
+  @keyframes k-appear {
+    0% {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+  }
+
+  .animate-toright {
+    animation: k-toright var(--duration-long);
+  }
+
+  @keyframes k-toright {
+    0% {
+      transform: translate(-10%);
+      opacity: 0;
+    }
+  }
+
+  .animate-toleft {
+    animation: k-toleft var(--duration-long);
+  }
+
+  @keyframes k-toleft {
+    0% {
+      transform: translate(10%);
+      opacity: 0;
+    }
+  }
+
+  .animate-todown {
+    animation: k-todown var(--duration-long);
+  }
+
+  @keyframes k-todown {
+    0% {
+      transform: translateY(-10%);
+      opacity: 0;
+    }
+  }
+
+  .animate-totop {
+    animation: k-totop var(--duration-long);
+  }
+
+  @keyframes k-totop {
+    0% {
+      transform: translateY(10%);
+      opacity: 0;
+    }
+  }
+
+}

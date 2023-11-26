@@ -1,6 +1,8 @@
 import { UserCredential } from "firebase/auth";
 import { StaticImageData } from "next/image";
 
+export const ShowNewBoycottPage = false
+
 export type Incident = {
   incidentId: string;
   title: string;

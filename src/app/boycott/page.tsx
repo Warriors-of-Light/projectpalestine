@@ -3,7 +3,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import { collection, getFirestore, getDocs } from "firebase/firestore";
-import { Company } from "@/constants";
 import { Spinner } from "@chakra-ui/react";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { useCompaniesStore } from "@/store/useCompaniesStore";
@@ -15,6 +14,11 @@ import { firebase_app } from "@/firebase/config";
 import SearchBar from "@/components/common/searchbar";
 import { CompanyCard } from "@/components/modules";
 import { Text } from "@chakra-ui/react";
+import { Company, ShowNewBoycottPage } from "@/constants";
+
+// New
+import { Header, Hero, Footer } from '@/app/_lib/modules'
+
 
 const Boycott = () => {
   const [companies, setCompanies] = useState<Array<Company>>([]);
@@ -184,4 +188,14 @@ const Boycott = () => {
   );
 };
 
-export default Boycott;
+const BoycottNew = () => {
+  return (
+    <div className="main">
+      <Header />
+      <Hero />
+      <Footer />
+    </div>
+  )
+}
+
+export default ShowNewBoycottPage ? BoycottNew : Boycott;
