@@ -1,10 +1,10 @@
 export type INCIDENT_TYPE = {
-  id: string;
+  _id?: string;
   title: string;
   description: string;
   date: string;
-  ups: number;
-  resource: Array<string>;
+  ups?: number;
+  references: Array<string>;
 };
 
 export type COMPANY_TYPE = {

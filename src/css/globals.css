@@ -19,7 +19,7 @@
     --t-success: theme(colors.green.600);
   }
 
-  @media (prefers-color-scheme: -dark) {
+  @media (prefers-color-scheme: dark) {
     :root {
       --foreground: theme(colors.blue.50);
       --background: theme(colors.blue.950);

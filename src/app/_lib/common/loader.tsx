@@ -3,7 +3,7 @@ export function Loader({ type = 1 }: { type?: 1 | 2 }) {
     switch (type) {
         case 1:
             return (
-                <div className="full center gap">
+                <div className="full center gap p-2">
                     <div
                         className={`bg-foreground rounded-full shadow animate-ping`}
                         style={{ width: 10, height: 10 }}

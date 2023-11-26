@@ -24,7 +24,6 @@ function CompanyCard({
     // Initializez
     const [controlFrame, setControlFrame] = useState(false)
     const router = useRouter()
-    const defaultLogo = 'https://cdn0.iconfinder.com/data/icons/phosphor-fill-vol-4/256/placeholder-fill-64.png'
     const { _id, logo, name, description, rating } = useMemo(() => company, [company])
     const cardColors = useMemo(() => {
         return [
@@ -63,7 +62,7 @@ function CompanyCard({
 
             {/* Logo */}
             <div className="center">
-                <img src={logo || defaultLogo} width={64} height={64} alt={"logo"} />
+                <img src={logo} width={64} height={64} alt={"logo"} />
             </div>
 
             {/* Name And Description */}

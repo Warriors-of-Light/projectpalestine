@@ -16,8 +16,10 @@ import {
     FiUser,
 } from "react-icons/fi";
 import {
+    BiChevronDown,
     BiChevronLeft,
     BiChevronRight,
+    BiChevronUp,
     BiDonateHeart,
     BiDownload,
     BiPlus,
@@ -58,6 +60,10 @@ export function Icon({
             return <IoLockClosedOutline className={style} size={size} />
         case "google":
             return <FcGoogle className={style} size={size} />
+        case "up":
+            return <BiChevronUp className={style} size={size} />
+        case "down":
+            return <BiChevronDown className={style} size={size} />
         case "left":
             return <BiChevronLeft className={style} size={size} />
         case "right":

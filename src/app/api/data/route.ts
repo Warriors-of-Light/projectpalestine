@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
         } else if (res.action === 'edit' && res.companyData) {
             await editCompany(res.companyData)
             return NextResponse.json({ status: true })
-        } else if (res.action === 'addCompany' && res.id) {
+        } else if (res.action === 'addIncident' && res.id && res.incident) {
             await addIncident(res.id, res.incident)
             return NextResponse.json({ status: true })
         } else return NextResponse.json({ status: false })
@@ -58,6 +58,7 @@ export async function POST(request: NextRequest) {
 // Add company
 async function addCompany(companyData: COMPANY_TYPE) {
     await connectToDatabase()
+    if(!companyData.logo) companyData.logo = 'https://cdn0.iconfinder.com/data/icons/phosphor-fill-vol-4/256/placeholder-fill-64.png'
     const newCompany = new company(companyData)
     await newCompany.save()
     return true
@@ -72,8 +73,8 @@ async function editCompany(companyData: COMPANY_TYPE) {
 // Edit company
 async function addIncident(id: string, incident: INCIDENT_TYPE | null) {
     await connectToDatabase()
-    console.log(await company.updateOne({ '_id': id }, { $push: { 'incidents': incident } }))
-    //return await company.updateOne({ '_id': id }, { $push: { 'incidents': incident } })
+    const _incident = {...incident, ups: 0}
+    return await company.updateOne({ '_id': id }, { $push: { 'incidents': _incident } })
 }
 
 // Delete
