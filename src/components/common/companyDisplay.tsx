@@ -1,6 +1,7 @@
 import { Avatar } from "@chakra-ui/react";
 import { EyeIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 interface ICompanyCardProps {
   id: string;
@@ -18,6 +19,7 @@ export default function CompanyDisplay({
   tags,
   src,
 }: ICompanyCardProps) {
+  const { t } = useTranslation();
   const router = useRouter();
   return (
     <ul
@@ -64,7 +66,7 @@ export default function CompanyDisplay({
                   className="h-5 w-5 text-gray-400 "
                   aria-hidden="true"
                 />
-                View Company
+                {t("all-companies.view-company",{defaultValue:"View Company"})}
               </a>
             </div>
           </div>

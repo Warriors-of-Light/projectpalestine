@@ -5,11 +5,12 @@ import app from "../../assets/app.svg";
 import appStore from "../../assets/appstore.svg";
 import playStore from "../../assets/playstore.svg";
 import Header from "@/components/common/header";
+import { useTranslation } from "react-i18next";
 
 export default function Download() {
   const appReleased = false; // delete once app is ready
   const [onHover, setOnHover] = useState(false);
-
+  const { t } = useTranslation();
   return (
     <>
       <div className="w-full min-h-screen flex flex-col justify-end items-center bg-app--light ">
@@ -47,7 +48,7 @@ export default function Download() {
                   onHover && "animate-pulse"
                 } shadow-lg border-black-600`}
               >
-                Coming Soon
+                {t("download.coming-soon", { defaultValue:"Coming Soon" })}
               </span>
               <div className={`${onHover && "sparkle-image"} ml-14`} />
             </div>

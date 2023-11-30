@@ -19,6 +19,7 @@ import { ChangeEvent, useCallback, useRef, useState } from "react";
 import { useUserStore } from "@/store/useUserStore";
 import { useSubmittedCompaniesStore } from "@/store/useSubmittedCompaniesStore";
 import { Admins } from "@/firebase/admins";
+import { useTranslation } from "react-i18next";
 
 export default function AddCompany() {
   const [selectedTags, setselectedTags] = useState([""]);
@@ -29,6 +30,7 @@ export default function AddCompany() {
   const fileName = useRef("");
   const router = useRouter();
   const { user } = useUserStore();
+  const { t } = useTranslation();
 
   const formRef = useRef({
     name: "",
@@ -57,13 +59,21 @@ export default function AddCompany() {
   const isCompanyDuplicate = useCallback(
     (company: string) => {
       if (companiesMap?.has(company.toLocaleLowerCase())) {
-        alert("company already exists");
+        alert(
+          t("add-company.company-exists", {
+            defaultValue: "company already exists",
+          })
+        );
       }
       if (submittedCompaniesMap?.has(company.toLocaleLowerCase())) {
-        alert("company already exists");
+        alert(
+          t("add-company.company-exists", {
+            defaultValue: "company already exists",
+          })
+        );
       }
     },
-    [companiesMap, submittedCompaniesMap]
+    [companiesMap, submittedCompaniesMap, t]
   );
 
   const onSubmit = useCallback(
@@ -140,11 +150,15 @@ export default function AddCompany() {
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-black/10 pb-12 md:grid-cols-3">
               <div>
                 <h2 className="text-base font-semibold leading-7 text-black">
-                  Company Profile
+                  {t("add-company.profile", {
+                    defaultValue: "Company Profile",
+                  })}
                 </h2>
                 <p className="mt-1 text-sm leading-6 text-gray-600">
-                  This information will be displayed publicly so make sure it is
-                  accurate.
+                  {t("add-company.disclaimer", {
+                    defaultValue:
+                      "This information will be displayed publicly so make sure it is accurate.",
+                  })}
                 </p>
               </div>
 
@@ -154,7 +168,7 @@ export default function AddCompany() {
                     htmlFor="name"
                     className="block text-sm font-medium leading-6 text-black"
                   >
-                    Company Name
+                    {t("add-company.name", { defaultValue: "Company Name" })}
                   </label>
                   <div className="mt-2">
                     <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-green-600 sm:max-w-md">
@@ -179,7 +193,7 @@ export default function AddCompany() {
                       htmlFor="website"
                       className="block text-sm font-medium leading-6 text-black"
                     >
-                      Website
+                      {t("add-company.website", { defaultValue: "Website" })}
                     </label>
                     <div className="mt-2">
                       <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-green-600 sm:max-w-md">
@@ -205,7 +219,7 @@ export default function AddCompany() {
                       htmlFor="about"
                       className="block text-sm font-medium leading-6 text-gray-900"
                     >
-                      Description
+                      {t("add-company.desc", { defaultValue: "Description" })}
                     </label>
                     <div className="mt-2">
                       <textarea
@@ -226,7 +240,7 @@ export default function AddCompany() {
                       htmlFor="tags"
                       className="block text-sm font-medium leading-6 text-black mt-4"
                     >
-                      Tags
+                      {t("add-company.tags", { defaultValue: "Tags" })}
                     </label>
                     <div className="mt-2 ring-black">
                       {Object.values(Tags).map((tag, index) => (
@@ -251,7 +265,7 @@ export default function AddCompany() {
                     htmlFor="photo"
                     className="block text-sm font-medium leading-6 text-gray-900"
                   >
-                    Logo
+                    {t("add-company.Logo", { defaultValue: "Logo" })}
                   </label>
                   <div className="mt-2 flex items-center gap-x-3">
                     <Avatar
@@ -267,7 +281,7 @@ export default function AddCompany() {
                     htmlFor="cover-photo"
                     className="block text-sm font-medium leading-6 text-gray-900 "
                   >
-                    Logo
+                    {t("add-company.Logo", { defaultValue: "Logo" })}
                   </label>
                   <div className="mt-2 flex justify-center rounded-lg border border-dashed bg-white border-gray-900/25 px-6 py-10">
                     <div className="text-center ">
@@ -280,7 +294,11 @@ export default function AddCompany() {
                           htmlFor="file-upload"
                           className="relative cursor-pointer rounded-md bg-grey-600  font-semibold text-green-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-green-600 focus-within:ring-offset-2 hover:text-indigo-500"
                         >
-                          <span className="ml-8">Upload a file</span>
+                          <span className="ml-8">
+                            {t("add-company.upload-file", {
+                              defaultValue: "Upload a file",
+                            })}
+                          </span>
                           <input
                             id="file-upload"
                             name="file-upload"
@@ -293,7 +311,9 @@ export default function AddCompany() {
                         {/* <p className="pl-1">or drag and drop</p> */}
                       </div>
                       <p className="text-xs leading-5 text-gray-600">
-                        PNG, JPG, GIF up to 10MB
+                        {t("add-company.accepted-formats", {
+                          defaultValue: "PNG, JPG, GIF up to 10MB",
+                        })}
                       </p>
                     </div>
                   </div>
@@ -307,13 +327,13 @@ export default function AddCompany() {
               className="text-sm font-semibold leading-6 text-gray-900"
               onClick={router.back}
             >
-              Cancel
+              {t("add-company.cancel", { defaultValue: "Cancel" })}
             </button>
             <button
               onClick={onSubmit}
               className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Submit
+              {t("add-company.submit", { defaultValue: "Submit" })}
             </button>
           </div>
           <div />

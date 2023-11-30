@@ -1,3 +1,5 @@
+"use client";
+
 import Footer from "@/components/common/footer";
 import Header from "@/components/common/header";
 import {
@@ -8,29 +10,31 @@ import {
   FilmIcon,
 } from "@heroicons/react/20/solid";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 export default function About() {
+  const { t } = useTranslation();
   const cards = [
     {
-      name: "Tech",
+      name: t("about.tech", {defaultValue:"Tech"}),
       description:
-        "We build tools using technology. Our coders are freedom fighters using code as a force for good.",
+      t("about.tech-desc", {defaultValue:"We build tools using technology. Our coders are freedom fighters using code as a force for good."}),
       icon: CodeBracketIcon,
-      volunteer: "Volunteer a developer",
+      volunteer:  t("about.tech-vol-btn", {defaultValue:"Volunteer as a developer"}),
     },
     {
-      name: "Media",
+      name: t("about.media", {defaultValue:"Media"}),
       description:
-        "We display our stories in different multi-media formats such as videos and movies, using art as a medium for liberation.",
+      t("about.media-desc", {defaultValue:"We display our stories in different multi-media formats such as videos and movies, using art as a medium for liberation."}),
       icon: FilmIcon,
-      volunteer: "Volunteer as a creator",
+      volunteer: t("about.media-vol-btn", {defaultValue:"Volunteer as a creator"}) ,
     },
     {
-      name: "Research",
+      name: t("about.research", {defaultValue:"Research"}),
       description:
-        "We share the truth with the world through research, writing and papers. If Zionism started with one paper, ending it can be one paper away.",
+      t("about.research-desc", {defaultValue:"We share the truth with the world through research, writing and papers. If Zionism started with one paper, ending it can be one paper away."}),
       icon: NewspaperIcon,
-      volunteer: "Volunteer as a researcher",
+      volunteer: t("about.research-vol-btn", {defaultValue:"Volunteer as a researcher"}),
     },
   ];
   return (
@@ -58,14 +62,10 @@ export default function About() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:mx-0">
               <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-                Project Palestine
+                {t("about.headline", {defaultValue:"Project Palestine"})}
               </h2>
               <p className="mt-6 text-lg leading-8 text-white">
-                A project born to restore justice and assist freedom fighters
-                against the inhumane cruelty of aparteid and occupation. We
-                believe that we all have a role in fighting injustice, and if we
-                all unite, we could reach liberation which is the ultimate road
-                to peace.
+                {t("about.paragraph", {defaultValue:"A project born to restore justice and assist freedom fighters against the inhumane cruelty of aparteid and occupation. We believe that we all have a role in fighting injustice, and if we all unite, we could reach liberation which is the ultimate road to peace."})}
               </p>
             </div>
             <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8 ">

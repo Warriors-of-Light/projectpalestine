@@ -1,3 +1,141 @@
 {
-    "projectPalestine": "Project Palestine"
+  "header":{
+    "sign-out-message": "Signed out Successfully!",
+    "logout": "Log Out",
+    "login": "Log in",
+    "project-name": "Project Palestine",
+    "upcoming-features":"upcoming features",
+    "coming-soon":"Coming Soon",
+    "download": "Download",
+    "donate":"Donate"
+  },
+  "footer":{
+    "contact":"Contact",
+    "about":"About",
+    "contribute":"Contribute with us",
+    "join-discord":"Join our discord"
+  },
+  "login":{
+    "email":"Email Address",
+    "email-placeholder":"free@palestine.com",
+    "password":"Password",
+    "password-placeholder":"Password",
+    "confirm-password":"Confirm Password",
+    "login-button":"Login",
+    "forgot-password":"Forgot password?",
+    "or":"Or",
+    "no-account":"Not a member?",
+    "already-account":"Already a member?",
+    "sign-up":"Sign up",
+    "sign-in":"Sign in",
+    "password-mismatch":"password mismatch",
+    "sign-up-failed":"Sign up failed",
+    "sign-up-success":"Sign up successful!",
+    "sign-in-failed":"Sign in failed",
+    "sign-in-success":"Sign in success",
+    "display-name":"Display Name"
+  },
+  "hero":{
+    "title":"A way for us to boycott the genocide and its supporters",
+    "search":"Search products or companies",
+    "search-placeholder":"Search here",
+    "add-company-button":"Add Company",
+    "see-all-companies":"See all companies",
+    "no-result-message":"No Result Found"
+  },
+  "upcoming-feature":{
+    "volunteer-button":"Volunteer",
+    
+    "feature-1-title":"Mobile app with barcode scanner",
+    "feature-1-desc":"An app to help you make purchases without supporting the occupation",
+
+    "feature-2-title":"Donation Extension",
+    "feature-2-desc":"A chrome extension to round up donations to Gaza and Palestine.",
+
+    "feature-3-title":"Demonstration Finder",
+    "feature-3-desc":"A tool to help you find demonstrations nearby.",
+
+    "feature-4-title":"Martyer Honor Page",
+    "feature-4-desc":"A page to honor those who died in Gaza, sharing their stories, videos, pictures and dreams.",
+
+    "feature-5-title":"News Validity Checker",
+    "feature-5-desc":"A tool to check the validity of news, categorize false ones and prevent the spread of propaganda.",
+
+    "form-url":"https://forms.gle/KYvobH2yhJUE68G79"
+  },
+  "download":{
+    "coming-soon":"Coming Soon"
+  },
+  "donate":{
+    "coming-soon":"Coming Soon",
+    "back-to-home":"Back to home"
+  },
+  "about":{
+    "tech":"Tech",
+    "tech-desc":"We build tools using technology. Our coders are freedom fighters using code as a force for good.",
+    "tech-vol-btn":"Volunteer as a developer",
+    "media":"Media",
+    "media-desc":"We display our stories in different multi-media formats such as videos and movies, using art as a medium for liberation.",
+    "media-vol-btn":"Volunteer as a creator",
+    "research":"Research",
+    "research-desc":"We share the truth with the world through research, writing and papers. If Zionism started with one paper, ending it can be one paper away.",
+    "research-vol-btn":"Volunteer as a researcher",
+
+    "headline":"Project Palestine",
+    "paragraph":"A project born to restore justice and assist freedom fighters against the inhumane cruelty of aparteid and occupation. We believe that we all have a role in fighting injustice, and if we all unite, we could reach liberation which is the ultimate road to peace."
+  },
+  "add-company":{
+    "profile":"Company Profile",
+    "disclaimer":"This information will be displayed publicly so make sure it is accurate.",
+    "name":"Company Name",
+    "website":"Website",
+    "desc":"Description",
+    "tags":"Tags",
+    "Logo":"Logo",
+    "upload-file":"Upload a file",
+    "accepted-formats":"PNG, JPG, GIF up to 10MB",
+    "submit":"Submit",
+    "cancel":"Cancel",
+    "company-exists":"company already exists",   
+    "image-uploaded":"Image uploaded successfully!"
+  },
+  "account-page":{
+    "new-member":"New Member",
+    "summary":"Summary",
+    "days-boycot":"Days Boycotting",
+    "badges":"Badges",
+    "coming-soon":"Coming Soon",
+    "view-companies":"View Companies"
+  },
+  "all-companies":{
+    "submitted-companies":"Submitted Companies",
+    "view-company":"View Company"
+  },
+  "company-profile":{
+    "pending-claims":"Pending Claims",
+    "no-incidents":"No incidents submitted yet",
+    "submit-1st-incident":"Submit First Incident",
+    "submit-incident":"report an incident",
+    "go-back":"go back",
+
+    "date":"Date",
+    "title":"Title",
+    "reference":"Reference",
+    "validity":"Validated",
+    "edit":"Edit",
+    "validate":"validate"
+  },
+  "submit-claim":{
+    "maximum-reference":"maximum number of references added",
+    "item-added":"Item added to Database",
+    "incident-details":"Incident Details",
+    "disclaimer":"This information will be displayed publicly so make sure it is accurate.",
+    "title":"Title",
+    "select-date":"Select a Date",
+    "refrence-website":"Reference Website",
+    "add-other-reference":"Add another reference",
+    "desc":"Description",
+    "cancel":"Cancel",
+    "save":"Save"
   }
+}

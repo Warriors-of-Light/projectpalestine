@@ -9,6 +9,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface IFeature {
   title: string;
@@ -24,6 +25,7 @@ export default function UpcomingFeatures() {
   const onFocusCard = useCallback((feature: IFeature) => {
     setFocusedCard(feature.title);
   }, []);
+  const { t } = useTranslation();
 
   function classNames(...classes: any) {
     return classes.filter(Boolean).join(" ");
@@ -31,44 +33,44 @@ export default function UpcomingFeatures() {
 
   const features: Array<IFeature> = [
     {
-      title: "Mobile app with barcode scanner",
+      title: t("upcoming-feature.feature-1-title",{defaultValue:"Voulnteer"} ),
       description:
-        "An app to help you make purchases without supporting the occupation",
+        t("upcoming-feature.feature-1-desc",{defaultValue:"Voulnteer"} ),
       href: "#",
       icon: DevicePhoneMobileIcon,
       iconForeground: "text-red-700",
       iconBackground: "bg-red-50",
     },
     {
-      title: "Donation Extension",
+      title: t("upcoming-feature.feature-2-title",{defaultValue:"Voulnteer"} ),
       description:
-        "A chrome extension to round up donations to Gaza and Palestine.",
+        t("upcoming-feature.feature-2-desc",{defaultValue:"Voulnteer"} ),
       href: "#",
       icon: CurrencyPoundIcon,
       iconForeground: "text-teal-700",
       iconBackground: "bg-teal-50",
     },
     {
-      title: "Demonstration Finder",
-      description: "A tool to help you find demonstrations nearby.",
+      title: t("upcoming-feature.feature-3-title",{defaultValue:"Voulnteer"} ),
+      description: t("upcoming-feature.feature-3-desc",{defaultValue:"Voulnteer"} ),
       href: "#",
       icon: MagnifyingGlassIcon,
       iconForeground: "text-purple-700",
       iconBackground: "bg-purple-50",
     },
     {
-      title: "Martyer Honor Page",
+      title: t("upcoming-feature.feature-4-title",{defaultValue:"Voulnteer"} ),
       description:
-        "A page to honor those who died in Gaza, sharing their stories, videos, pictures and dreams.",
+        t("upcoming-feature.feature-4-desc",{defaultValue:"Voulnteer"} ),
       href: "#",
       icon: UsersIcon,
       iconForeground: "text-sky-700",
       iconBackground: "bg-sky-50",
     },
     {
-      title: "News Validity Checker",
+      title: t("upcoming-feature.feature-5-title",{defaultValue:"Voulnteer"} ),
       description:
-        "A tool to check the validity of news, categorize false ones and prevent the spread of propaganda.",
+        t("upcoming-feature.feature-5-desc",{defaultValue:"Voulnteer"} ),
       href: "#",
       icon: NewspaperIcon,
       iconForeground: "text-yellow-700",
@@ -118,9 +120,9 @@ export default function UpcomingFeatures() {
             </div>
           ))}
           <div className="flex justify-center mt-4">
-            <Link href={"https://forms.gle/KYvobH2yhJUE68G79"} target="_blank">
+            <Link href={t("upcoming-feature.form-url",{defaultValue:"https://forms.gle/KYvobH2yhJUE68G79"} )} target="_blank">
               <button className="app-btn w-96 bg-red-300 text-black flex justify-center border-red-800 text-xl">
-                Voulnteer
+                {t("upcoming-feature.volunteer-button",{defaultValue:"Voulnteer"} )}
               </button>
             </Link>
           </div>

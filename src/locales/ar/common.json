@@ -1,3 +1,141 @@
 {
-  "projectPalestine": "مشروع فلسطين"
+  "header":{
+    "sign-out-message": "تم تسجيل الخروج بنجاح!",
+    "logout": "تسجيل الخروج",
+    "login": "تسجيل الدخول",
+    "project-name": "مشروع فلسطين",
+    "upcoming-features":"خواص قادمه ",
+    "coming-soon":"قادم قريبا",
+    "download": "تنزيل",
+    "donate":"تبرع"
+  },
+  "footer":{
+    "contact":"تواصل",
+    "about":"عن المشروع",
+    "contribute":"ساهم معنا",
+    "join-discord":"سيرفر الديسكورد"
+  },
+  "login":{
+    "email": "البريد الإلكتروني",
+    "email-placeholder": "free@palestine.com",
+    "password": "كلمة المرور",
+    "password-placeholder": "كلمة المرور",
+    "confirm-password": "تأكيد كلمة المرور",
+    "login-button": "تسجيل الدخول",
+    "forgot-password": "هل نسيت كلمة المرور؟",
+    "or": "أو",
+    "no-account": "ليس لديك حساب؟",
+    "already-account": "هل أنت بالفعل عضو؟",
+    "sign-up": " تسجيل حساب",
+    "sign-in": "تسجيل الدخول",
+    "password-mismatch": "عدم تطابق كلمة المرور",
+    "sign-up-failed": "فشل التسجيل",
+    "sign-up-success": "تم التسجيل بنجاح!",
+    "sign-in-failed": "فشل تسجيل الدخول",
+    "sign-in-success": "تم تسجيل الدخول بنجاح",
+    "display-name": "الإسم"
+  },
+  "hero":{
+    "title":"وسيلة لمقاطعة الإبادة الجماعية وداعميها",
+    "search":"ابحث في المنتجات او الشركات",
+    "search-placeholder":"ابحث هنا",
+    "add-company-button":"اضف شركه",
+    "see-all-companies":"اعرض كل الشركات",
+    "no-result-message":"لا توجد نتائج"
+  },
+  "upcoming-feature":{
+    "volunteer-button":"تطوع",
+    
+    "feature-1-title":"تطبيق هاتف بخاصيه سكان للباركود",
+    "feature-1-desc":"تطبيق لمساعدتك في القيام بعمليات شراء دون دعم الاحتلال",
+
+    "feature-2-title":"إضافه متصفح كروم للتبرع",
+    "feature-2-desc":"اضافه لمتصفح كروم لتجميع التبرعات لغزة وفلسطين.",
+
+    "feature-3-title":"بحث عن تظاهرات قريبه ",
+    "feature-3-desc":"أداة لمساعدتك في العثور على تظاهرات قريبة.",
+
+    "feature-4-title":"صفحه الشهداء",
+    "feature-4-desc":"صفحة لتكريم أولئك الذين توفوا في غزة، ومشاركة قصصهم، ومقاطع الفيديو، والصور، وأحلامهم.",
+
+    "feature-5-title":"تحقق من صحه الأخبار",
+    "feature-5-desc":"أداة لفحص صحة الأخبار، تصنيف الأخبار الزائفة، ومنع انتشار البروباجاندا.",
+
+    "form-url":"https://forms.gle/6sWC9G4fJcz8Zn9T9"
+  },
+  "download":{
+    "coming-soon":"قادم قريبا"
+  },
+  "donate":{
+    "coming-soon":"قادم قريبا",
+    "back-to-home":"رجوع إلي الصفحه الرئيسيه"
+  },
+  "about": {
+    "tech": "التكنولوجيا",
+    "tech-desc": "نقوم ببناء أدوات باستخدام التكنولوجيا. مبرمجونا هم محاربو الحرية الذين يستخدمون البرمجه كقوة للخير.",
+    "tech-vol-btn": "التطوع كمبرمج",
+    "media": "المحتوي",
+    "media-desc": "نعرض قصصنا بتنوع وسائط متعددة مثل الفيديوهات والأفلام، باستخدام الفن كوسيلة للتعبير.",
+    "media-vol-btn": "التطوع كصانع محتوى",
+    "research": "البحث",
+    "research-desc": "نشارك الحقيقة مع العالم من خلال البحث والكتابة والأوراق البحثية. إذا بدأت الصهيونية بورقة واحدة، فإن إنهائها يمكن أن يكون على بُعد ورقة واحدة.",
+    "research-vol-btn": "التطوع كباحث",
+
+    "headline": "مشروع فلسطين",
+    "paragraph": "مشروع وُلد لاستعادة العدالة ومساعدة محاربي الحرية ضد القسوة اللاإنسانية للفصل العنصري والاحتلال. نعتقد أن لدينا جميعًا دور في محاربة الظلم، وإذا إتحدنا جميعًا، يمكننا أن نصل إلى التحرير الذي يعد الطريق الأمثل نحو السلام."
+  },
+  "add-company": {
+    "profile": "بروفايل الشركة",
+    "disclaimer": "سيتم عرض هذه البيانات علنيًا، لذا تأكد من دقتها.",
+    "name": "اسم الشركة",
+    "website": "موقع الشركة",
+    "desc": "الوصف",
+    "tags": "وسوم",
+    "Logo": "الشركه(logo) شعار",
+    "upload-file": "تحميل ملف",
+    "accepted-formats": "PNG، JPG، GIF حتى 10 ميجابايت",
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "company-exists": "الشركة موجودة بالفعل",
+    "image-uploaded": "تم تحميل الصورة بنجاح!"
+  },
+  "account-page": {
+    "new-member": "عضو جديد",
+    "summary": "ملخص",
+    "days-boycot": "أيام المقاطعة",
+    "badges": "شارات",
+    "coming-soon": "قريبًا",
+    "view-companies": "عرض الشركات"
+  },
+  "all-companies": {
+    "submitted-companies": "الشركات المقدمة",
+    "view-company": "عرض بيانات الشركة"
+  },
+  "company-profile": {
+    "pending-claims": "الحوادث المعلقة",
+    "no-incidents": "لم يتم تقديم أي حوادث بعد",
+    "submit-1st-incident": "قدم حادثة الأولى",
+    "submit-incident": "الإبلاغ عن حادثة",
+    "go-back": "رجوع",
+    
+    "date": "التاريخ",
+    "title": "العنوان",
+    "reference": "المرجع",
+    "validity": "تم التحقق",
+    "edit": "تعديل",
+    "validate": "التحقق"
+  },
+  "submit-claim": {
+    "maximum-reference": "وصلت إالي الحد الأقصى لعدد المراجع المضافة ",
+    "item-added": "تمت إضافة الحادث إلى قاعدة البيانات",
+    "incident-details": "تفاصيل الحادث",
+    "disclaimer": "سيتم عرض هذه المعلومات علنيًا، لذا تأكد من دقتها.",
+    "title": "العنوان",
+    "select-date": "اختر تاريخًا",
+    "refrence-website": "ويبسايت المرجع",
+    "add-other-reference": "إضافة مرجع آخر",
+    "desc": "تفاصيل",
+    "cancel": "إلغاء",
+    "save": "حفظ"
+}
 }

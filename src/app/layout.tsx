@@ -5,6 +5,7 @@ import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import LayoutProvider from "@/components/layoutProvider";
 import { Analytics } from "@vercel/analytics/react";
+import '../i18n';
 
 const inter = Inter({ subsets: ["latin"] });
 

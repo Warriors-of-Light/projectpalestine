@@ -10,6 +10,7 @@ import signIn from "@/firebase/auth/signIn";
 import Palestine from "@/assets/palestineFlag.png";
 import signUp from "@/firebase/auth/signUp";
 import { useUserStore } from "@/store/useUserStore";
+import { useTranslation } from "react-i18next";
 
 export default function Login() {
   const router = useRouter();
@@ -21,20 +22,25 @@ export default function Login() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isRegisteration, setIsRegisteration] = useState(false);
   const { user, setUser } = useUserStore();
+  const { t } = useTranslation();
 
   const handleForm: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
 
     if (isRegisteration) {
       if (password !== confirmPassword) {
-        alert("password mismatch");
+        alert(
+          t("login.password-mismatch", { defaultValue: "password mismatch" })
+        );
       } else {
         const { result, error } = await signUp(name, email, password);
         if (error) {
-          alert("Sign up failed");
+          alert(t("login.sign-up-failed", { defaultValue: "Sign up failed" }));
           return console.log(error);
         }
-        alert("Sign up successful!");
+        alert(
+          t("login.sign-up-success", { defaultValue: "Sign up successful!" })
+        );
         setUser(result);
         setIsRegisteration(false);
         return router.push("/login");
@@ -45,10 +51,10 @@ export default function Login() {
     const { result, error } = await signIn(email, password);
 
     if (error) {
-      alert("sign in failed");
+      alert(t("login.sign-in-failed", { defaultValue: "sign in failed" }));
       return console.log(error);
     }
-    alert("Sign in successful");
+    alert(t("login.sign-in-success", { defaultValue: "Sign in successful" }));
     setUser(result);
     return router.push("/");
   };
@@ -68,14 +74,14 @@ export default function Login() {
 
         <div className="bg-app--light shadow-lg md:rounded-xl flex flex-col gap-6 p-6 border-2 border-app-primary">
           <h2 className="text-4 text-app--primary text-center">
-            Project Palestine
+            {t("header.project-name")}
           </h2>
 
           <form className="space-y-6" action="#" onSubmit={handleForm}>
             {isRegisteration && (
               <div>
                 <label className="flex text-green-800 text-lg font-semibold mb-2">
-                  Display Name
+                  {t("login.display-name", { defaultValue: "Display Name" })}
                 </label>
                 <input
                   id="name"
@@ -91,14 +97,16 @@ export default function Login() {
             )}
             <div>
               <label className="flex text-green-800 text-lg font-semibold mb-2">
-                Email Address
+                {t("login.email", { defaultValue: "Email Address" })}
               </label>
               <input
                 id="email"
                 name="email"
                 type="email"
                 autoComplete="email"
-                placeholder="free@palestine.com"
+                placeholder={t("login.email-placeholder", {
+                  defaultValue: "free@palestine.com",
+                })}
                 required
                 className="app-input p-3 bg-slate-50"
                 onChange={(e) => setEmail(e.target.value)}
@@ -106,14 +114,16 @@ export default function Login() {
             </div>
             <div>
               <label className="flex text-green-800 text-lg font-semibold mb-2">
-                Password
+                {t("login.password", { defaultValue: "Password" })}
               </label>
               <input
                 id="password"
                 name="password"
                 type="password"
                 autoComplete="password"
-                placeholder="Password"
+                placeholder={t("login.password-placeholder", {
+                  defaultValue: "Password",
+                })}
                 required
                 className="app-input p-3 bg-slate-50"
                 onChange={(e) => setPassword(e.target.value)}
@@ -122,7 +132,9 @@ export default function Login() {
             {isRegisteration && (
               <div>
                 <label className="flex text-green-800 text-lg font-semibold mb-2">
-                  Confirm Password
+                  {t("login.confirm-password", {
+                    defaultValue: "Confirm Password",
+                  })}
                 </label>
                 <input
                   id="confirm-password"
@@ -139,27 +151,42 @@ export default function Login() {
 
             <div className="flex flex-col items-center gap-4">
               <button type="submit" className="app-btn w-1/2">
-                {isRegisteration ? "Sign up" : "Login"}
+                {isRegisteration
+                  ? t("login.sign-up", { defaultValue: "Sign up" })
+                  : t("login.login-button", { defaultValue: "Login" })}
               </button>
               <Link href="#" className="app-link">
-                Forgot password?
+                {t("login.forgot-password", {
+                  defaultValue: "Forgot password?",
+                })}
               </Link>
             </div>
 
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-2">
                 <hr className="w-full border-t border-app--primary" />
-                <span className="text-app--primary">Or</span>
+                <span className="text-app--primary">
+                  {t("login.or", { defaultValue: "Or" })}
+                </span>
                 <hr className="w-full border-t border-app--primary" />
               </div>
               <div className="text-center">
-                {isRegisteration ? "Already a member?" : "Not a member?"} {"  "}
+                {isRegisteration
+                  ? t("login.already-account", {
+                      defaultValue: "Already a member?",
+                    })
+                  : t("login.no-account", {
+                      defaultValue: "Not a member?",
+                    })}{" "}
+                {"  "}
                 <Link
                   href="#"
                   className="app-link"
                   onClick={() => setIsRegisteration(!isRegisteration)}
                 >
-                  {isRegisteration ? "Sign in" : "Sign up"}
+                  {isRegisteration
+                    ? t("login.sign-in", { defaultValue: "Sign in" })
+                    : t("login.sign-up", { defaultValue: "Sign up" })}
                 </Link>
               </div>
             </div>

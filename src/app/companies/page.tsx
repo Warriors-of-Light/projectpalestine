@@ -7,8 +7,10 @@ import { HStack, Link, Stack } from "@chakra-ui/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/20/solid";
 import { useSubmittedCompaniesStore } from "@/store/useSubmittedCompaniesStore";
+import { useTranslation } from "react-i18next";
 
 export default function Companies() {
+  const { t } = useTranslation();
   const [filteredResults, setFilteredResults] = useState<Array<string>>([]);
   // const searchableContent = useRef([""]);
   const [displaySubmittedCompanies, setDisplaySubmittedCompanies] =
@@ -129,7 +131,7 @@ export default function Companies() {
             </div>
           ))}
       </div>
-      <span className="text-xl text-black"> Submitted Companies </span>
+      <span className="text-xl text-black"> {t("all-companies.submitted-companies",{defaultValue:"Submitted Companies"})} </span>
       <div
         className="w-5 cursor-pointer pb-20"
         onClick={() => setDisplaySubmittedCompanies((prev) => !prev)}

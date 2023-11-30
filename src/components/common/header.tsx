@@ -11,6 +11,8 @@ import logOut from "../../firebase/auth/logout";
 import Alert from "./alert";
 import { Avatar } from "@chakra-ui/react";
 import { getAuth } from "firebase/auth";
+import LanguageSelector from "./languageSelect";
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   // Initialize
@@ -19,6 +21,7 @@ const Header = () => {
   const [comingSoon, setComingSoon] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
   const router = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     window.onscroll = () => {
@@ -57,7 +60,7 @@ const Header = () => {
         {displayAlert &&
           Alert({
             color: "green",
-            message: "Signed out Successfully!",
+            message: t('header.sign-out-message', {defaultValue: "Signed out Successfully!"}),
             dissmissAlert: dissmissAlert,
           })}
       </div>
@@ -67,15 +70,19 @@ const Header = () => {
         <div className="center p-2 cursor-pointer">
           <Image src="/logo.svg" width="25" height="25" alt="Logo" />
 
-          <span className="text-2 title uppercase">Project Palestine</span>
+          <span className="text-2 title uppercase">{t('header.project-name', {defaultValue: "Project Palestine"})}</span>
         </div>
       </Link>
 
       {/* Links - Routes */}
       <div className="hidden md:flex items-center gap-2">
+
+        {/* Language Selector */}
+        <LanguageSelector /> 
+
         <Link className="app-btn-yellow" href="/upcomingfeatures">
           <Icon type="clock" style="stroke-app--yellow" />
-          upcoming features
+          {t('header.upcoming-features', {defaultValue: "upcoming features"})}
         </Link>
         <Link
           className="app-btn relative overflow-hidden"
@@ -85,15 +92,15 @@ const Header = () => {
         >
           {comingSoon && (
             <div className="absolute w-full h-full center bg-blue-500 text-app-light">
-              Coming Soon
+              {t('header.coming-soon', {defaultValue: "Coming Soon"})}
             </div>
           )}
           <Icon type="download" />
-          <span>Download</span>
+          <span>{t('header.download', {defaultValue: "Download"})}</span>
         </Link>
         <Link className="app-btn" href="/donate">
           <Icon type="donate" />
-          Donate
+          {t('header.donate', {defaultValue: "Donate"})}
         </Link>
         {user?.user.email && user.user.email.length > 0 ? (
           <button
@@ -106,12 +113,12 @@ const Header = () => {
             }}
           >
             <Icon type="login" />
-            Log Out
+            {t('header.logout', {defaultValue: "Log Out"})}
           </button>
         ) : (
           <button className="app-btn" onClick={() => navigateToPage("login")}>
             <Icon type="login" />
-            Log in
+            {t('header.login', {defaultValue: "Log in"})}
           </button>
         )}
         {user?.user && (
@@ -135,10 +142,10 @@ const Header = () => {
           <button className="app-btn w-fit md:hidden" onClick={toggleMenu}>
             <Icon type="close" />
           </button>
-
+           
           <Link className="app-btn-yellow" href="/upcomingfeatures">
             <Icon type="clock" style="stroke-app--yellow" />
-            upcoming features
+            {t('header.upcoming-features', {defaultValue: "upcoming features"})}
           </Link>
           <Link
             className="app-btn relative overflow-hidden"
@@ -148,15 +155,15 @@ const Header = () => {
           >
             {comingSoon && (
               <div className="absolute w-full h-full center bg-blue-500 text-app-light">
-                Coming Soon
+                {t('header.coming-soon', {defaultValue: "Coming Soon"})}
               </div>
             )}
             <Icon type="download" />
-            <span>Download</span>
+            <span>{t('header.download', {defaultValue: "Download"})}</span>
           </Link>
           <Link className="app-btn" href="/donate">
             <Icon type="donate" />
-            Donate
+            {t('header.donate', {defaultValue: "Donate"})}
           </Link>
           {user?.user.email && user.user.email.length > 0 ? (
             <button
@@ -169,12 +176,12 @@ const Header = () => {
               }}
             >
               <Icon type="login" />
-              Log Out
+              {t('header.logout', {defaultValue: "Log Out"})}
             </button>
           ) : (
             <button className="app-btn" onClick={() => navigateToPage("login")}>
               <Icon type="login" />
-              Log in
+              {t('header.login', {defaultValue: "Log in"})}
             </button>
           )}
         </div>

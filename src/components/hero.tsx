@@ -20,6 +20,7 @@ import Link from "next/link";
 import { useUserStore } from "@/store/useUserStore";
 import { getAuth } from "firebase/auth";
 import { useSubmittedCompaniesStore } from "@/store/useSubmittedCompaniesStore";
+import { useTranslation } from 'react-i18next';
 
 const Hero = () => {
   const [companies, setCompanies] = useState<Array<Company>>([]);
@@ -29,6 +30,7 @@ const Hero = () => {
   const { setCompaniesMap } = useCompaniesStore();
   const { setSubmittedCompaniesMap } = useSubmittedCompaniesStore();
   const { user } = useUserStore();
+  const { t, i18n } = useTranslation();
 
   const onSearch = useCallback(
     (filteredResults: string[] | undefined) => {
@@ -128,12 +130,12 @@ const Hero = () => {
     <div className="h-full w-full flex flex-col-reverse md:flex-row items-center justify-center gap-6 mb-10  mt-40">
       <div className="bg-app-light flex flex-col justify-start content-start gap-4 p-8">
         <div className="w-full text-4xl font-black mb-10">
-          A way for us to boycott the genocide and its supporters
+          {t('hero.title', {defaultValue: "Boycott the occupation and it’s supporters"})}
         </div>
         <SearchBar
-          label="Search products or companies"
+          label={t("hero.search",{defaultValue:"Search products or companies"})}
           onSearch={onSearch}
-          placeholder="Search here"
+          placeholder={t("hero.search-placeholder",{defaultValue:"Search here"})}
           searchableContent={searchableContent.current}
         />
         {companies.length === 0 ? (
@@ -149,21 +151,20 @@ const Hero = () => {
         )}
         {filteredResults.length === 0 && (
           <span className="flex justify-center text-lg mb-20">
-            {" "}
-            No Results Found{" "}
+            {t("hero.no-result-message",{ defaultValue:"No Results Found"})}
           </span>
         )}
         <div className="flex justify-center w-full">
           <Link href="/companies">
             <span className="hover:text-green-500 text-md">
-              See all companies
+              {t("hero.see-all-companies",{ defaultValue:"See all companies"})}
             </span>
           </Link>
         </div>
         <div className="flex justify-center w-full">
           <Link href={user ? "/addcompany" : "/login"}>
             <button className="app-btn bg-green-500 text-white w-40">
-              Add Company
+              {t("hero.add-company-button",{ defaultValue:"Add Company"})}
             </button>
           </Link>
         </div>
