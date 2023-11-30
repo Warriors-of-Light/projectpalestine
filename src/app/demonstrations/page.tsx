@@ -5,8 +5,9 @@ import SearchBar from "@/components/common/searchbar";
 import { Demonstration } from "@/constants";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useMemo, useState } from "react";
-import march from "../../assets/march.png";
-import floodManhatan from "../../assets/floodManhatan.png";
+import alloutforjustice from "../../assets/demonstrations/alloutforjustice.png";
+import floodManhatan from "../../assets/demonstrations/floodManhatan.png";
+import shutitdown from "../../assets/demonstrations/shutitdown.png";
 
 const Demonstrations = () => {
   const demonstrations: Array<Demonstration> = useMemo(() => {
@@ -24,11 +25,20 @@ const Demonstrations = () => {
         date: "Nov 26th, 2023",
         location: "Everywhere",
         description:
-          "13,000+ innocent people have been killed in Gaza. More than 5,500 children. Israel isn't just committing a masacre against Palestine, it's one against humanity. Time to go all out.",
+          "13,000+ innocent people have been killed in Gaza. More than 5,500 children. Israel isn't just committing a massacre against Palestine, it's one against humanity. Time to go all out.",
         title: "All Out For Justice",
-        image: march,
+        image: alloutforjustice,
         website:
           "https://www.projectpalestine.org/demonstrations/alloutforjustice",
+      },
+      {
+        date: "Nov 24th, 2023",
+        location: "San Francisco, City Hall",
+        description:
+          "Join us this Friday to shut it down for Palestine. Ceasefire Now!!",
+        title: "Shut It Down",
+        image: shutitdown,
+        website: "https://www.instagram.com/p/Cz20KBFLMQ3/",
       },
     ];
   }, []);
@@ -79,10 +89,12 @@ const Demonstrations = () => {
               label="Find demonstrations nearby"
             />
           </div>
+
           <span className="mt-10 text-xl bg-green-400 p-1 rounded-sm">
             Past demonstrations
+            
           </span>
-          <div className="mt-8 flex-row flex space-x-3">
+          <div className="mt-8 space-x-3 grid grid-cols-3">
             {filteredResults.map((x, index) => (
               <DemonstrationCard
                 key={index}

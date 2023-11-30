@@ -38,7 +38,6 @@ const DemonstrationCard = ({ demonstration }: IDemonstrationCardProps) => {
               style={{
                 fontSize: 14,
                 maxWidth: 300,
-                minWidth: 300,
                 lineHeight: "1.4em", // Example line height
                 maxHeight: "5.7em", // 1.4em (line height) * 3 (number of lines)
                 overflow: "hidden",
@@ -55,18 +54,18 @@ const DemonstrationCard = ({ demonstration }: IDemonstrationCardProps) => {
         <CardFooter>
           <Stack spacing={3}>
             <div className="flex-row flex items-center mt-5">
-              <Text color="blue.600" fontSize="xl">
+              <Text color="blue.600" className="lg:font-xl sm:font-md">
                 <FaRegCalendarAlt size={20} />
               </Text>
-              <Text color="blue.600" fontSize="xl" pl={2}>
+              <Text color="blue.600" className="lg:font-xl sm:font-md" pl={2}>
                 {date}
               </Text>
             </div>
-            <div className="flex-row flex items-center ">
-              <Text color="blue.600" fontSize="xl">
+            <div className="flex-row flex items-center  ">
+              <Text color="blue.600" className="lg:font-xl sm:font-md">
                 <IoLocation size={20} />
               </Text>
-              <Text color="blue.600" fontSize="xl" pl={2}>
+              <Text color="blue.600" className="lg:font-xl sm:font-md" pl={2}>
                 {location}
               </Text>
             </div>
