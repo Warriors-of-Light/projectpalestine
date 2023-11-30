@@ -15,7 +15,7 @@ function LanguageSelector() {
     function clickHandler(Lang: string){
         i18n.changeLanguage (Lang, () => {})
         setCurrentLang(Lang);
-    };
+    }
     
 return ( 
     <div onClick={()=> { clickHandler(currentLang == "en"?"ar":"en") }} className='app-btn-red' >
