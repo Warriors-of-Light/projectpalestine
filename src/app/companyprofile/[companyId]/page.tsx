@@ -80,7 +80,7 @@ export default function CompanyProfile({ params }: ICompanyProfileProps) {
               </div>
 
               {/* Status */}
-              <div className="flex w-1/2 pr-12 justify-center">
+              <div className="flex w-1/2 pr-12 justify-end">
                 <Status status={company?.rating!} />
               </div>
             </div>
