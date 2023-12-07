@@ -1,20 +1,6 @@
 import { UserCredential } from "firebase/auth";
 import { StaticImageData } from "next/image";
 
-
-//Assuming that Alternatives are companies with additional attributes 
-// export type Alternative = {
-//   company: Company;
-//   countries: Array<string>; 
-//   //Next step: Add branches and locations
-// }
-
-// export type BoycottedCompany = {
-//   company: Company;
-//   alternatives: Array<Alternative>;
-//   //Next step: Add insights of company i.e. num of boycotters, The company's shares in the stock market, feed
-// };
-
 export type Incident = {
   incidentId: string;
   title: string;
@@ -23,13 +9,6 @@ export type Incident = {
   rating: string;
   websites: Array<string>;
 };
-
-//to be modified 
-export type Alternative = {
-  logo: string;
-  name: string;
-  countries: Array<string>; 
-}
 
 export type Company = {
   logo: string;
@@ -40,8 +19,21 @@ export type Company = {
   tags?: Array<string>;
   rating: 1 | 2 | 3;
   incidents: Array<Incident>;
-  //alternatives?: Array<Alternative>; //to be modified
+  alternatives?: Array<Alternative>; //TEMPORARY: this shouldn't be here, but just to run the code :') 
 };
+
+//Assuming that Alternatives are companies with additional attributes 
+export type Alternative = {
+  company: Company;
+  countries: Array<string>; 
+  //Next step: Add branches and locations
+}
+
+// export type BoycottedCompany = {
+//   company: Company;
+//   alternatives: Array<Alternative>;
+//   //Next step: Add company insights i.e. num of boycotters, The company's shares in the stock market, feed
+// };
 
 export type Demonstration = {
   title: string;
